@@ -1,0 +1,91 @@
+:root {
+  --color-primary: #008cff; /* Tepedu Blue */
+  --color-navy: #2c3e50; /* Academic Navy */
+  --color-text: #333333;
+  --color-bg: #ffffff;
+  --color-sidebar: #f5f7fa;
+  --color-border: #e9ecef;
+  --color-table-hover: #f1f1f1;
+}
+
+/* Default Dark Mode Override */
+body {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+
+body.light-mode {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Header & Nav - Always Dark-ish or Adaptive */
+header {
+  background-color: var(--color-navy);
+  color: white;
+}
+
+/* Interactive Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+th, td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+
+/* Dark Mode Table */
+body:not(.light-mode) table th, 
+body:not(.light-mode) table td {
+  border-color: #444;
+}
+
+/* Hover Effect */
+tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+body.light-mode tbody tr:hover {
+  background-color: var(--color-table-hover);
+}
+
+body:not(.light-mode) tbody tr:hover {
+  background-color: #2c3e50; /* Academic Navy highlight */
+}
+
+/* Glossary Tooltips */
+.term {
+  color: var(--color-primary);
+  text-decoration: underline dotted;
+  cursor: help;
+  position: relative;
+}
+
+.term::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-navy);
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  z-index: 100;
+  pointer-events: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.term:hover::after {
+  opacity: 1;
+  visibility: visible;
+}

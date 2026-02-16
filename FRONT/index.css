@@ -1,0 +1,176 @@
+/* Basic Reset & Globals */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-primary: 'Inter', sans-serif;
+    --font-secondary: 'Space Grotesk', sans-serif;
+    --font-thin-body: 'Roboto', sans-serif;
+    --font-book-title: 'IBM Plex Mono', monospace;
+
+    --text-color-base: #222222;
+    --text-color-medium: #555555;
+    --text-color-light: #888888;
+    
+    --bg-color: #ffffff;
+    --header-bg: rgba(255, 255, 255, 0.9);
+    --card-bg: #ffffff;
+    --border-color: #eeeeee;
+    --footer-bg: #fdfdfd;
+
+    /* Define a consistent height for covers */
+    --card-cover-height: 350px; /* Reduced height a bit */
+    --card-cover-height-mobile: 280px;
+}
+
+/* ... (Body, Font Definitions, General Element Styles - mostly same as before) ... */
+body {
+    font-family: var(--font-primary);
+    line-height: 1.7;
+    background-color: var(--bg-color);
+    color: var(--text-color-base);
+    overflow-x: hidden; /* CRITICAL to prevent horizontal scroll */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, .main-nav .logo {
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-color-base);
+}
+h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 0.7em; }
+h2 { font-size: 2.2rem; line-height: 1.3; margin-top: 1em; }
+.main-nav .logo { font-size: 1.7rem; font-weight: 700; min-height: 1.2em; }
+.book-card .book-info h3 {
+    font-family: var(--font-book-title); font-weight: 100; font-size: 1.5rem;
+    color: var(--text-color-base); margin-bottom: 0.4em; letter-spacing: 0.01em;
+}
+h3 { font-family: var(--font-secondary); font-weight: 500; color: var(--text-color-base); }
+.thin-text { font-family: var(--font-thin-body); font-weight: 100; font-size: 1.1rem; color: var(--text-color-medium); }
+a { color: var(--text-color-medium); text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: var(--text-color-base); }
+img { max-width: 100%; height: auto; display: block; }
+
+
+/* == LAYOUT & COMPONENTS == */
+/* Navigation ... (same as before) ... */
+.site-header { /* ... same ... */ }
+.main-nav { /* ... same ... */ }
+.nav-links { /* ... same ... */ }
+.hamburger-menu { /* ... same ... */ }
+
+/* Hero Section ... (same as before) ... */
+.hero-section { /* ... same ... */ }
+.hero-content h1 { /* ... same ... */ }
+.hero-content .hero-sub-text { /* ... same ... */ }
+
+/* Text Highlight Styling ... (same as before) ... */
+.highlight-text { color: var(--text-color-light); }
+
+/* Typing Cursor ... (same as before) ... */
+.typing-cursor { /* ... same ... */ }
+@keyframes blink { /* ... same ... */ }
+
+/* Scroll Indicator ... (same as before) ... */
+.scroll-indicator { /* ... same ... */ }
+.arrow-down { /* ... same ... */ }
+@keyframes bounceArrow { /* ... same ... */ }
+
+/* Standard Content Section ... (same as before) ... */
+.content-section { /* ... same ... */ }
+
+/* Full Width Section ... (same as before) ... */
+.full-width-section { /* ... same ... */ }
+.section-title-container { /* ... same ... */ }
+
+
+/* Book Grid - CRITICAL FIXES HERE */
+.book-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 0; /* No gap between cards */
+    width: 100%; /* Ensure grid itself takes full available width */
+}
+
+.book-card {
+    background-color: var(--card-bg);
+    overflow: hidden; /* Important to contain children like absolutely positioned video */
+    border: none;
+    position: relative; /* Establishes a containing block for children */
+    display: flex;
+    flex-direction: column; /* Stack cover and info vertically */
+    width: 100%; /* Ensure card takes full width of its grid cell */
+}
+.book-card:hover { z-index: 10; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.book-card a {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Make link expand */
+    color: inherit;
+    text-decoration: none;
+    width: 100%; /* Ensure link takes full width */
+    height: 100%; /* Ensure link takes full height */
+}
+
+/* Container for both video and image covers */
+.book-cover-wrapper { /* NEW WRAPPER */
+    width: 100%;
+    height: var(--card-cover-height);
+    position: relative; /* For positioning video/image absolutely inside */
+    overflow: hidden; /* Crucial to clip the video/image */
+    background-color: #111; /* Fallback if no poster/image */
+}
+
+.book-card .book-cover-video,
+.book-card .book-cover-image {
+    position: absolute; /* Positioned within .book-cover-wrapper */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the wrapper area, will crop if aspect ratios differ */
+    display: block;
+}
+/* If money.mp4 is color and you want B&W via CSS for all videos: */
+/* .book-card .book-cover-video { filter: grayscale(100%); } */
+
+
+.book-card .book-info {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 2; /* Above cover if any overlap styling was added */
+    background-color: var(--card-bg);
+    flex-grow: 1; /* Allows info to take up remaining space */
+}
+/* h3 style for book titles and .author defined above in FONT DEFINITIONS */
+
+
+/* Footer ... (same as before) ... */
+.site-footer { /* ... same ... */ }
+
+/* Animations ... (same as before) ... */
+.animate-on-scroll { /* ... same ... */ }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    /* ... (existing responsive font, nav, hamburger styles) ... */
+    h1 { font-size: 2.4rem; }
+    .hero-content h1 { font-size: 2.6rem; }
+    .hero-content .hero-sub-text { font-size: 1.15rem; }
+    h2 { font-size: 1.9rem; }
+    .book-card .book-info h3 { font-size: 1.3rem; }
+
+    .book-grid,
+    .book-grid.single-column-sm {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+    
+    .book-cover-wrapper { /* Adjust height for mobile */
+        height: var(--card-cover-height-mobile);
+    }
+    /* ... (other existing responsive styles) ... */
+}

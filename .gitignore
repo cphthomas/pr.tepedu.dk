@@ -1,0 +1,5 @@
+bog
+node_modules/
+.DS_Store
+.claude/
+.agent/

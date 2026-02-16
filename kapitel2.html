@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Skatteoptimering & Adfærdsøkonomi - Privatøkonomisk Rådgivning</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@100;400;500&family=Roboto:wght@100;300;400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- MDB CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="theme-dark.css">
+    <link rel="stylesheet" href="theme-light.css">
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <link rel="stylesheet" href="glossary.css">
+
+    <style>
+        .behavioral-card {
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+            background: white;
+        }
+
+        .behavioral-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .psychology-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: #e3f2fd;
+            color: #008cff;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand navbar-light transparent-navbar fixed-top">
+        <div class="container-fluid">
+            <a href="https://tepedu.dk/" target="_blank" rel="noopener noreferrer">
+                <img src="tepedulogoanim.svg" alt="Te Pedu Logo" style="height: 35px; margin-right: 15px;">
+            </a>
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-house-door"></i>
+            </a>
+
+            <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" id="theme-toggle" href="#" role="button" aria-label="Skift tema">
+                        <div class="theme-icon-wrapper">
+                            <svg class="theme-icon-sun active" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                            <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bi bi-list icon-margin"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="prev-page-link" href="kapitel1.html"><i class="bi bi-arrow-left"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="next-page-link" href="kapitel3.html"><i class="bi bi-arrow-right"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <div id="left-aligned-sidebar" class="sidebar">
+        <button id="sidebar-toggle-button" class="sidebar-toggle" aria-label="Toggle navigation">
+            <i class="bi bi-list"></i>
+        </button>
+        <div class="sidebar-content">
+            <h5 class="sidebar-title">Indholdsfortegnelse</h5>
+            <ul id="sidebar-toc" class="list-unstyled"></ul>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container-fluid mt-4 px-lg-5">
+            <article>
+                <div class="book-cover-wrapper">
+                    <div class="img-fluid" width="100%" style="min-height: 400px; background-color: #2c3e50;"></div>
+                    <h1 class="cover-text-overlay animate-cover-text" data-type-text="2 Optimering & Adfærd"
+                        data-type-speed="150">2 Optimering & Adfærd</h1>
+                </div>
+
+                <div class="info-box mt-4">
+                    <p class="lead">Økonomisk rådgivning handler om meget mere end blot tal. Det handler om at brobygge
+                        mellem kundens drømme og den tekniske virkelighed. Her spiller <b>optimering</b> og
+                        <b>adfærdsøkonomi</b> de centrale roller.
+                    </p>
+                </div>
+
+                <h2>2.1 Skatteoptimering: Pension som løftestang</h2>
+                <div class="info-box">
+                    <p>I Danmark er pension det mest effektive redskab til at sænke sin skattebetaling her og nu. For en
+                        person, der betaler topskat, er værdien af fradraget ca. 52,07 %. Det betyder, at det kun
+                        "koster" kunden ca. 48 kr. at sætte 100 kr. ind på en pension.</p>
+                </div>
+
+                <h3>Typer af Pensionsordninger</h3>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="card p-3 h-100">
+                            <h5>Ratepension</h5>
+                            <p class="small text-muted">Loft: 63.100 kr. (2026)</p>
+                            <p>Udbetales i rater over 10-30 år. Giver fuldt fradrag i topskatten. Bedst til de fleste
+                                lønmodtagere.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card p-3 h-100 border-primary">
+                            <h5>Livrente</h5>
+                            <p class="small text-muted">Intet loft (via arb.giver)</p>
+                            <p>Sikrer udbetaling så længe du lever. Giver også fuldt fradrag og er ideelt til optimering
+                                af meget høj indkomst.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card p-3 h-100">
+                            <h5>Aldersopsparing</h5>
+                            <p class="small text-muted">Loft: 9.100 kr. (2026)</p>
+                            <p>Intet fradrag ved indbetaling, men udbetalingen er 100 % skattefri og modregnes ikke i
+                                tillæg.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="mt-5">2.2 Adfærdsøkonomi: Hvorfor vi fejler</h2>
+                <p>Klassisk økonomisk teori antager, at vi er "Homo Economicus" – rationelle væsner, der altid
+                    maksimerer vores nytte. Men virkeligheden er en anden. Vi styres af kognitive biases.</p>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="behavioral-card">
+                            <span class="psychology-tag">Present Bias</span>
+                            <h5>Nuet vinder over fremtiden</h5>
+                            <p>Tendensen til at værdsætte en øjeblikkelig belønning (den nye telefon) højere end en
+                                fremtidig (pension), selvom den fremtidige er objektivt større.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="behavioral-card">
+                            <span class="psychology-tag">Loss Aversion</span>
+                            <h5>Smerten ved tab</h5>
+                            <p>Psykologisk forskning viser, at smerten ved at tabe 1.000 kr. er ca. dobbelt så stærk som
+                                glæden ved at vinde 1.000 kr. Dette gør mange kunder overdrevent risikosky.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="behavioral-card">
+                            <span class="psychology-tag">Mental Accounting</span>
+                            <h5>Mentale pengekasser</h5>
+                            <p>Vi behandler penge forskelligt afhængigt af, hvor de kommer fra. En skattegevinst
+                                ("gratis penge") bruges hurtigere end hårdt tjente lønkroner.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="behavioral-card">
+                            <span class="psychology-tag">Anchoring</span>
+                            <h5>Forankring</h5>
+                            <p>Vi lader os påvirke af det første tal, vi hører. Hvis en bolig har stået til 5 mio.,
+                                føles 4,5 mio. som et kup, selvom den reelle markedspris er 4 mio.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>2.3 Nudging i rådgivningen</h2>
+                <div class="info-box">
+                    <p>Som rådgiver kan du bruge <b>nudging</b> til at hjælpe kunden mod bedre beslutninger uden at
+                        fjerne deres valgfrihed. Eksempler:</p>
+                    <ul>
+                        <li><b>Standardvalget (Default):</b> Gør den mest hensigtsmæssige pensionsordning til
+                            standardvalget ved ansættelse.</li>
+                        <li><b>Rammesætning (Framing):</b> Præsenter ikke opsparing som et "tab af rådighedsbeløb", men
+                            som "køb af fremtidig frihed".</li>
+                    </ul>
+                </div>
+
+                <h2>2.4 Case: Pension, Skat og Adfærd</h2>
+                <div class="info-box highlight-box">
+                    <h3>Simone (40 år) - Strategisk Rådgivning</h3>
+                    <p>Simone har netop fået en lønforhøjelse på 10.000 kr. pr. måned. Hun vil gerne have dem udbetalt
+                        til en ny bil.</p>
+                    <p><b>Rådgiverens vinkel:</b></p>
+                    <ul>
+                        <li><b>Logik:</b> Ved at sætte de 10.000 kr. på pension, "køber" hun 10.000 kr. for kun 4.800
+                            kr. efter skat.</li>
+                        <li><b>Psykologi:</b> Simone lider af <i>Present Bias</i>. Hun ser bilen nu, men ikke friheden
+                            som 65-årig.</li>
+                        <li><b>Løsning:</b> Rådgiveren viser grafisk forskellen på hendes formue med og uden
+                            indbetalingen over 25 år.</li>
+                    </ul>
+                </div>
+
+                <h2>2.5 Data-indsigt: Effekten af renters rente</h2>
+                <div class="info-box">
+                    <p>Einstein kaldte det "verdens ottende vidunder". Jo tidligere vi starter optimeringen, jo mere
+                        arbejder tiden for os.</p>
+                    <div class="chart-container" style="position: relative; height: 500px; width: 100%;">
+                        <canvas id="compoundingChart"></canvas>
+                    </div>
+                    <p class="text-muted mt-2 small text-center">Figur 2.1: Udvikling i pensionsformue ved 5.000 kr.
+                        indbetaling/md ved 5 % afkast. Kilde: Tepedu Finance.</p>
+                </div>
+
+                <div class="glossary-section mt-5">
+                    <hr>
+                    <p><small><b>Termer i dette kapitel:</b></small></p>
+                    <ul>
+                        <li><span class="term"
+                                data-tooltip="Små skub der gør det lettere at tage gode økonomiske beslutninger.">Nudging</span>
+                        </li>
+                        <li><span class="term"
+                                data-tooltip="Når afkastet af din opsparing også begynder at give afkast.">Renters
+                                rente</span></li>
+                        <li><span class="term"
+                                data-tooltip="En kognitiv fejlslutning hvor man træffer irrationelle beslutninger.">Biases</span>
+                        </li>
+                        <li><span class="term"
+                                data-tooltip="Værdien af dit fradrag i forhold til den sparede skat.">Fradragsværdi</span>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="menu.js"></script>
+    <script src="script.js"></script>
+    <script src="theme-toggle.js"></script>
+    <script src="glossary.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('compoundingChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['5 år', '10 år', '15 år', '20 år', '25 år', '30 år'],
+                        datasets: [{
+                            label: 'Egen Indbetaling (mio. kr.)',
+                            data: [0.3, 0.6, 0.9, 1.2, 1.5, 1.8],
+                            backgroundColor: '#bdc3c7'
+                        }, {
+                            label: 'Samlet Formue m. Afkast (mio. kr.)',
+                            data: [0.34, 0.78, 1.34, 2.06, 2.98, 4.15],
+                            backgroundColor: '#008cff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: true, title: { display: true, text: 'Mio. DKK' } }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

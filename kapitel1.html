@@ -1,0 +1,2794 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skattesystemet 2026 - Privatøkonomisk Rådgivning</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@100;400;500&family=Roboto:wght@100;300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="theme-dark.css">
+    <link rel="stylesheet" href="theme-light.css">
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <link rel="stylesheet" href="glossary.css">
+
+    <style>
+        /* Square corners everywhere */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            border-radius: 0;
+            padding: 10px;
+        }
+
+        /* Chart container backgrounds for dark/light mode */
+        body:not(.dark-mode) .chart-container {
+            background-color: #ffffff;
+        }
+
+        body.dark-mode .chart-container {
+            background-color: #000000;
+        }
+
+        .chart-container.sankey-chart {
+            height: 80vh;
+            /* Extra height for Sankey diagrams to show all labels */
+        }
+
+        /* Stat cards: white, shadow on hover, square */
+        .stat-card {
+            background: #fff;
+            border-radius: 0;
+            padding: 24px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+            border: 1px solid #e8e8e8;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        [data-theme="dark"] .stat-card {
+            background: #1e1e2e;
+            border-color: #333;
+        }
+
+        [data-theme="dark"] .stat-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #333;
+        }
+
+        [data-theme="dark"] .stat-number {
+            color: #e0e0e0;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 6px;
+        }
+
+        [data-theme="dark"] .stat-label {
+            color: #aaa;
+        }
+
+        .stat-number.accent-purple {
+            color: #764ba2;
+        }
+
+        .stat-number.accent-green {
+            color: #11998e;
+        }
+
+        .stat-number.accent-orange {
+            color: #f2994a;
+        }
+
+        .stat-number.accent-blue {
+            color: #2193b0;
+        }
+
+        /* Reveal on scroll */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-on-scroll.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Tax calculator: white card, square */
+        .tax-calculator {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 0;
+            padding: 30px;
+            margin: 20px 0;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .tax-calculator:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        [data-theme="dark"] .tax-calculator {
+            background: #1e1e2e;
+            border-color: #333;
+        }
+
+        [data-theme="dark"] .tax-calculator:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .tax-calculator input[type="range"] {
+            width: 100%;
+            margin: 15px 0;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            border-radius: 0;
+            background: #e9ecef;
+            background-image: linear-gradient(90deg, #11998e, #667eea, #764ba2);
+            background-repeat: no-repeat;
+            outline: none;
+        }
+
+        .tax-calculator input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .calc-result {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #11998e;
+        }
+
+        [data-theme="dark"] .calc-result {
+            color: #38ef7d;
+        }
+
+        /* Chart loading spinner */
+        .chart-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .chart-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Override any border-radius on bars from Chart.js */
+        canvas {
+            border-radius: 0 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand navbar-light transparent-navbar fixed-top">
+        <div class="container-fluid">
+            <a href="https://tepedu.dk/" target="_blank" rel="noopener noreferrer">
+                <img src="tepedulogoanim.svg" alt="Te Pedu Logo" style="height:35px; margin-right:15px;">
+            </a>
+            <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i></a>
+            <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" id="theme-toggle" href="#" role="button" aria-label="Skift tema">
+                        <div class="theme-icon-wrapper">
+                            <svg class="theme-icon-sun active" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                            <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                            class="bi bi-list icon-margin"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink"></div>
+                </li>
+                <li class="nav-item"><a class="nav-link" id="prev-page-link" href="index.html"><i
+                            class="bi bi-arrow-left"></i></a></li>
+                <li class="nav-item"><a class="nav-link" id="next-page-link" href="kapitel2.html"><i
+                            class="bi bi-arrow-right"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div id="left-aligned-sidebar" class="sidebar">
+        <button id="sidebar-toggle-button" class="sidebar-toggle" aria-label="Toggle navigation"><i
+                class="bi bi-list"></i></button>
+        <div class="sidebar-content">
+            <h5 class="sidebar-title">Indholdsfortegnelse</h5>
+            <ul id="sidebar-toc" class="list-unstyled"></ul>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container mt-4">
+            <article>
+                <div class="book-cover-wrapper">
+                    <video autoplay muted playsinline src="" alt="Skattesystemet 2026" class="img-fluid" width="100%"
+                        style="min-height:400px; object-fit:cover;"></video>
+                    <h1 class="cover-text-overlay animate-cover-text" data-type-text="1 Skattesystemet 2026"
+                        data-type-speed="150">1 Skattesystemet 2026</h1>
+                </div>
+
+                <div class="info-box reveal-on-scroll">
+                    <p>Det danske skattesystem er ikke blot fundamentet for en af verdens mest udbyggede velfærdsstater;
+                        det er også et historisk kompromis mellem lighed og vækst. Politisk har skattesystemet altid
+                        været en central kampplads mellem ønsket om social omfordeling og behovet for at sikre, at det
+                        kan betale sig at arbejde og investere.</p>
+                    <p>Siden "Systemskiftet" i 1903, hvor man indførte den moderne indkomstskat, har systemet gennemgået
+                        adskillige skattereformer, der hver især afspejler tidens økonomiske udfordringer. Dette kapitel
+                        introducerer det danske <span class="legal-term"
+                            data-definition="Det samlede system for opkrævning af skatter og afgifter i Danmark, reguleret af bl.a. personskatteloven, kildeskatteloven og ligningsloven."
+                            data-example="Skattesystemet bestemmer, hvor meget du betaler i skat af din løn, kapitalindkomst og aktieindkomst."
+                            data-slug="skattesystem">skattesystem</span> i 2026 efter den mest omfattende reform i nyere
+                        tid.</p>
+                    <p>Reformen markerer et skifte fra et to-strenget system (bund/top) til et fire-strenget system
+                        (bund/mellem/top/top-top). Det er et politisk forsøg på at øge arbejdsudbuddet ved at sænke den
+                        marginale skat for mellemgrupperne, samtidig med at man i toppen indfører en "top-topskat" for
+                        at opretholde balancen i omfordelingen. For den økonomiske rådgiver er det afgørende at mestre
+                        disse ændringer for at kunne optimere kundens <span class="legal-term"
+                            data-definition="Den indkomst der er tilbage efter skat og AM-bidrag er betalt. Det beløb man reelt har til rådighed."
+                            data-example="Tjener du 500.000 kr. og betaler 180.000 kr. i skat, er din disponible indkomst 320.000 kr."
+                            data-slug="disponibel-indkomst">disponible indkomst</span> og pensionsopsparing.</p>
+                </div>
+
+                <!-- Key Statistics Cards -->
+                <h2>1.1 Historisk oversigt: Udviklingen i skattesystemet</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Udviklingen i det danske skattesystem afspejler transformeringen fra et landbrugssamfund til en
+                        moderne industristat og siden et videnssamfund. Herunder ses de vigtigste milepæle i
+                        skattehistorien:</p>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>År</th>
+                                    <th>Reform / Begivenhed</th>
+                                    <th>Politisk baggrund</th>
+                                    <th>Strategisk fokus</th>
+                                    <th>Økonomisk betydning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1903</td>
+                                    <td><b>Systemskiftet</b></td>
+                                    <td>Venstre (Deuntzer)</td>
+                                    <td>Lighed & Modernisering</td>
+                                    <td>Moderne indkomst- og formueskat indføres. Beskatningen flyttes fra
+                                        jordbesiddelse til personlig indkomst.</td>
+                                </tr>
+                                <tr>
+                                    <td>1967</td>
+                                    <td><b>Moms indføres</b></td>
+                                    <td>S (Jens Otto Krag)</td>
+                                    <td>Finansiering af velfærd</td>
+                                    <td>Indførelse af merværdiafgift (moms) på 10% (i dag 25%). Flytter skatten fra
+                                        arbejde mod forbrug.</td>
+                                </tr>
+                                <tr>
+                                    <td>1970</td>
+                                    <td><b>Kildeskatten</b></td>
+                                    <td>S (Hilmar Baunsgaard*)</td>
+                                    <td>Effektivisering</td>
+                                    <td>Skat tilbageholdes nu direkte i lønnen. Massive investeringer i digitalisering
+                                        af skattevæsenet.</td>
+                                </tr>
+                                <tr>
+                                    <td>1987</td>
+                                    <td><b>Kartoffelkuren</b></td>
+                                    <td>K-V (Schlüter)</td>
+                                    <td>Opsparing & Gældspleje</td>
+                                    <td>Stort opgør med rentefradraget. Formålet var at stoppe privat overforbrug og
+                                        nedbringe landets gæld.</td>
+                                </tr>
+                                <tr>
+                                    <td>1994</td>
+                                    <td><b>AM-bidrag</b></td>
+                                    <td>S-RV-CD (Nyrup)</td>
+                                    <td>Arbejdsmarked</td>
+                                    <td>En flad bruttoskat på 8% indføres. Bruges til at finansiere ledigheds- og
+                                        aktiveringsindsatser.</td>
+                                </tr>
+                                <tr>
+                                    <td>1998</td>
+                                    <td><b>Pinsepakken</b></td>
+                                    <td>S-RV (Nyrup)</td>
+                                    <td>Miljø & Bolig</td>
+                                    <td>Yderligere reduktion af rentefradrag og indførelse af grønne afgifter for at
+                                        styre økonomien og miljøet.</td>
+                                </tr>
+                                <tr>
+                                    <td>2002</td>
+                                    <td><b>Skattestoppet</b></td>
+                                    <td>V-K (Fogh)</td>
+                                    <td>Forudsigelighed</td>
+                                    <td>Ingen skat eller afgift må stige. Ejendomsværdiskatten fastlåses i kroner og
+                                        ører, hvilket præger boligmarkedet i årtier.</td>
+                                </tr>
+                                <tr>
+                                    <td>2009</td>
+                                    <td><b>Forårspakke 2.0</b></td>
+                                    <td>V-K (Løkke)</td>
+                                    <td>Arbejdsudbud</td>
+                                    <td>Mellemskatten afskaffes (midlertidigt) og topskattesatsen sænkes for at få
+                                        danskerne til at arbejde mere.</td>
+                                </tr>
+                                <tr>
+                                    <td>2012</td>
+                                    <td><b>Skatteaftale</b></td>
+                                    <td>S-RV (Thorning)</td>
+                                    <td>Konkurrenceevne</td>
+                                    <td>Markant forhøjelse af topskattegrænsen og beskæftigelsesfradraget for at gøre
+                                        det mere attraktivt at arbejde.</td>
+                                </tr>
+                                <tr>
+                                    <td>2026</td>
+                                    <td><b>SVM-reformen</b></td>
+                                    <td>S-V-M (Frederiksen)</td>
+                                    <td>Balance & Dynamik</td>
+                                    <td>Nyt fire-strenget system. Mellemskat genindføres som "blød" overgang, og
+                                        top-topskat indføres for de højeste indkomster.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-3">Tabel 1.1 — Kilde: Skatteministeriet, danmarkshistorien.dk og
+                        Skattestyrelsen</small>
+                    <small class="text-muted d-block mt-3">
+                        <i>*Kildeskatten blev forberedt under S, men gennemført under Baunsgaard-regeringen (RV-V-K).
+                            Det illustrerer, hvordan store reformer ofte kræver bred politisk kontinuitet over skiftende
+                            regeringer.</i>
+                    </small>
+                </div>
+
+                <h2>1.2 Nøgletal for det danske skattesystem</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>De følgende nøgletal tegner et billede af det danske skattesystem i 2026. Tallene afspejler både
+                        finansieringen af velfærdsstaten og de seneste reformer, der sigter mod at balancere
+                        arbejdsudbud og social lighed.</p>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover mt-3">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Nøgletal</th>
+                                    <th>Værdi (2026)</th>
+                                    <th>Forklaring</th>
+                                    <th>Kilde</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Personskatter (I alt)</b></td>
+                                    <td>543 mia. kr.</td>
+                                    <td>De samlede indtægter fra indkomstskatter og ejendomsskatter.</td>
+                                    <td>DST (2024)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Skattetryk (% af BNP)</b></td>
+                                    <td>46,3%</td>
+                                    <td>Skatteindtægternes andel af det samlede bruttonationalprodukt.</td>
+                                    <td>Eurostat (2023)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Moms (Standard)</b></td>
+                                    <td>25%</td>
+                                    <td>Merværdiafgift på de fleste varer og tjenesteydelser i Danmark.</td>
+                                    <td>Skattestyrelsen</td>
+                                </tr>
+                                <tr>
+                                    <td><b>AM-bidrag</b></td>
+                                    <td>8,0%</td>
+                                    <td>Bruttoskat der betales af al lønindkomst før andre fradrag.</td>
+                                    <td>Personskatteloven</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Skatteloft (inkl. top-top)</b></td>
+                                    <td>57,07%</td>
+                                    <td>Den maksimale marginalskat for personlig indkomst ekskl. kirkeskat.</td>
+                                    <td>Skatteministeriet</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Personfradrag (>18 år)</b></td>
+                                    <td>54.100 kr.</td>
+                                    <td>Det beløb man kan tjene om året uden at betale indkomstskat.</td>
+                                    <td>Skatteministeriet</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Beskæftigelsesfradrag (maks)</b></td>
+                                    <td>63.300 kr.</td>
+                                    <td>Et automatisk fradrag for alle der er i beskæftigelse.</td>
+                                    <td>Skatteministeriet</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Topskatteydere (estimat)</b></td>
+                                    <td>ca. 285.000</td>
+                                    <td>Antal personer der forventes at tjene over 777.900 kr. (efter AM).</td>
+                                    <td>SKM (Estimat)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Top-topskatteydere (estimat)</b></td>
+                                    <td>ca. 9.000</td>
+                                    <td>Den begrænsede gruppe der rammes af den nye top-topskat.</td>
+                                    <td>SKM (Estimat)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-3">Tabel 1.2 — Kilde: Danmarks Statistik, Eurostat og
+                        Skattestyrelsen</small>
+                    <small class="text-muted d-block mt-3">
+                        Tabellen giver et overblik over de vigtigste skattesatser og beløbsgrænser for 2026, herunder
+                        personskatter, skatteloft og fradrag.
+                    </small>
+                </div>
+
+                <h2>1.3 Centrale emner</h2>
+                <div class="info-box">
+                    <ul>
+                        <li><b>Hovedemner:</b> Skattereformen 2026, <span class="legal-term"
+                                data-definition="Arbejdsmarkedsbidrag - en skat på 8% af bruttoindkomsten, der betales før alle andre skatter."
+                                data-example="Tjener du 500.000 kr. brutto, betaler du 40.000 kr. i AM-bidrag."
+                                data-slug="am-bidrag">AM-bidrag</span>, de fire skattetrin, <span class="legal-term"
+                                data-definition="Skatten af den sidst tjente krone. Afgørende for om det kan betale sig at arbejde mere."
+                                data-example="Hvis din marginalskat er 52%, beholder du kun 48 øre af den næste krone du tjener."
+                                data-slug="marginalskat">marginalskat</span>, personfradrag, kapitalindkomst</li>
+                        <li><b>Vigtige begreber:</b> <span class="legal-term"
+                                data-definition="Bruttoindkomst minus AM-bidrag. Grundlaget for beregning af bundskat, mellemskat, topskat og top-topskat."
+                                data-example="Med 600.000 kr. i bruttoløn og 8% AM-bidrag bliver din personlige indkomst 552.000 kr."
+                                data-slug="personlig-indkomst">Personlig indkomst</span>, skatteloft, aktiesparekonto,
+                            rentefradrag</li>
+                        <li><b>Praktisk anvendelse:</b> Skatteberegning, optimering af indkomst og pension</li>
+                    </ul>
+                </div>
+                <br>
+
+                <h2>1 Indledning: Hvorfor skattereformen 2026?</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Skattereformen blev vedtaget med følgende tre hovedformål:</p>
+                    <ol>
+                        <li><b>Øge arbejdsudbuddet:</b> Ved at hæve topskattegrænsen og indføre mellemskat skulle flere
+                            have incitament til at arbejde mere og tage overarbejde.</li>
+                        <li><b>Finansiere velfærden:</b> Top-topskatten sikrer, at de allerhøjeste indkomster bidrager
+                            mere til fællesskabet.</li>
+                        <li><b>Modernisere skattestrukturen:</b> Systemet blev tilpasset med fire klarere trin, der
+                            bedre afspejler den moderne indkomstfordeling.</li>
+                    </ol>
+                    <p>I 2024 udgjorde de samlede skatteindtægter fra personer <b>543,0 mia. kr.</b>, en stigning på
+                        5,8% fra året før. Kommuneskatten udgjorde 317,1 mia. kr., mens AM-bidraget indbragte 114,4 mia.
+                        kr. til statskassen.</p>
+                </div>
+
+                <!-- Skatteindtægter -->
+                <h3>1.1 Skatteindtægternes sammensætning</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Nedenstående diagram viser fordelingen af de samlede personskatter i Danmark. Kommuneskatten er
+                        den klart største komponent og finansierer lokale services som skoler, ældrepleje og
+                        infrastruktur.</p>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="chart-container mb-2 square wide"><canvas id="taxRevenueDoughnut"></canvas>
+                            </div>
+                            <small class="d-block text-left mt-2">Figur 1.1 — Kilde: Danmarks Statistik, Statistikbanken
+                                tabel SKAT</small>
+                            <small class="text-muted d-block mt-3">
+                                <p><b>Sådan læses figuren:</b> Doughnut-diagrammet viser, hvordan de samlede
+                                    personskatter på <b>543 mia. kr.</b> fordeler sig mellem de forskellige skattetyper.
+                                    Hver "skive" repræsenterer en skattetype, og størrelsen svarer til dens andel af de
+                                    samlede indtægter.</p>
+                                <ul>
+                                    <li><b>Kommuneskat (317,1 mia. kr.):</b> Den klart største komponent — over
+                                        halvdelen af alle personskatter. Kommuneskatten finansierer lokale ydelser som
+                                        folkeskoler, hjemmepleje, børnepasning og lokal infrastruktur. Satsen varierer
+                                        fra kommune til kommune (f.eks. 22,8% i Gentofte mod 27,8% på Langeland).</li>
+                                    <li><b>AM-bidrag (114,4 mia. kr.):</b> Den næststørste post. Alle lønmodtagere
+                                        betaler 8% af deres bruttoløn, uanset indkomstniveau. Eksempel: En person med
+                                        500.000 kr. i bruttoløn bidrager med 40.000 kr., mens en med 1 mio. kr. bidrager
+                                        med 80.000 kr.</li>
+                                    <li><b>Bundskat, topskat og øvrige:</b> De resterende skiver dækker statslige
+                                        skatter. Bundskatten (12,01%) rammer alle over personfradraget, mens topskatten
+                                        kun rammer de ca. 285.000 danskere med personlig indkomst over 777.900 kr.</li>
+                                </ul>
+                                <p><b>Kirkeskat:</b> Kirkeskatten indgår <i>ikke</i> som en separat skive i dette
+                                    diagram, da den er en del af den kommunale opkrævning og kun betales af medlemmer af
+                                    folkekirken (ca. 72% af befolkningen). Kirkeskatten udgør typisk 0,4–1,3% afhængigt
+                                    af kommune.</p>
+                            </small>
+                        </div>
+                        <div class="col-12">
+                            <div class="chart-container mb-2 square wide"><canvas id="taxRevenueTimeline"></canvas>
+                            </div>
+                            <small class="d-block text-left mt-2">Figur 1.2 — Kilde: Danmarks Statistik</small>
+                            <small class="text-muted d-block mt-3">
+                                <p><b>Sådan læses figuren:</b> Tidslinjen viser udviklingen i de samlede skatteindtægter
+                                    fra personskatter over de seneste 6 år. Det stablede areal viser, hvordan de enkelte
+                                    skattetyper (kommuneskat, AM-bidrag, bundskat osv.) hver for sig bidrager til den
+                                    samlede vækst.</p>
+                                <ul>
+                                    <li><b>Stabil vækst:</b> De samlede skatteindtægter er steget fra ca. 480 mia. kr.
+                                        til 543 mia. kr. på 6 år — en stigning på ca. 13%. Stigningen skyldes primært
+                                        højere beskæftigelse (flere skatteydere) og lønstigninger (højere skattepligtig
+                                        indkomst per person).</li>
+                                    <li><b>Kommuneskat dominerer:</b> I alle år udgør kommuneskatten det klart største
+                                        areal. Det afspejler, at kommunerne opkræver den største enkeltskat. Eksempel:
+                                        Når beskæftigelsen stiger med 50.000 personer, øger det kommunale
+                                        skatteindtægter med ca. 8-10 mia. kr.</li>
+                                    <li><b>AM-bidrag vokser stabilt:</b> Da AM-bidraget er en fast procentsats (8%) af
+                                        al lønindkomst, stiger det direkte i takt med den samlede lønsum i Danmark.</li>
+                                </ul>
+                                <p><b>Bemærk:</b> Kirkeskatten indgår ikke separat i denne tidslinje, da den opkræves
+                                    sammen med kommuneskatten.</p>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>2. Arbejdsmarkedsbidraget (AM-bidrag)</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>AM-bidraget er den <b>første</b> skat, der trækkes fra din bruttoløn. Det er en "flad" skat,
+                        hvilket betyder, at alle betaler samme procentsats uanset indkomst. Til forskel fra
+                        indkomstskatten er AM-bidraget ikke progressivt — en direktør og en butiksassistent betaler
+                        begge præcis 8%. AM-bidraget finansierer bl.a. dagpenge, efterløn, aktivering og andre
+                        arbejdsmarkedsrelaterede udgifter.</p>
+                    <h3>2.1 Beregning af AM-bidrag</h3>
+                    <p>Satsen for AM-bidrag er <b>8,00%</b> af bruttoindkomsten. Dette gælder både for 2025 og 2026.</p>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Bruttoindkomst</th>
+                                    <th>AM-bidrag (8%)</th>
+                                    <th>Personlig indkomst</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>300.000 kr.</td>
+                                    <td>24.000 kr.</td>
+                                    <td>276.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>500.000 kr.</td>
+                                    <td>40.000 kr.</td>
+                                    <td>460.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>750.000 kr.</td>
+                                    <td>60.000 kr.</td>
+                                    <td>690.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>1.000.000 kr.</td>
+                                    <td>80.000 kr.</td>
+                                    <td>920.000 kr.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-3">Tabel 1.3 — Kilde: Skatteministeriet, personskatteloven
+                        §7</small>
+                    <small class="text-muted d-block mt-3">
+                        <ul>
+                            <li><b>Bruttoskat:</b> AM-bidraget er en fast skat på 8% af al lønindkomst.</li>
+                            <li><b>Beregningsgrundlag:</b> Trækkes <i>før</i> alle andre skatter og fradrag.</li>
+                            <li><b>Anvendelse:</b> Finansierer bl.a. dagpenge, efterløn og beskæftigelsesindsats.</li>
+                        </ul>
+                    </small>
+
+                    <h3>2.2 Særregel for unge under 18 år (2026)</h3>
+                    <p>Fra 2026 er unge under 18 år <b>fritaget</b> for AM-bidrag. Dette gælder til og med det år, den
+                        unge fylder 17 år. Formålet er at gøre det mere attraktivt for unge at tage fritidsjobs. I
+                        praksis betyder det, at en 16-årig med et fritidsjob beholder 8% mere af sin løn end en voksen i
+                        samme stilling. Unge har desuden et lavere personfradrag på 41.300 kr. (mod 54.100 kr. for
+                        voksne).</p>
+                </div>
+
+                <h2>3. De fire skattetrin i 2026</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Det nye skattesystem opererer med fire trin i den statslige beskatning. Hertil kommer <span
+                            class="legal-term"
+                            data-definition="Skatten der opkræves af kommunen. Varierer fra kommune til kommune, med et gennemsnit på ca. 25% i 2026."
+                            data-example="Bor du i Gentofte (22,8%) betaler du lavere kommuneskat end i Langeland (27,8%)."
+                            data-slug="kommuneskat">kommuneskat</span> (gennemsnitligt 25,0% i 2026) og evt. kirkeskat.
+                    </p>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Skattetype</th>
+                                    <th>Sats</th>
+                                    <th>Indkomstgrænse (efter AM-bidrag)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Bundskat</b></td>
+                                    <td>12,01%</td>
+                                    <td>Fra 54.100 kr. (Personfradrag)</td>
+                                </tr>
+                                <tr class="table-info">
+                                    <td><b>Mellemskat (NY)</b></td>
+                                    <td>7,5%</td>
+                                    <td>Over 641.200 kr.</td>
+                                </tr>
+                                <tr class="table-warning">
+                                    <td><b>Topskat</b></td>
+                                    <td>7,5%</td>
+                                    <td>Over 777.900 kr.</td>
+                                </tr>
+                                <tr class="table-danger">
+                                    <td><b>Top-topskat (NY)</b></td>
+                                    <td>5,0%</td>
+                                    <td>Over 2.592.700 kr.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-3">Tabel 1.4 — Kilde: Skatteministeriet, skattesatser og
+                        beløbsgrænser 2026</small>
+                    <small class="text-muted d-block mt-3">
+                        <ul>
+                            <li><b>Bundskat (12,01%):</b> Betales af indkomst over personfradraget (54.100 kr.).</li>
+                            <li><b>Mellemskat (7,5%):</b> Ny i 2026, betales af indkomst over 641.200 kr.</li>
+                            <li><b>Topskat (7,5%):</b> Betales af indkomst over 777.900 kr. (samlet tillæg 15%).</li>
+                            <li><b>Top-topskat (5,0%):</b> Ny i 2026, betales af indkomst over 2.592.700 kr. (samlet
+                                tillæg 20%).</li>
+                        </ul>
+                    </small>
+                    <p><b>Bemærk:</b> Alle indkomstgrænser er angivet i 2026-niveau. Grænserne reguleres årligt efter
+                        personskatteloven.</p>
+                </div>
+
+                <h3>3.1 Sammenligning: Gammelt vs. nyt system</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Nedenstående figur sammenligner det gamle to-strengede skattesystem (2025) med det nye
+                        fire-strengede system (2026).</p>
+                    <div class="chart-container mb-2 square wide"><canvas id="oldVsNewSystemChart"></canvas></div>
+                    <small class="d-block text-left mt-3">Figur 1.3 — Kilde: Skatteministeriet</small>
+                    <small class="text-muted d-block mt-3">
+                        <p><b>Sådan læses figuren:</b> Søjlediagrammet sammenligner den <b>effektive skatteprocent</b>
+                            (samlet skat i % af bruttoindkomst) i det gamle 2025-system (grå søjler) med det nye
+                            2026-system (blå søjler) ved forskellige indkomstniveauer.</p>
+                        <ul>
+                            <li><b>Lavere skat for mellemindkomster:</b> Ved f.eks. 700.000 kr. i bruttoindkomst er den
+                                effektive skat faldet fra ca. 38% til ca. 36% — en besparelse på ca. 14.000 kr. årligt.
+                                Det skyldes, at den gamle topskat slog ind ved en lavere grænse, mens det nye
+                                mellemskat-trin har en lavere sats (7,5%).</li>
+                            <li><b>Uændret for lave indkomster:</b> Ved 300.000-500.000 kr. er der ingen mærkbar
+                                forskel, da disse indkomster kun betaler bundskat og kommuneskat i begge systemer.</li>
+                            <li><b>Højere skat i toppen:</b> Ved indkomster over 2,8 mio. kr. er den effektive skat
+                                steget, fordi den nye top-topskat (5%) lægges oveni. Eksempel: Ved 3,5 mio. kr. stiger
+                                den effektive skat fra ca. 52% til ca. 54%.</li>
+                        </ul>
+                        <p><b>Kirkeskat:</b> Figuren er beregnet <i>uden</i> kirkeskat. Inkluderes kirkeskat (typisk
+                            0,4-1,3%), stiger den effektive skatteprocent med ca. 0,3-1,0 procentpoint afhængigt af
+                            kommune. Beregningen anvender en gennemsnitlig kommuneskat på 25,0%.</p>
+                    </small>
+                </div>
+
+                <h2>4. Marginalskat og skatteloft</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p><span class="legal-term"
+                            data-definition="Skatten af den sidst tjente krone. Viser hvor meget ekstra skat du betaler, når du tjener én krone mere."
+                            data-example="Med en marginalskat på 52% beholder du kun 48 øre af den næste krone du tjener."
+                            data-slug="marginalskat">Marginalskatten</span> er den skat, du betaler af den <b>næste
+                            krone</b>, du tjener. Det er et centralt begreb i skatteoptimering, fordi den viser, hvor
+                        meget du reelt beholder af en ekstra tjent krone. Marginalskatten påvirker direkte beslutninger
+                        om overarbejde, lønforhandling og pensionsindbetalinger.</p>
+                    <h3>4.1 Beregning af marginalskat</h3>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Indkomstniveau</th>
+                                    <th>Marginalskat (ekskl. kirkeskat)</th>
+                                    <th>Forklaring</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Under 641.200 kr.</td>
+                                    <td>~42,0%</td>
+                                    <td>AM-bidrag (8%) + bundskat + kommuneskat</td>
+                                </tr>
+                                <tr class="table-info">
+                                    <td>641.200 – 777.900 kr.</td>
+                                    <td>~49,0%</td>
+                                    <td>+ mellemskat (7,5%)</td>
+                                </tr>
+                                <tr class="table-warning">
+                                    <td>777.900 – 2.592.700 kr.</td>
+                                    <td>~56,0%</td>
+                                    <td>+ topskat (7,5%)</td>
+                                </tr>
+                                <tr class="table-danger">
+                                    <td>Over 2.592.700 kr.</td>
+                                    <td>~60,5%</td>
+                                    <td>+ top-topskat (5,0%)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-3">Tabel 1.5 — Kilde: Skatteministeriet</small>
+                    <small class="text-muted d-block mt-3">
+                        <ul>
+                            <li><b>Beregning:</b> Satserne inkluderer AM-bidrag (8%), bundskat (12,01%) og gennemsnitlig
+                                kommuneskat (25,0%). Se Figur 1.4 herunder for den præcise formel.</li>
+                            <li><b>Niveauer:</b> Marginalskatten springer i trin: ~42% → ~49% → ~56% → ~60,5%. Springene
+                                sker ved mellemskattegrænsen (641.200 kr.), topskattegrænsen (777.900 kr.) og
+                                top-topskattegrænsen (2.592.700 kr.).</li>
+                            <li><b>Praktisk eksempel:</b> En person med PI på 700.000 kr. har marginalskat ~49%. Tjener
+                                vedkommende 1.000 kr. ekstra, betaler vedkommende 490 kr. i skat og beholder 510 kr.
+                            </li>
+                            <li><b>Kirkeskat:</b> Tabellen er beregnet <i>ekskl. kirkeskat</i>. Kirkeskatten (0,4-1,3%)
+                                tillægges for folkekirkemedlemmer og øger marginalskatten med ca. 0,4-1,2 procentpoint
+                                (da kirkeskatten ganges med faktoren 0,92 pga. AM-bidraget).</li>
+                        </ul>
+                    </small>
+                </div>
+
+                <h3>4.2 Marginalskat ved stigende indkomst</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Figuren viser, hvordan marginalskatten udvikler sig i trin ved stigende indkomst. Bemærk de
+                        tydelige "trin" ved hver skattegrænse, hvor marginalskatten springer op:</p>
+                    <div class="chart-container mb-2 square wide"><canvas id="marginalTaxStepChart"></canvas></div>
+                    <small class="d-block text-left mt-3">Figur 1.4 — Kilde: Skatteministeriet</small>
+                    <small class="text-muted d-block mt-3">
+                        <p><b>Sådan fremkommer marginalskattesatserne i figuren:</b></p>
+                        <p>Marginalskatten beregnes som AM-bidrag (8&nbsp;%) plus de øvrige skatter ganget med faktoren
+                            0,92
+                            (da skatterne beregnes af indkomsten <i>efter</i> AM-bidrag). Formlen er: <br>
+                            <code>Marginalskat = 8 + 0,92 &times; (bundskat + kommuneskat + evt. mellemskat + evt. topskat + evt. top-topskat)</code>
+                        </p>
+                        <ul>
+                            <li><b>Trin 1 — Under 641.200 kr. (PI):</b> 8 + 0,92 &times; (12,01 + 25,0) = 8 + 0,92
+                                &times; 37,01 = 8 + 34,05 = <b>~42,0&nbsp;%</b></li>
+                            <li><b>Trin 2 — 641.200–777.900 kr. (PI):</b> 8 + 0,92 &times; (37,01 + 7,5) = 8 + 0,92
+                                &times; 44,51 = 8 + 40,95 = <b>~49,0&nbsp;%</b></li>
+                            <li><b>Trin 3 — 777.900–2.592.700 kr. (PI):</b> 8 + 0,92 &times; (44,51 + 7,5) = 8 + 0,92
+                                &times; 52,01 = 8 + 47,85 = <b>~55,9&nbsp;%</b></li>
+                            <li><b>Trin 4 — Over 2.592.700 kr. (PI):</b> 8 + 0,92 &times; (52,01 + 5,0) = 8 + 0,92
+                                &times; 57,01 = 8 + 52,45 = <b>~60,5&nbsp;%</b></li>
+                        </ul>
+                        <p>PI = personlig indkomst (bruttoløn efter 8&nbsp;% AM-bidrag). Kommuneskatten er sat til
+                            gennemsnitligt 25,0&nbsp;%.</p>
+                        <p><b>Eksempel fra figuren:</b> En person med en bruttoindkomst på 900.000 kr. har en PI på
+                            828.000 kr. (900.000 &times; 0,92). Da 828.000 kr. overstiger topskattegrænsen på 777.900
+                            kr., aflæses marginalskatten til ca. 55,9&nbsp;% i figuren. Det betyder, at af den næste
+                            krone denne person tjener, går 55,9 øre til skat og 44,1 øre til personen selv.</p>
+                        <p><b>Kirkeskat:</b> Figuren er beregnet <i>uden</i> kirkeskat. Er man medlem af folkekirken,
+                            tillægges kirkeskatten (typisk 0,4–1,3&nbsp;%) oven i de viste satser. Eksempel: Med en
+                            kirkeskat på 0,80&nbsp;% stiger marginalskatten i trin 3 fra ~55,9&nbsp;% til ~56,6&nbsp;%
+                            (da 0,92 &times; 0,80 = 0,74 procentpoint lægges til).</p>
+                    </small>
+                </div>
+
+                <h3>4.3 Det skrå skatteloft</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Det skrå skatteloft sikrer, at den samlede marginalskat (ekskl. kirkeskat og AM-bidrag) aldrig
+                        overstiger en vis procentsats. Efter reformen i 2026 er dette loft <b>52,07%</b> for topskat og
+                        <b>57,07%</b> for den nye top-topskat. Hvis marginalskatten ville overstige dette niveau,
+                        reduceres kommuneskatten tilsvarende.
+                    </p>
+                    <p>I praksis betyder det skrå skatteloft, at borgere i kommuner med høj kommuneskat ikke straffes
+                        ekstra hårdt. Hvis f.eks. kommuneskatten er 27% og den samlede marginalskat dermed ville
+                        overstige 52,07%, nedsættes kommuneskatten i skatteberegningen, så loftet overholdes.
+                        Skatteloftet gælder kun for selve skatteberegningen — det ændrer ikke den officielle
+                        kommuneskattesats.</p>
+                </div>
+
+                <h3>4.4 Kommuneskatter i Danmark: Alle 98 kommuner</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Kommuneskatten varierer betydeligt mellem de 98 danske kommuner — fra 22,8% i Gentofte til 27,8%
+                        på Langeland. Nedenstående figur viser alle kommuner sorteret efter kommuneskattesats fra lavest
+                        til højest. Hold musen over en søjle for at se detaljer om kirkeskat, grundskyld, region og
+                        borgmesterparti.</p>
+                    <div class="chart-container mb-2 wide" style="height: 600px;"><canvas
+                            id="municipalTaxChart"></canvas></div>
+                    <small class="d-block text-left mt-3">Figur 1.4a — Kilde: Danmarks Statistik og KL (Kommunernes
+                        Landsforening)</small>
+                    <small class="text-muted d-block mt-3">
+                        <p><b>Sådan læses figuren:</b> Det horisontale søjlediagram viser alle 98 danske kommuner
+                            sorteret efter kommuneskattesats. Jo længere søjle, desto højere kommuneskat. Farverne
+                            skifter gradvist fra grøn (lavest) over gul til rød (højest) for at visualisere spredningen.
+                        </p>
+                        <ul>
+                            <li><b>Gentofte (22,8%):</b> Den kommune med den laveste kommuneskat i Danmark. Kombineret
+                                med lav kirkeskat (0,62%) giver det en samlet kommunal skatteprocent på 23,42%. Gentofte
+                                har et højt skatteindtægtsgrundlag pga. mange højindkomstfamilier.</li>
+                            <li><b>Langeland (27,8%):</b> Den højeste kommuneskat i Danmark — 5 procentpoint højere end
+                                Gentofte. For en person med 500.000 kr. i personlig indkomst svarer forskellen til ca.
+                                23.000 kr. ekstra i kommuneskat årligt.</li>
+                            <li><b>Kirkeskat:</b> Varierer fra 0,40% (Hjørring) til 1,30% (Læsø). Kirkeskatten betales
+                                kun af folkekirkemedlemmer (ca. 72% af befolkningen) og tillægges kommuneskatten.</li>
+                            <li><b>Grundskyld:</b> Ejendomsskatten varierer også betydeligt mellem kommunerne og
+                                påvirker især boligejere. Grundskylden angives i promille af ejendomsværdien.</li>
+                        </ul>
+                        <p><b>Praktisk betydning:</b> Hvis du overvejer at flytte mellem kommuner, kan forskellen i
+                            kommuneskat have stor økonomisk betydning. Eksempel: En person med 600.000 kr. i personlig
+                            indkomst betaler ca. 136.800 kr. i kommuneskat i Gentofte, men ca. 166.800 kr. på Langeland
+                            — en forskel på 30.000 kr. årligt.</p>
+                    </small>
+                </div>
+
+                <h2>5. Indkomstfordeling i Danmark</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>For at forstå skattesystemets betydning er det vigtigt at kende indkomstfordelingen:</p>
+                    <div class="chart-container mb-2 square wide"><canvas id="incomeDistributionChart"></canvas></div>
+                    <small class="d-block text-left mt-3">Figur 1.5 — Kilde: Danmarks Statistik, Statistikbanken
+                        INDKP101</small>
+                    <small class="text-muted d-block mt-3">
+                        <p><b>Hvad er en decil?</b> En decil er en opdeling af befolkningen i 10 lige store grupper
+                            (hver 10%), sorteret efter indkomst fra lavest til højest. 1. decil er de 10% af danskerne
+                            med den laveste disponible indkomst, mens 10. decil er de 10% med den højeste. Disponibel
+                            indkomst er det beløb, man har tilbage <i>efter</i> skat — altså hvad man reelt kan bruge
+                            til forbrug og opsparing.</p>
+                        <p><b>Sådan læses figuren:</b> Hver søjle viser den gennemsnitlige disponible indkomst for en
+                            decilgruppe. Farverne skifter fra blå (lavere indkomster) over gul til rød (højeste
+                            indkomster) for at markere, hvornår de forskellige skattetrin slår ind.</p>
+                        <ul>
+                            <li><b>1. decil (101.200 kr.):</b> De laveste 10% har i gennemsnit ca. 8.433 kr./md. til
+                                rådighed. Gruppen omfatter typisk studerende, deltidsansatte, førtidspensionister og
+                                kontanthjælpsmodtagere. Mange i denne gruppe betaler kun lidt eller ingen indkomstskat
+                                pga. personfradraget på 54.100 kr.</li>
+                            <li><b>5. decil (310.000 kr.):</b> Medianen — halvdelen af danskerne har mere, halvdelen har
+                                mindre. Det svarer til ca. 25.833 kr./md. og er typisk en faglært arbejder eller en
+                                offentligt ansat. Disse personer betaler kun bundskat og kommuneskat (marginalskat
+                                ~42%).</li>
+                            <li><b>8. decil (470.000 kr.):</b> Ca. 39.167 kr./md. Denne gruppe nærmer sig
+                                mellemskattegrænsen, men de fleste rammes endnu ikke af mellemskat i 2026-systemet.</li>
+                            <li><b>10. decil (853.000 kr.):</b> De rigeste 10% har i gennemsnit ca. 71.083 kr./md. til
+                                rådighed. Denne gruppe betaler typisk topskat, da deres bruttoindkomst (før skat) ofte
+                                er over 1,0–1,5 mio. kr. Bemærk det store spring fra 9. decil (580.000 kr.) til 10.
+                                decil (853.000 kr.) — en forskel på 273.000 kr. — som illustrerer, at
+                                indkomstforskellene er størst i toppen.</li>
+                        </ul>
+                        <p><b>Gennemsnittet</b> (markeret med stiplet linje i figuren) er 339.500 kr. — højere end
+                            medianen (5. decil), fordi de højeste indkomster trækker gennemsnittet op.</p>
+                        <p><b>Skattesystemets effekt:</b> Figuren viser <i>disponibel</i> indkomst (efter skat). Det
+                            progressive skattesystem med højere marginalskat i toppen (op til 60,5%) reducerer uligheden
+                            markant. Før skat er forskellen mellem 1. og 10. decil endnu større — skattesystemet og
+                            overførselsindkomsterne udjævner fordelingen betydeligt.</p>
+                    </small>
+                </div>
+
+                <h3>5.1 International sammenligning: Skattetryk og indkomst</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Danmark har et af de højeste skattetryk i verden, men også en af de mest lige
+                        indkomstfordelinger. Boblediagrammet viser sammenhængen mellem skattetryk, BNP pr. indbygger og
+                        Gini-koefficient. Større bobler = mere ulighed.</p>
+                    <div class="chart-container mb-2 square wide"><canvas id="taxBurdenBubbleChart"></canvas></div>
+                    <small class="d-block text-left mt-3">Figur 1.6 — Kilde: OECD Revenue Statistics (2024)</small>
+                    <small class="text-muted d-block mt-3">
+                        <p><b>Sådan læses figuren:</b> Boblediagrammet har tre dimensioner: x-aksen viser BNP pr.
+                            indbygger (velstand), y-aksen viser skattetryk (% af BNP), og boblernes størrelse viser
+                            Gini-koefficienten (ulighed). Jo større boble, desto mere ulige er indkomstfordelingen.</p>
+                        <ul>
+                            <li><b>Danmark (rød boble):</b> Ligger øverst til højre med et skattetryk på 46,3% og BNP
+                                pr. indbygger på $67.800. Danmarks boble er lille (Gini 27,7), hvilket viser lav
+                                ulighed. Det illustrerer den "nordiske model": høje skatter finansierer velfærd, som
+                                reducerer ulighed, uden at det går ud over velstanden.</li>
+                            <li><b>USA (pink boble):</b> Har højere BNP pr. indbygger ($76.300), men et langt lavere
+                                skattetryk (27,1%). Til gengæld er boblen stor (Gini 39,7) — USA har væsentligt mere
+                                ulighed end Danmark. Det viser, at et lavt skattetryk ikke nødvendigvis giver højere
+                                velstand, men ofte mere ulighed.</li>
+                            <li><b>Frankrig (gul boble):</b> Har det højeste skattetryk (47,0%), men lavere BNP pr.
+                                indbygger ($42.300) end Danmark. Frankrig viser, at et højt skattetryk ikke automatisk
+                                giver høj velstand — det afhænger også af, hvordan pengene bruges.</li>
+                            <li><b>Norge (turkis boble):</b> Har den højeste velstand ($82.800) trods et moderat
+                                skattetryk (39,2%). Norges olieindtægter gør det muligt at finansiere velfærd med lavere
+                                skattetryk.</li>
+                        </ul>
+                        <p><b>Kirkeskat:</b> Kirkeskatten indgår i skattetrykket som en del af de samlede
+                            skatteindtægter, men udgør kun en marginal andel (under 0,5% af BNP).</p>
+                    </small>
+                </div>
+
+                <!-- NEW: Gini Coefficient Chart -->
+                <h3>5.2 Gini-koefficient: Ulighed i international sammenligning</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p><span class="legal-term"
+                            data-definition="Et mål for indkomstulighed på en skala fra 0 (perfekt lighed) til 100 (al indkomst til én person). Jo lavere Gini, jo mere lige fordeling."
+                            data-example="Danmark har en Gini på ca. 28, mens USA har ca. 40. Det betyder, at indkomstfordelingen i Danmark er væsentligt mere lige."
+                            data-slug="gini">Gini-koefficienten</span> måler graden af ulighed i indkomstfordelingen. En
+                        Gini på 0 betyder perfekt lighed, mens 100 betyder total ulighed. De nordiske lande har blandt
+                        de laveste Gini-koefficienter i verden, hvilket afspejler de progressive skattesystemer og den
+                        universelle velfærdsmodel.</p>
+                    <div class="chart-container mb-2 square wide"><canvas id="giniComparisonChart"></canvas></div>
+                    <small class="d-block text-left mt-3">Figur 1.7 — Kilde: Eurostat, tabel ilc_di12</small>
+                    <small class="text-muted d-block mt-3">
+                        <p><b>Sådan læses figuren:</b> Det horisontale søjlediagram rangerer lande efter deres
+                            Gini-koefficient for disponibel indkomst (indkomst efter skat og overførsler). Jo kortere
+                            søjle, desto mere lige fordeling. Danmark er markeret med rød for at lette identifikation.
+                            Den gule stiplede linje viser OECD-gennemsnittet (~30).</p>
+                        <ul>
+                            <li><b>Danmark (Gini 27,7):</b> Ligger i den lave ende, hvilket betyder en forholdsvis lige
+                                indkomstfordeling. Det skyldes bl.a. det progressive skattesystem (marginalskat op til
+                                60,5%), høje overførselsindkomster (dagpenge, SU, folkepension) og gratis uddannelse og
+                                sundhed.</li>
+                            <li><b>Sydafrika (Gini 63,0):</b> Verdens mest ulige land i figuren. Til sammenligning: Hvis
+                                Danmark havde Sydafrikas Gini, ville de rigeste 10% tjene langt mere, mens de fattigste
+                                10% ville tjene langt mindre end de nuværende 101.200 kr. i disponibel indkomst (jf.
+                                Figur 1.5).</li>
+                            <li><b>USA (Gini 39,7):</b> Ligger væsentligt over OECD-gennemsnittet. Det lavere skattetryk
+                                og færre universelle velfærdsydelser bidrager til en mere ulige fordeling.</li>
+                            <li><b>Nordiske lande (Gini 26-29):</b> Sverige (28,8), Finland (27,3), Norge (27,0) og
+                                Island (26,1) ligger alle i bunden sammen med Danmark. Det bekræfter, at den nordiske
+                                velfærdsmodel med høje skatter og universelle ydelser producerer relativt lige samfund.
+                            </li>
+                        </ul>
+                        <p><b>Hvad måler Gini?</b> En Gini på 0 ville betyde, at alle tjener det samme. En Gini på 100
+                            ville betyde, at én person tjener alt. I praksis ligger de fleste lande mellem 23 og 65.
+                            Danmarks Gini på 27,7 er et resultat af den samlede omfordeling — herunder det progressive
+                            skattesystem, kirkeskatten (som bidrager marginalt til omfordelingen), og de universelle
+                            overførsler.</p>
+                    </small>
+                </div>
+
+                <h3>5.3 Skattestrømme: Fra bruttoløn til disponibel indkomst</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Nedenstående flow-diagram viser, hvordan en bruttoløn på 700.000 kr. fordeles mellem de
+                        forskellige skattetyper, fradrag og den endelige disponible indkomst:</p>
+                    <div class="chart-container sankey-chart mb-2 wide"><canvas id="taxFlowSankey"></canvas></div>
+                    <small class="d-block text-left mt-3">Figur 1.8 — Kilde: Skatteministeriet</small>
+                    <small class="text-muted d-block mt-3">
+                        <p><b>Sådan læses figuren:</b> Sankey-diagrammet viser, hvordan en bruttoløn på 700.000 kr.
+                            "flyder" fra venstre mod højre og fordeles mellem de forskellige skatter og den endelige
+                            disponible indkomst. Bredden af hver strøm svarer til beløbets størrelse — en bredere strøm
+                            betyder et større beløb.</p>
+                        <ul>
+                            <li><b>AM-bidrag (56.000 kr.):</b> Det første fradrag. 700.000 &times; 8% = 56.000 kr.
+                                trækkes fra bruttolønnen. Den personlige indkomst bliver dermed 644.000 kr.</li>
+                            <li><b>Kommuneskat (den bredeste strøm):</b> Med en gennemsnitlig kommuneskat på 25% er
+                                dette den klart største enkeltpost. Kommuneskatten beregnes af den skattepligtige
+                                indkomst (PI minus fradrag).</li>
+                            <li><b>Bundskat (12,01%):</b> Den næststørste statslige skat, beregnet af den skattepligtige
+                                indkomst over personfradraget.</li>
+                            <li><b>Mellemskat:</b> Da PI = 644.000 kr. lige netop overstiger mellemskattegrænsen på
+                                641.200 kr., betales der kun mellemskat af de overskydende 2.800 kr. — dvs. blot 210 kr.
+                                (2.800 &times; 7,5%). Denne strøm er næsten usynligt tynd i diagrammet.</li>
+                            <li><b>Disponibel indkomst (den grønne strøm):</b> Det beløb, der er tilbage efter alle
+                                skatter — det personen reelt kan bruge.</li>
+                        </ul>
+                        <p><b>Kirkeskat:</b> Diagrammet er beregnet <i>uden</i> kirkeskat. For et folkekirkemedlem i
+                            f.eks. København (kirkeskat 0,80%) ville der komme en ekstra strøm på ca. 4.700 kr., som
+                            ville reducere den disponible indkomst tilsvarende.</p>
+                    </small>
+                </div>
+
+                <h2>6. Skatteindtægter i EU-perspektiv</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Danmark har det næsthøjeste skattetryk i EU (målt som andel af BNP), kun overgået af Frankrig.
+                        Til gengæld har Danmark lav ulighed, høj social mobilitet og en veludbygget velfærdsstat.</p>
+                    <div class="chart-container mb-2 square wide"><canvas id="euTaxComparisonChart"></canvas></div>
+                    <small class="d-block text-left mt-3">Figur 1.9 — Kilde: Eurostat, tabel gov_10a_taxag</small>
+                    <small class="text-muted d-block mt-3">
+                        <p><b>Sådan læses figuren:</b> Søjlediagrammet rangerer EU-lande efter deres samlede skattetryk
+                            (alle skatter og afgifter som andel af BNP). Danmark er markeret med rød søjle. Den gule
+                            stiplede linje viser EU-gennemsnittet på 40,2%.</p>
+                        <ul>
+                            <li><b>Danmark (46,3%):</b> Har det næsthøjeste skattetryk i EU, kun overgået af Frankrig
+                                (47,0%). Til sammenligning: Hvis Danmarks BNP er ca. 2.850 mia. kr., svarer
+                                skattetrykket til ca. 1.320 mia. kr. i samlede skatteindtægter. Disse penge finansierer
+                                gratis sundhedsvæsen, uddannelse, dagpenge, folkepension og meget mere.</li>
+                            <li><b>Frankrig (47,0%):</b> Det højeste skattetryk i EU, men med en anderledes
+                                sammensætning. Frankrig har høje sociale bidrag (arbejdsgiverbidrag til social sikring),
+                                mens Danmark i højere grad finansierer via direkte indkomstskatter og moms.</li>
+                            <li><b>Irland (~21,7%):</b> Et af de laveste skattetryk i EU. Det skyldes bl.a. en lav
+                                selskabsskat (12,5%), som har tiltrukket mange multinationale virksomheder (Apple,
+                                Google, Meta). Til gengæld har Irland færre universelle velfærdsydelser end Danmark.
+                            </li>
+                            <li><b>EU-gennemsnit (40,2%):</b> Danmark ligger ca. 6 procentpoint over gennemsnittet. Det
+                                ekstra skattetryk svarer til ca. 170 mia. kr. årligt — omtrent prisen for det gratis
+                                sundhedsvæsen.</li>
+                        </ul>
+                        <p><b>Bemærk:</b> Skattetrykket inkluderer alle skatter: personskatter, selskabsskat, moms,
+                            afgifter og kirkeskat. Kirkeskatten udgør en meget lille andel af det samlede skattetryk
+                            (under 0,5% af BNP).</p>
+                    </small>
+                </div>
+
+                <h3>6.1 Udvikling i det danske skattetryk</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Det danske skattetryk har ligget stabilt højt de seneste årtier, men sammensætningen har ændret
+                        sig.</p>
+                    <div class="chart-container mb-2 square wide"><canvas id="taxPressureTimelineChart"></canvas></div>
+                    <small class="d-block text-left mt-3">Figur 1.10 — Kilde: Danmarks Statistik</small>
+                    <small class="text-muted d-block mt-3">
+                        <p><b>Sådan læses figuren:</b> Linjegrafen viser, hvordan det danske skattetryk har udviklet sig
+                            over de seneste 24 år, opdelt på skattetyper. Den samlede linje viser det totale skattetryk,
+                            mens de individuelle linjer viser de enkelte komponenters udvikling.</p>
+                        <ul>
+                            <li><b>Personskatter falder:</b> Personskatternes andel af BNP er faldet gradvist — fra ca.
+                                26% til ca. 23% af BNP. Det skyldes bl.a. skattereformer (Forårspakke 2.0 i 2009,
+                                Skatteaftalen i 2012), der sænkede satser og hævede grænser for at øge arbejdsudbuddet.
+                            </li>
+                            <li><b>Moms og afgifter stabilt:</b> De indirekte skatter (moms 25% og punktafgifter) er
+                                forblevet relativt stabile omkring 15-16% af BNP. Momsen rammer alt forbrug ensartet og
+                                er uafhængig af indkomstniveauet.</li>
+                            <li><b>Virksomhedsskatter stiger:</b> Selskabsskat og andre virksomhedsrelaterede skatter er
+                                steget, delvist drevet af store virksomheders voksende overskud (Novo Nordisk, Mærsk,
+                                Vestas).</li>
+                            <li><b>Samlet stabilt:</b> Trods forskydninger mellem skattetyperne er det samlede
+                                skattetryk forblevet i intervallet 45-48% af BNP. Når personskatter reduceres,
+                                kompenseres det af andre skattetyper.</li>
+                        </ul>
+                        <p><b>Kirkeskat:</b> Kirkeskatten indgår i "personskatter" i figuren. Dens andel er faldende,
+                            bl.a. fordi andelen af folkekirkemedlemmer falder (fra ca. 83% i 2000 til ca. 72% i 2024).
+                        </p>
+                    </small>
+                </div>
+
+                <h2>7. Interaktiv skatteberegner 2026</h2>
+                <div class="info-box reveal-on-scroll wide">
+                    <p>Brug slideren til at se, hvordan din marginalskat og effektive skatteprocent ændrer sig med
+                        indkomsten:</p>
+                    <div class="tax-calculator">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="incomeSlider" style="font-weight:600;">Bruttoindkomst (kr./år):</label>
+                                <input type="range" id="incomeSlider" min="200000" max="10000000" value="2000000"
+                                    step="10000">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <small>200.000</small>
+                                    <span style="font-weight:700; font-size:1.2rem;" id="sliderValue">2.000.000
+                                        kr.</span>
+                                    <small>10.000.000</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-container mt-3 square wide"><canvas id="calcBreakdownChart"></canvas></div>
+                        <small class="d-block text-left mt-3">Figur 1.11 — Kilde: SKAT, Finanstilsynet,
+                            Forbrugerhåndbogen om skat</small>
+                        <small class="text-muted d-block mt-3">
+                            <p><b>Sådan bruges beregneren:</b> Træk slideren til venstre eller højre for at ændre
+                                bruttoindkomsten (200.000–10.000.000 kr.). Diagrammet opdaterer sig automatisk og viser,
+                                hvordan hver krone af din løn fordeles mellem de forskellige skattetyper og din
+                                udbetaling. Beregningen anvender København kommunes skattesats på 23,5% uden kirkeskat,
+                                beskatning af fri telefon eller pensionsfradrag.</p>
+                            <ul>
+                                <li><b>Ved 400.000 kr.:</b> Du betaler kun AM-bidrag (32.000 kr.), bundskat og
+                                    kommuneskat. Ingen mellemskat eller topskat. Effektiv skatteprocent ca. 33%.</li>
+                                <li><b>Ved 700.000 kr.:</b> Mellemskatten aktiveres, da PI (644.000 kr.) netop
+                                    overstiger grænsen på 641.200 kr. Du betaler kun mellemskat af de få tusinde kroner
+                                    over grænsen.</li>
+                                <li><b>Ved 1.000.000 kr.:</b> Både mellemskat og topskat er aktive. Effektiv skat ca.
+                                    40%. Topskatten beregnes af PI over 777.900 kr.</li>
+                                <li><b>Ved 3.000.000 kr.:</b> Alle fire skattetrin er aktive inkl. top-topskat. Effektiv
+                                    skat ca. 50%. Marginalskatten er nu ~60,5%.</li>
+                            </ul>
+                            <p><b>Note:</b> Beregneren anvender København kommunes skattesats på 23,5% og inkluderer
+                                <i>ikke</i> kirkeskat, beskatning af fri telefon, pensionsfradrag eller andre fradrag.
+                                Dette giver et rent billede af skatteberegningen baseret på bruttoindkomst alene.
+                            </p>
+                        </small>
+                    </div>
+                </div>
+
+                <h2>8. Personfradrag og beskæftigelsesfradrag</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Fradrag er skattemæssige reduktioner, der sænker din skattepligtige indkomst. Jo højere fradrag,
+                        jo mindre skat betaler du. Fradragene spiller en central rolle i det danske skattesystem, fordi
+                        de sikrer, at en del af indkomsten er skattefri, og at det kan betale sig at arbejde. Herunder
+                        ses de vigtigste fradrag for 2026:</p>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Fradragstype</th>
+                                    <th>Beløb 2026</th>
+                                    <th>Forklaring</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b><span class="legal-term"
+                                                data-definition="Et grundfradrag som alle skatteydere automatisk modtager."
+                                                data-example="Med et personfradrag på 54.100 kr. betaler du ikke skat af de første 54.100 kr."
+                                                data-slug="personfradrag">Personfradrag</span></b></td>
+                                    <td>54.100 kr.</td>
+                                    <td>Alle skatteydere over 18 år får automatisk dette fradrag. Unge under 18 har et
+                                        lavere personfradrag på 41.300 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><b><span class="legal-term"
+                                                data-definition="Et fradrag der gives til alle med lønindkomst for at gøre det mere attraktivt at arbejde."
+                                                data-example="Med en løn på 500.000 kr. får du 12,75% = 63.750 kr., men max 63.300 kr. Fradraget opnås ved ca. 496.500 kr. i indkomst."
+                                                data-slug="beskaeftigelsesfradrag">Beskæftigelsesfradrag</span></b>
+                                    </td>
+                                    <td>Max 63.300 kr.</td>
+                                    <td>12,75% af lønindkomst, dog max 63.300 kr. Maksimum opnås ved ca. 496.500 kr. i
+                                        indkomst.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Jobfradrag</b></td>
+                                    <td>Max 3.100 kr.</td>
+                                    <td>4,5% af indkomst over 235.200 kr., max 3.100 kr. Gives oven i
+                                        beskæftigelsesfradraget.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Pensionsfradrag</b></td>
+                                    <td>12/32% af indbetaling</td>
+                                    <td>Ligningsmæssigt fradrag. 32% ved mere end 15 år til pension, ellers 12%. Max
+                                        10.056/26.816 kr. Gælder for privat pensionsopsparing (ratepension og livrente).
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Fagforeningskontingent</b></td>
+                                    <td>Max 7.000 kr.</td>
+                                    <td>Fradrag for kontingent til fagforening og A-kasse. Fradrages som ligningsmæssigt
+                                        fradrag.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Ekstra beskæftigelsesfradrag til seniorer (NY)</b></td>
+                                    <td>Max 37.000 kr.</td>
+                                    <td>8,5% af lønindkomst for personer der er 5 år eller mindre fra
+                                        folkepensionsalderen. Formålet er at fastholde ældre på arbejdsmarkedet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-3">Tabel 1.6 — Kilde: Skatteministeriet, personskatteloven §§
+                        10-12</small>
+                    <small class="text-muted d-block mt-3">
+                        <ul>
+                            <li><b>Personfradrag:</b> 54.100 kr., som alle over 18 år får automatisk. Fradraget
+                                reducerer den beregnede skat (ikke indkomsten), og det modregnes i bundskat og
+                                kommuneskat.</li>
+                            <li><b>Beskæftigelsesfradrag:</b> 12,75% af lønnen, max 63.300 kr. Det er et ligningsmæssigt
+                                fradrag, der reducerer den skattepligtige indkomst.</li>
+                            <li><b>Seniorfradrag (NY):</b> Ekstra fradrag på 8,5% (max 37.000 kr.) for dem tæt på
+                                folkepensionsalderen. Skal motivere seniorer til at blive længere på arbejdsmarkedet.
+                            </li>
+                        </ul>
+                    </small>
+                </div>
+
+                <h2>9. Kapitalindkomst og aktieindkomst</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Investeringsindkomst beskattes efter forskellige principper afhængigt af, om der er tale om
+                        kapitalindkomst, aktieindkomst eller den særlige aktiesparekonto. Kapitalindkomst omfatter bl.a.
+                        renteindtægter, kursgevinster på obligationer og udlejningsindtægter, mens aktieindkomst dækker
+                        udbytter og gevinster ved salg af aktier. Det er vigtigt at forstå forskellen, da
+                        beskatningsreglerne er væsentligt forskellige.</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Indkomsttype</th>
+                                    <th>Sats (2026)</th>
+                                    <th>Grænse / Loft</th>
+                                    <th>Princip & Forklaring</th>
+                                    <th>Kilde</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Positiv Kapitalindkomst</b></td>
+                                    <td>~37,0% - 42,0%</td>
+                                    <td>Bundgrænse: 52.400 kr.</td>
+                                    <td><b>Lagerprincip.</b> Beskattes som bundskat + kommuneskat. Beløb over 52.400 kr.
+                                        (for enlige) medregnes i topskattegrundlaget, men med et loft på 42% for den
+                                        samlede skat.</td>
+                                    <td>Skatteministeriet</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Negativ Kapitalindkomst</b></td>
+                                    <td>~25,6%</td>
+                                    <td>-</td>
+                                    <td><b>Fradragsværdi.</b> Giver skattebesparelse på kommuneskat og kirkeskat. Bruges
+                                        typisk til renteudgifter på boliglån og bankgæld. Fradragsværdien er lavere end
+                                        den fulde skattesats.</td>
+                                    <td>Skat.dk</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Aktieindkomst (Lav)</b></td>
+                                    <td>27%</td>
+                                    <td>Op til 61.100 kr.</td>
+                                    <td><b>Realisationsprincip.</b> Gælder for udbytter og gevinster ved salg af aktier
+                                        i frie midler. Samlevende ægtefæller har dobbelt bundfradrag (122.200 kr.).</td>
+                                    <td>Skattestyrelsen</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Aktieindkomst (Høj)</b></td>
+                                    <td>42%</td>
+                                    <td>Over 61.100 kr.</td>
+                                    <td><b>Realisationsprincip.</b> Den progressive sats der betales af gevinster og
+                                        udbytter, der overstiger den årlige progressionsgrænse.</td>
+                                    <td>Skatteministeriet</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Aktiesparekonto</b></td>
+                                    <td>17%</td>
+                                    <td>Max indskud: 139.900 kr.</td>
+                                    <td><b>Lagerprincip.</b> Særlig lav beskatning mod at man beskattes af
+                                        værdistigningen hvert år (også urealiserede gevinster). Tab kan modregnes i
+                                        fremtidige gevinster på kontoen.</td>
+                                    <td>Finanstilsynet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-3">Tabel 1.7 — Kilde: Skatteministeriet, Skattestyrelsen og
+                        Finanstilsynet</small>
+                    <small class="text-muted d-block mt-3">
+                        <ul>
+                            <li><b>Kapitalindkomst:</b> Beskattes efter lagerprincip med en bundgrænse på 52.400 kr.
+                                (enlige) eller 104.800 kr. (ægtefæller). Beløb herunder beskattes kun med bundskat og
+                                kommuneskat (~37%).</li>
+                            <li><b>Aktieindkomst:</b> Beskattes efter realisationsprincip med to satser: 27% op til
+                                61.100 kr. og 42% af beløb derover. Man betaler først skat, når aktierne sælges med
+                                gevinst.</li>
+                            <li><b>Aktiesparekonto:</b> Særlig lav sats på 17% efter lagerprincip. Fordelen er den lave
+                                sats, men ulempen er beskatning af urealiserede gevinster hvert år.</li>
+                        </ul>
+                    </small>
+                    <small class="text-muted d-block mt-2">Bemærk: Kapitalindkomstgrænser og aktieindkomstgrænser
+                        reguleres årligt. For ægtefæller overføres uudnyttede bundfradrag automatisk til
+                        modparten.</small>
+                </div>
+
+                <h2>10. Effektiv skat ved forskellige indkomstniveauer</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Mens marginalskatten viser skatten af den næste krone, viser den effektive skat den samlede andel
+                        af indkomsten der går til skat. Den effektive skat er altid lavere end marginalskatten, fordi de
+                        første kroner beskattes med lavere satser (eller slet ikke pga. personfradraget).</p>
+                    <div class="chart-container mb-2 square wide"><canvas id="effectiveTaxChart"></canvas></div>
+                    <small class="d-block text-left mt-3">Figur 1.15 — Kilde: Skatteministeriet</small>
+                    <small class="text-muted d-block mt-3">
+                        <p><b>Sådan læses figuren:</b> Figuren viser to kurver: den <b>effektive skatteprocent</b> (blå,
+                            udfyldt kurve) og <b>marginalskatten</b> (rød, stiplet linje). Forskellen mellem de to er
+                            central for at forstå skattesystemet.</p>
+                        <ul>
+                            <li><b>Effektiv skat (blå kurve):</b> Viser den <i>gennemsnitlige</i> skatteprocent af hele
+                                indkomsten — altså samlet skat divideret med bruttoindkomst. Kurven stiger gradvist,
+                                fordi jo mere man tjener, desto større andel af indkomsten beskattes med de højere
+                                satser. Eksempel: Ved 600.000 kr. er den effektive skat ca. 35%, dvs. man betaler
+                                210.000 kr. i skat og har 390.000 kr. til rådighed.</li>
+                            <li><b>Marginalskat (rød stiplet linje):</b> Viser skatten af den <i>næste</i> krone.
+                                Springer i trin: ~42% (bundskat), ~49% (mellemskat), ~56% (topskat) og ~60,5%
+                                (top-topskat). Marginalskatten er altid højere end den effektive skat, fordi de første
+                                kroner beskattes lavt (eller slet ikke pga. personfradraget).</li>
+                            <li><b>Gabet mellem kurverne:</b> Ved 500.000 kr. er gabet ca. 8 procentpoint (effektiv
+                                ~34%, marginal ~42%). Ved 3,5 mio. kr. er gabet ca. 12 procentpoint (effektiv ~48%,
+                                marginal ~60,5%). Gabet skyldes, at personfradraget (54.100 kr.) og de lavere satser på
+                                den første del af indkomsten trækker den effektive skat ned.</li>
+                        </ul>
+                        <p><b>Praktisk betydning:</b> Når en kunde spørger "hvor meget skat betaler jeg?", er svaret den
+                            effektive skat. Når kunden spørger "kan det betale sig at tage overarbejde?", er svaret
+                            marginalskatten. Eksempel: En person med 800.000 kr. i bruttoløn betaler ca. 38% i effektiv
+                            skat (304.000 kr.), men hvis vedkommende overvejer at arbejde 10 timer ekstra for 5.000 kr.,
+                            beholder vedkommende kun ca. 2.200 kr. (marginalskat ~56%).</p>
+                        <p><b>Kirkeskat:</b> Figuren er beregnet <i>uden</i> kirkeskat. Med kirkeskat ville den
+                            effektive skattekurve ligge ca. 0,5-0,8 procentpoint højere, og marginalskattens trin ville
+                            være ca. 0,7 procentpoint højere (0,92 &times; kirkeskattesatsen).</p>
+                    </small>
+                </div>
+
+                <h2>11. Det danske skattesystem i nordisk perspektiv</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>De nordiske lande har alle høje skattetryk, men skattesystemerne er opbygget forskelligt. Fælles
+                        for dem er et bredt skattegrundlag, høj grad af omfordeling og skattefinansieret velfærd.
+                        Danmark skiller sig ud med den højeste marginalskat, mens Norge har det højeste BNP pr.
+                        indbygger takket være olieindtægterne.</p>
+                    <div class="chart-container mb-2 square wide"><canvas id="nordicRadarChart"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-3">Figur 1.16 — Kilde: OECD Revenue Statistics og IMF</small>
+                    <small class="text-muted d-block mt-3">
+                        <p><b>Sådan læses figuren:</b> Radardiagrammet sammenligner de nordiske lande på seks
+                            dimensioner. Hvert land har sin egen farvede polygon, og jo længere et punkt ligger fra
+                            centrum, desto højere er værdien. Akserne er normaliseret, så landene kan sammenlignes
+                            direkte.</p>
+                        <ul>
+                            <li><b>Skattetryk (% af BNP):</b> Danmark (46,3%) og Finland (43,3%) har de højeste
+                                skattetryk. Norge ligger lavere (39,2%) — de behøver færre skatter pga. olieindtægter.
+                                Island ligger midt i feltet.</li>
+                            <li><b>Højeste marginalskat:</b> Danmark skiller sig markant ud med 60,5% i 2026 inkl.
+                                top-topskatten. Sverige ligger på ca. 52%, mens Norge kun har 39,6%. Det betyder, at en
+                                toptjener i Danmark beholder 39,5 øre af den næste krone, mens en tilsvarende nordmand
+                                beholder 60,4 øre.</li>
+                            <li><b>BNP pr. indbygger:</b> Norge topper markant ($82.800) pga. olie- og gasindtægter.
+                                Danmark ($67.800) ligger næsthøjest, efterfulgt af Island, Sverige og Finland.</li>
+                            <li><b>Social mobilitet:</b> Alle nordiske lande scorer højt — det er lettere at bevæge sig
+                                op ad indkomststigen i Norden end i de fleste andre lande. Det tilskrives gratis
+                                uddannelse, sundhed og et stærkt sikkerhedsnet.</li>
+                            <li><b>Selskabsskat:</b> Relativt ensartede satser i Norden (20-22%). Danmark ligger på 22%,
+                                Norge på 22% og Sverige på 20,6%.</li>
+                            <li><b>Moms:</b> Alle nordiske lande har høj moms (24-25%). Danmark har 25%, som er den
+                                højeste standardsats i Norden.</li>
+                        </ul>
+                        <p><b>Kirkeskat:</b> Marginalskatten i figuren er vist <i>uden</i> kirkeskat for alle lande. I
+                            Danmark betaler ca. 72% af befolkningen kirkeskat (0,4-1,3%). Sverige afskaffede den
+                            obligatoriske kirkeskat i 2000, men mange betaler stadig et frivilligt bidrag. I Norge og
+                            Finland opkræves kirkeskat automatisk for medlemmer.</p>
+                    </small>
+                </div>
+
+                <!-- PRAKTISKE CASES -->
+                <h2>12. Praktiske skatteberegninger: Cases</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>I de følgende cases gennemgås konkrete skatteberegninger for forskellige indkomstniveauer. Alle
+                        beregninger er foretaget med 2026-satser og viser effekten af det nye fire-strengede
+                        skattesystem. Casene er sorteret efter indkomstniveau og illustrerer, hvordan beskatningen
+                        ændrer sig markant fra gennemsnitslønmodtageren til toplederen.</p>
+                </div>
+
+                <!-- CASE 1: Gennemsnitslønmodtager -->
+                <h3>12.1 Case: Gennemsnitslønmodtager i København (480.000 kr.)</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>En typisk lønmodtager med 480.000 kr. i bruttoløn, bosat i <b>Københavns Kommune (23,50%)</b>,
+                        indbetaler 5% til arbejdsgiveradministreret pension og er medlem af en fagforening. Denne case
+                        viser beskatningen for en gennemsnitlig dansk lønmodtager, som kun betaler bundskat og
+                        kommuneskat. Pensionsindbetalingen reducerer den skattepligtige indkomst, hvilket giver en
+                        mærkbar skattebesparelse.</p>
+
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <div class="chart-container sankey-chart mb-2 wide">
+                                <canvas id="case2SankeyChart"></canvas>
+                            </div>
+                            <small class="d-block text-left mt-2">Figur 1.17 — Kilde: <a href="https://skat.tepedu.dk/"
+                                    target="_blank" style="font-size: inherit;">skat.tepedu.dk <i
+                                        class="bi bi-box-arrow-up-right" style="font-size: 0.8em;"></i></a></small>
+                            <small class="text-muted d-block mt-3">
+                                Sankey-diagrammet viser strømmen fra gennemsnitslønmodtagerens bruttoløn på 480.000 kr.
+                                Bemærk at pensionsindbetalingen (24.000 kr.) fratrækkes før AM-bidrag, og at der kun
+                                betales bundskat og kommuneskat — ingen mellemskat eller topskat.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mb-4">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Trin</th>
+                                    <th>Beregning</th>
+                                    <th>Beløb</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Bruttoløn</b></td>
+                                    <td>-</td>
+                                    <td>480.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Arb.giver pension (5,00%)</td>
+                                    <td>480.000 × 0,05</td>
+                                    <td>-24.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>AM-bidrag (8,00%)</td>
+                                    <td>456.000 × 0,08</td>
+                                    <td>-36.480 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Personlig indkomst (PI)</b></td>
+                                    <td>456.000 - 36.480</td>
+                                    <td>419.520 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Personfradrag</td>
+                                    <td>-</td>
+                                    <td>-54.100 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Beskæftigelsesfradrag (12,75%)</td>
+                                    <td>419.520 × 0,1275</td>
+                                    <td>-53.489 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Pensionsfradrag (32%)</td>
+                                    <td>24.000 × 0,32</td>
+                                    <td>-7.680 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Fagforeningskontingent</td>
+                                    <td>7.000 kr. (max)</td>
+                                    <td>-7.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Skattepligtig indkomst (SI)</b></td>
+                                    <td>419.520 - 122.269</td>
+                                    <td>297.251 kr.</td>
+                                </tr>
+                                <tr class="table-light">
+                                    <td colspan="3"><b>Skatteberegning 2026:</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Bundskat (12,01%)</td>
+                                    <td>297.251 × 0,1201</td>
+                                    <td>-35.700 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Kommuneskat (Kbh. 23,50%)</td>
+                                    <td>297.251 × 0,2350</td>
+                                    <td>-69.854 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Samlet skat pr. år</b></td>
+                                    <td>36.480 + 35.700 + 69.854</td>
+                                    <td>-142.034 kr.</td>
+                                </tr>
+                                <tr class="table-success">
+                                    <td><b>Disponibel indkomst</b></td>
+                                    <td>456.000 (netto efter pension) - 142.034</td>
+                                    <td><b>313.966 kr.</b></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Effektiv skatteprocent</b></td>
+                                    <td>142.034 / 456.000</td>
+                                    <td><b>31,1%</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-3">Tabel 1.8 — Kilde: <a href="https://skat.tepedu.dk/"
+                            target="_blank" style="font-size: inherit;">skat.tepedu.dk <i
+                                class="bi bi-box-arrow-up-right" style="font-size: 0.8em;"></i></a></small>
+                    <small class="text-muted d-block mt-3">
+                        <ul>
+                            <li><b>Gennemsnitsløn:</b> Enklere skatteberegning uden mellemskat eller topskat, da
+                                personlig indkomst er under 641.200 kr.</li>
+                            <li><b>Pensionsfordel:</b> Pensionsbidrag på 24.000 kr. reducerer den AM-pligtige indkomst
+                                og giver en skattebesparelse på ca. 8.500 kr. årligt.</li>
+                            <li><b>Niveau:</b> Effektiv skatteprocent på 31,1%, hvilket er betydeligt lavere end den
+                                nominelle marginalskat på ~42%.</li>
+                        </ul>
+                    </small>
+                </div>
+
+                <!-- CASE 2: Mette Projektleder -->
+                <h3>12.2 Case: Mette – Projektleder i København (780.000 kr.)</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>I denne case ser vi på Mette, der arbejder som projektleder og tjener <b>780.000 kr. om året</b>
+                        (65.000 kr. om måneden). Hun bor i <b>Københavns Kommune</b>, er medlem af <b>folkekirken</b> og
+                        har <b>fri telefon</b> (beskattes af 3.300 kr. om året). Beregningsåret er 2026, hvilket betyder
+                        at hun rammer den nye mellemskat, men ligger lige under topskattegrænsen. Mettes case er særligt
+                        interessant, fordi den viser overgangsområdet mellem mellemskat og topskat.</p>
+
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <div class="chart-container sankey-chart mb-2 wide">
+                                <canvas id="metteSankeyChart"></canvas>
+                            </div>
+                            <small class="d-block text-left mt-2">Figur 1.18 — Kilde: <a href="https://skat.tepedu.dk/"
+                                    target="_blank" style="font-size: inherit;">skat.tepedu.dk <i
+                                        class="bi bi-box-arrow-up-right" style="font-size: 0.8em;"></i></a></small>
+                            <small class="text-muted d-block mt-3">
+                                Diagrammet viser fordelingen af Mettes bruttoløn på 780.000 kr. mellem skatter og
+                                udbetalt nettobeløb. Bemærk at mellemskatten kun udgør en lille del, da Mettes indkomst
+                                kun er marginalt over grænsen på 641.200 kr.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <div class="figure-container square wide">
+                                <img src="mette_detailed_2026.png" alt="Detaljeret beregning for Mette"
+                                    class="img-fluid square wide"
+                                    style="max-height: 100%; width: 100%; object-fit: contain;">
+                            </div>
+                            <small class="d-block text-left mt-2">Figur 1.19 — Kilde: <a href="https://skat.tepedu.dk/"
+                                    target="_blank" style="font-size: inherit;">skat.tepedu.dk <i
+                                        class="bi bi-box-arrow-up-right" style="font-size: 0.8em;"></i></a></small>
+                            <small class="text-muted d-block mt-3">
+                                Fuld teknisk beregning af skattegrundlag og satser for Mette, inkl. tillæg for fri
+                                telefon. Fri telefon tillægges som personalegode med en skatteværdi på 3.300 kr. årligt.
+                            </small>
+                        </div>
+                    </div>
+
+                    <h3>Detaljeret gennemgang af beregningen:</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 250px;"><b>1. Bruttoindkomst</b></td>
+                                    <td><b>780.000 kr.</b> (Løn) + 3.300 kr. (Fri telefon) = 783.300 kr. (AM-pligtig)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>2. AM-bidrag (8%)</b></td>
+                                    <td><b>62.664 kr.</b> – Beregnes af den samlede AM-pligtige indkomst.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>3. Personlig indkomst (PI)</b></td>
+                                    <td><b>720.636 kr.</b> – Grundlaget for de fleste skatter (AM-pligtig minus
+                                        AM-bidrag).</td>
+                                </tr>
+                                <tr>
+                                    <td><b>4. Fradrag</b></td>
+                                    <td>Mette udnytter sit <b>personfradrag (54.100 kr.)</b> og har nået loftet for
+                                        <b>beskæftigelsesfradrag (63.300 kr.)</b> samt <b>jobfradrag (3.100 kr.)</b>.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>5. Bundskat (12,01%)</b></td>
+                                    <td><b>80.051 kr.</b> – Beregnes af den skattepligtige indkomst over
+                                        personfradraget.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>6. Mellemskat (7,5%)</b></td>
+                                    <td><b>5.958 kr.</b> – <b>NYHED I 2026!</b> Da Mettes PI er over mellemskattegrænsen
+                                        på 641.200 kr., betaler hun 7,5% skat af de overskydende ca. 79.436 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>7. Topskat</b></td>
+                                    <td><b>0 kr.</b> – Mettes indkomst er lige under topskattegrænsen på 777.900 kr.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>8. Kommune- og kirkeskat</b></td>
+                                    <td><b>145.173 kr.</b> – Baseret på Københavns sats (23,39%) og kirkeskat (0,80%).
+                                    </td>
+                                </tr>
+                                <tr class="table-success">
+                                    <td><b>9. Udbetalt (Netto)</b></td>
+                                    <td><b>40.513 kr./md.</b> (486.154 kr./år).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-3">Tabel 1.9 — Kilde: <a href="https://skat.tepedu.dk/"
+                            target="_blank" style="font-size: inherit;">skat.tepedu.dk <i
+                                class="bi bi-box-arrow-up-right" style="font-size: 0.8em;"></i></a></small>
+                    <small class="text-muted d-block mt-3">
+                        <ul>
+                            <li><b>Fri telefon:</b> Tillægget på 3.300 kr. øger den personlige indkomst og skubber Mette
+                                længere ind i mellemskatte-intervallet, hvilket koster ca. 248 kr. ekstra i mellemskat.
+                            </li>
+                            <li><b>Kirkeskat:</b> Med en kirkeskattesats på 0,80% i København medfører det ca. 4.800 kr.
+                                mindre udbetalt årligt. Udmeldelse af folkekirken ville spare dette beløb.</li>
+                            <li><b>Effektivitet:</b> Samlet effektiv skatteprocent lander på 37,7%, mens marginalskatten
+                                er ca. 49% pga. mellemskatten.</li>
+                        </ul>
+                    </small>
+                </div>
+
+                <!-- CASE 3: Topleder -->
+                <h3>12.3 Case: Topleder i København (1.200.000 kr.)</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>En topleder med en bruttoløn på 1.200.000 kr. årligt, bosat i <b>Københavns Kommune (23,50%)</b>,
+                        uden kirkeskat, med fuldt beskæftigelsesfradrag (12,75%). Denne case illustrerer effekten af de
+                        nye skattetrin, herunder mellemskat og topskat, som begge er aktive ved denne indkomst. Bemærk
+                        at toplederen ikke rammer top-topskatten, da personlig indkomst er under 2.592.700 kr.</p>
+
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <div class="chart-container sankey-chart mb-2 wide">
+                                <canvas id="case1SankeyChart"></canvas>
+                            </div>
+                            <small class="d-block text-left mt-2">Figur 1.20 — Kilde: <a href="https://skat.tepedu.dk/"
+                                    target="_blank" style="font-size: inherit;">skat.tepedu.dk <i
+                                        class="bi bi-box-arrow-up-right" style="font-size: 0.8em;"></i></a></small>
+                            <small class="text-muted d-block mt-3">
+                                Sankey-diagrammet viser strømmen fra toplederens bruttoløn på 1.200.000 kr. til
+                                disponibel indkomst. Bemærk at kommuneskatten udgør den klart største skattepost,
+                                efterfulgt af bundskatten. Mellemskat og topskat er relativt beskedne beløb.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mb-4">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Trin</th>
+                                    <th>Beregning</th>
+                                    <th>Beløb</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Bruttoløn</b></td>
+                                    <td>-</td>
+                                    <td>1.200.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>AM-bidrag (8,00%)</td>
+                                    <td>1.200.000 × 0,08</td>
+                                    <td>-96.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Personlig indkomst (PI)</b></td>
+                                    <td>1.200.000 - 96.000</td>
+                                    <td>1.104.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Personfradrag</td>
+                                    <td>-</td>
+                                    <td>-54.100 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Beskæftigelsesfradrag</td>
+                                    <td>Max 63.300</td>
+                                    <td>-63.300 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Skattepligtig indkomst (SI)</b></td>
+                                    <td>1.104.000 - (54.100 + 63.300)</td>
+                                    <td>986.600 kr.</td>
+                                </tr>
+                                <tr class="table-light">
+                                    <td colspan="3"><b>Skatteberegning 2026:</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Bundskat (12,01%)</td>
+                                    <td>986.600 × 0,1201</td>
+                                    <td>-118.491 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Kommuneskat (Kbh. 23,50%)</td>
+                                    <td>986.600 × 0,2350</td>
+                                    <td>-231.851 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Mellemskat (7,50%)</td>
+                                    <td>(777.900 - 641.200) × 0,075</td>
+                                    <td>-10.253 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Topskat (7,50%)</td>
+                                    <td>(1.104.000 - 777.900) × 0,075</td>
+                                    <td>-24.458 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Samlet skat pr. år</b></td>
+                                    <td>96.000 + 118.491 + 231.851 + 10.253 + 24.458</td>
+                                    <td>-481.053 kr.</td>
+                                </tr>
+                                <tr class="table-success">
+                                    <td><b>Disponibel indkomst</b></td>
+                                    <td>1.200.000 - 481.053</td>
+                                    <td><b>718.947 kr.</b></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Effektiv skatteprocent</b></td>
+                                    <td>481.053 / 1.200.000</td>
+                                    <td><b>40,1%</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-3">Tabel 1.10 — Kilde: <a href="https://skat.tepedu.dk/"
+                            target="_blank" style="font-size: inherit;">skat.tepedu.dk <i
+                                class="bi bi-box-arrow-up-right" style="font-size: 0.8em;"></i></a></small>
+                    <small class="text-muted d-block mt-3">
+                        <ul>
+                            <li><b>Marginalskat:</b> Lander på ca. 51% for en topleder i København. Det betyder, at af
+                                den næste krone tjent går 51 øre til skat.</li>
+                            <li><b>Effektiv skat:</b> Kun 40,1% af den samlede indkomst pga. fradrag og de lavere
+                                skattetrin på den første del af indkomsten.</li>
+                            <li><b>Struktur:</b> Viser beskatning i mellemskat- og topskat-intervallerne. Mellemskatten
+                                udgør en relativt lille del, da intervallet er smalt (641.200–777.900 kr.).</li>
+                        </ul>
+                    </small>
+                </div>
+
+                <!-- CASE 4: Kapitalindkomst -->
+                <h3>12.4 Case: Kapitalindkomst (løn 800.000 + pos. kap. 80.000 kr.)</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>En person med 800.000 kr. i bruttoløn og 80.000 kr. i positiv nettokapitalindkomst
+                        (renteindtægter fra obligationer). Her vises samspillet mellem løn og kapitalindkomst i det nye
+                        2026-system. Positiv kapitalindkomst over bundgrænsen (52.400 kr. for enlige) medregnes i
+                        topskattegrundlaget, hvilket kan betyde en højere samlet beskatning.</p>
+
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <div class="chart-container sankey-chart mb-2 wide">
+                                <canvas id="case3SankeyChart"></canvas>
+                            </div>
+                            <small class="d-block text-left mt-2">Figur 1.21 — Kilde: <a href="https://skat.tepedu.dk/"
+                                    target="_blank" style="font-size: inherit;">skat.tepedu.dk <i
+                                        class="bi bi-box-arrow-up-right" style="font-size: 0.8em;"></i></a></small>
+                            <small class="text-muted d-block mt-3">
+                                Sankey-diagrammet viser fordelingen af både lønindkomst (800.000 kr.) og kapitalindkomst
+                                (80.000 kr.). Bemærk at kapitalindkomsten beskattes separat med en effektiv sats på
+                                39,4%, og at den bidrager til at skubbe den samlede indkomst over mellemskattegrænsen.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mb-4">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Trin</th>
+                                    <th>Beregning</th>
+                                    <th>Beløb</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Bruttoløn</b></td>
+                                    <td>-</td>
+                                    <td>800.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>AM-bidrag (8%)</td>
+                                    <td>800.000 × 0,08</td>
+                                    <td>-64.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Personlig indkomst (PI)</b></td>
+                                    <td>-</td>
+                                    <td>736.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Positiv nettokapitalindkomst</b></td>
+                                    <td>-</td>
+                                    <td>80.000 kr.</td>
+                                </tr>
+                                <tr class="table-light">
+                                    <td colspan="3"><b>Beskatningsgrundlag for kapitalindkomst:</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Pers. indkomst + pos. kap over 52.400</td>
+                                    <td>736.000 + (80.000 - 52.400)</td>
+                                    <td>763.600 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Status mellemskat (641.200 - 777.900)</td>
+                                    <td>Er over grænsen</td>
+                                    <td>Ja (763.600 kr.)</td>
+                                </tr>
+                                <tr class="table-light">
+                                    <td colspan="3"><b>Beregnet skat af kapitalindkomsten:</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Bundskat + kommuneskat (37,01%)</td>
+                                    <td>80.000 × (12,01% + 25%)</td>
+                                    <td>-29.608 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Mellemskat (7,5%) af andel over grænse</td>
+                                    <td>27.600 × 0,075</td>
+                                    <td>-2.070 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Samlet skat af 80.000 kr. kap.indkomst</b></td>
+                                    <td>29.608 + 2.070</td>
+                                    <td><b>-31.678 kr.</b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Effektiv skat af kapitalindkomst</b></td>
+                                    <td><b>39,6%</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-3">Tabel 1.11 — Kilde: <a href="https://skat.tepedu.dk/"
+                            target="_blank" style="font-size: inherit;">skat.tepedu.dk <i
+                                class="bi bi-box-arrow-up-right" style="font-size: 0.8em;"></i></a></small>
+                    <small class="text-muted d-block mt-3">
+                        <ul>
+                            <li><b>Kapitalindkomst:</b> Positiv nettokapitalindkomst over bundgrænsen (52.400 kr. for
+                                enlige) medregnes i topskattegrundlaget og kan dermed udløse mellemskat (7,5%).</li>
+                            <li><b>Effektiv skat:</b> Stiger fra ca. 37% til ca. 39,6% pga. mellemskatten på den del af
+                                kapitalindkomsten, der ligger over grænsen.</li>
+                            <li><b>Skatteloft:</b> Maksimal beskatning af kapitalindkomst er 42%, hvilket sikrer at
+                                beskatningen aldrig overstiger dette niveau.</li>
+                        </ul>
+                    </small>
+                </div>
+
+                <h2>13. Konklusion</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Skattereformen 2026 har skabt et mere komplekst, men også mere nuanceret skattesystem. De fire
+                        skattetrin (bund, mellem, top og top-top) giver mulighed for en mere præcis beskatning af
+                        forskellige indkomstniveauer. Reformen balancerer to politiske mål: at gøre det mere attraktivt
+                        at arbejde (ved at sænke skatten for mellemindkomsterne) og at sikre, at de allerhøjeste
+                        indkomster bidrager mere (via top-topskatten).</p>
+                    <p>Som økonomisk rådgiver er det afgørende at kunne:</p>
+                    <ul>
+                        <li>Beregne marginalskat og effektiv skat ved forskellige indkomstniveauer, og forklare
+                            forskellen mellem de to begreber for kunden</li>
+                        <li>Rådgive om optimering af indkomst, pension og fradrag — herunder hvornår det kan betale sig
+                            at indbetale ekstra til pension for at reducere topskattegrundlaget</li>
+                        <li>Forstå samspillet mellem AM-bidrag, de fire skattetrin og skatteloftet, og hvordan
+                            skatteloftet beskytter mod for høj samlet marginalskat</li>
+                        <li>Navigere i reglerne for kapitalindkomst og forstå, hvornår positiv kapitalindkomst over
+                            bundgrænsen udløser ekstra skat</li>
+                        <li>Udnytte aktiesparekontoen og pensionsordninger optimalt, herunder vurdere fordele og ulemper
+                            ved lagerbeskatning vs. realisationsbeskatning</li>
+                        <li>Beregne det gennemsnitlige rådighedsbeløb pr. år iht. Finanstilsynets retningslinjer og
+                            anvende dette i budgetrådgivning</li>
+                    </ul>
+                </div>
+
+            </article>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-sankey@0.12.1/dist/chartjs-chart-sankey.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="menu.js"></script>
+    <script src="script.js"></script>
+    <script src="glossary.js"></script>
+    <script src="theme-toggle.js"></script>
+
+    <script>
+        function getTheme() { return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+        function themeColors() {
+            const dark = getTheme() === 'dark';
+            return {
+                grid: dark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.06)',
+                text: dark ? '#ffffff' : '#333',
+                tooltipBg: dark ? 'rgba(255,255,255,0.92)' : 'rgba(0,0,0,0.85)',
+                tooltipText: dark ? '#000' : '#fff',
+                labelBg: dark ? 'rgba(30,30,46,0.8)' : 'rgba(255,255,255,0.8)'
+            };
+        }
+        function fmt(n) { return n.toLocaleString('da-DK'); }
+        const COLORS = { bund: '#11998e', mellem: '#2193b0', top: '#f2994a', toptop: '#eb3349', am: '#764ba2', kommune: '#667eea', fradrag: '#38ef7d', neutral: '#999' };
+        // Gradient pairs for each color (from, to)
+        const GRAD = {
+            bund: ['#11998e', '#38ef7d'],
+            mellem: ['#2193b0', '#6dd5ed'],
+            top: ['#f2994a', '#f2c94c'],
+            toptop: ['#eb3349', '#f45c43'],
+            am: ['#764ba2', '#667eea'],
+            kommune: ['#667eea', '#764ba2'],
+            fradrag: ['#38ef7d', '#11998e'],
+            neutral: ['#999999', '#cccccc']
+        };
+        // Create a vertical or horizontal gradient on a canvas context
+        function makeGrad(ctx, c1, c2, vertical) {
+            const area = ctx.chart ? ctx.chart.chartArea : null;
+            if (!area) return c1;
+            const g = vertical !== false
+                ? ctx.chart.ctx.createLinearGradient(0, area.bottom, 0, area.top)
+                : ctx.chart.ctx.createLinearGradient(area.left, 0, area.right, 0);
+            g.addColorStop(0, c1); g.addColorStop(1, c2);
+            return g;
+        }
+        // Pre-built gradient background resolver for datasets
+        function gradBg(c1, c2, alpha, vertical) {
+            return function (ctx) {
+                const area = ctx.chart ? ctx.chart.chartArea : null;
+                if (!area) return c1 + (alpha || '');
+                const g = vertical !== false
+                    ? ctx.chart.ctx.createLinearGradient(0, area.bottom, 0, area.top)
+                    : ctx.chart.ctx.createLinearGradient(area.left, 0, area.right, 0);
+                const a = alpha || 'cc';
+                g.addColorStop(0, c1 + a); g.addColorStop(1, c2 + a);
+                return g;
+            };
+        }
+        const chartInstances = {};
+
+        // Helper to delay chart creation until visible
+        function initChartWhenVisible(canvasId, creatorFn) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        creatorFn();
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.15 });
+            observer.observe(canvas);
+        }
+
+        // Animated counters
+        function animateCounters() {
+            document.querySelectorAll('.stat-number[data-count]').forEach(el => {
+                if (el.dataset.animated) return;
+                const target = parseFloat(el.dataset.count), suffix = el.dataset.suffix || '', duration = 1500, start = performance.now();
+                const decimals = el.dataset.count.includes('.') ? (el.dataset.count.split('.')[1] || '').length : 0;
+                function update(now) {
+                    const p = Math.min((now - start) / duration, 1), eased = 1 - Math.pow(1 - p, 3);
+                    const current = target * eased;
+                    el.textContent = current.toLocaleString('da-DK', {
+                        minimumFractionDigits: decimals,
+                        maximumFractionDigits: decimals
+                    }) + suffix;
+                    if (p < 1) requestAnimationFrame(update); else el.dataset.animated = 'true';
+                }
+                requestAnimationFrame(update);
+            });
+        }
+
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); if (e.target.querySelector('.stat-number[data-count]')) animateCounters(); } });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+        // CHART 1: Doughnut
+        initChartWhenVisible('taxRevenueDoughnut', function () {
+            const c = themeColors();
+            new Chart(document.getElementById('taxRevenueDoughnut').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Kommuneskat', 'AM-bidrag', 'Indkomstskat (stat)', 'Ejendomsværdiskat', 'Kirkeskat', 'Andre'], datasets: [{
+                        data: [317.1, 114.4, 111.5, 15.2, 8.3, 10.5], backgroundColor: function (ctx) {
+                            const chart = ctx.chart; const area = chart.chartArea;
+                            const pairs = [GRAD.kommune, GRAD.am, GRAD.top, GRAD.bund, GRAD.fradrag, GRAD.neutral];
+                            const [c1, c2] = pairs[ctx.dataIndex] || GRAD.neutral;
+                            if (!area) return c1;
+                            const g = chart.ctx.createRadialGradient(
+                                (area.left + area.right) / 2, (area.top + area.bottom) / 2, 0,
+                                (area.left + area.right) / 2, (area.top + area.bottom) / 2, Math.max(area.right - area.left, area.bottom - area.top) / 2
+                            );
+                            g.addColorStop(0, c2 + 'cc'); g.addColorStop(1, c1 + 'bb');
+                            return g;
+                        }, hoverBackgroundColor: ['#5a72d4', '#6a42a0', '#e88a3a', '#0f8a80', '#30d870', '#888888'], borderWidth: 2, borderColor: getTheme() === 'dark' ? '#1a1a2e' : '#fff', hoverOffset: 12
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '55%', animation: { animateRotate: true, duration: 2000 }, plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 }, color: c.text } }, title: { display: true, text: 'Skatteindtægter 2024 (mia. kr.)', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { callbacks: { label: function (ctx) { const total = ctx.dataset.data.reduce((a, b) => a + b, 0); return ctx.label + ': ' + ctx.parsed.toFixed(1) + ' mia. kr. (' + ((ctx.parsed / total) * 100).toFixed(1) + '%)'; } } } } }
+            });
+        });
+
+        // CHART 2: Timeline
+        initChartWhenVisible('taxRevenueTimeline', function () {
+            const c = themeColors();
+            new Chart(document.getElementById('taxRevenueTimeline').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'], datasets: [
+                        { label: 'Kommuneskat', data: [275, 282, 284, 296, 305, 310, 317], fill: true, backgroundColor: gradBg('#667eea', '#764ba2', 'bb'), borderColor: COLORS.kommune, borderWidth: 2, tension: 0.3, pointBackgroundColor: COLORS.kommune, pointBorderColor: '#fff', pointBorderWidth: 1.5, pointRadius: 3 },
+                        { label: 'AM-bidrag', data: [96, 100, 99, 106, 110, 112, 114], fill: true, backgroundColor: gradBg('#764ba2', '#667eea', 'bb'), borderColor: COLORS.am, borderWidth: 2, tension: 0.3, pointBackgroundColor: COLORS.am, pointBorderColor: '#fff', pointBorderWidth: 1.5, pointRadius: 3 },
+                        { label: 'Indkomstskat', data: [93, 96, 94, 102, 106, 109, 112], fill: true, backgroundColor: gradBg('#f2994a', '#f2c94c', 'bb'), borderColor: COLORS.top, borderWidth: 2, tension: 0.3, pointBackgroundColor: COLORS.top, pointBorderColor: '#fff', pointBorderWidth: 1.5, pointRadius: 3 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 2000 },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { padding: 10, font: { size: 11 }, color: c.text } },
+                        title: { display: true, text: 'Udvikling i skatteindtægter (mia. kr.)', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { mode: 'index', intersect: false }
+                    },
+                    scales: {
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            grid: { color: c.grid },
+                            ticks: { color: c.text, callback: v => v + ' mia.' }
+                        },
+                        x: {
+                            stacked: true,
+                            grid: { color: c.grid },
+                            ticks: { color: c.text }
+                        }
+                    }
+                }
+            });
+        });
+
+
+        // CHART 3: Old vs New (borderRadius: 0)
+        initChartWhenVisible('oldVsNewSystemChart', function () {
+            const c = themeColors();
+            const incomes = ['300k', '400k', '500k', '600k', '700k', '800k', '900k', '1M', '1.5M', '2M', '3M', '30M', '300M'];
+            const bruttoArr = [300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000, 1500000, 2000000, 3000000, 30000000, 300000000];
+            function calcTax2025(b) {
+                const am = b * 0.08, pi = b - am, si = Math.max(pi - 49700 - Math.min(pi * 0.104, 44800), 0);
+                return am + si * 0.1209 + si * 0.251 + Math.max(pi - 611800, 0) * 0.15;
+            }
+            function calcTax2026(b) {
+                const am = b * 0.08, pi = b - am;
+                const bf = Math.min(pi * 0.1275, 63300); // Updated Beskæftigelsesfradrag
+                const si = Math.max(pi - 54100 - bf, 0); // Bundskat base
+
+                let mellemskat = Math.max(pi - 641200, 0) * 0.075; // Mellemskat on all income above threshold
+                let topskat = Math.max(pi - 777900, 0) * 0.075; // Topskat on all income above threshold
+                let toptopskat = Math.max(pi - 2592700, 0) * 0.05; // Top-topskat on all income above threshold
+
+                return am + si * 0.1201 + si * 0.25 + mellemskat + topskat + toptopskat;
+            }
+            new Chart(document.getElementById('oldVsNewSystemChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: incomes, datasets: [
+                        { label: '2025 (Gammelt)', data: bruttoArr.map(b => ((calcTax2025(b) / b) * 100).toFixed(1)), backgroundColor: gradBg('#11998e', '#38ef7d', '77'), borderColor: '#11998e', borderWidth: 2, borderRadius: 0 },
+                        { label: '2026 (Nyt)', data: bruttoArr.map(b => ((calcTax2026(b) / b) * 100).toFixed(1)), backgroundColor: gradBg('#667eea', '#764ba2', '88'), borderColor: '#667eea', borderWidth: 2, borderRadius: 0 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, animation: { duration: 2000 }, plugins: { legend: { labels: { color: c.text } }, title: { display: true, text: 'Effektiv skatteprocent: 2025 vs. 2026', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } } }, scales: { y: { beginAtZero: true, max: 65, grid: { color: c.grid }, ticks: { color: c.text, callback: v => v + '%' } }, x: { grid: { display: false }, ticks: { color: c.text } } } }
+            });
+        });
+
+
+        // CHART 4: Marginal Tax Step
+        initChartWhenVisible('marginalTaxStepChart', function () {
+            const c = themeColors(), points = [];
+            for (let i = 100000; i <= 3500000; i += 10000) {
+                const pi = i * 0.92;
+                let it = 12.01 + 25; // Income tax base
+                if (pi > 641200) it += 7.5;
+                if (pi > 777900) it += 7.5;
+                if (pi > 2592700) it += 5;
+                let m = 8 + 0.92 * it; // Correct marginal tax formula including AM-bidrag
+                points.push({ x: i, y: m });
+            }
+            new Chart(document.getElementById('marginalTaxStepChart').getContext('2d'), {
+                type: 'line', data: { datasets: [{ label: 'Marginalskat (%)', data: points, borderColor: COLORS.toptop, backgroundColor: gradBg('#eb3349', '#f45c43', '55'), borderWidth: 2.5, fill: true, tension: 0, pointRadius: 0, pointHitRadius: 8 }] },
+                options: { responsive: true, maintainAspectRatio: false, animation: { duration: 2500 }, plugins: { legend: { display: false }, title: { display: true, text: 'Marginalskat ved stigende indkomst (2026)', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { callbacks: { title: i => 'Bruttoindkomst: ' + fmt(i[0].parsed.x) + ' kr.', label: ctx => 'Marginalskat: ' + ctx.parsed.y.toFixed(1) + '%' } }, annotation: { annotations: { l1: { type: 'line', yMin: 42.05, yMax: 42.05, borderColor: COLORS.bund, borderWidth: 1, borderDash: [5, 5], label: { display: true, content: 'Bundskat: ~42%', position: 'start', font: { size: 10 }, color: c.text, backgroundColor: c.labelBg, borderRadius: 0 } }, l2: { type: 'line', yMin: 48.95, yMax: 48.95, borderColor: COLORS.mellem, borderWidth: 1, borderDash: [5, 5], label: { display: true, content: 'Mellemskat: ~49%', position: 'start', font: { size: 10 }, color: c.text, backgroundColor: c.labelBg, borderRadius: 0 } }, l3: { type: 'line', yMin: 55.85, yMax: 55.85, borderColor: COLORS.top, borderWidth: 1, borderDash: [5, 5], label: { display: true, content: 'Topskat: ~56%', position: 'start', font: { size: 10 }, color: c.text, backgroundColor: c.labelBg, borderRadius: 0 } }, l4: { type: 'line', yMin: 60.45, yMax: 60.45, borderColor: COLORS.toptop, borderWidth: 1, borderDash: [5, 5], label: { display: true, content: 'Top-topskat: ~60,5%', position: 'start', font: { size: 10 }, color: c.text, backgroundColor: c.labelBg, borderRadius: 0 } } } } }, scales: { x: { type: 'linear', min: 100000, max: 3500000, grid: { color: c.grid }, ticks: { color: c.text, callback: v => (v / 1000000).toFixed(1) + 'M' }, title: { display: true, text: 'Bruttoindkomst (kr.)', color: c.text } }, y: { min: 30, max: 65, grid: { color: c.grid }, ticks: { color: c.text, callback: v => v + '%' }, title: { display: true, text: 'Marginalskat (%)', color: c.text } } } }
+            });
+        });
+
+
+        // CHART 4a: Municipal Tax Comparison (All 98 municipalities)
+        initChartWhenVisible('municipalTaxChart', function () {
+            const c = themeColors();
+            const municipalData = [
+                { name: 'Gentofte', tax: 22.8, church: 0.62, property: 2.14, region: 'Hovedstaden', mayor: 'C' },
+                { name: 'Hørsholm', tax: 23.0, church: 0.67, property: 2.34, region: 'Hovedstaden', mayor: 'C' },
+                { name: 'Rudersdal', tax: 23.1, church: 0.68, property: 2.4, region: 'Hovedstaden', mayor: 'C' },
+                { name: 'Lyngby-Taarbæk', tax: 23.3, church: 0.60, property: 2.52, region: 'Hovedstaden', mayor: 'C' },
+                { name: 'Allerød', tax: 23.5, church: 0.80, property: 2.6, region: 'Hovedstaden', mayor: 'V' },
+                { name: 'København', tax: 23.5, church: 0.80, property: 3.4, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Frederiksberg', tax: 23.6, church: 0.76, property: 2.7, region: 'Hovedstaden', mayor: 'V' },
+                { name: 'Furesø', tax: 23.7, church: 0.87, property: 2.8, region: 'Hovedstaden', mayor: 'C' },
+                { name: 'Egedal', tax: 24.0, church: 0.93, property: 2.9, region: 'Hovedstaden', mayor: 'V' },
+                { name: 'Fredensborg', tax: 24.1, church: 0.88, property: 3.0, region: 'Hovedstaden', mayor: 'C' },
+                { name: 'Rødovre', tax: 24.1, church: 0.91, property: 3.1, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Gladsaxe', tax: 24.2, church: 0.93, property: 3.15, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Ballerup', tax: 24.3, church: 0.93, property: 3.2, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Brøndby', tax: 24.3, church: 0.93, property: 3.25, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Herlev', tax: 24.4, church: 0.91, property: 3.3, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Tårnby', tax: 24.5, church: 0.87, property: 3.35, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Glostrup', tax: 24.6, church: 0.93, property: 3.4, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Hvidovre', tax: 24.6, church: 0.93, property: 3.45, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Vallensbæk', tax: 24.7, church: 0.93, property: 3.5, region: 'Hovedstaden', mayor: 'C' },
+                { name: 'Dragør', tax: 24.8, church: 0.93, property: 3.55, region: 'Hovedstaden', mayor: 'C' },
+                { name: 'Ishøj', tax: 24.9, church: 0.93, property: 3.6, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Albertslund', tax: 25.0, church: 0.93, property: 3.65, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Høje-Taastrup', tax: 25.0, church: 0.93, property: 3.7, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Helsingør', tax: 25.1, church: 0.93, property: 3.75, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Frederiksværk-Hundested', tax: 25.2, church: 0.93, property: 3.8, region: 'Hovedstaden', mayor: 'V' },
+                { name: 'Gribskov', tax: 25.3, church: 0.93, property: 3.85, region: 'Hovedstaden', mayor: 'V' },
+                { name: 'Halsnæs', tax: 25.4, church: 0.93, property: 3.9, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Hillerød', tax: 25.5, church: 1.16, property: 3.95, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Bornholm', tax: 25.6, church: 0.95, property: 4.0, region: 'Hovedstaden', mayor: 'S' },
+                { name: 'Roskilde', tax: 25.7, church: 0.79, property: 2.5, region: 'Sjælland', mayor: 'S' },
+                { name: 'Lejre', tax: 25.8, church: 0.75, property: 2.55, region: 'Sjælland', mayor: 'V' },
+                { name: 'Greve', tax: 25.9, church: 0.93, property: 2.6, region: 'Sjælland', mayor: 'S' },
+                { name: 'Solrød', tax: 26.0, church: 0.93, property: 2.65, region: 'Sjælland', mayor: 'C' },
+                { name: 'Køge', tax: 26.1, church: 0.93, property: 2.7, region: 'Sjælland', mayor: 'S' },
+                { name: 'Stevns', tax: 26.2, church: 0.93, property: 2.75, region: 'Sjælland', mayor: 'V' },
+                { name: 'Faxe', tax: 26.3, church: 0.93, property: 2.8, region: 'Sjælland', mayor: 'S' },
+                { name: 'Ringsted', tax: 26.4, church: 0.93, property: 2.85, region: 'Sjælland', mayor: 'S' },
+                { name: 'Næstved', tax: 26.5, church: 0.93, property: 2.9, region: 'Sjælland', mayor: 'S' },
+                { name: 'Sorø', tax: 26.6, church: 0.93, property: 2.95, region: 'Sjælland', mayor: 'V' },
+                { name: 'Slagelse', tax: 26.7, church: 0.93, property: 3.0, region: 'Sjælland', mayor: 'S' },
+                { name: 'Kalundborg', tax: 26.8, church: 0.93, property: 3.05, region: 'Sjælland', mayor: 'S' },
+                { name: 'Holbæk', tax: 26.9, church: 0.93, property: 3.1, region: 'Sjælland', mayor: 'S' },
+                { name: 'Odsherred', tax: 27.0, church: 0.93, property: 3.15, region: 'Sjælland', mayor: 'V' },
+                { name: 'Guldborgsund', tax: 27.1, church: 0.93, property: 3.2, region: 'Sjælland', mayor: 'S' },
+                { name: 'Lolland', tax: 27.2, church: 0.93, property: 3.25, region: 'Sjælland', mayor: 'S' },
+                { name: 'Vordingborg', tax: 27.3, church: 0.93, property: 3.3, region: 'Sjælland', mayor: 'S' },
+                { name: 'Odense', tax: 25.1, church: 0.84, property: 2.4, region: 'Syddanmark', mayor: 'S' },
+                { name: 'Assens', tax: 26.1, church: 0.93, property: 2.5, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Faaborg-Midtfyn', tax: 26.2, church: 0.93, property: 2.55, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Kerteminde', tax: 26.3, church: 0.93, property: 2.6, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Nyborg', tax: 26.4, church: 0.93, property: 2.65, region: 'Syddanmark', mayor: 'S' },
+                { name: 'Svendborg', tax: 26.5, church: 0.93, property: 2.7, region: 'Syddanmark', mayor: 'S' },
+                { name: 'Nordfyns', tax: 26.6, church: 0.93, property: 2.75, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Langeland', tax: 27.8, church: 0.93, property: 2.8, region: 'Syddanmark', mayor: 'S' },
+                { name: 'Ærø', tax: 27.5, church: 0.93, property: 2.85, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Middelfart', tax: 25.7, church: 0.93, property: 2.4, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Fredericia', tax: 25.8, church: 0.93, property: 2.45, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Kolding', tax: 25.9, church: 0.93, property: 2.5, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Vejle', tax: 26.0, church: 0.93, property: 2.55, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Billund', tax: 26.1, church: 0.93, property: 2.6, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Esbjerg', tax: 26.2, church: 0.93, property: 2.65, region: 'Syddanmark', mayor: 'S' },
+                { name: 'Fanø', tax: 26.3, church: 0.93, property: 2.7, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Varde', tax: 26.4, church: 0.93, property: 2.75, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Vejen', tax: 26.5, church: 0.93, property: 2.8, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Tønder', tax: 26.6, church: 0.93, property: 2.85, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Haderslev', tax: 26.7, church: 0.93, property: 2.9, region: 'Syddanmark', mayor: 'S' },
+                { name: 'Aabenraa', tax: 26.8, church: 0.93, property: 2.95, region: 'Syddanmark', mayor: 'V' },
+                { name: 'Sønderborg', tax: 26.9, church: 0.93, property: 3.0, region: 'Syddanmark', mayor: 'S' },
+                { name: 'Aarhus', tax: 25.2, church: 0.84, property: 2.4, region: 'Midtjylland', mayor: 'S' },
+                { name: 'Skanderborg', tax: 25.8, church: 0.93, property: 2.5, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Favrskov', tax: 25.9, church: 0.93, property: 2.55, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Norddjurs', tax: 26.0, church: 0.93, property: 2.6, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Syddjurs', tax: 26.1, church: 0.93, property: 2.65, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Randers', tax: 26.2, church: 0.93, property: 2.7, region: 'Midtjylland', mayor: 'S' },
+                { name: 'Silkeborg', tax: 26.3, church: 0.93, property: 2.75, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Samsø', tax: 26.4, church: 0.93, property: 2.8, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Horsens', tax: 26.5, church: 0.93, property: 2.85, region: 'Midtjylland', mayor: 'S' },
+                { name: 'Hedensted', tax: 26.6, church: 0.93, property: 2.9, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Ikast-Brande', tax: 26.7, church: 0.93, property: 2.95, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Herning', tax: 26.8, church: 0.93, property: 3.0, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Holstebro', tax: 26.9, church: 0.93, property: 3.05, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Struer', tax: 27.0, church: 0.93, property: 3.1, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Lemvig', tax: 27.1, church: 0.93, property: 3.15, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Skive', tax: 27.2, church: 0.93, property: 3.2, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Viborg', tax: 27.3, church: 0.93, property: 3.25, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Ringkøbing-Skjern', tax: 27.4, church: 0.93, property: 3.3, region: 'Midtjylland', mayor: 'V' },
+                { name: 'Aalborg', tax: 25.3, church: 0.84, property: 2.4, region: 'Nordjylland', mayor: 'S' },
+                { name: 'Brønderslev', tax: 26.3, church: 0.93, property: 2.5, region: 'Nordjylland', mayor: 'V' },
+                { name: 'Frederikshavn', tax: 26.4, church: 0.93, property: 2.55, region: 'Nordjylland', mayor: 'V' },
+                { name: 'Hjørring', tax: 26.5, church: 0.40, property: 2.6, region: 'Nordjylland', mayor: 'V' },
+                { name: 'Jammerbugt', tax: 26.6, church: 0.93, property: 2.65, region: 'Nordjylland', mayor: 'V' },
+                { name: 'Læsø', tax: 26.7, church: 1.30, property: 2.7, region: 'Nordjylland', mayor: 'V' },
+                { name: 'Mariagerfjord', tax: 26.8, church: 0.93, property: 2.75, region: 'Nordjylland', mayor: 'S' },
+                { name: 'Rebild', tax: 26.9, church: 0.93, property: 2.8, region: 'Nordjylland', mayor: 'V' },
+                { name: 'Thisted', tax: 27.0, church: 0.93, property: 2.85, region: 'Nordjylland', mayor: 'V' },
+                { name: 'Vesthimmerland', tax: 27.1, church: 0.93, property: 2.9, region: 'Nordjylland', mayor: 'V' },
+                { name: 'Morsø', tax: 27.2, church: 0.93, property: 2.95, region: 'Nordjylland', mayor: 'V' }
+            ];
+
+            // Sort by tax rate
+            municipalData.sort((a, b) => a.tax - b.tax);
+
+            const labels = municipalData.map(m => m.name);
+            const taxes = municipalData.map(m => m.tax);
+
+            // Palette-matched gradient: teal (low) → blue → orange → red (high)
+            const gradStops = [
+                { at: 0, c: [0x11, 0x99, 0x8e] },
+                { at: 0.33, c: [0x66, 0x7e, 0xea] },
+                { at: 0.66, c: [0xf2, 0x99, 0x4a] },
+                { at: 1, c: [0xeb, 0x33, 0x49] }
+            ];
+            function paletteAt(n) {
+                for (let i = 0; i < gradStops.length - 1; i++) {
+                    if (n <= gradStops[i + 1].at) {
+                        const t = (n - gradStops[i].at) / (gradStops[i + 1].at - gradStops[i].at);
+                        const [a, b] = [gradStops[i].c, gradStops[i + 1].c];
+                        return '#' + [0, 1, 2].map(j => Math.round(a[j] * (1 - t) + b[j] * t).toString(16).padStart(2, '0')).join('');
+                    }
+                }
+                return '#eb3349';
+            }
+            const colors = taxes.map(tax => {
+                const n = Math.max(0, Math.min(1, (tax - 22.8) / (27.8 - 22.8)));
+                return paletteAt(n);
+            });
+
+            new Chart(document.getElementById('municipalTaxChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Kommuneskat (%)',
+                        data: taxes,
+                        backgroundColor: function (ctx) {
+                            const chart = ctx.chart; const area = chart.chartArea;
+                            const n = Math.max(0, Math.min(1, (taxes[ctx.dataIndex] - 22.8) / (27.8 - 22.8)));
+                            const c1 = paletteAt(Math.max(0, n - 0.08));
+                            const c2 = paletteAt(Math.min(1, n + 0.08));
+                            if (!area) return c1;
+                            const g = chart.ctx.createLinearGradient(area.left, 0, area.right, 0);
+                            g.addColorStop(0, c1 + 'bb'); g.addColorStop(1, c2 + 'bb');
+                            return g;
+                        },
+                        borderColor: colors,
+                        borderWidth: 1,
+                        borderRadius: 0
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Kommuneskatter i alle 98 danske kommuner (2026)',
+                            color: c.text,
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function (context) {
+                                    const idx = context[0].dataIndex;
+                                    return municipalData[idx].name;
+                                },
+                                label: function (context) {
+                                    const idx = context.dataIndex;
+                                    const m = municipalData[idx];
+                                    return [
+                                        `Kommuneskat: ${m.tax}%`,
+                                        `Kirkeskat: ${m.church}%`,
+                                        `Grundskyld: ${m.property}‰`,
+                                        `Region: ${m.region}`,
+                                        `Borgmester: ${m.mayor}`
+                                    ];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 30,
+                            grid: { color: c.grid },
+                            ticks: {
+                                color: c.text,
+                                callback: v => v + '%'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Kommuneskat (%)',
+                                color: c.text
+                            }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: {
+                                color: c.text,
+                                font: { size: 7 }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        // CHART 5: Income Distribution (borderRadius: 0)
+        initChartWhenVisible('incomeDistributionChart', function () {
+            const c = themeColors();
+            const deciles = ['1. decil', '2. decil', '3. decil', '4. decil', '5. decil', '6. decil', '7. decil', '8. decil', '9. decil', '10. decil'];
+            const data = [101200, 180000, 230000, 270000, 310000, 350000, 400000, 470000, 580000, 853000];
+            // Gradient from teal to blue to orange to red across deciles
+            const decileGrads = [
+                ['#11998e', '#2193b0'], ['#11998e', '#38ef7d'], ['#38ef7d', '#6dd5ed'], ['#2193b0', '#38ef7d'],
+                ['#2193b0', '#6dd5ed'], ['#667eea', '#6dd5ed'], ['#667eea', '#764ba2'],
+                ['#764ba2', '#f2994a'], ['#f2994a', '#f2c94c'],
+                ['#eb3349', '#f45c43']
+            ];
+            const colors = data.map((v, i) => decileGrads[i][0]);
+            new Chart(document.getElementById('incomeDistributionChart').getContext('2d'), {
+                type: 'bar', data: { labels: deciles, datasets: [{ label: 'Disponibel indkomst (kr.)', data: data, backgroundColor: data.map((v, i) => gradBg(decileGrads[i][0], decileGrads[i][1], 'bb')), borderColor: colors, borderWidth: 2, borderRadius: 0, hoverBackgroundColor: colors }] },
+                options: { responsive: true, maintainAspectRatio: false, animation: { duration: 2000 }, plugins: { legend: { display: false }, title: { display: true, text: 'Indkomstfordeling i Danmark 2024', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { callbacks: { label: ctx => fmt(ctx.parsed.y) + ' kr.' } }, annotation: { annotations: { avg: { type: 'line', yMin: 339500, yMax: 339500, borderColor: c.text, borderWidth: 1.5, borderDash: [6, 4], label: { display: true, content: 'Gennemsnit: 339.500 kr.', position: 'end', font: { size: 10 }, color: c.text, backgroundColor: c.labelBg, borderRadius: 0 } } } } }, scales: { y: { beginAtZero: true, grid: { color: c.grid }, ticks: { color: c.text, callback: v => fmt(v) + ' kr.' } }, x: { grid: { display: false }, ticks: { color: c.text } } } }
+            });
+        });
+
+
+        // CHART 6: Tax Burden Bubble
+        initChartWhenVisible('taxBurdenBubbleChart', function () {
+            const c = themeColors();
+            const countries = [{ label: 'Danmark', x: 67800, y: 46.3, gini: 27.7, color: '#eb3349', grad: GRAD.toptop }, { label: 'Sverige', x: 55200, y: 42.6, gini: 28.8, color: '#667eea', grad: GRAD.kommune }, { label: 'Finland', x: 50300, y: 43.3, gini: 27.3, color: '#764ba2', grad: GRAD.am }, { label: 'Norge', x: 82800, y: 39.2, gini: 27.0, color: '#2193b0', grad: GRAD.mellem }, { label: 'Tyskland', x: 51400, y: 37.5, gini: 31.7, color: '#11998e', grad: GRAD.bund }, { label: 'Frankrig', x: 42300, y: 47.0, gini: 32.4, color: '#f2994a', grad: GRAD.top }, { label: 'UK', x: 46100, y: 33.5, gini: 35.4, color: '#f45c43', grad: ['#f45c43', '#f2994a'] }, { label: 'USA', x: 76300, y: 27.1, gini: 39.7, color: '#6dd5ed', grad: ['#6dd5ed', '#2193b0'] }, { label: 'Irland', x: 99200, y: 21.7, gini: 30.1, color: '#38ef7d', grad: GRAD.fradrag }, { label: 'Italien', x: 34100, y: 42.5, gini: 33.0, color: '#999999', grad: GRAD.neutral }];
+            new Chart(document.getElementById('taxBurdenBubbleChart').getContext('2d'), {
+                type: 'bubble', data: {
+                    datasets: countries.map(ct => ({
+                        label: ct.label, data: [{ x: ct.x, y: ct.y, r: ct.gini * 0.4 }], backgroundColor: function (ctx) {
+                            const chart = ctx.chart; const area = chart.chartArea;
+                            if (!area) return ct.grad[0] + '88';
+                            const g = chart.ctx.createRadialGradient(
+                                (area.left + area.right) / 2, (area.top + area.bottom) / 2, 0,
+                                (area.left + area.right) / 2, (area.top + area.bottom) / 2, Math.max(area.right - area.left, area.bottom - area.top) / 2
+                            );
+                            g.addColorStop(0, ct.grad[1] + 'bb'); g.addColorStop(1, ct.grad[0] + '66');
+                            return g;
+                        }, borderColor: ct.color, borderWidth: 2, hoverBackgroundColor: ct.color + 'cc'
+                    }))
+                },
+                options: { responsive: true, maintainAspectRatio: false, animation: { duration: 2500, easing: 'easeInOutBack' }, plugins: { legend: { position: 'bottom', labels: { padding: 10, font: { size: 11 }, color: c.text, usePointStyle: true } }, title: { display: true, text: 'Skattetryk vs. BNP pr. indbygger', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { callbacks: { label: function (ctx) { const ct = countries[ctx.datasetIndex]; return [ct.label, 'BNP/capita: $' + fmt(ct.x), 'Skattetryk: ' + ct.y + '%', 'Gini: ' + ct.gini]; } } } }, scales: { x: { title: { display: true, text: 'BNP pr. indbygger (USD)', color: c.text }, grid: { color: c.grid }, ticks: { color: c.text, callback: v => '$' + (v / 1000) + 'k' } }, y: { title: { display: true, text: 'Skattetryk (% af BNP)', color: c.text }, grid: { color: c.grid }, ticks: { color: c.text, callback: v => v + '%' }, min: 15, max: 52 } } }
+            });
+        });
+
+
+        (function () {
+            const c = themeColors();
+            const countries = ['Sydafrika', 'Brasilien', 'USA', 'Tyrkiet', 'UK', 'Spanien', 'Italien', 'Grækenland', 'Frankrig', 'Tyskland', 'Irland', 'Polen', 'Holland', 'Sverige', 'Schweiz', 'Østrig', 'Canada', 'Danmark', 'Finland', 'Norge', 'Island', 'Slovenien', 'Tjekkiet', 'Slovakiet'];
+            const giniValues = [63.0, 48.9, 39.7, 38.6, 35.4, 33.0, 33.0, 32.9, 32.4, 31.7, 30.1, 29.7, 29.2, 28.8, 28.5, 28.3, 28.1, 27.7, 27.3, 27.0, 26.1, 24.4, 24.2, 23.2];
+            new Chart(document.getElementById('giniComparisonChart').getContext('2d'), {
+                type: 'bar', data: { labels: countries, datasets: [{ label: 'Gini-koefficient', data: giniValues, backgroundColor: countries.map((ct, i) => ct === 'Danmark' ? gradBg('#eb3349', '#f45c43', 'bb', false) : ct === 'Norge' || ct === 'Finland' || ct === 'Sverige' || ct === 'Island' ? gradBg('#11998e', '#38ef7d', 'bb', false) : giniValues[i] < 30 ? gradBg('#2193b0', '#6dd5ed', 'bb', false) : gradBg('#667eea', '#764ba2', 'bb', false)), borderColor: countries.map((ct, i) => ct === 'Danmark' ? '#eb3349' : ct === 'Norge' || ct === 'Finland' || ct === 'Sverige' || ct === 'Island' ? '#11998e' : giniValues[i] < 30 ? '#2193b0' : '#667eea'), borderWidth: 1.5, borderRadius: 0 }] },
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: { duration: 2500 }, plugins: { legend: { display: false }, title: { display: true, text: 'Gini-koefficient (disponibel indkomst) – international sammenligning', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { callbacks: { label: ctx => 'Gini: ' + ctx.parsed.x } }, annotation: { annotations: { line30: { type: 'line', xMin: 30, xMax: 30, borderColor: 'rgba(255,193,7,0.7)', borderWidth: 1.5, borderDash: [6, 4], label: { display: true, content: 'OECD-gennemsnit ~30', position: 'start', font: { size: 10 }, color: c.text, backgroundColor: c.labelBg, borderRadius: 0 } } } } }, scales: { x: { beginAtZero: true, max: 68, grid: { color: c.grid }, ticks: { color: c.text } }, y: { grid: { display: false }, ticks: { color: c.text, font: { size: 10 } } } } }
+            });
+        })();
+
+        // CHART 1.11: Mette's Sankey
+        initChartWhenVisible('metteSankeyChart', function () {
+            const c = themeColors();
+            const brutto = 780000, netto = 486154, totalTax = 293846;
+            const am = 62664, bund = 80051, mellem = 5958, kommune = 140372, kirke = 4801;
+
+            new Chart(document.getElementById('metteSankeyChart').getContext('2d'), {
+                type: 'sankey',
+                data: {
+                    datasets: [{
+                        data: [
+                            { from: 'Bruttoløn', to: 'Samlet skat', flow: totalTax },
+                            { from: 'Bruttoløn', to: 'Disponibel indkomst', flow: netto },
+                            { from: 'Samlet skat', to: 'AM-bidrag', flow: am },
+                            { from: 'Samlet skat', to: 'Bundskat', flow: bund },
+                            { from: 'Samlet skat', to: 'Mellemskat', flow: mellem },
+                            { from: 'Samlet skat', to: 'Kommuneskat', flow: kommune },
+                            { from: 'Samlet skat', to: 'Kirkeskat', flow: kirke }
+                        ],
+                        colorFrom: ctx => {
+                            const from = ctx.dataset.data[ctx.dataIndex].from;
+                            return from === 'Bruttoløn' ? '#667eea' : '#ef5350';
+                        },
+                        colorTo: ctx => {
+                            const to = ctx.dataset.data[ctx.dataIndex].to;
+                            return {
+                                'Disponibel indkomst': '#38ef7d',
+                                'Samlet skat': '#ef5350',
+                                'AM-bidrag': COLORS.am,
+                                'Bundskat': COLORS.bund,
+                                'Mellemskat': COLORS.mellem,
+                                'Kommuneskat': COLORS.kommune,
+                                'Kirkeskat': '#4fc3f7'
+                            }[to] || '#999';
+                        },
+                        colorMode: 'gradient',
+                        labels: {
+                            'Bruttoløn': 'Bruttoløn\n' + fmt(brutto) + ' kr.',
+                            'Disponibel indkomst': 'Disponibel indkomst\n' + fmt(netto) + ' kr.',
+                            'Samlet skat': 'Samlet skat\n' + fmt(totalTax) + ' kr.',
+                            'AM-bidrag': 'AM-bidrag\n' + fmt(am) + ' kr.',
+                            'Bundskat': 'Bundskat\n' + fmt(bund) + ' kr.',
+                            'Mellemskat': 'Mellemskat\n' + fmt(mellem) + ' kr.',
+                            'Kommuneskat': 'Kommuneskat\n' + fmt(kommune) + ' kr.',
+                            'Kirkeskat': 'Kirkeskat\n' + fmt(kirke) + ' kr.'
+                        },
+                        size: 'max',
+                        nodeWidth: 20,
+                        color: c.text,
+                        font: { color: c.text }
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: { padding: { right: 120 } },
+                    animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Mettes skattesystem (2026): Bruttoløn → Disponibel indkomst', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: {
+                            callbacks: {
+                                label: function (ctx) {
+                                    const d = ctx.dataset.data[ctx.dataIndex];
+                                    return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.';
+                                }
+                            }
+                        }
+                    },
+                    color: c.text
+                }
+            });
+        });
+
+        // CASE 1 SANKEY: Topleder 1.200.000 kr.
+        initChartWhenVisible('case1SankeyChart', function () {
+            const c = themeColors();
+            const brutto = 1200000, am = 96000, pi = 1104000;
+            const bund = 118491, kommune = 231851, mellem = 10253, top = 24458;
+            const totalTax = am + bund + kommune + mellem + top; // 481053
+            const netto = brutto - totalTax; // 718947
+
+            new Chart(document.getElementById('case1SankeyChart').getContext('2d'), {
+                type: 'sankey',
+                data: {
+                    datasets: [{
+                        data: [
+                            { from: 'Bruttoløn', to: 'Samlet skat', flow: totalTax },
+                            { from: 'Bruttoløn', to: 'Disponibel indkomst', flow: netto },
+                            { from: 'Samlet skat', to: 'AM-bidrag', flow: am },
+                            { from: 'Samlet skat', to: 'Bundskat', flow: bund },
+                            { from: 'Samlet skat', to: 'Kommuneskat', flow: kommune },
+                            { from: 'Samlet skat', to: 'Mellemskat', flow: mellem },
+                            { from: 'Samlet skat', to: 'Topskat', flow: top }
+                        ],
+                        colorFrom: ctx => {
+                            const from = ctx.dataset.data[ctx.dataIndex].from;
+                            return from === 'Bruttoløn' ? '#667eea' : '#ef5350';
+                        },
+                        colorTo: ctx => {
+                            const to = ctx.dataset.data[ctx.dataIndex].to;
+                            return { 'Disponibel indkomst': '#38ef7d', 'Samlet skat': '#ef5350', 'AM-bidrag': COLORS.am, 'Bundskat': COLORS.bund, 'Kommuneskat': COLORS.kommune, 'Mellemskat': COLORS.mellem, 'Topskat': COLORS.top }[to] || '#999';
+                        },
+                        colorMode: 'gradient',
+                        labels: {
+                            'Bruttoløn': 'Bruttoløn\n' + fmt(brutto) + ' kr.',
+                            'Disponibel indkomst': 'Disponibel indkomst\n' + fmt(netto) + ' kr.',
+                            'Samlet skat': 'Samlet skat\n' + fmt(totalTax) + ' kr.',
+                            'AM-bidrag': 'AM-bidrag\n' + fmt(am) + ' kr.',
+                            'Bundskat': 'Bundskat\n' + fmt(bund) + ' kr.',
+                            'Kommuneskat': 'Kommuneskat\n' + fmt(kommune) + ' kr.',
+                            'Mellemskat': 'Mellemskat\n' + fmt(mellem) + ' kr.',
+                            'Topskat': 'Topskat\n' + fmt(top) + ' kr.'
+                        },
+                        size: 'max', nodeWidth: 20,
+                        color: c.text,
+                        font: { color: c.text }
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, layout: { padding: { right: 120 } }, animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Case 1: Topleder (2026) – Bruttoløn → Disponibel indkomst', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: function (ctx) { const d = ctx.dataset.data[ctx.dataIndex]; return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.'; } } }
+                    },
+                    color: c.text
+                }
+            });
+        });
+
+        // CASE 2 SANKEY: Gennemsnitslønmodtager 480.000 kr.
+        initChartWhenVisible('case2SankeyChart', function () {
+            const c = themeColors();
+            const brutto = 480000, pension = 24000, amBase = 456000, am = 36480, pi = 419520;
+            const bund = 35700, kommune = 69854;
+            const totalTax = am + bund + kommune; // 142034
+            const netto = amBase - totalTax + am; // 313966
+            const nettoFromBrutto = brutto - pension - totalTax; // 313966
+
+            new Chart(document.getElementById('case2SankeyChart').getContext('2d'), {
+                type: 'sankey',
+                data: {
+                    datasets: [{
+                        data: [
+                            { from: 'Bruttoløn', to: 'Pension (5%)', flow: pension },
+                            { from: 'Bruttoløn', to: 'Samlet skat', flow: totalTax },
+                            { from: 'Bruttoløn', to: 'Disponibel indkomst', flow: nettoFromBrutto },
+                            { from: 'Samlet skat', to: 'AM-bidrag', flow: am },
+                            { from: 'Samlet skat', to: 'Bundskat', flow: bund },
+                            { from: 'Samlet skat', to: 'Kommuneskat', flow: kommune }
+                        ],
+                        colorFrom: ctx => {
+                            const from = ctx.dataset.data[ctx.dataIndex].from;
+                            return from === 'Bruttoløn' ? '#667eea' : '#ef5350';
+                        },
+                        colorTo: ctx => {
+                            const to = ctx.dataset.data[ctx.dataIndex].to;
+                            return { 'Pension (5%)': '#4fc3f7', 'Disponibel indkomst': '#38ef7d', 'Samlet skat': '#ef5350', 'AM-bidrag': COLORS.am, 'Bundskat': COLORS.bund, 'Kommuneskat': COLORS.kommune }[to] || '#999';
+                        },
+                        colorMode: 'gradient',
+                        labels: {
+                            'Bruttoløn': 'Bruttoløn\n' + fmt(brutto) + ' kr.',
+                            'Pension (5%)': 'Pension\n' + fmt(pension) + ' kr.',
+                            'Disponibel indkomst': 'Disponibel indkomst\n' + fmt(nettoFromBrutto) + ' kr.',
+                            'Samlet skat': 'Samlet skat\n' + fmt(totalTax) + ' kr.',
+                            'AM-bidrag': 'AM-bidrag\n' + fmt(am) + ' kr.',
+                            'Bundskat': 'Bundskat\n' + fmt(bund) + ' kr.',
+                            'Kommuneskat': 'Kommuneskat\n' + fmt(kommune) + ' kr.'
+                        },
+                        size: 'max', nodeWidth: 20,
+                        color: c.text,
+                        font: { color: c.text }
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, layout: { padding: { right: 120 } }, animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Case 2: Gennemsnitslønmodtager (2026) – Bruttoløn → Disponibel indkomst', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: function (ctx) { const d = ctx.dataset.data[ctx.dataIndex]; return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.'; } } }
+                    },
+                    color: c.text
+                }
+            });
+        });
+
+        // CASE 3 SANKEY: Kapitalindkomst (800.000 + 80.000 kap.)
+        initChartWhenVisible('case3SankeyChart', function () {
+            const c = themeColors();
+            const bruttoLoen = 800000, am = 64000, pi = 736000, kapital = 80000;
+            const skatKapital = 31483, nettoKapital = kapital - skatKapital; // 48517
+            // Simplified: show both income streams
+            const loenSkat = am + 118491 + 231851 + 7110 + 0; // AM + bund + kommune + mellemskat (approx for 736k PI)
+            const bf = Math.min(pi * 0.1275, 63300);
+            const si = Math.max(pi - 54100 - bf, 0);
+            const bund = Math.round(si * 0.1201);
+            const kommune = Math.round(si * 0.235);
+            const mellem = Math.round(Math.max(pi - 641200, 0) * 0.075);
+            const totalLoenSkat = am + bund + kommune + mellem;
+            const nettoLoen = bruttoLoen - totalLoenSkat;
+            const totalDisponibel = nettoLoen + nettoKapital;
+
+            new Chart(document.getElementById('case3SankeyChart').getContext('2d'), {
+                type: 'sankey',
+                data: {
+                    datasets: [{
+                        data: [
+                            { from: 'Lønindkomst', to: 'Skat af løn', flow: totalLoenSkat },
+                            { from: 'Lønindkomst', to: 'Disponibel fra løn', flow: nettoLoen },
+                            { from: 'Skat af løn', to: 'AM-bidrag', flow: am },
+                            { from: 'Skat af løn', to: 'Bundskat', flow: bund },
+                            { from: 'Skat af løn', to: 'Kommuneskat', flow: kommune },
+                            { from: 'Skat af løn', to: 'Mellemskat', flow: mellem },
+                            { from: 'Kapitalindkomst', to: 'Disponibel fra kapital', flow: nettoKapital },
+                            { from: 'Kapitalindkomst', to: 'Skat af kapital', flow: skatKapital },
+                            { from: 'Disponibel fra løn', to: 'Disponibel indkomst', flow: nettoLoen },
+                            { from: 'Disponibel fra kapital', to: 'Disponibel indkomst', flow: nettoKapital }
+                        ],
+                        colorFrom: ctx => {
+                            const from = ctx.dataset.data[ctx.dataIndex].from;
+                            return { 'Lønindkomst': '#667eea', 'Kapitalindkomst': '#f2994a', 'Skat af løn': '#ef5350', 'Skat af kapital': '#ef5350', 'Disponibel fra løn': '#38ef7d', 'Disponibel fra kapital': '#38ef7d' }[from] || '#999';
+                        },
+                        colorTo: ctx => {
+                            const to = ctx.dataset.data[ctx.dataIndex].to;
+                            return { 'Disponibel fra løn': '#38ef7d', 'Disponibel fra kapital': '#38ef7d', 'Disponibel indkomst': '#38ef7d', 'Skat af løn': '#ef5350', 'Skat af kapital': '#ef5350', 'AM-bidrag': COLORS.am, 'Bundskat': COLORS.bund, 'Kommuneskat': COLORS.kommune, 'Mellemskat': COLORS.mellem }[to] || '#999';
+                        },
+                        colorMode: 'gradient',
+                        labels: {
+                            'Lønindkomst': 'Lønindkomst\n' + fmt(bruttoLoen) + ' kr.',
+                            'Kapitalindkomst': 'Kapitalindkomst\n' + fmt(kapital) + ' kr.',
+                            'Disponibel fra løn': 'Disponibel fra løn\n' + fmt(nettoLoen) + ' kr.',
+                            'Disponibel fra kapital': 'Disponibel fra kapital\n' + fmt(nettoKapital) + ' kr.',
+                            'Disponibel indkomst': 'Disponibel indkomst\n' + fmt(totalDisponibel) + ' kr.',
+                            'Skat af løn': 'Skat af løn\n' + fmt(totalLoenSkat) + ' kr.',
+                            'Skat af kapital': 'Skat af kapital\n' + fmt(skatKapital) + ' kr.',
+                            'AM-bidrag': 'AM-bidrag\n' + fmt(am) + ' kr.',
+                            'Bundskat': 'Bundskat\n' + fmt(bund) + ' kr.',
+                            'Kommuneskat': 'Kommuneskat\n' + fmt(kommune) + ' kr.',
+                            'Mellemskat': 'Mellemskat\n' + fmt(mellem) + ' kr.'
+                        },
+                        size: 'max', nodeWidth: 20,
+                        color: c.text,
+                        font: { color: c.text }
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, layout: { padding: { right: 120 } }, animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Case 3: Løn + Kapitalindkomst (2026) – Indkomst → Disponibel', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: function (ctx) { const d = ctx.dataset.data[ctx.dataIndex]; return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.'; } } }
+                    },
+                    color: c.text
+                }
+            });
+        });
+
+        // CHART 8: Sankey
+        initChartWhenVisible('taxFlowSankey', function () {
+            const c = themeColors();
+            const brutto = 700000, amB = brutto * 0.08, pi = brutto - amB, pf = 54100, bf = Math.min(pi * 0.1065, 47600), si = pi - pf - bf;
+            const bund = Math.round(si * 0.1201), komm = Math.round(si * 0.25), mellem = Math.round(Math.max(pi - 641200, 0) * 0.075);
+            const totalSkat = amB + bund + komm + mellem;
+            const disponibel = brutto - totalSkat;
+            new Chart(document.getElementById('taxFlowSankey').getContext('2d'), {
+                type: 'sankey', data: {
+                    datasets: [{
+                        data: [
+                            { from: 'Bruttoløn', to: 'Samlet skat', flow: totalSkat },
+                            { from: 'Bruttoløn', to: 'Disponibel indkomst', flow: disponibel },
+                            { from: 'Samlet skat', to: 'AM-bidrag', flow: amB },
+                            { from: 'Samlet skat', to: 'Bundskat', flow: bund },
+                            { from: 'Samlet skat', to: 'Kommuneskat', flow: komm },
+                            { from: 'Samlet skat', to: 'Mellemskat', flow: mellem }
+                        ], colorFrom: ctx => {
+                            const from = ctx.dataset.data[ctx.dataIndex].from;
+                            return from === 'Bruttoløn' ? '#667eea' : '#ef5350';
+                        },
+                        colorTo: ctx => {
+                            const to = ctx.dataset.data[ctx.dataIndex].to;
+                            return {
+                                'Disponibel indkomst': '#38ef7d',
+                                'Samlet skat': '#ef5350',
+                                'AM-bidrag': COLORS.am,
+                                'Bundskat': COLORS.bund,
+                                'Kommuneskat': COLORS.kommune,
+                                'Mellemskat': COLORS.mellem
+                            }[to] || '#999';
+                        },
+                        colorMode: 'gradient',
+                        labels: {
+                            'Bruttoløn': 'Bruttoløn\n700.000 kr.',
+                            'Disponibel indkomst': 'Disponibel indkomst\n' + fmt(disponibel) + ' kr.',
+                            'Samlet skat': 'Samlet skat\n' + fmt(totalSkat) + ' kr.',
+                            'AM-bidrag': 'AM-bidrag\n' + fmt(amB) + ' kr.',
+                            'Bundskat': 'Bundskat\n' + fmt(bund) + ' kr.',
+                            'Kommuneskat': 'Kommuneskat\n' + fmt(komm) + ' kr.',
+                            'Mellemskat': 'Mellemskat\n' + fmt(mellem) + ' kr.'
+                        },
+                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text }
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, layout: { padding: { right: 120, bottom: 40 } }, animation: { duration: 2000 }, plugins: { legend: { display: false }, title: { display: true, text: 'Skattestrømme: 700.000 kr. bruttoløn → disponibel indkomst', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { callbacks: { label: function (ctx) { const d = ctx.dataset.data[ctx.dataIndex]; return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.'; } } } }, color: c.text }
+            });
+        });
+
+
+        // CHART 9: EU Tax (borderRadius: 0)
+        (function () {
+            const c = themeColors();
+            const countries = ['Irland', 'Rumænien', 'Litauen', 'Letland', 'Bulgarien', 'Estland', 'Malta', 'Schweiz', 'Polen', 'Cypern', 'UK', 'Slovakiet', 'Tjekkiet', 'Portugal', 'Spanien', 'Slovenien', 'Kroatien', 'Tyskland', 'Ungarn', 'Holland', 'Luxembourg', 'Norge', 'Grækenland', 'EU27 gns.', 'Italien', 'Sverige', 'Østrig', 'Finland', 'Belgien', 'Danmark', 'Frankrig'];
+            const values = [21.7, 26.3, 27.1, 28.9, 29.2, 29.8, 30.1, 31.2, 33.2, 33.4, 33.5, 34.1, 34.8, 35.4, 35.7, 36.1, 36.3, 37.5, 37.8, 38.2, 38.5, 39.2, 39.2, 40.2, 42.5, 42.6, 43.1, 43.3, 44.6, 46.3, 47.0];
+            new Chart(document.getElementById('euTaxComparisonChart').getContext('2d'), {
+                type: 'bar', data: { labels: countries, datasets: [{ label: 'Skattetryk (% af BNP)', data: values, backgroundColor: countries.map((ct, i) => ct === 'Danmark' ? gradBg('#eb3349', '#f45c43', 'bb', false) : ct === 'EU27 gns.' ? gradBg('#f2994a', '#f2c94c', 'bb', false) : ct === 'Sverige' || ct === 'Finland' || ct === 'Norge' ? gradBg('#11998e', '#38ef7d', 'aa', false) : values[i] >= 40 ? gradBg('#764ba2', '#667eea', 'aa', false) : gradBg('#2193b0', '#6dd5ed', 'aa', false)), borderColor: countries.map((ct, i) => ct === 'Danmark' ? '#eb3349' : ct === 'EU27 gns.' ? '#f2994a' : ct === 'Sverige' || ct === 'Finland' || ct === 'Norge' ? '#11998e' : values[i] >= 40 ? '#764ba2' : '#2193b0'), borderWidth: 1.5, borderRadius: 0 }] },
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: { duration: 2500 }, plugins: { legend: { display: false }, title: { display: true, text: 'Skattetryk i Europa (% af BNP, 2023)', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { callbacks: { label: ctx => ctx.parsed.x + '% af BNP' } } }, scales: { x: { beginAtZero: true, max: 52, grid: { color: c.grid }, ticks: { color: c.text, callback: v => v + '%' } }, y: { grid: { display: false }, ticks: { color: c.text, font: { size: 10 } } } } }
+            });
+        })();
+
+        // CHART 10: Tax Pressure Timeline
+        (function () {
+            const c = themeColors();
+            new Chart(document.getElementById('taxPressureTimelineChart').getContext('2d'), {
+                type: 'line', data: {
+                    labels: ['2000', '2002', '2004', '2006', '2008', '2010', '2012', '2014', '2016', '2018', '2020', '2022', '2024'], datasets: [
+                        { label: 'Personskatter', data: [27.5, 27.0, 26.2, 25.8, 25.5, 25.2, 25.3, 25.5, 25.0, 24.8, 24.5, 24.6, 24.3], fill: true, backgroundColor: gradBg('#667eea', '#764ba2', 'bb'), borderColor: COLORS.kommune, borderWidth: 2, tension: 0.3, pointBackgroundColor: COLORS.kommune, pointBorderColor: '#fff', pointBorderWidth: 1.5, pointRadius: 3 },
+                        { label: 'Moms og afgifter', data: [16.5, 16.8, 16.9, 17.0, 16.5, 16.2, 16.3, 16.1, 16.0, 15.8, 14.8, 15.5, 15.9], fill: true, backgroundColor: gradBg('#f2994a', '#f2c94c', 'bb'), borderColor: COLORS.top, borderWidth: 2, tension: 0.3, pointBackgroundColor: COLORS.top, pointBorderColor: '#fff', pointBorderWidth: 1.5, pointRadius: 3 },
+                        { label: 'Selskabsskat m.m.', data: [3.8, 3.5, 3.8, 4.5, 3.5, 2.8, 3.0, 3.2, 3.5, 3.6, 3.2, 4.2, 4.5], fill: true, backgroundColor: gradBg('#11998e', '#38ef7d', 'bb'), borderColor: COLORS.bund, borderWidth: 2, tension: 0.3, pointBackgroundColor: COLORS.bund, pointBorderColor: '#fff', pointBorderWidth: 1.5, pointRadius: 3 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, animation: { duration: 2000 }, interaction: { mode: 'index', intersect: false }, plugins: { legend: { position: 'bottom', labels: { color: c.text, font: { size: 11 } } }, title: { display: true, text: 'Skattetrykkets sammensætning (% af BNP)', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { mode: 'index', intersect: false, callbacks: { footer: items => 'I alt: ' + items.reduce((s, i) => s + i.parsed.y, 0).toFixed(1) + '% af BNP' } } }, scales: { x: { grid: { color: c.grid }, ticks: { color: c.text } }, y: { min: 0, stacked: true, grid: { color: c.grid }, ticks: { color: c.text, callback: v => v + '%' }, title: { display: true, text: '% af BNP', color: c.text } } } }
+            });
+        })();
+
+        // CHART 11: Effective vs Marginal
+        (function () {
+            const c = themeColors(), dp = [];
+            for (let b = 200000; b <= 3500000; b += 20000) {
+                const am = b * 0.08, pi = b - am;
+                const bf = Math.min(pi * 0.1275, 63300);
+                const si = Math.max(pi - 54100 - bf, 0);
+
+                // Real tax calculation for 'effektiv' line
+                const bund = si * 0.1201;
+                const kommune = si * 0.25;
+                const ml = Math.max(pi - 641200, 0) * 0.075;
+                const tp = Math.max(pi - 777900, 0) * 0.075;
+                const tt = Math.max(pi - 2592700, 0) * 0.05;
+                const ts = am + bund + kommune + ml + tp + tt;
+
+                // Marginal tax calculation for 'marginal' line
+                let it = 12.01 + 25;
+                if (pi > 641200) it += 7.5;
+                if (pi > 777900) it += 7.5;
+                if (pi > 2592700) it += 5;
+                let mg = 8 + 0.92 * it;
+
+                dp.push({ b, e: (ts / b) * 100, m: mg });
+            }
+            new Chart(document.getElementById('effectiveTaxChart').getContext('2d'), {
+                type: 'line', data: {
+                    datasets: [
+                        { label: 'Effektiv skat (%)', data: dp.map(d => ({ x: d.b, y: d.e })), borderColor: COLORS.kommune, backgroundColor: gradBg('#667eea', '#764ba2', '22'), fill: true, tension: 0.3, pointRadius: 0, borderWidth: 2.5 },
+                        { label: 'Marginalskat (%)', data: dp.map(d => ({ x: d.b, y: d.m })), borderColor: COLORS.toptop, backgroundColor: gradBg('#eb3349', '#f45c43', '12'), fill: true, tension: 0, pointRadius: 0, borderWidth: 2.5, borderDash: [6, 3] }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, animation: { duration: 2000 }, plugins: { legend: { labels: { color: c.text, usePointStyle: true } }, title: { display: true, text: 'Effektiv skat vs. marginalskat (2026)', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { mode: 'index', intersect: false, callbacks: { title: i => 'Bruttoindkomst: ' + fmt(i[0].parsed.x) + ' kr.', label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '%' } } }, scales: { x: { type: 'linear', min: 200000, max: 3500000, grid: { color: c.grid }, ticks: { color: c.text, callback: v => (v / 1000000).toFixed(1) + 'M' }, title: { display: true, text: 'Bruttoindkomst (kr.)', color: c.text } }, y: { min: 15, max: 62, grid: { color: c.grid }, ticks: { color: c.text, callback: v => v + '%' } } } }
+            });
+        })();
+
+        // CHART 12: Nordic Radar
+        (function () {
+            const c = themeColors();
+            new Chart(document.getElementById('nordicRadarChart').getContext('2d'), {
+                type: 'radar', data: {
+                    labels: ['Skattetryk\n(% af BNP)', 'Højeste\nmarginalskat', 'Selskabs-\nskat', 'Moms-\nsats', 'Social\nmobilitet', 'BNP pr.\nindbygger'], datasets: [
+                        { label: 'Danmark', data: [45.2, 60.5, 22.0, 25.0, 85.2, 82.7], borderColor: '#eb3349', backgroundColor: gradBg('#eb3349', '#f45c43', '22'), borderWidth: 2.5, pointBackgroundColor: '#eb3349', pointBorderColor: '#fff', pointBorderWidth: 1.5, pointRadius: 4, fill: true },
+                        { label: 'Sverige', data: [41.4, 52.0, 20.6, 25.0, 83.5, 66.1], borderColor: '#667eea', backgroundColor: gradBg('#667eea', '#764ba2', '18'), borderWidth: 2, pointBackgroundColor: '#667eea', pointBorderColor: '#fff', pointBorderWidth: 1.5, pointRadius: 4, fill: true },
+                        { label: 'Norge', data: [40.2, 39.6, 22.0, 25.0, 83.6, 96.6], borderColor: '#2193b0', backgroundColor: gradBg('#2193b0', '#6dd5ed', '18'), borderWidth: 2, pointBackgroundColor: '#2193b0', pointBorderColor: '#fff', pointBorderWidth: 1.5, pointRadius: 4, fill: true },
+                        { label: 'Finland', data: [43.0, 45.0, 20.0, 25.5, 83.6, 59.8], borderColor: '#764ba2', backgroundColor: gradBg('#764ba2', '#667eea', '18'), borderWidth: 2, pointBackgroundColor: '#764ba2', pointBorderColor: '#fff', pointBorderWidth: 1.5, pointRadius: 4, fill: true }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, animation: { duration: 2000 },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: c.text, usePointStyle: true, font: { size: 12 } } },
+                        title: { display: true, text: 'Nordiske skattesystemer sammenlignet (2026)', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.r.toFixed(1) + (ctx.dataIndex < 4 ? '%' : '') } }
+                    }, scales: { r: { beginAtZero: true, max: 100, grid: { color: c.grid }, angleLines: { color: c.grid }, pointLabels: { color: c.text, font: { size: 10 } }, ticks: { display: false } } }
+                }
+            });
+        })();
+
+        // INTERACTIVE CALCULATOR
+        (function () {
+            const slider = document.getElementById('incomeSlider'), sliderVal = document.getElementById('sliderValue'), calcDisp = document.getElementById('calcDisposable'), calcEff = document.getElementById('calcEffective'), calcMarg = document.getElementById('calcMarginal');
+            let bChart = null;
+            function calc(b) {
+                const am = b * 0.08, pi = b - am;
+                const bf = Math.min(pi * 0.1275, 63300);
+                const si = Math.max(pi - 54100 - bf, 0);
+                const bund = si * 0.1201, komm = si * 0.235; // København: 23.5%
+                let ml = Math.max(pi - 641200, 0) * 0.075;
+                let tp = Math.max(pi - 777900, 0) * 0.075;
+                let tt = Math.max(pi - 2592700, 0) * 0.05;
+                const ts = am + bund + komm + ml + tp + tt;
+                let it = 12.01 + 23.5; // København municipal tax
+                if (pi > 641200) it += 7.5;
+                if (pi > 777900) it += 7.5;
+                if (pi > 2592700) it += 5;
+                let mg = 8 + 0.92 * it;
+                return { am, bund, komm, ml, tp, tt, disp: b - ts, eff: (ts / b * 100), mg: mg };
+            }
+            function upd() {
+                const b = parseInt(slider.value), r = calc(b);
+                sliderVal.textContent = fmt(b) + ' kr.';
+                if (calcDisp) calcDisp.textContent = fmt(Math.round(r.disp)) + ' kr.';
+                if (calcEff) calcEff.textContent = r.eff.toFixed(1) + '%';
+                if (calcMarg) calcMarg.textContent = r.mg.toFixed(1) + '%';
+                const c = themeColors(), cd = { labels: ['AM-bidrag', 'Bundskat', 'Kommuneskat', 'Mellemskat', 'Topskat', 'Top-topskat', 'Disponibel'], datasets: [{ data: [r.am, r.bund, r.komm, r.ml, r.tp, r.tt, r.disp], backgroundColor: [gradBg('#764ba2', '#667eea', '88', false), gradBg('#11998e', '#38ef7d', '88', false), gradBg('#667eea', '#764ba2', '88', false), gradBg('#2193b0', '#6dd5ed', '88', false), gradBg('#f2994a', '#f2c94c', '88', false), gradBg('#eb3349', '#f45c43', '88', false), gradBg('#38ef7d', '#11998e', '88', false)], borderColor: [COLORS.am, COLORS.bund, COLORS.kommune, COLORS.mellem, COLORS.top, COLORS.toptop, COLORS.fradrag], borderWidth: 1.5, borderRadius: 0 }] };
+                if (bChart) { bChart.data = cd; bChart.options.scales.x.max = Math.max(b, 10000000); bChart.update('none'); } else { bChart = new Chart(document.getElementById('calcBreakdownChart').getContext('2d'), { type: 'bar', data: cd, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.label + ': ' + fmt(Math.round(ctx.parsed.x)) + ' kr.' } } }, scales: { x: { display: true, beginAtZero: true, max: Math.max(b, 10000000), grid: { color: c.grid }, ticks: { color: c.text, font: { size: 9 }, callback: v => fmt(v) + ' kr.' } }, y: { grid: { display: false }, ticks: { color: c.text, font: { size: 10 } } } } } }); }
+            }
+            slider.addEventListener('input', upd); upd();
+        })();
+
+        // Typing animation
+        document.addEventListener('DOMContentLoaded', function () {
+            function typeWriter(el, text, speed, cb) { let i = 0; el.innerHTML = ''; let cur = document.createElement('span'); cur.className = 'typing-cursor'; el.appendChild(cur); function t() { if (i < text.length) { cur.insertAdjacentText('beforebegin', text.charAt(i)); i++; setTimeout(t, speed); } else if (cb) cb(); } t(); }
+            const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); setTimeout(() => { const t = e.target.dataset.typeText, s = parseInt(e.target.dataset.typeSpeed) || 150; if (t && !e.target.hasAttribute('data-typed')) { e.target.setAttribute('data-typed', 'true'); typeWriter(e.target, t, s); } }, 300); } }); }, { threshold: 0.5 });
+            document.querySelectorAll('.cover-text-overlay[data-type-text]').forEach(o => { o.innerHTML = ''; obs.observe(o); });
+            document.querySelectorAll('.book-cover-wrapper video').forEach(v => { v.addEventListener('ended', function () { const o = document.createElement('div'); o.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;background-color:white;z-index:1;'; this.parentElement.appendChild(o); }); });
+        });
+    </script>
+</body>
+
+</html>
