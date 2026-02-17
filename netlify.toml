@@ -1,0 +1,6 @@
+[build]
+  publish = "."
+  command = ""
+
+# Dette sikrer at Netlify bare serverer dine filer som de er, 
+# nu hvor vi har styr på js/, css/ og images/ mapperne.
