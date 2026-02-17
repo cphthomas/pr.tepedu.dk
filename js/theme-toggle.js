@@ -27,7 +27,26 @@
         const currentTheme = getCurrentTheme();
         const newTheme = currentTheme === THEME_LIGHT ? THEME_DARK : THEME_LIGHT;
         setTheme(newTheme);
+        updateLogoTheme(newTheme);
         updateThemeIcon(newTheme);
+    }
+
+    // Update logo based on theme
+    function updateLogoTheme(theme) {
+        const logo = document.getElementById('site-logo');
+        if (!logo) return;
+
+        // Check if the current src is one of our logos before swapping
+        // This prevents overwriting if a different image was loaded for some reason
+        if (logo.src.includes('tepedulogoanim.svg') || logo.src.includes('logo-dark-mode.svg')) {
+            if (theme === THEME_DARK) {
+                // Use the new dark mode logo
+                logo.src = 'images/logo-dark-mode.svg';
+            } else {
+                // Use the original logo
+                logo.src = 'images/tepedulogoanim.svg';
+            }
+        }
     }
 
     // Update theme icon animation
@@ -164,6 +183,7 @@
         const currentTheme = getCurrentTheme();
         setTheme(currentTheme);
         updateThemeIcon(currentTheme);
+        updateLogoTheme(currentTheme); // Also update logo on init
 
         // Add event listener to theme toggle button
         const themeToggle = document.getElementById('theme-toggle');

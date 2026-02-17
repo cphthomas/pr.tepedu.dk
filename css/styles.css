@@ -22,7 +22,7 @@ article a[href^="https://"]:not(.navbar-brand):not(.nav-link):not(.dropdown-item
     position: relative;
     display: inline-flex;
     align-items: center;
-    color: #ffffff;
+    color: #ffffff !important;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0.5px 8px;
@@ -91,7 +91,7 @@ article a[href^="https://"]:not(.navbar-brand):not(.nav-link):not(.dropdown-item
 .content table a[href^="https://"]:not(.effectLinksTable),
 article table a[href^="http://"]:not(.effectLinksTable),
 article table a[href^="https://"]:not(.effectLinksTable) {
-    color: #ffffff;
+    color: #ffffff !important;
     background-color: #d3d3d3;
     font-weight: 500;
     padding: 0 8px;
@@ -119,7 +119,7 @@ article .info-box a[href^="http://"],
 article .info-box a[href^="https://"],
 article .example-box a[href^="http://"],
 article .example-box a[href^="https://"] {
-    color: #ffffff;
+    color: #ffffff !important;
     background-color: #d3d3d3;
     font-weight: 500;
     padding: 0 8px;
@@ -150,7 +150,7 @@ article .example-box a:not(.navbar-brand):not(.nav-link):not(.dropdown-item):not
     position: relative;
     display: inline-flex;
     align-items: center;
-    color: #ffffff;
+    color: #ffffff !important;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0.5px 8px;
@@ -234,7 +234,7 @@ article a:not(.navbar-brand):not(.nav-link):not(.dropdown-item):not(.effectLinks
     position: relative;
     display: inline-flex;
     align-items: center;
-    color: #ffffff;
+    color: #ffffff !important;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0.5px 8px;

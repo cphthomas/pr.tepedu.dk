@@ -47,7 +47,7 @@
 /* All nested containers have pure black background matching main background */
 [data-theme="dark"] article,
 [data-theme="dark"] .container,
-[data-theme="dark"] .content > div,
+[data-theme="dark"] .content>div,
 [data-theme="dark"] .content-container {
     background-color: #000000 !important;
     color: var(--text-primary);
@@ -423,9 +423,21 @@
     border-color: var(--border-color);
 }
 
-/* Book cover wrapper - pure black background */
-[data-theme="dark"] .book-cover-wrapper {
+/* Book card sections - pure black background */
+[data-theme="dark"] .book-card,
+[data-theme="dark"] .book-card .book-info,
+[data-theme="dark"] .book-cover-wrapper,
+[data-theme="dark"] .book-cover-image {
     background-color: #000000 !important;
+}
+
+/* Book card hover shadow for dark mode */
+[data-theme="dark"] .book-card:hover {
+    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-theme="dark"] .book-card a:hover {
+    background-color: transparent !important;
 }
 
 /* Cover text overlay */
@@ -589,7 +601,8 @@
 
 [data-theme="dark"] .policy-step[style*="color: #15803d"],
 [data-theme="dark"] .policy-step[style*="color:#15803d"] {
-    color: #4ade80 !important; /* Lighter green for dark mode */
+    color: #4ade80 !important;
+    /* Lighter green for dark mode */
 }
 
 /* Ensure arrows in policy figures are visible */

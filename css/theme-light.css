@@ -3,7 +3,7 @@
 /* Light theme variables */
 :root:not([data-theme="dark"]),
 [data-theme="light"] {
-    --bg-primary: #F8F8F8;
+    --bg-primary: #ffffff;
     --bg-secondary: #ffffff;
     --bg-tertiary: #f5f5f5;
     --text-primary: #222222;
@@ -277,7 +277,9 @@
 
 /* Book cover wrapper - white background in light mode */
 :root:not([data-theme="dark"]) .book-cover-wrapper,
-[data-theme="light"] .book-cover-wrapper {
+:root:not([data-theme="dark"]) .book-cover-image,
+[data-theme="light"] .book-cover-wrapper,
+[data-theme="light"] .book-cover-image {
     background-color: #ffffff !important;
 }
 
