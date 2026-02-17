@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- TYPEWRITER FUNCTION (still used for hero text, logo) ---
     function typeWriter(element, text, speed = 100, callback) {
         let i = 0;
-        element.innerHTML = ''; 
+        element.innerHTML = '';
         let cursor = element.querySelector('.typing-cursor');
         if (!cursor) {
             cursor = document.createElement('span');
@@ -33,7 +33,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- SMOOTH SCROLL ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => { /* ... same as before ... */ });
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (!href || !href.startsWith('#') || href === '#') return;
+
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 
     // --- HAMBURGER MENU ---
     const hamburger = document.querySelector('.hamburger-menu');
@@ -72,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         typeableChild.dataset.typed = "true";
                         const text = typeableChild.dataset.typeText;
                         const speed = parseInt(typeableChild.dataset.typeSpeed) || 100;
-                        const typeDelay = (parseInt(targetElement.dataset.typeDelay) || 150) + (index * (speed * text.length * 0.2)); 
+                        const typeDelay = (parseInt(targetElement.dataset.typeDelay) || 150) + (index * (speed * text.length * 0.2));
                         setTimeout(() => {
                             typeWriter(typeableChild, text, speed);
                         }, typeDelay);
@@ -95,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const observerOptions = { threshold: 0.05 }; 
+    const observerOptions = { threshold: 0.05 };
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
@@ -106,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (firstBookCard) {
         firstBookCard.style.cursor = 'pointer'; // Indicate it's clickable
-        firstBookCard.addEventListener('click', function(event) {
+        firstBookCard.addEventListener('click', function (event) {
             // Check if the click target or its parent is the specific DR link
             if (event.target.closest('.dr-link')) {
                 // If it is the DR link, let the default <a> tag behavior happen
@@ -121,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Or, if there are other specific non-DR links you want to allow, add checks for them.
                 return;
             }
-            
+
             window.open('https://s.tepedu.com/', '_blank'); // Open in new tab
         });
     }
