@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/theme-light.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.svg">
     <link rel="stylesheet" href="css/glossary.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <style>
         /* Square corners everywhere */
@@ -851,17 +852,19 @@
                 <h3>4.4 Kommuneskatter i Danmark: Alle 98 kommuner</h3>
                 <div class="info-box reveal-on-scroll">
                     <p>Kommuneskatten varierer betydeligt mellem de 98 danske kommuner — fra 22,8% i Gentofte til 27,8%
-                        på Langeland. Nedenstående figur viser alle kommuner sorteret efter kommuneskattesats fra lavest
-                        til højest. Hold musen over en søjle for at se detaljer om kirkeskat, grundskyld, region og
+                        på Langeland. Nedenstående interaktive danmarkskort viser alle kommuner. <b>Hold musen over
+                            kortet</b> for at se detaljer om kommuneskat, kirkeskat, grundskyld, region og
                         borgmesterparti.</p>
-                    <div class="chart-container mb-2 wide" style="height: 600px;"><canvas
-                            id="municipalTaxChart"></canvas></div>
+                    <div class="chart-container mb-2 wide" style="height: 600px; padding: 0;">
+                        <div id="municipalTaxMap" style="height: 100%; width: 100%; z-index: 1;"></div>
+                    </div>
                     <small class="d-block text-left mt-3">Figur 1.4a — Kilde: <a href="https://dst.dk"
                             target="_blank">Danmarks Statistik</a></small>
                     <small class="text-muted d-block mt-3">
-                        <p><b>Sådan læses figuren:</b> Det horisontale søjlediagram viser alle 98 danske kommuner
-                            sorteret efter kommuneskattesats. Jo længere søjle, desto højere kommuneskat. Farverne
-                            skifter gradvist fra grøn (lavest) over gul til rød (højest) for at visualisere spredningen.
+                        <p><b>Sådan læses kortet:</b> Danmarkskortet er inddelt i de 98 kommuner. Farverne
+                            skifter gradvist fra grøn (lavest) over gul til rød (højest) for at visualisere
+                            kommuneskattesatsen. Tryk på zoom-knapperne for at se detaljer i tætbefolkede områder. Jo
+                            mørkere rød eller varm farve kommunen har, desto højere er skatten.
                         </p>
                         <ul>
                             <li><b>Gentofte (22,8%):</b> Den kommune med den laveste kommuneskat i Danmark. Kombineret
@@ -967,34 +970,46 @@
                         Gini på 0 betyder perfekt lighed, mens 100 betyder total ulighed. De nordiske lande har blandt
                         de laveste Gini-koefficienter i verden, hvilket afspejler de progressive skattesystemer og den
                         universelle velfærdsmodel.</p>
-                    <div class="chart-container mb-2 square wide"><canvas id="giniComparisonChart"></canvas></div>
+                    <div class="chart-container mb-2 wide" style="height: 550px; padding: 0;">
+                        <div id="giniComparisonMap" style="height: 100%; width: 100%; z-index: 1;"></div>
+                    </div>
                     <small class="d-block text-left mt-3">Figur 1.7 — Kilde: <a
                             href="https://ec.europa.eu/eurostat/databrowser/view/ilc_di12/default/table?lang=en"
                             target="_blank">Eurostat (Tabel ilc_di12)</a></small>
                     <small class="text-muted d-block mt-3">
-                        <p><b>Sådan læses figuren:</b> Det horisontale søjlediagram rangerer lande efter deres
-                            Gini-koefficient for disponibel indkomst (indkomst efter skat og overførsler). Jo kortere
-                            søjle, desto mere lige fordeling. Danmark er markeret med rød for at lette identifikation.
-                            Den gule stiplede linje viser OECD-gennemsnittet (~30).</p>
+                        <p><b>Sådan læses kortet:</b> Verdenskortet markerer et udvalg af lande med henblik på at belyse
+                            uligheden og skattesystemerne i verden. <b>Hold musen over et fremhævet land</b> for at se
+                            landets Gini-koefficient for disponibel indkomst (indkomst efter skat og overførsler),
+                            skattetrykket (% af BNP) samt landets BNP pr. indbygger i USD. Jo mere grøn og "kold" farven
+                            er (f.eks. Danmark), desto mere lige indkomstfordeling. Over mod gul, orange og rød stiger
+                            landets ulighed og Gini-værdi markant.</p>
                         <ul>
-                            <li><b>Danmark (Gini 27,7):</b> Ligger i den lave ende, hvilket betyder en forholdsvis lige
-                                indkomstfordeling. Det skyldes bl.a. det progressive skattesystem (marginalskat op til
-                                60,5%), høje overførselsindkomster (dagpenge, SU, folkepension) og gratis uddannelse og
-                                sundhed.</li>
-                            <li><b>Sydafrika (Gini 63,0):</b> Verdens mest ulige land i figuren. Til sammenligning: Hvis
-                                Danmark havde Sydafrikas Gini, ville de rigeste 10% tjene langt mere, mens de fattigste
-                                10% ville tjene langt mindre end de nuværende 101.200 kr. i disponibel indkomst (jf.
-                                Figur 1.5).</li>
-                            <li><b>USA (Gini 39,7):</b> Ligger væsentligt over OECD-gennemsnittet. Det lavere skattetryk
-                                og færre universelle velfærdsydelser bidrager til en mere ulige fordeling.</li>
-                            <li><b>Nordiske lande (Gini 26-29):</b> Sverige (28,8), Finland (27,3), Norge (27,0) og
-                                Island (26,1) ligger alle i bunden sammen med Danmark. Det bekræfter, at den nordiske
-                                velfærdsmodel med høje skatter og universelle ydelser producerer relativt lige samfund.
+                            <li><b>Danmark (Gini 27,7):</b> Grøn på skalaen. Vi har en forholdsvis lige
+                                indkomstfordeling, hvilket i høj grad skyldes det progressive skattesystem, høje
+                                overførselsindkomster og offentlig velfærd.</li>
+                            <li><b>USA (Gini 39,7):</b> Mellemblå/lys farve og væsentligt over OECD-gennemsnittet på
+                                omkring 30. Gini-koefficienten trækkes op af lavere skattetryk og færre universelle
+                                ydelser.</li>
+                            <li><b>Nordiske lande (Gini 26-29):</b> Sverige, Finland, Norge og Island ligger alle som
+                                grønne, lige samfund. Det bekræfter den nordiske models store udlignende effekt.</li>
+                            <li><b>Grønland (Gini 33,9):</b> Grønland har særskilte skatter og indgår ikke én til én i
+                                Danmarks tal. Til trods for Rigsfællesskabet er uligheden noget større heroppe.</li>
+                            <li><b>Australien, New Zealand, Sydkorea & Japan (Gini 30-35):</b> Disse asiatiske og
+                                oceaniske lande ligger tættere på europæiske niveauer, men uligheden er en smule højere
+                                end i de nordiske lande, delvist pga. lavere skattetryk generelt (ofte omkring 30%).
                             </li>
+                            <li><b>Kina, Indien & Rusland (Gini 35-39):</b> Disse vækstøkonomier har alle en større
+                                ulighed end OECD-gennemsnittet, ofte pga. forskelle mellem land/by.</li>
+                            <li><b>Sydamerika & Afrika:</b> Mange befinder sig over 40 (og flere over 50), f.eks.
+                                Brasilien, Colombia, Namibia og Sydafrika. Det skyldes ofte dybe historiske uligheder,
+                                stor uformel økonomi og lavere omfordeling. Udover Sydafrika (63,0) skiller lande som
+                                Namibia (59,1) og Colombia (53,9) sig ekstremt ud.</li>
                         </ul>
-                        <p><b>Hvad måler Gini?</b> En Gini på 0 ville betyde, at alle tjener det samme. En Gini på 100
+                        <p><b>Hvad måler Gini?</b> En Gini på 0 ville betyde, at alle tjener det samme. En Gini på
+                            100
                             ville betyde, at én person tjener alt. I praksis ligger de fleste lande mellem 23 og 65.
-                            Danmarks Gini på 27,7 er et resultat af den samlede omfordeling — herunder det progressive
+                            Danmarks Gini på 27,7 er et resultat af den samlede omfordeling — herunder det
+                            progressive
                             skattesystem, kirkeskatten (som bidrager marginalt til omfordelingen), og de universelle
                             overførsler.</p>
                     </small>
@@ -1036,14 +1051,18 @@
                 <div class="info-box reveal-on-scroll">
                     <p>Danmark har det næsthøjeste skattetryk i EU (målt som andel af BNP), kun overgået af Frankrig.
                         Til gengæld har Danmark lav ulighed, høj social mobilitet og en veludbygget velfærdsstat.</p>
-                    <div class="chart-container mb-2 square wide"><canvas id="euTaxComparisonChart"></canvas></div>
+                    <div class="chart-container mb-2 wide" style="height: 600px; padding: 0;">
+                        <div id="euTaxComparisonMap" style="height: 100%; width: 100%; z-index: 1;"></div>
+                    </div>
                     <small class="d-block text-left mt-3">Figur 1.9 — Kilde: <a
                             href="https://ec.europa.eu/eurostat/databrowser/view/gov_10a_taxag/default/table?lang=en"
                             target="_blank">Eurostat (Tabel gov_10a_taxag)</a></small>
                     <small class="text-muted d-block mt-3">
-                        <p><b>Sådan læses figuren:</b> Søjlediagrammet rangerer EU-lande efter deres samlede skattetryk
-                            (alle skatter og afgifter som andel af BNP). Danmark er markeret med rød søjle. Den gule
-                            stiplede linje viser EU-gennemsnittet på 40,2%.</p>
+                        <p><b>Sådan læses kortet:</b> Europakortet viser det samlede skattetryk for europæiske lande
+                            (alle skatter og afgifter som andel af BNP). Farverne skifter via en gradient fra grøn (lavt
+                            skattetryk) til dyb rød og lilla (højt skattetryk) for at skabe et tydeligt visuelt overblik
+                            over skatteniveauet i Europa. <b>Hold musen over et land</b> for at aflæse detaljer om
+                            landets specifikke skattetryk.</p>
                         <ul>
                             <li><b>Danmark (46,3%):</b> Har det næsthøjeste skattetryk i EU, kun overgået af Frankrig
                                 (47,0%). Til sammenligning: Hvis Danmarks BNP er ca. 2.850 mia. kr., svarer
@@ -1098,48 +1117,53 @@
                     </small>
                 </div>
 
-                <h2>7. Interaktiv skatteberegner 2026</h2>
+                <h2>1.10 Interaktiv skatteberegner 2026</h2>
                 <div class="info-box reveal-on-scroll wide">
-                    <p>Brug slideren til at se, hvordan din marginalskat og effektive skatteprocent ændrer sig med
-                        indkomsten:</p>
-                    <div class="tax-calculator">
+                    <p>Brug slideren til at se, hvordan din bruttoløn omsættes til disponibel indkomst og skat for
+                        indkomståret 2026:</p>
+                    <div class="tax-calculator mt-4">
                         <div class="row">
                             <div class="col-12">
-                                <label for="incomeSlider" style="font-weight:600;">Bruttoindkomst (kr./år):</label>
+                                <label for="incomeSlider"
+                                    style="font-weight:600; font-size: 1.1rem; color: #333;">Bruttoindkomst
+                                    (kr./år):</label>
                                 <input type="range" id="incomeSlider" min="200000" max="10000000" value="2000000"
-                                    step="10000">
+                                    step="10000" class="custom-slider mt-2 mb-2">
                                 <div class="d-flex justify-content-between mb-2">
-                                    <small>200.000</small>
-                                    <span style="font-weight:700; font-size:1.2rem;" id="sliderValue">2.000.000
+                                    <small class="text-muted">200.000</small>
+                                    <span style="font-weight:700; font-size:1.4rem; color: #111;"
+                                        id="sliderValue">2.000.000
                                         kr.</span>
-                                    <small>10.000.000</small>
+                                    <small class="text-muted">10.000.000</small>
                                 </div>
                             </div>
                         </div>
-                        <div class="chart-container mt-3 square wide"><canvas id="calcBreakdownChart"></canvas></div>
-                        <small class="d-block text-left mt-3">Figur 1.11 — Kilde: <a href="https://skm.dk"
-                                target="_blank">Skatteministeriet</a></small>
+                        <div class="chart-container mt-4 mb-3" style="min-height: 450px;"><canvas
+                                id="calcBreakdownChart"></canvas></div>
+                        <small class="d-block text-left mt-3">Figur 1.10 — Kilde: Egen beregning inkl. nye
+                            2026-regler</small>
                         <small class="text-muted d-block mt-3">
-                            <p><b>Sådan bruges beregneren:</b> Træk slideren til venstre eller højre for at ændre
-                                bruttoindkomsten (200.000–10.000.000 kr.). Diagrammet opdaterer sig automatisk og viser,
-                                hvordan hver krone af din løn fordeles mellem de forskellige skattetyper og din
-                                udbetaling. Beregningen anvender København kommunes skattesats på 23,5% uden kirkeskat,
-                                beskatning af fri telefon eller pensionsfradrag.</p>
-                            <ul>
-                                <li><b>Ved 400.000 kr.:</b> Du betaler kun AM-bidrag (32.000 kr.), bundskat og
-                                    kommuneskat. Ingen mellemskat eller topskat. Effektiv skatteprocent ca. 33%.</li>
-                                <li><b>Ved 700.000 kr.:</b> Mellemskatten aktiveres, da PI (644.000 kr.) netop
-                                    overstiger grænsen på 641.200 kr. Du betaler kun mellemskat af de få tusinde kroner
-                                    over grænsen.</li>
-                                <li><b>Ved 1.000.000 kr.:</b> Både mellemskat og topskat er aktive. Effektiv skat ca.
-                                    40%. Topskatten beregnes af PI over 777.900 kr.</li>
-                                <li><b>Ved 3.000.000 kr.:</b> Alle fire skattetrin er aktive inkl. top-topskat. Effektiv
-                                    skat ca. 50%. Marginalskatten er nu ~60,5%.</li>
-                            </ul>
-                            <p><b>Note:</b> Beregneren anvender København kommunes skattesats på 23,5% og inkluderer
-                                <i>ikke</i> kirkeskat, beskatning af fri telefon, pensionsfradrag eller andre fradrag.
-                                Dette giver et rent billede af skatteberegningen baseret på bruttoindkomst alene.
+                            <p><b>Sådan læses strømmene:</b> Træk slideren for at ændre bruttoindkomsten (200.000 –
+                                10.000.000 kr.). Diagrammet opdateres automatisk og visualiserer lønstrømmen: Fra din
+                                fulde <i>bruttoløn</i> til venstre forgrener pengene sig til henholdsvis din
+                                <i>disponible indkomst</i> og <i>samlet skat</i>. Skatten udsplittes derefter i de
+                                specifikke skattetyper (AM-bidrag, bundskat, kommuneskat samt potentiel mellemskat og
+                                topskat/top-topskat).
                             </p>
+                            <ul class="mt-2">
+                                <li><b>Ved 400.000 kr.:</b> Du betaler kun AM-bidrag, bundskat og kommuneskat. Ingen
+                                    mellemskat eller topskat.</li>
+                                <li><b>Ved 700.000 kr.:</b> Mellemskatten aktiveres, da personindkomsten netop
+                                    overstiger grænsen.</li>
+                                <li><b>Ved 1.000.000 kr.:</b> Både mellemskat og topskat er aktive. Topskatten beregnes
+                                    af personindkomst over 777.900 kr.</li>
+                                <li><b>Ved 3.000.000 kr. (og derover):</b> Alle fire progressive trin er aktive,
+                                    inklusiv den nye top-topskat på 5 %. Marginalskatten topper her omkring 60,5 %.</li>
+                            </ul>
+                            <p class="mt-2 text-muted" style="font-size: 0.85em;"><i>Note:</i> Beregneren anvender
+                                Københavns Kommunes skattesats (23,5 %) og er forsimplet uden hensyntagen til kirkeskat,
+                                beskatning af fri telefon eller pensionsfradrag, for i stedet tydeligt at illustrere
+                                progressionen i 2026-skattesystemet ud fra selve bruttolønnen alene.</p>
                         </small>
                     </div>
                 </div>
@@ -1424,7 +1448,7 @@
                             <div class="figure-container square wide">
                                 <img src="images/case1_detailed_2026.png"
                                     alt="Detaljeret beregning for gennemsnitslønmodtager" class="img-fluid square wide"
-                                    style="max-height: 100%; width: 100%; object-fit: contain !important; clip-path: inset(5px);">
+                                    style="max-height: 100%; width: 100%; object-fit: contain;">
                             </div>
                             <small class="d-block text-left mt-2">Figur 1.18 — Kilde: <a href="https://skm.dk"
                                     target="_blank" style="font-size: inherit;">Skatteministeriet <i
@@ -1553,7 +1577,7 @@
                     <div class="row">
                         <div class="col-12 mb-4">
                             <div class="figure-container square wide">
-                                <img src="images/mette_detailed_2026.png" alt="Detaljeret beregning for Mette"
+                                <img src="images/case2_detailed_2026.png" alt="Detaljeret beregning for Mette"
                                     class="img-fluid square wide"
                                     style="max-height: 100%; width: 100%; object-fit: contain;">
                             </div>
@@ -1662,7 +1686,7 @@
                             <div class="figure-container square wide">
                                 <img src="images/case3_detailed_2026.png" alt="Detaljeret beregning for topleder"
                                     class="img-fluid square wide"
-                                    style="max-height: 100%; width: 100%; object-fit: contain !important; clip-path: inset(5px);">
+                                    style="max-height: 100%; width: 100%; object-fit: contain;">
                             </div>
                             <small class="d-block text-left mt-2">Figur 1.22 — Kilde: <a href="https://skm.dk"
                                     target="_blank" style="font-size: inherit;">Skatteministeriet <i
@@ -1803,7 +1827,7 @@
                                 <img src="images/case4_detailed_2026.png"
                                     alt="Detaljeret beregning for person med kapitalindkomst"
                                     class="img-fluid square wide"
-                                    style="max-height: 100%; width: 100%; object-fit: contain !important; clip-path: inset(5px);">
+                                    style="max-height: 100%; width: 100%; object-fit: contain;">
                             </div>
                             <small class="d-block text-left mt-2">Figur 1.24 — Kilde: <a href="https://skm.dk"
                                     target="_blank" style="font-size: inherit;">Skatteministeriet <i
@@ -1935,6 +1959,7 @@
     <script src="js/script.js"></script>
     <script src="js/glossary.js"></script>
     <script src="js/theme-toggle.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
         function getTheme() { return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
@@ -2114,8 +2139,8 @@
                 type: 'bar',
                 data: {
                     labels: incomes, datasets: [
-                        { label: '2025 (Gammelt)', data: bruttoArr.map(b => ((calcTax2025(b) / b) * 100).toFixed(1)), backgroundColor: gradBg('#11998e', '#38ef7d', '77'), borderColor: '#11998e', borderWidth: 2, borderRadius: 0 },
-                        { label: '2026 (Nyt)', data: bruttoArr.map(b => ((calcTax2026(b) / b) * 100).toFixed(1)), backgroundColor: gradBg('#667eea', '#764ba2', '88'), borderColor: '#667eea', borderWidth: 2, borderRadius: 0 }
+                        { label: '2025 (Gammelt)', data: bruttoArr.map(b => ((calcTax2025(b) / b) * 100).toFixed(1)), backgroundColor: gradBg('#95a5a6', '#bdc3c7', '99'), borderColor: '#7f8c8d', borderWidth: 2, borderRadius: 0 },
+                        { label: '2026 (Nyt)', data: bruttoArr.map(b => ((calcTax2026(b) / b) * 100).toFixed(1)), backgroundColor: gradBg('#667eea', '#764ba2', 'dd'), borderColor: '#667eea', borderWidth: 2, borderRadius: 0 }
                     ]
                 },
                 options: { responsive: true, maintainAspectRatio: false, animation: { duration: 2000 }, plugins: { legend: { labels: { color: c.text } }, title: { display: true, text: 'Effektiv skatteprocent: 2025 vs. 2026', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } } }, scales: { y: { beginAtZero: true, max: 65, grid: { color: c.grid }, ticks: { color: c.text, callback: v => v + '%' } }, x: { grid: { display: false }, ticks: { color: c.text } } } }
@@ -2143,7 +2168,7 @@
 
 
         // CHART 4a: Municipal Tax Comparison (All 98 municipalities)
-        initChartWhenVisible('municipalTaxChart', function () {
+        initChartWhenVisible('municipalTaxMap', function () {
             const c = themeColors();
             const municipalData = [
                 { name: 'Gentofte', tax: 22.8, church: 0.62, property: 2.14, region: 'Hovedstaden', mayor: 'C' },
@@ -2245,13 +2270,9 @@
                 { name: 'Morsø', tax: 27.2, church: 0.93, property: 2.95, region: 'Nordjylland', mayor: 'V' }
             ];
 
-            // Sort by tax rate
-            municipalData.sort((a, b) => a.tax - b.tax);
+            const mapData = new Map();
+            municipalData.forEach(m => { mapData.set(m.name, m); });
 
-            const labels = municipalData.map(m => m.name);
-            const taxes = municipalData.map(m => m.tax);
-
-            // Palette-matched gradient: teal (low) → blue → orange → red (high)
             const gradStops = [
                 { at: 0, c: [0x11, 0x99, 0x8e] },
                 { at: 0.33, c: [0x66, 0x7e, 0xea] },
@@ -2268,91 +2289,81 @@
                 }
                 return '#eb3349';
             }
-            const colors = taxes.map(tax => {
-                const n = Math.max(0, Math.min(1, (tax - 22.8) / (27.8 - 22.8)));
-                return paletteAt(n);
-            });
 
-            new Chart(document.getElementById('municipalTaxChart').getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Kommuneskat (%)',
-                        data: taxes,
-                        backgroundColor: function (ctx) {
-                            const chart = ctx.chart; const area = chart.chartArea;
-                            const n = Math.max(0, Math.min(1, (taxes[ctx.dataIndex] - 22.8) / (27.8 - 22.8)));
-                            const c1 = paletteAt(Math.max(0, n - 0.08));
-                            const c2 = paletteAt(Math.min(1, n + 0.08));
-                            if (!area) return c1;
-                            const g = chart.ctx.createLinearGradient(area.left, 0, area.right, 0);
-                            g.addColorStop(0, c1 + 'bb'); g.addColorStop(1, c2 + 'bb');
-                            return g;
+            const map = L.map('municipalTaxMap', {
+                scrollWheelZoom: false,
+                dragging: !L.Browser.mobile,
+                zoomControl: true,
+                attributionControl: false
+            }).setView([56.0, 10.5], 6);
+
+            fetch('https://raw.githubusercontent.com/magnuslarsen/geoJSON-Danish-municipalities/master/municipalities/municipalities.geojson')
+                .then(r => r.json())
+                .then(data => {
+                    const geojsonLayer = L.geoJSON(data, {
+                        style: function (feature) {
+                            let mName = feature.properties.label_dk;
+                            if (mName === 'Århus') mName = 'Aarhus';
+                            if (mName === 'Brønderslev-Dronninglund') mName = 'Brønderslev';
+                            if (mName === 'Halsnæs' && !mapData.has('Halsnæs')) mName = 'Frederiksværk-Hundested';
+
+                            const m = mapData.get(mName) || mapData.get('Frederiksværk-Hundested');
+                            let fillColor = '#dddddd';
+                            if (m) {
+                                const n = Math.max(0, Math.min(1, (m.tax - 22.8) / (27.8 - 22.8)));
+                                fillColor = paletteAt(n);
+                            }
+
+                            return {
+                                fillColor: fillColor,
+                                weight: 0.8,
+                                opacity: 1,
+                                color: getTheme() === 'dark' ? '#111' : '#fff',
+                                fillOpacity: 0.95
+                            };
                         },
-                        borderColor: colors,
-                        borderWidth: 1,
-                        borderRadius: 0
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    animation: { duration: 2000 },
-                    plugins: {
-                        legend: { display: false },
-                        title: {
-                            display: true,
-                            text: 'Kommuneskatter i alle 98 danske kommuner (2026)',
-                            color: c.text,
-                            font: { size: 14, weight: 'bold' }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                title: function (context) {
-                                    const idx = context[0].dataIndex;
-                                    return municipalData[idx].name;
-                                },
-                                label: function (context) {
-                                    const idx = context.dataIndex;
-                                    const m = municipalData[idx];
-                                    return [
-                                        `Kommuneskat: ${m.tax}%`,
-                                        `Kirkeskat: ${m.church}%`,
-                                        `Grundskyld: ${m.property}‰`,
-                                        `Region: ${m.region}`,
-                                        `Borgmester: ${m.mayor}`
-                                    ];
-                                }
+                        onEachFeature: function (feature, layer) {
+                            let mName = feature.properties.label_dk;
+                            if (mName === 'Århus') mName = 'Aarhus';
+                            if (mName === 'Brønderslev-Dronninglund') mName = 'Brønderslev';
+                            if (mName === 'Halsnæs' && !mapData.has('Halsnæs')) mName = 'Frederiksværk-Hundested';
+
+                            const m = mapData.get(mName) || mapData.get('Frederiksværk-Hundested');
+                            if (m) {
+                                const popupHtml = `
+                                    <div style="font-family: 'Inter', sans-serif; font-size: 13px; color: #333; min-width: 160px;">
+                                        <b style="font-size: 15px; display: block; margin-bottom: 4px;">${m.name} Kommune</b>
+                                        <hr style="margin: 4px 0; border: none; border-top: 1px solid #ccc;">
+                                        <table style="width: 100%; border-collapse: collapse; margin-top: 4px;">
+                                            <tr><td style="padding: 2px 0;"><b>Kommuneskat:</b></td><td style="text-align: right;">${m.tax}%</td></tr>
+                                            <tr><td style="padding: 2px 0;"><b>Kirkeskat:</b></td><td style="text-align: right;">${m.church}%</td></tr>
+                                            <tr><td style="padding: 2px 0;"><b>Grundskyld:</b></td><td style="text-align: right;">${m.property}‰</td></tr>
+                                            <tr><td style="padding: 2px 0;"><b>Region:</b></td><td style="text-align: right;">${m.region}</td></tr>
+                                            <tr><td style="padding: 2px 0;"><b>Borgmester:</b></td><td style="text-align: right;">${m.mayor}</td></tr>
+                                        </table>
+                                    </div>
+                                `;
+
+                                layer.bindTooltip(popupHtml, { sticky: true, direction: 'auto', opacity: 1.0 });
+
+                                layer.on({
+                                    mouseover: function (e) {
+                                        const l = e.target;
+                                        l.setStyle({ weight: 2.5, color: '#333', fillOpacity: 1 });
+                                        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                                            l.bringToFront();
+                                        }
+                                    },
+                                    mouseout: function (e) {
+                                        geojsonLayer.resetStyle(e.target);
+                                    }
+                                });
                             }
                         }
-                    },
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            max: 30,
-                            grid: { color: c.grid },
-                            ticks: {
-                                color: c.text,
-                                callback: v => v + '%'
-                            },
-                            title: {
-                                display: true,
-                                text: 'Kommuneskat (%)',
-                                color: c.text
-                            }
-                        },
-                        y: {
-                            grid: { display: false },
-                            ticks: {
-                                color: c.text,
-                                font: { size: 7 }
-                            }
-                        }
-                    }
-                }
-            });
+                    }).addTo(map);
+
+                    map.fitBounds(geojsonLayer.getBounds(), { padding: [10, 10] });
+                });
         });
 
         // CHART 5: Income Distribution (borderRadius: 0)
@@ -2399,15 +2410,145 @@
         });
 
 
-        (function () {
-            const c = themeColors();
-            const countries = ['Sydafrika', 'Brasilien', 'USA', 'Tyrkiet', 'UK', 'Spanien', 'Italien', 'Grækenland', 'Frankrig', 'Tyskland', 'Irland', 'Polen', 'Holland', 'Sverige', 'Schweiz', 'Østrig', 'Canada', 'Danmark', 'Finland', 'Norge', 'Island', 'Slovenien', 'Tjekkiet', 'Slovakiet'];
-            const giniValues = [63.0, 48.9, 39.7, 38.6, 35.4, 33.0, 33.0, 32.9, 32.4, 31.7, 30.1, 29.7, 29.2, 28.8, 28.5, 28.3, 28.1, 27.7, 27.3, 27.0, 26.1, 24.4, 24.2, 23.2];
-            new Chart(document.getElementById('giniComparisonChart').getContext('2d'), {
-                type: 'bar', data: { labels: countries, datasets: [{ label: 'Gini-koefficient', data: giniValues, backgroundColor: countries.map((ct, i) => ct === 'Danmark' ? gradBg('#eb3349', '#f45c43', 'bb', false) : ct === 'Norge' || ct === 'Finland' || ct === 'Sverige' || ct === 'Island' ? gradBg('#11998e', '#38ef7d', 'bb', false) : giniValues[i] < 30 ? gradBg('#2193b0', '#6dd5ed', 'bb', false) : gradBg('#667eea', '#764ba2', 'bb', false)), borderColor: countries.map((ct, i) => ct === 'Danmark' ? '#eb3349' : ct === 'Norge' || ct === 'Finland' || ct === 'Sverige' || ct === 'Island' ? '#11998e' : giniValues[i] < 30 ? '#2193b0' : '#667eea'), borderWidth: 1.5, borderRadius: 0 }] },
-                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: { duration: 2500 }, plugins: { legend: { display: false }, title: { display: true, text: 'Gini-koefficient (disponibel indkomst) – international sammenligning', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { callbacks: { label: ctx => 'Gini: ' + ctx.parsed.x } }, annotation: { annotations: { line30: { type: 'line', xMin: 30, xMax: 30, borderColor: 'rgba(255,193,7,0.7)', borderWidth: 1.5, borderDash: [6, 4], label: { display: true, content: 'OECD-gennemsnit ~30', position: 'start', font: { size: 10 }, color: c.text, backgroundColor: c.labelBg, borderRadius: 0 } } } } }, scales: { x: { beginAtZero: true, max: 68, grid: { color: c.grid }, ticks: { color: c.text } }, y: { grid: { display: false }, ticks: { color: c.text, font: { size: 10 } } } } }
-            });
-        })();
+        // CHART 1.7: Gini World Map
+        initChartWhenVisible('giniComparisonMap', function () {
+            const countryMap = {
+                'South Africa': { nameDk: 'Sydafrika', gini: 63.0, gdp: 6700, tax: 27.0 },
+                'Brazil': { nameDk: 'Brasilien', gini: 48.9, gdp: 8900, tax: 33.5 },
+                'United States of America': { nameDk: 'USA', gini: 39.7, gdp: 76300, tax: 27.1 },
+                'Turkey': { nameDk: 'Tyrkiet', gini: 38.6, gdp: 10600, tax: 20.8 },
+                'United Kingdom': { nameDk: 'UK', gini: 35.4, gdp: 46100, tax: 33.5 },
+                'Spain': { nameDk: 'Spanien', gini: 33.0, gdp: 29600, tax: 35.7 },
+                'Italy': { nameDk: 'Italien', gini: 33.0, gdp: 34100, tax: 42.5 },
+                'Greece': { nameDk: 'Grækenland', gini: 32.9, gdp: 20800, tax: 39.2 },
+                'France': { nameDk: 'Frankrig', gini: 32.4, gdp: 42300, tax: 47.0 },
+                'Germany': { nameDk: 'Tyskland', gini: 31.7, gdp: 51400, tax: 37.5 },
+                'Ireland': { nameDk: 'Irland', gini: 30.1, gdp: 99200, tax: 21.7 },
+                'Poland': { nameDk: 'Polen', gini: 29.7, gdp: 18300, tax: 33.2 },
+                'Netherlands': { nameDk: 'Holland', gini: 29.2, gdp: 57200, tax: 38.2 },
+                'Sweden': { nameDk: 'Sverige', gini: 28.8, gdp: 55200, tax: 42.6 },
+                'Switzerland': { nameDk: 'Schweiz', gini: 28.5, gdp: 92100, tax: 31.2 },
+                'Austria': { nameDk: 'Østrig', gini: 28.3, gdp: 52100, tax: 43.1 },
+                'Canada': { nameDk: 'Canada', gini: 28.1, gdp: 54900, tax: 33.2 },
+                'Denmark': { nameDk: 'Danmark', gini: 27.7, gdp: 67800, tax: 46.3 },
+                'Finland': { nameDk: 'Finland', gini: 27.3, gdp: 50300, tax: 43.3 },
+                'Norway': { nameDk: 'Norge', gini: 27.0, gdp: 82800, tax: 39.2 },
+                'Iceland': { nameDk: 'Island', gini: 26.1, gdp: 72900, tax: 36.5 },
+                'Slovenia': { nameDk: 'Slovenien', gini: 24.4, gdp: 28400, tax: 36.1 },
+                'Czechia': { nameDk: 'Tjekkiet', gini: 24.2, gdp: 27600, tax: 34.8 },
+                'Slovakia': { nameDk: 'Slovakiet', gini: 23.2, gdp: 21200, tax: 34.1 },
+                'China': { nameDk: 'Kina', gini: 38.5, gdp: 13100, tax: 21.0 },
+                'India': { nameDk: 'Indien', gini: 35.7, gdp: 2700, tax: 19.6 },
+                'Russia': { nameDk: 'Rusland', gini: 37.5, gdp: 11000, tax: 23.0 },
+                'Greenland': { nameDk: 'Grønland (Rigsfællesskabet)', gini: 33.9, gdp: 58500, tax: 42.0 },
+                'Australia': { nameDk: 'Australien', gini: 30.7, gdp: 66000, tax: 30.0 },
+                'New Zealand': { nameDk: 'New Zealand', gini: 35.0, gdp: 49200, tax: 31.2 },
+                'South Korea': { nameDk: 'Sydkorea', gini: 33.3, gdp: 36200, tax: 28.9 },
+                'Japan': { nameDk: 'Japan', gini: 33.8, gdp: 32500, tax: 31.4 },
+                'Nigeria': { nameDk: 'Nigeria', gini: 35.1, gdp: 2400, tax: 13.5 },
+                'Egypt': { nameDk: 'Egypten', gini: 31.5, gdp: 4100, tax: 12.5 },
+                'Kenya': { nameDk: 'Kenya', gini: 37.7, gdp: 2300, tax: 16.0 },
+                'Namibia': { nameDk: 'Namibia', gini: 59.1, gdp: 4000, tax: 33.0 },
+                'Argentina': { nameDk: 'Argentina', gini: 42.4, gdp: 12700, tax: 29.6 },
+                'Chile': { nameDk: 'Chile', gini: 43.0, gdp: 14600, tax: 20.6 },
+                'Colombia': { nameDk: 'Colombia', gini: 53.9, gdp: 6900, tax: 17.6 },
+                'Peru': { nameDk: 'Peru', gini: 40.1, gdp: 6700, tax: 17.0 },
+                'Ecuador': { nameDk: 'Ecuador', gini: 45.2, gdp: 6000, tax: 13.5 },
+                'Uruguay': { nameDk: 'Uruguay', gini: 40.0, gdp: 19000, tax: 18.7 }
+            };
+
+            const map = L.map('giniComparisonMap', {
+                scrollWheelZoom: false,
+                dragging: !L.Browser.mobile,
+                zoomControl: true,
+                attributionControl: false
+            }).setView([40.0, 5.0], 2); // Center world roughly
+
+            const gradStops = [
+                { at: 0, c: [0x11, 0x99, 0x8e] },   // Green (Low GINI)
+                { at: 0.33, c: [0x66, 0x7e, 0xea] }, // Blue
+                { at: 0.66, c: [0xf2, 0x99, 0x4a] }, // Orange
+                { at: 1, c: [0xeb, 0x33, 0x49] }     // Red (High GINI)
+            ];
+
+            function paletteAt(n) {
+                for (let i = 0; i < gradStops.length - 1; i++) {
+                    if (n <= gradStops[i + 1].at) {
+                        const t = (n - gradStops[i].at) / (gradStops[i + 1].at - gradStops[i].at);
+                        const [a, b] = [gradStops[i].c, gradStops[i + 1].c];
+                        return '#' + [0, 1, 2].map(j => Math.round(a[j] * (1 - t) + b[j] * t).toString(16).padStart(2, '0')).join('');
+                    }
+                }
+                return '#eb3349';
+            }
+
+            fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+                .then(r => r.json())
+                .then(data => {
+                    const geojsonLayer = L.geoJSON(data, {
+                        filter: function (feature) {
+                            return feature.properties.name !== 'Antarctica';
+                        },
+                        style: function (feature) {
+                            const cName = feature.properties.name;
+                            const m = countryMap[cName];
+
+                            let fillColor = getTheme() === 'dark' ? '#222' : '#eee';
+                            let weight = 0.5;
+                            let opacity = 0.3;
+
+                            if (m) {
+                                // Gini range typically 23 to 63
+                                const n = Math.max(0, Math.min(1, (m.gini - 23) / (63 - 23)));
+                                fillColor = paletteAt(n);
+                                weight = 0.8;
+                                opacity = 1;
+                            }
+
+                            return {
+                                fillColor: fillColor,
+                                weight: weight,
+                                opacity: opacity,
+                                color: getTheme() === 'dark' ? '#000' : '#fff',
+                                fillOpacity: m ? 0.9 : 0.4
+                            };
+                        },
+                        onEachFeature: function (feature, layer) {
+                            const cName = feature.properties.name;
+                            const m = countryMap[cName];
+
+                            if (m) {
+                                const popupHtml = `
+                                    <div style="font-family: 'Inter', sans-serif; font-size: 13px; color: #333; min-width: 170px;">
+                                        <b style="font-size: 15px; display: block; margin-bottom: 4px;">${m.nameDk}</b>
+                                        <hr style="margin: 4px 0; border: none; border-top: 1px solid #ccc;">
+                                        <table style="width: 100%; border-collapse: collapse; margin-top: 4px;">
+                                            <tr><td style="padding: 2px 0;"><b>Gini-koefficient:</b></td><td style="text-align: right;">${m.gini}</td></tr>
+                                            <tr><td style="padding: 2px 0;"><b>Skattetryk:</b></td><td style="text-align: right;">${m.tax}%</td></tr>
+                                            <tr><td style="padding: 2px 0;"><b>BNP/indbygger:</b></td><td style="text-align: right;">$${(m.gdp / 1000).toFixed(1)}k</td></tr>
+                                        </table>
+                                    </div>
+                                `;
+
+                                layer.bindTooltip(popupHtml, { sticky: true, direction: 'auto', opacity: 1.0 });
+
+                                layer.on({
+                                    mouseover: function (e) {
+                                        const l = e.target;
+                                        l.setStyle({ weight: 2.5, color: '#333', fillOpacity: 1 });
+                                        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                                            l.bringToFront();
+                                        }
+                                    },
+                                    mouseout: function (e) {
+                                        geojsonLayer.resetStyle(e.target);
+                                    }
+                                });
+                            }
+                        }
+                    }).addTo(map);
+                });
+        });
 
         // CHART 1.11: Mette's Sankey
         initChartWhenVisible('metteSankeyChart', function () {
@@ -2708,15 +2849,134 @@
 
 
         // CHART 9: EU Tax (borderRadius: 0)
-        (function () {
-            const c = themeColors();
-            const countries = ['Irland', 'Rumænien', 'Litauen', 'Letland', 'Bulgarien', 'Estland', 'Malta', 'Schweiz', 'Polen', 'Cypern', 'UK', 'Slovakiet', 'Tjekkiet', 'Portugal', 'Spanien', 'Slovenien', 'Kroatien', 'Tyskland', 'Ungarn', 'Holland', 'Luxembourg', 'Norge', 'Grækenland', 'EU27 gns.', 'Italien', 'Sverige', 'Østrig', 'Finland', 'Belgien', 'Danmark', 'Frankrig'];
-            const values = [21.7, 26.3, 27.1, 28.9, 29.2, 29.8, 30.1, 31.2, 33.2, 33.4, 33.5, 34.1, 34.8, 35.4, 35.7, 36.1, 36.3, 37.5, 37.8, 38.2, 38.5, 39.2, 39.2, 40.2, 42.5, 42.6, 43.1, 43.3, 44.6, 46.3, 47.0];
-            new Chart(document.getElementById('euTaxComparisonChart').getContext('2d'), {
-                type: 'bar', data: { labels: countries, datasets: [{ label: 'Skattetryk (% af BNP)', data: values, backgroundColor: countries.map((ct, i) => ct === 'Danmark' ? gradBg('#eb3349', '#f45c43', 'bb', false) : ct === 'EU27 gns.' ? gradBg('#f2994a', '#f2c94c', 'bb', false) : ct === 'Sverige' || ct === 'Finland' || ct === 'Norge' ? gradBg('#11998e', '#38ef7d', 'aa', false) : values[i] >= 40 ? gradBg('#764ba2', '#667eea', 'aa', false) : gradBg('#2193b0', '#6dd5ed', 'aa', false)), borderColor: countries.map((ct, i) => ct === 'Danmark' ? '#eb3349' : ct === 'EU27 gns.' ? '#f2994a' : ct === 'Sverige' || ct === 'Finland' || ct === 'Norge' ? '#11998e' : values[i] >= 40 ? '#764ba2' : '#2193b0'), borderWidth: 1.5, borderRadius: 0 }] },
-                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: { duration: 2500 }, plugins: { legend: { display: false }, title: { display: true, text: 'Skattetryk i Europa (% af BNP, 2023)', color: c.text, font: { size: 14, weight: 'bold' } }, tooltip: { callbacks: { label: ctx => ctx.parsed.x + '% af BNP' } } }, scales: { x: { beginAtZero: true, max: 52, grid: { color: c.grid }, ticks: { color: c.text, callback: v => v + '%' } }, y: { grid: { display: false }, ticks: { color: c.text, font: { size: 10 } } } } }
-            });
-        })();
+        // CHART 1.9: EU Tax Map
+        initChartWhenVisible('euTaxComparisonMap', function () {
+            const euTaxMap = {
+                'Ireland': { nameDk: 'Irland', tax: 21.7 },
+                'Romania': { nameDk: 'Rumænien', tax: 26.3 },
+                'Lithuania': { nameDk: 'Litauen', tax: 27.1 },
+                'Latvia': { nameDk: 'Letland', tax: 28.9 },
+                'Bulgaria': { nameDk: 'Bulgarien', tax: 29.2 },
+                'Estonia': { nameDk: 'Estland', tax: 29.8 },
+                'Malta': { nameDk: 'Malta', tax: 30.1 },
+                'Switzerland': { nameDk: 'Schweiz', tax: 31.2 },
+                'Poland': { nameDk: 'Polen', tax: 33.2 },
+                'Cyprus': { nameDk: 'Cypern', tax: 33.4 },
+                'United Kingdom': { nameDk: 'UK', tax: 33.5 },
+                'Slovakia': { nameDk: 'Slovakiet', tax: 34.1 },
+                'Czechia': { nameDk: 'Tjekkiet', tax: 34.8 },
+                'Portugal': { nameDk: 'Portugal', tax: 35.4 },
+                'Spain': { nameDk: 'Spanien', tax: 35.7 },
+                'Slovenia': { nameDk: 'Slovenien', tax: 36.1 },
+                'Croatia': { nameDk: 'Kroatien', tax: 36.3 },
+                'Germany': { nameDk: 'Tyskland', tax: 37.5 },
+                'Hungary': { nameDk: 'Ungarn', tax: 37.8 },
+                'Netherlands': { nameDk: 'Holland', tax: 38.2 },
+                'Luxembourg': { nameDk: 'Luxembourg', tax: 38.5 },
+                'Norway': { nameDk: 'Norge', tax: 39.2 },
+                'Greece': { nameDk: 'Grækenland', tax: 39.2 },
+                'Italy': { nameDk: 'Italien', tax: 42.5 },
+                'Sweden': { nameDk: 'Sverige', tax: 42.6 },
+                'Austria': { nameDk: 'Østrig', tax: 43.1 },
+                'Finland': { nameDk: 'Finland', tax: 43.3 },
+                'Belgium': { nameDk: 'Belgien', tax: 44.6 },
+                'Denmark': { nameDk: 'Danmark', tax: 46.3 },
+                'France': { nameDk: 'Frankrig', tax: 47.0 }
+            };
+
+            const map = L.map('euTaxComparisonMap', {
+                scrollWheelZoom: false,
+                dragging: !L.Browser.mobile,
+                zoomControl: true,
+                attributionControl: false
+            }).setView([53.0, 15.0], 4); // Center over Europe
+
+            const gradStops = [
+                { at: 0, c: [0x11, 0x99, 0x8e] },   // Green (Low Tax < 25%)
+                { at: 0.33, c: [0x21, 0x93, 0xb0] }, // Blue (~33%)
+                { at: 0.66, c: [0xf2, 0x99, 0x4a] }, // Orange (~41%)
+                { at: 1, c: [0xeb, 0x33, 0x49] }     // Red (High Tax > 46%)
+            ];
+
+            function paletteAt(n) {
+                for (let i = 0; i < gradStops.length - 1; i++) {
+                    if (n <= gradStops[i + 1].at) {
+                        const t = (n - gradStops[i].at) / (gradStops[i + 1].at - gradStops[i].at);
+                        const [a, b] = [gradStops[i].c, gradStops[i + 1].c];
+                        return '#' + [0, 1, 2].map(j => Math.round(a[j] * (1 - t) + b[j] * t).toString(16).padStart(2, '0')).join('');
+                    }
+                }
+                return '#eb3349';
+            }
+
+            fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+                .then(r => r.json())
+                .then(data => {
+                    const geojsonLayer = L.geoJSON(data, {
+                        filter: function (feature) {
+                            return feature.properties.name !== 'Antarctica';
+                        },
+                        style: function (feature) {
+                            const cName = feature.properties.name;
+                            const m = euTaxMap[cName];
+
+                            let fillColor = getTheme() === 'dark' ? '#222' : '#eee';
+                            let weight = 0.5;
+                            let opacity = 0.3;
+
+                            if (m) {
+                                // Tax range roughly 20 to 50
+                                const n = Math.max(0, Math.min(1, (m.tax - 20) / (48 - 20)));
+                                fillColor = paletteAt(n);
+                                weight = 0.8;
+                                opacity = 1;
+                            }
+
+                            return {
+                                fillColor: fillColor,
+                                weight: weight,
+                                opacity: opacity,
+                                color: getTheme() === 'dark' ? '#000' : '#fff',
+                                fillOpacity: m ? 0.9 : 0.4
+                            };
+                        },
+                        onEachFeature: function (feature, layer) {
+                            const cName = feature.properties.name;
+                            const m = euTaxMap[cName];
+
+                            if (m) {
+                                let deviance = (m.tax - 40.2).toFixed(1);
+                                let devianceStr = parseFloat(deviance) > 0 ? "+" + deviance + "%" : deviance + "%";
+                                const popupHtml = `
+                                    <div style="font-family: 'Inter', sans-serif; font-size: 13px; color: #333; min-width: 170px;">
+                                        <b style="font-size: 15px; display: block; margin-bottom: 4px;">${m.nameDk}</b>
+                                        <hr style="margin: 4px 0; border: none; border-top: 1px solid #ccc;">
+                                        <table style="width: 100%; border-collapse: collapse; margin-top: 4px;">
+                                            <tr><td style="padding: 2px 0;"><b>Skattetryk:</b></td><td style="text-align: right;">${m.tax}%</td></tr>
+                                            <tr><td style="padding: 2px 0; font-size: 11px; color: #666;">Afvigelse fra EU-gennemsnit (40.2%):</td><td style="text-align: right; color: ${parseFloat(deviance) > 0 ? '#eb3349' : '#11998e'};">${devianceStr}</td></tr>
+                                        </table>
+                                    </div>
+                                `;
+
+                                layer.bindTooltip(popupHtml, { sticky: true, direction: 'auto', opacity: 1.0 });
+
+                                layer.on({
+                                    mouseover: function (e) {
+                                        const l = e.target;
+                                        l.setStyle({ weight: 2.5, color: '#333', fillOpacity: 1 });
+                                        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                                            l.bringToFront();
+                                        }
+                                    },
+                                    mouseout: function (e) {
+                                        geojsonLayer.resetStyle(e.target);
+                                    }
+                                });
+                            }
+                        }
+                    }).addTo(map);
+                });
+        });
 
         // CHART 10: Tax Pressure Timeline
         (function () {
@@ -2818,8 +3078,86 @@
                 if (calcDisp) calcDisp.textContent = fmt(Math.round(r.disp)) + ' kr.';
                 if (calcEff) calcEff.textContent = r.eff.toFixed(1) + '%';
                 if (calcMarg) calcMarg.textContent = r.mg.toFixed(1) + '%';
-                const c = themeColors(), cd = { labels: ['AM-bidrag', 'Bundskat', 'Kommuneskat', 'Mellemskat', 'Topskat', 'Top-topskat', 'Disponibel'], datasets: [{ data: [r.am, r.bund, r.komm, r.ml, r.tp, r.tt, r.disp], backgroundColor: [gradBg('#764ba2', '#667eea', '88', false), gradBg('#11998e', '#38ef7d', '88', false), gradBg('#667eea', '#764ba2', '88', false), gradBg('#2193b0', '#6dd5ed', '88', false), gradBg('#f2994a', '#f2c94c', '88', false), gradBg('#eb3349', '#f45c43', '88', false), gradBg('#38ef7d', '#11998e', '88', false)], borderColor: [COLORS.am, COLORS.bund, COLORS.kommune, COLORS.mellem, COLORS.top, COLORS.toptop, COLORS.fradrag], borderWidth: 1.5, borderRadius: 0 }] };
-                if (bChart) { bChart.data = cd; bChart.options.scales.x.max = Math.max(b, 10000000); bChart.update('none'); } else { bChart = new Chart(document.getElementById('calcBreakdownChart').getContext('2d'), { type: 'bar', data: cd, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.label + ': ' + fmt(Math.round(ctx.parsed.x)) + ' kr.' } } }, scales: { x: { display: true, beginAtZero: true, max: Math.max(b, 10000000), grid: { color: c.grid }, ticks: { color: c.text, font: { size: 9 }, callback: v => fmt(v) + ' kr.' } }, y: { grid: { display: false }, ticks: { color: c.text, font: { size: 10 } } } } } }); }
+                const c = themeColors();
+
+                const totalSkat = r.am + r.bund + r.komm + r.ml + r.tp + r.tt;
+                let data = [];
+                data.push({ from: 'Bruttoløn', to: 'Samlet skat', flow: totalSkat });
+                data.push({ from: 'Bruttoløn', to: 'Disponibel indkomst', flow: r.disp });
+                if (r.am > 0) data.push({ from: 'Samlet skat', to: 'AM-bidrag', flow: r.am });
+                if (r.bund > 0) data.push({ from: 'Samlet skat', to: 'Bundskat', flow: r.bund });
+                if (r.komm > 0) data.push({ from: 'Samlet skat', to: 'Kommuneskat', flow: r.komm });
+                if (r.ml > 0) data.push({ from: 'Samlet skat', to: 'Mellemskat', flow: r.ml });
+                if (r.tp > 0) data.push({ from: 'Samlet skat', to: 'Topskat', flow: r.tp });
+                if (r.tt > 0) data.push({ from: 'Samlet skat', to: 'Top-topskat', flow: r.tt });
+
+                const labels = {
+                    'Bruttoløn': 'Bruttoløn\n' + fmt(b) + ' kr.',
+                    'Disponibel indkomst': 'Disponibel\n' + fmt(Math.round(r.disp)) + ' kr.',
+                    'Samlet skat': 'Samlet skat\n' + fmt(Math.round(totalSkat)) + ' kr.',
+                    'AM-bidrag': 'AM-bidr.\n' + fmt(Math.round(r.am)) + ' kr.',
+                    'Bundskat': 'Bundskat\n' + fmt(Math.round(r.bund)) + ' kr.',
+                    'Kommuneskat': 'Kommune\n' + fmt(Math.round(r.komm)) + ' kr.'
+                };
+                if (r.ml > 0) labels['Mellemskat'] = 'Mellemskat\n' + fmt(Math.round(r.ml)) + ' kr.';
+                if (r.tp > 0) labels['Topskat'] = 'Topskat\n' + fmt(Math.round(r.tp)) + ' kr.';
+                if (r.tt > 0) labels['Top-topskat'] = 'Top-topskat\n' + fmt(Math.round(r.tt)) + ' kr.';
+
+                if (bChart) {
+                    bChart.data.datasets[0].data = data;
+                    bChart.data.datasets[0].labels = labels;
+                    bChart.options.plugins.tooltip.callbacks.label = function (ctx) {
+                        const d = ctx.dataset.data[ctx.dataIndex];
+                        return d.from + ' → ' + d.to + ': ' + fmt(Math.round(d.flow)) + ' kr.';
+                    };
+                    bChart.update('none');
+                } else {
+                    bChart = new Chart(document.getElementById('calcBreakdownChart').getContext('2d'), {
+                        type: 'sankey',
+                        data: {
+                            datasets: [{
+                                data: data,
+                                colorFrom: ctx => ctx.dataset.data[ctx.dataIndex].from === 'Bruttoløn' ? '#667eea' : '#ef5350',
+                                colorTo: ctx => {
+                                    const to = ctx.dataset.data[ctx.dataIndex].to;
+                                    return {
+                                        'Disponibel indkomst': '#38ef7d',
+                                        'Samlet skat': '#ef5350',
+                                        'AM-bidrag': COLORS.am,
+                                        'Bundskat': COLORS.bund,
+                                        'Kommuneskat': COLORS.kommune,
+                                        'Mellemskat': COLORS.mellem,
+                                        'Topskat': COLORS.top,
+                                        'Top-topskat': COLORS.toptop
+                                    }[to] || '#999';
+                                },
+                                colorMode: 'gradient',
+                                labels: labels,
+                                size: 'max',
+                                nodeWidth: 15,
+                                color: c.text,
+                                font: { color: c.text, size: window.innerWidth < 600 ? 10 : 12 }
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            layout: { padding: { right: window.innerWidth < 600 ? 80 : 120, top: 20, bottom: 20 } },
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (ctx) {
+                                            const d = ctx.dataset.data[ctx.dataIndex];
+                                            return d.from + ' → ' + d.to + ': ' + fmt(Math.round(d.flow)) + ' kr.';
+                                        }
+                                    }
+                                }
+                            },
+                            color: c.text
+                        }
+                    });
+                }
             }
             slider.addEventListener('input', upd); upd();
         })();

@@ -3,20 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Kreditvurdering & Gæld - Privatøkonomisk Rådgivning</title>
-    <!-- Bootstrap CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kreditvurdering & Budget - Privatøkonomisk Rådgivning</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@100;400;500&family=Roboto:wght@100;300;400;500;700&display=swap"
         rel="stylesheet">
-    <!-- MDB CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/theme-dark.css">
     <link rel="stylesheet" href="css/theme-light.css">
@@ -24,18 +19,188 @@
     <link rel="stylesheet" href="css/glossary.css">
 
     <style>
+        /* Square corners everywhere */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            border-radius: 0;
+            padding: 10px;
+        }
+
+        /* Chart container backgrounds for dark/light mode */
+        body:not(.dark-mode) .chart-container {
+            background-color: #ffffff;
+        }
+
+        body.dark-mode .chart-container {
+            background-color: #000000;
+        }
+
+        .chart-container.sankey-chart {
+            height: 80vh;
+            /* Extra height for Sankey diagrams to show all labels */
+        }
+
+        /* Stat cards: white, shadow on hover, square */
+        .stat-card {
+            background: #fff;
+            border-radius: 0;
+            padding: 24px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+            border: 1px solid #e8e8e8;
+            height: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        [data-theme="dark"] .stat-card {
+            background: #1e1e2e;
+            border-color: #333;
+        }
+
+        [data-theme="dark"] .stat-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #333;
+        }
+
+        [data-theme="dark"] .stat-number {
+            color: #e0e0e0;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 6px;
+        }
+
+        [data-theme="dark"] .stat-label {
+            color: #aaa;
+        }
+
+        .stat-number.accent-purple {
+            color: #764ba2;
+        }
+
+        .stat-number.accent-green {
+            color: #11998e;
+        }
+
+        .stat-number.accent-orange {
+            color: #f2994a;
+        }
+
+        .stat-number.accent-blue {
+            color: #2193b0;
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-on-scroll.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Specific for this chapter */
         .credit-pillar {
             text-align: center;
-            padding: 20px;
-            border: 1px solid #008cff;
+            padding: 30px 20px;
+            border: 2px solid #008cff;
             border-radius: 50%;
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: 10px auto;
+            margin: 20px auto;
             background: rgba(0, 140, 255, 0.05);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: #008cff;
+            transition: all 0.3s ease;
+        }
+
+        .credit-pillar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 140, 255, 0.2);
+            background: rgba(0, 140, 255, 0.1);
+        }
+
+        [data-theme="dark"] .credit-pillar {
+            border-color: #38ef7d;
+            background: rgba(56, 239, 125, 0.1);
+            color: #38ef7d;
+        }
+
+        .credit-pillar-sub {
+            font-size: 0.8rem;
+            font-weight: 400;
+            margin-top: 5px;
+            color: #666;
+        }
+
+        [data-theme="dark"] .credit-pillar-sub {
+            color: #aaa;
+        }
+
+        .iframe-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 75%;
+            border: 1px solid #e8e8e8;
+            background: #fff;
+        }
+
+        [data-theme="dark"] .iframe-container {
+            border-color: #333;
+            background: #1e1e2e;
+        }
+
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .comparison-table .check {
+            color: #2ecc71;
+        }
+
+        .comparison-table .cross {
+            color: #e74c3c;
+        }
+
+        .tip-box {
+            border-left: 4px solid #f2994a;
+            background-color: rgba(242, 153, 74, 0.1);
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        [data-theme="dark"] .tip-box {
+            background-color: rgba(242, 153, 74, 0.05);
         }
     </style>
 </head>
@@ -46,12 +211,9 @@
         <div class="container-fluid">
             <a href="https://tepedu.dk/" target="_blank" rel="noopener noreferrer">
                 <img id="site-logo" src="images/tepedulogoanim.svg" alt="Te Pedu Logo"
-                    style="height: 35px; margin-right: 15px;">
+                    style="height:35px; margin-right:15px;">
             </a>
-            <a class="navbar-brand" href="index.html">
-                <i class="bi bi-house-door"></i>
-            </a>
-
+            <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i></a>
             <ul class="navbar-nav ml-auto align-items-center">
                 <li class="nav-item">
                     <a class="nav-link" id="theme-toggle" href="#" role="button" aria-label="Skift tema">
@@ -79,26 +241,22 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="bi bi-list icon-margin"></i>
-                    </a>
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                            class="bi bi-list icon-margin"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink"></div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="prev-page-link" href="kapitel1.html"><i class="bi bi-arrow-left"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="next-page-link" href="kapitel3.html"><i class="bi bi-arrow-right"></i></a>
-                </li>
+                <li class="nav-item"><a class="nav-link" id="prev-page-link" href="kapitel1.html"><i
+                            class="bi bi-arrow-left"></i></a></li>
+                <li class="nav-item"><a class="nav-link" id="next-page-link" href="kapitel3.html"><i
+                            class="bi bi-arrow-right"></i></a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Sidebar Navigation -->
+    <!-- Sidebar -->
     <div id="left-aligned-sidebar" class="sidebar">
-        <button id="sidebar-toggle-button" class="sidebar-toggle" aria-label="Toggle navigation">
-            <i class="bi bi-list"></i>
-        </button>
+        <button id="sidebar-toggle-button" class="sidebar-toggle" aria-label="Toggle navigation"><i
+                class="bi bi-list"></i></button>
         <div class="sidebar-content">
             <h5 class="sidebar-title">Indholdsfortegnelse</h5>
             <ul id="sidebar-toc" class="list-unstyled"></ul>
@@ -107,166 +265,1397 @@
 
     <!-- Page Content -->
     <div class="content">
-        <div class="container-fluid mt-4 px-lg-5">
+        <div class="container mt-4">
             <article>
                 <div class="book-cover-wrapper">
-                    <div class="img-fluid" width="100%" style="min-height: 400px; background-color: #2c3e50;"></div>
-                    <h1 class="cover-text-overlay animate-cover-text" data-type-text="2 Kreditvurdering"
-                        data-type-speed="150">2 Kreditvurdering</h1>
+                    <video autoplay muted loop playsinline src="" alt="2. Kreditvurdering og Budget" class="img-fluid"
+                        width="100%"
+                        style="min-height:400px; object-fit:cover; background: linear-gradient(135deg, #1A2980 0%, #26D0CE 100%);"></video>
+                    <h1 class="cover-text-overlay animate-cover-text" data-type-text="2. Kreditvurdering og Budget"
+                        data-type-speed="150">2. Kreditvurdering og Budget</h1>
                 </div>
 
-                <div class="info-box mt-4">
-                    <p class="lead">Kreditvurdering er bankens kernekompetence. Det er her, rådgiveren vurderer kundens
-                        evne og vilje til at tilbagebetale et lån. Det er en kompleks balancegang mellem vækst og
-                        risiko.</p>
-                </div>
-
-                <h2>2.1 De tre grundpiller i vurderingen</h2>
-                <div class="row text-center mt-5 mb-5">
-                    <div class="col-md-4">
-                        <div class="credit-pillar">Rådighedsbeløb</div>
-                        <p class="small text-muted mt-2">Likviditet til hverdagen</p>
+                <!-- ============================================================ -->
+                <!-- NØGLETAL STAT CARDS -->
+                <!-- ============================================================ -->
+                <div class="row mt-5 mb-4 reveal-on-scroll">
+                    <div class="col-6 col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number accent-blue" data-count="46.3" data-suffix="%">0</div>
+                            <div class="stat-label">Skattetryk i DK<br>(% af BNP, 2025)</div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="credit-pillar">Gældsfaktor</div>
-                        <p class="small text-muted mt-2">Samlet gældsbyrde</p>
+                    <div class="col-6 col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number accent-green" data-count="3.5" data-suffix="">0</div>
+                            <div class="stat-label">Maks. gældsfaktor<br>(lav risiko)</div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="credit-pillar">Formue</div>
-                        <p class="small text-muted mt-2">Polstring og sikkerhed</p>
+                    <div class="col-6 col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number accent-orange" data-count="54100" data-suffix=" kr.">0</div>
+                            <div class="stat-label">Personfradrag 2026<br>(voksne)</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number accent-purple" data-count="8500" data-suffix=" kr.">0</div>
+                            <div class="stat-label">Anbefalet rådighedsbeløb<br>(enlig, md.)</div>
+                        </div>
                     </div>
                 </div>
 
-                <h2>2.2 Rådighedsbeløb: Det vigtigste nøgletal</h2>
-                <div class="info-box">
-                    <p>Finanstilsynet stiller krav om, at kunden har et forsvarligt rådighedsbeløb. Dette findes ved at
-                        trække alle faste udgifter fra den udbetalte løn. For finansøkonomen er det vigtigt at inkludere
-                        alt fra fitnessmedlemskaber til streamingtjenester.</p>
-                    <table class="table table-sm">
-                        <thead>
-                            <tr>
-                                <th>Husstandstype</th>
-                                <th>Vejledende beløb (md.)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Enlig</td>
-                                <td>7.000 - 8.500 kr.</td>
-                            </tr>
-                            <tr>
-                                <td>Samlevende par</td>
-                                <td>11.500 - 14.500 kr.</td>
-                            </tr>
-                            <tr>
-                                <td>Barn nr. 1</td>
-                                <td>+ 2.500 kr.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <!-- ============================================================ -->
+                <!-- INTRO -->
+                <!-- ============================================================ -->
+                <div class="info-box reveal-on-scroll">
+                    <p>En sund privatøkonomi starter med et realistisk budget og en forståelse for de mekanismer, banker
+                        og realkreditinstitutter bruger til at vurdere kunder. I dette kapitel gennemgår vi fundamentet
+                        for finansiel rådgivning: Fra den basale budgetlægning til komplekse kreditvurderinger, og
+                        hvordan man som rådgiver navigerer i spændingsfeltet mellem lovkrav og kundens drømme.</p>
+                    <p>Vi vil også dykke ned i beskatning af ægtefæller, da ægteskabet juridisk og økonomisk set er en
+                        af de vigtigste kontrakter, en kunde kan indgå. Forståelsen af <span class="legal-term"
+                            data-definition="Når ægtefællers indkomst og fradrag ses under ét i skatteberegningen."
+                            data-example="Hvis den ene ægtefælle ikke udnytter sit personfradrag, kan det overføres til den anden."
+                            data-slug="sambeskatning">sambeskatning</span> er essentiel for korrekt rådgivning af par.
+                    </p>
                 </div>
 
-                <h2>2.3 Gældsfaktor og Finanstilsynets retningslinjer</h2>
-                <div class="info-box">
-                    <p>Gældsfaktoren beregnes som den samlede gæld divideret med den årlige bruttoindkomst. I de store
-                        byer (København/Aarhus) er der skærpede regler for høj gældsfaktor (over 4,0).</p>
-                    <ul>
-                        <li><b>Grøn (Faktor < 3):</b> Lav risiko. Kunden kan frit vælge lånetyper.</li>
-                        <li><b>Gul (Faktor 3-4):</b> Middel risiko. Øget fokus på formue.</li>
-                        <li><b>Rød (Faktor > 4):</b> Høj risiko. Krav om fast rente eller afdrag på de fleste udlån.
-                        </li>
-                    </ul>
+                <!-- ============================================================ -->
+                <!-- 2.1 KREDITVURDERING -->
+                <!-- ============================================================ -->
+                <h2>2.1 Kreditvurderingens Grundbillede</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Når en finansiel virksomhed skal vurdere, om en kunde kan godkendes til et lån, sker det på
+                        baggrund af en <b>kreditvurdering</b>. Lovgivningsmæssigt er dette funderet i <i>Bekendtgørelse
+                            om god skik for finansielle virksomheder</i> samt <i>Kreditaftaleloven</i>, der pålægger
+                        långiver en forpligtelse til at sikre, at kunden ikke gældsættes uansvarligt.</p>
+                    <p>I praksis navigerer rådgiveren efter tre hovedsøjler:</p>
+
+                    <div class="row text-center mt-5 mb-5">
+                        <div class="col-md-4">
+                            <div class="credit-pillar">
+                                <div>Rådighedsbeløb</div>
+                                <div class="credit-pillar-sub">Likviditet & Robusthed</div>
+                            </div>
+                            <p class="mt-3 text-muted small">Kan kunden betale sine regninger hver måned - også hvis
+                                renten stiger?</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="credit-pillar">
+                                <div>Gældsfaktor</div>
+                                <div class="credit-pillar-sub">Samlet Gældsbyrde</div>
+                            </div>
+                            <p class="mt-3 text-muted small">Hvor stor er gælden i forhold til indkomsten? Et mål for
+                                soliditet.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="credit-pillar">
+                                <div>Formue</div>
+                                <div class="credit-pillar-sub">Polstring & Sikkerhed</div>
+                            </div>
+                            <p class="mt-3 text-muted small">Er formuen positiv? Er der aktiver der kan realiseres i
+                                nødstilfælde?</p>
+                        </div>
+                    </div>
                 </div>
 
-                <h2>2.4 Formue og Solvens</h2>
-                <div class="info-box">
-                    <p>Banken kigger på kundens <b>Nettoformue</b>. Hvis en kunde har en bolig til 3 mio. og en gæld på
-                        2,5 mio., er friværdien 500.000 kr. Solvensgraden er her afgørende for, hvor meget yderligere
-                        banken vil finansiere.</p>
+                <!-- ============================================================ -->
+                <!-- 2.2 BUDGETLÆGNING -->
+                <!-- ============================================================ -->
+                <h2>2.2 Budgetlægning i praksis</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Budgettet er rådgiverens vigtigste værktøj til at afdække kundens økonomiske formåen. Et budget
+                        opdeles typisk i to hovedkategorier: <b>Indtægter</b> og <b>Udgifter</b>. Udgifterne
+                        underopdeles i faste og variable udgifter.</p>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h4>Indtægter</h4>
+                            <p>Her medregnes alle løbende indtægter efter skat (udbetalt).</p>
+                            <ul>
+                                <li>Lønindkomst (husk at bruge nettoløn efter AM-bidrag og A-skat)</li>
+                                <li>Offentlige ydelser (SU, Dagpenge, Pension)</li>
+                                <li>Børnefamilieydelser</li>
+                                <li>Boligsikring</li>
+                                <li>Renteindtægter og udbytter (hvis de er stabile)</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Udgifter</h4>
+                            <p>Opdeles i faste og variable.</p>
+                            <ul>
+                                <li><b>Bolig:</b> Husleje/Boligafgift, Ejendomsskatter, Forbrug (El, Vand, Varme).</li>
+                                <li><b>Transport:</b> Billån, Grøn ejerAfgift, Forsikring, Brændstof, Rejsekort.</li>
+                                <li><b>Husholdning:</b> Forsikringer, A-kasse, Fagforening, Institution.</li>
+                                <li><b>Abonnementer:</b> Streaming, Telefon, Internet, Fitness.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <p><b>Rådgiver-tip:</b> Mange kunder glemmer de "skjulte" faste udgifter som streamingtjenester
+                            og softwareabonnementer (iCloud, Spotify, Netflix). Sørg altid for at gennemgå
+                            betalingsoversigten med kunden.</p>
+                    </div>
+
+                    <div class="chart-container mb-4 square">
+                        <canvas id="consumptionChart"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 2.1 — Fordeling af en gennemsnitlig husstands forbrug.
+                        Kilde: Danmarks Statistik (2025).</small>
                 </div>
 
-                <h2>2.5 Case: Kreditvurdering af et ungt lægepar</h2>
-                <div class="info-box highlight-box">
-                    <h3>Jonas og Sara (Købsproces)</h3>
-                    <p>Parret er nyuddannede læger. De tjener samlet 1.100.000 kr. årligt, men har studiegæld på 600.000
-                        kr. De vil købe en lejlighed på Frederiksberg til 5.500.000 kr.</p>
-                    <p><b>Vurdering:</b></p>
-                    <ul>
-                        <li>Gældsfaktor = (5.500.000 + 600.000) / 1.100.000 = <b>5,54</b>.</li>
-                        <li><b>Udfordring:</b> Faktoren er meget høj (> 5,0).</li>
-                        <li><b>Løsning:</b> Da de har høj jobsikkerhed og vil stige i løn, kan banken give dispensation,
-                            men det vil kræve et lån med fast rente og afdrag.</li>
-                    </ul>
+                <!-- ============================================================ -->
+                <!-- 2.2.1 SANKEY: BUDGET-FLOW FOR EN GENNEMSNITLIG HUSSTAND -->
+                <!-- ============================================================ -->
+                <h3>2.2.1 Fra bruttoløn til rådighedsbeløb</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>For at forstå en kundes reelle økonomiske råderum er det afgørende at kunne følge pengestrømmen fra bruttoløn hele vejen ned til det endelige rådighedsbeløb. Processen kan opdeles i tre faser:</p>
+                    <ol>
+                        <li><b>Fase 1 — Skat:</b> Bruttoløn reduceres først med 8 % i AM-bidrag (arbejdsmarkedsbidrag), derefter beregnes bundskat (12,01 %) og kommuneskat (gennemsnitligt ca. 25 %) af den skattepligtige indkomst efter personfradrag (54.100 kr. i 2026). For de fleste lønmodtagere udgør den samlede skat mellem 35-40 % af bruttolønnen.</li>
+                        <li><b>Fase 2 — Faste udgifter:</b> Af nettolønnen (det udbetalte beløb) betales først de faste, ikke-forhandlingsbare udgifter: husleje eller boligafgift, el/vand/varme, forsikringer, transport, abonnementer og eventuelle afdrag på lån. Disse udgifter er "låste" — de kan kun ændres på mellemlang sigt (f.eks. ved flytning eller opsigelse af abonnement).</li>
+                        <li><b>Fase 3 — Rådighedsbeløb:</b> Det resterende beløb er kundens <i>reelle</i> økonomiske frihed. Det er dette beløb, Finanstilsynet og bankerne fokuserer på, når de vurderer, om en kunde kan bære et nyt lån. Et for lavt rådighedsbeløb er den hyppigste årsag til afslag på boliglån.</li>
+                    </ol>
+                    <p>Sankey-diagrammet herunder visualiserer denne strøm for en gennemsnitlig enlig lønmodtager med en bruttoløn på 480.000 kr. om året (svarende til ca. 40.000 kr./md.). Bemærk, hvor stor en andel af bruttolønnen der "forsvinder" til skat og faste udgifter, inden kunden har penge til dagligt forbrug.</p>
+
+                    <div class="chart-container sankey-chart mb-2 wide">
+                        <canvas id="budgetFlowSankey"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 2.2 — Sankey-diagram: Bruttoløn → Skat → Faste
+                        udgifter → Rådighedsbeløb for en gennemsnitlig enlig lønmodtager (480.000 kr./år). Kilde:
+                        Danmarks Statistik, Skattestyrelsen (2026).</small>
                 </div>
 
-                <h2>2.6 Data-indsigt: Boligpriser vs. Indkomst</h2>
-                <div class="info-box">
-                    <p>Gældsfaktoren presses i disse år af, at boligpriserne stiger hurtigere end lønningerne. Her ser
-                        vi indekstallene for de sidste 10 år.</p>
-                    <div class="chart-container" style="position: relative; height: 500px; width: 100%;">
+                <!-- ============================================================ -->
+                <!-- RÅDIGHEDSBELØB -->
+                <!-- ============================================================ -->
+                <h3>2.2.2 Rådighedsbeløb: Hvad skal være tilbage?</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p><span class="legal-term"
+                            data-definition="Det beløb en husstand har tilbage til forbrug, når alle faste udgifter inklusive skat er betalt."
+                            data-example="Løn udbetalt (25.000) - Faste udgifter (15.000) = Rådighedsbeløb (10.000)."
+                            data-slug="radighedsbelob">Rådighedsbeløbet</span> er det beløb, der er tilbage til mad,
+                        tøj, fornøjelser, gaver, ferier og uforudsete udgifter. Det er "livet", der skal leves for dette
+                        beløb.</p>
+
+                    <p>Finanstilsynet stiller krav om, at kunden skal have et "rimeligt" rådighedsbeløb. Hvad der er
+                        rimeligt, varierer, men bankerne opererer typisk med mindstekrav for at sikre, at kunden ikke
+                        går konkurs efter et boligkøb.</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover mt-3">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Husstandstype</th>
+                                    <th>Anbefalet Rådighedsbeløb (md.)</th>
+                                    <th>Hvad dækker det?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Enlig</td>
+                                    <td>7.000 - 8.500 kr.</td>
+                                    <td>Mad, tøj, personlig pleje, transport (hvis ikke fast), ferie.</td>
+                                </tr>
+                                <tr>
+                                    <td>Samlevende par</td>
+                                    <td>11.500 - 14.500 kr.</td>
+                                    <td>Lavere end 2 x enlig pga. stordriftsfordele (fælles internet, streaming,
+                                        indboforsikring).</td>
+                                </tr>
+                                <tr>
+                                    <td>Hjemmeboende barn (0-6 år)</td>
+                                    <td>+ 2.500 - 3.000 kr.</td>
+                                    <td>Bleer, mad, tøj. Institutionsbetaling ligger typisk under faste udgifter.</td>
+                                </tr>
+                                <tr>
+                                    <td>Hjemmeboende barn (7-18 år)</td>
+                                    <td>+ 3.500 - 4.500 kr.</td>
+                                    <td>Fritidsinteresser, tøj (mærkevarer), lommepenge, mobil.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.2.3 INTERAKTIV BUDGETLÆGNING -->
+                <!-- ============================================================ -->
+                <h3>2.2.3 Interaktiv Budgetlægning (Enlig)</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Prøv selv at lægge et budget for en enlig. Læg mærke til, hvordan skatten automatisk beregnes ud
+                        fra 2026-reglerne, og se hvordan små ændringer i faste udgifter påvirker rådighedsbeløbet
+                        markant.</p>
+                    <div class="iframe-container mb-3">
+                        <iframe src="https://skat.tepedu.dk/budget.html" title="Budgetberegner Enlig"></iframe>
+                    </div>
+                    <small class="text-muted d-block mt-2">Beregneren henter 2026 skattesatser direkte fra API.</small>
+                    <p class="mt-2"><a href="https://skat.tepedu.dk/budget.html" target="_blank"
+                            class="btn btn-primary btn-sm">Åbn i fuld skærm <i class="bi bi-box-arrow-up-right"></i></a>
+                    </p>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.3 GÆLDSFAKTOR -->
+                <!-- ============================================================ -->
+                <h2>2.3 Gældsfaktor: Loftet over boligprisen</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p><span class="legal-term"
+                            data-definition="Forholdet mellem husstandens samlede gæld og dens samlede bruttoindkomst."
+                            data-example="Gæld på 4 mio. kr. / Indkomst på 1 mio. kr. = Gældsfaktor 4,0."
+                            data-slug="gaeldsfaktor">Gældsfaktoren</span> er et nøgletal, der hurtigt indikerer, hvor
+                        hårdt en kunde er gældsat ift. indtægten. Det er især relevant ved boligkøb i vækstområder
+                        (København og Aarhus).</p>
+
+                    <div class="card bg-light mb-3 border-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-center" style="font-family: 'Space Grotesk'; font-weight:700;">
+                                Formel for Gældsfaktor</h5>
+                            <p class="card-text text-center" style="font-size: 1.5rem;">
+                                $$ \text{Gældsfaktor} = \frac{\text{Samlet Gæld}}{\text{Årlig Bruttoindkomst}} $$
+                            </p>
+                        </div>
+                    </div>
+
+                    <p><b>Hvad tæller som gæld?</b> Alt! Realkreditlån, boliglån, billån, SU-lån, forbrugslån,
+                        kassekreditter og gæld til det offentlige.</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered mt-3">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Risikoklasse</th>
+                                    <th>Gældsfaktor</th>
+                                    <th>Konsekvens for kunden (Vækstområder)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-success">
+                                    <td><b>Lav risiko</b></td>
+                                    <td>
+                                        < 3,5</td>
+                                    <td>Frit valg på alle hylder (F-kort, afdragsfrihed mv.).</td>
+                                </tr>
+                                <tr class="table-warning">
+                                    <td><b>Middel risiko</b></td>
+                                    <td>3,5 - 4,0</td>
+                                    <td>Øget opmærksomhed. Kunden skal være robust til at klare rentestigninger. Ved > 4
+                                        skal der typisk afdrages eller vælges fast rente.</td>
+                                </tr>
+                                <tr class="table-danger">
+                                    <td><b>Høj risiko</b></td>
+                                    <td>> 4,0</td>
+                                    <td><b>Begrænsning:</b> Kunden SKAL typisk vælge fast rente med afdrag. Risikable
+                                        lånetyper er udelukket. Meget høj gældsfaktor (>5) kræver særdeles høj formue.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Udvikling i Boligpriser vs. Lønninger</h3>
+                    <p>Hvorfor er gældsfaktoren blevet så central i dansk boligøkonomi? Svaret ligger i den markante afkobling mellem boligpriser og lønninger, der er sket over det seneste årti. Ifølge data fra <b>Finans Danmark</b> og <b>Danmarks Statistik</b> er boligpriserne i København steget med over 65 % siden 2016, mens lønningerne kun er steget med ca. 35 % i samme periode. Denne "saks" betyder, at førstegangskøbere i dag skal låne relativt mere end deres forældre for at købe en sammenlignelig bolig.</p>
+                    <p>Konsekvensen er, at gældsfaktoren for en typisk førstegangskøber i København i dag ligger mellem 3,5 og 4,5 — altså i den gule eller røde zone. I provinsen, hvor boligpriserne ikke er steget lige så dramatisk, er situationen markant bedre: her ligger den gennemsnitlige gældsfaktor typisk under 3,0.</p>
+                    <p>Grafen herunder viser udviklingen i et boligprisindeks for København sammenlignet med det generelle lønindeks (2016 = 100). Læg mærke til, hvordan gabet mellem de to kurver vokser år for år — dette gab er kerneproblemet i den danske boligøkonomi.</p>
+
+                    <div class="chart-container mb-2 square wide" style="height:400px;">
                         <canvas id="debtFactorChart"></canvas>
                     </div>
+                    <small class="d-block text-left mt-2">Figur 2.3 — Kilde: <a href="https://finansdanmark.dk"
+                            target="_blank">Finans Danmark</a> & DST.</small>
                 </div>
 
-                <div class="glossary-section mt-5">
-                    <hr>
-                    <p><small><b>Termer i dette kapitel:</b></small></p>
+                <!-- ============================================================ -->
+                <!-- 2.3.1 SANKEY: BOLIGFINANSIERING -->
+                <!-- ============================================================ -->
+                <h3>2.3.1 Boligfinansiering: Hvor kommer pengene fra?</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Danmark har et unikt boligfinansieringssystem, der adskiller sig fundamentalt fra de fleste andre lande. Systemet hviler på <b>realkreditmodellen</b>, hvor op til 80 % af boligens værdi kan finansieres med et realkreditlån — et lån med sikkerhed i ejendommen, der typisk har markant lavere rente end et almindeligt banklån.</p>
+                    <p>Finansieringspyramiden for en typisk bolighandel ser således ud:</p>
                     <ul>
-                        <li><span class="term" data-tooltip="Forholdet mellem aktiver og gæld.">Solvens</span></li>
-                        <li><span class="term"
-                                data-tooltip="Gæld divideret med årlig bruttoindkomst.">Gældsfaktor</span></li>
-                        <li><span class="term"
-                                data-tooltip="Det beløb du har tilbage når alle faste udgifter er betalt.">Rådighedsbeløb</span>
-                        </li>
-                        <li><span class="term"
-                                data-tooltip="En undtagelse fra de generelle kreditregler.">Dispensation</span></li>
+                        <li><b>Udbetaling (5-10 %):</b> Kundens egen opsparing. Ifølge <i>Bekendtgørelse om god skik</i> skal kunden som minimum lægge 5 % af købesummen selv. I praksis kræver mange banker 10 % eller mere, især for førstegangskøbere.</li>
+                        <li><b>Realkreditlån (op til 80 %):</b> Udstedt af et realkreditinstitut (Nykredit, Realkredit Danmark, Jyske Realkredit, Nordea Kredit, DLR). Renten fastsættes på kapitalmarkedet og er typisk 3-5 % i 2026. Lånet kan være med fast eller variabel rente og med eller uden afdrag (afhængigt af gældsfaktor).</li>
+                        <li><b>Banklån (10-15 %):</b> Dækker gabet mellem realkreditlånets grænse (80 %) og udbetalingen. Banklånet har typisk en højere rente (5-8 %) og kortere løbetid. Det er dette lån, der ofte afgør, om kunden kan godkendes.</li>
+                    </ul>
+                    <p>Sankey-diagrammet herunder viser, hvordan en boligpris på 3.200.000 kr. opdeles i finansieringskilder, og hvad de årlige ydelser (rente + afdrag) er for hver del. Bemærk forskellen i renteniveauet mellem realkredit og banklån — det er derfor, det altid kan betale sig at maksimere realkreditbelåningen.</p>
+
+                    <div class="chart-container sankey-chart mb-2 wide">
+                        <canvas id="housingFinanceSankey"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 2.4 — Sankey-diagram: Finansieringsstruktur for et
+                        boligkøb til 3.200.000 kr. Kilde: Finans Danmark, Finanstilsynet (2026).</small>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.3.2 BAR CHART: GÆLDSFAKTOR I EUROPA -->
+                <!-- ============================================================ -->
+                <h3>2.3.2 Husholdningernes gæld i international sammenligning</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Danmark indtager en bemærkelsesværdig førsteplads i OECD's opgørelse over husholdningsgæld målt i forhold til disponibel indkomst. Med en gældskvote på ca. <b>236 %</b> (2024) ligger danske husholdninger markant over gennemsnittet på ca. 120 %. Det betyder, at den gennemsnitlige danske husstand skylder 2,4 gange sin årlige disponible indkomst.</p>
+                    <p>Men er det så farligt? Svaret er nuanceret. Den høje danske gæld skal ses i sammenhæng med tre faktorer:</p>
+                    <ol>
+                        <li><b>Pensionsformue:</b> Danmark har samtidig en af verdens højeste pensionsformuer. Nettoformuen (aktiver minus gæld) er faktisk positiv for de fleste danske husholdninger.</li>
+                        <li><b>Realkreditsystemet:</b> Størstedelen af gælden er realkreditgæld med lav rente og lang løbetid — ikke dyr forbrugsgæld. Realkreditsystemet er internationalt anerkendt som et af de mest stabile.</li>
+                        <li><b>Rentefradrag:</b> Det danske skattesystem giver fradrag for renteudgifter, hvilket reducerer den reelle renteudgift med ca. 25-34 %. Dette gør gælden billigere i Danmark end i mange andre lande.</li>
+                    </ol>
+                    <p>Ikke desto mindre gør den høje gæld danske husholdninger sårbare over for rentestigninger. En stigning i renten på blot 1 procentpoint øger de samlede renteudgifter for danske husholdninger med ca. 33 mia. kr. årligt ifølge <b>Danmarks Nationalbank</b>. Det er denne sårbarhed, der gør gældsfaktorberegningen så vigtig i kreditvurderingen.</p>
+
+                    <div class="chart-container mb-2 square wide" style="height:500px;">
+                        <canvas id="householdDebtChart"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 2.5 — Husholdningernes gæld i % af disponibel indkomst.
+                        Kilde: OECD (2024), Eurostat.</small>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.4 BESKATNING AF PAR -->
+                <!-- ============================================================ -->
+                <h2>2.4 Beskatning af Par (VIGTIGT!)</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>At blive gift er ikke kun en romantisk beslutning; det er en omfattende økonomisk kontrakt. I det
+                        danske skattesystem skelnes der skarpt mellem <b>enlige/ugifte samlevende</b> og
+                        <b>ægtefæller</b>. Denne forskel er kritisk viden for en finansøkonom, da den kan flytte
+                        tusindvis af kroner i budgettet.</p>
+
+                    <h3>2.4.1 Sambeskatningens Principper</h3>
+                    <p>Sambeskatning betyder, at skattevæsenet kigger på ægtefællernes samlede økonomi. Det gælder dog
+                        ikke for topskat og AM-bidrag, der er individuelle, men for bundfradrag, personfradrag og
+                        kapitalindkomst.</p>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-header bg-dark text-white font-weight-bold">
+                                    <i class="bi bi-person-check-fill mr-2"></i> Personfradrag overføres
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">Hver person har i 2026 et personfradrag på <b>54.100 kr.</b>
+                                    </p>
+                                    <p class="card-text"><b>Ugifte:</b> Hvis du ikke tjener nok til at bruge det, går
+                                        det tabt.</p>
+                                    <p class="card-text"><b>Gifte:</b> Restbeløbet overføres automatisk til ægtefællen,
+                                        så intet går tabt.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-header bg-dark text-white font-weight-bold">
+                                    <i class="bi bi-graph-up mr-2"></i> Kapitalindkomst Optimering
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">Positiv kapitalindkomst (renter m.m.) beskattes progressivt.
+                                        Der er en lav progressionsgrænse på <b>52.400 kr.</b></p>
+                                    <p class="card-text"><b>Gifte:</b> Hvis ægtefællerne er sambeskattede, er grænsen
+                                        det dobbelte: <b>104.800 kr.</b> uanset, hvem der har tjent pengene. Dette er en
+                                        KÆMPE fordel for par med opsparing.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-4">Eksempel: Hvor meget betyder det?</h3>
+                    <p>For at gøre skatteeffekten konkret, lad os se på parret Jonas og Sara. Vi antager her, at Jonas studerer på deltid (lav indkomst på 120.000 kr./år), mens Sara arbejder fuldtid som sygeplejerske (450.000 kr./år). Sara har derudover en opsparing, der genererer 60.000 kr. i positiv kapitalindkomst (renter fra højrentekonto og obligationer).</p>
+                    <p>Forskellen mellem at være gift og ugift kan i dette scenarie betyde op mod <b>20.000 kr. mere i hånden om året</b> — udelukkende på grund af skattereglerne. De vigtigste mekanismer er:</p>
+                    <ul>
+                        <li><b>Personfradrag:</b> Jonas udnytter kun en del af sit personfradrag (54.100 kr.). Som ugift går resten tabt. Som gift overføres det uudnyttede fradrag automatisk til Sara, der får lavere skat.</li>
+                        <li><b>Kapitalindkomstgrænse:</b> Sara betaler ekstra skat (topskat) af positiv kapitalindkomst over 52.400 kr. Som gift fordobles grænsen til 104.800 kr., og hendes 60.000 kr. ligger nu under grænsen.</li>
+                        <li><b>Negativ kapitalindkomst (renteudgifter):</b> Hvis de har et fælles boliglån, kan renteudgifterne som gift fordeles optimalt mellem ægtefællerne, så fradragsværdien maksimeres.</li>
+                    </ul>
+
+                    <div class="table-responsive mt-3">
+                        <table class="table comparison-table table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Scenario</th>
+                                    <th>Ugift (Samlevende)</th>
+                                    <th>Gift (Ægtefæller)</th>
+                                    <th>Forskel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Overførsel af personfradrag</td>
+                                    <td>0 kr.</td>
+                                    <td>Op til ca. 20.000 kr. i sparet skat (hvis den ene ikke har indkomst).</td>
+                                    <td><span class="text-success">+20.000 kr.</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Grænse for lav kapitalindkomstskat</td>
+                                    <td>52.400 kr. pr. person</td>
+                                    <td>104.800 kr. samlet</td>
+                                    <td>Højere grænse</td>
+                                </tr>
+                                <tr>
+                                    <td>Arveret (Juridisk)</td>
+                                    <td>Ingen arveret (0 kr.)</td>
+                                    <td>Automatisk arveret</td>
+                                    <td>Sikkerhed</td>
+                                </tr>
+                                <tr>
+                                    <td>Hæftelse for gæld</td>
+                                    <td>Ingen hæftelse (Særskilt)</td>
+                                    <td>Ingen hæftelse (Særskilt)*</td>
+                                    <td>Ingen*</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small>*Bemærk: Man hæfter normalt ikke for hinandens gæld som gifte, medmindre man har skrevet
+                        under i fællesskab (f.eks. boliglån) eller det er gæld til skat opstået under
+                        ægteskabet.</small>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.4.2 SANKEY: UGIFT PAR SKAT -->
+                <!-- ============================================================ -->
+                <h3>2.4.2 Skattestrøm: Ugift par (Jonas & Sara)</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Når Jonas og Sara er ugifte samlevende, behandles de skattemæssigt som to helt separate individer. SKAT kender ikke til deres parforhold — de er to enkeltstående skatteydere. Det har flere konsekvenser:</p>
+                    <ul>
+                        <li><b>Ingen overførsel af personfradrag:</b> Jonas har en lav indkomst (400.000 kr.) og udnytter sit personfradrag fuldt. Men havde han haft en lavere indkomst (f.eks. under barsel eller studietid), ville det uudnyttede personfradrag simpelthen gå tabt. Sara kan ikke "overtage" det.</li>
+                        <li><b>Individuel kapitalindkomstgrænse:</b> Hver person har sin egen grænse på 52.400 kr. for lav beskatning af positiv kapitalindkomst. Uanset om den ene har 0 kr. og den anden 80.000 kr., beskattes overskydende beløb hårdere.</li>
+                        <li><b>Renteudgifter:</b> Fradrag for renteudgifter tilhører den person, der juridisk hæfter for lånet. Står begge på lånet, deles det 50/50 — uanset om det er skattemæssigt optimalt.</li>
+                        <li><b>Ingen arveret:</b> Dør Jonas, har Sara ingen automatisk arveret. Boligen, bankkontoen og pensionen fordeles efter arveloven til Jonas' familie — ikke til Sara.</li>
+                    </ul>
+                    <p>Sankey-diagrammet herunder viser den fulde skattestrøm for Jonas og Sara som ugifte, med individuel beregning af AM-bidrag, bundskat og kommuneskat.</p>
+
+                    <div class="chart-container sankey-chart mb-2 wide">
+                        <canvas id="ugiftSankey"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 2.6 — Sankey-diagram: Skattestrøm for Jonas (400.000 kr.) og Sara (450.000 kr.) som
+                        ugifte samlevende. Kilde: Skattestyrelsen (2026).</small>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.4.3 SANKEY: GIFT PAR SKAT -->
+                <!-- ============================================================ -->
+                <h3>2.4.3 Skattestrøm: Gift par (Jonas & Sara)</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Når Jonas og Sara gifter sig, aktiveres <span class="legal-term"
+                            data-definition="Når ægtefællers indkomst og fradrag ses under ét i skatteberegningen."
+                            data-example="Uudnyttet personfradrag overføres automatisk fra den ene ægtefælle til den anden."
+                            data-slug="sambeskatning">sambeskatningen</span>. Det er vigtigt at understrege: sambeskatning betyder <i>ikke</i>, at parret betaler skat af deres samlede indkomst som én person. Tværtimod beregnes skatten stadig individuelt — men med én afgørende forskel: visse fradrag kan nu overføres mellem ægtefællerne.</p>
+                    <p>De vigtigste mekanismer i sambeskatningen er:</p>
+                    <ol>
+                        <li><b>Personfradragsoverførsel:</b> Hvis Jonas ikke udnytter hele sit personfradrag (f.eks. pga. barsel, ledighed eller studier), overføres det resterende automatisk til Sara. Skatteværdien af et fuldt uudnyttet personfradrag er ca. 20.000 kr. (54.100 kr. × ca. 37 % kommuneskat+bundskat).</li>
+                        <li><b>Dobbelt kapitalindkomstgrænse:</b> Ægtefæller deler en fælles progressionsgrænse for positiv kapitalindkomst på 104.800 kr. (2 × 52.400 kr.), uanset hvem af dem der har indtjent kapitalindkomsten. Det betyder, at et par med f.eks. 90.000 kr. i samlet positiv kapitalindkomst slet ikke rammer den høje beskatning.</li>
+                        <li><b>Negativ kapitalindkomst:</b> Renteudgifter kan allokeres skattemæssigt optimalt mellem ægtefællerne, så fradraget udnyttes bedst muligt. I praksis sker dette automatisk ved SKATs årsopgørelse.</li>
+                        <li><b>AM-bidrag og topskat:</b> Disse er fortsat individuelle — sambeskatningen ændrer ikke beregningen af AM-bidrag (8 %) eller topskat (15 % over 777.900 kr.). Det er kun bund- og kommuneskat samt fradragsoverførsel, der påvirkes.</li>
+                    </ol>
+                    <p>Sankey-diagrammet herunder viser den samlede skattestrøm for Jonas og Sara som ægtefæller. Sammenlign med det forrige diagram (ugift) og bemærk den højere disponible indkomst.</p>
+
+                    <div class="chart-container sankey-chart mb-2 wide">
+                        <canvas id="giftSankey"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 2.7 — Sankey-diagram: Skattestrøm for Jonas og Sara som
+                        ægtefæller (sambeskatning). Kilde: Skattestyrelsen (2026).</small>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.5 CASE: JONAS & SARA -->
+                <!-- ============================================================ -->
+                <h2>2.5 Case: Jonas & Sara (Par uden bolig)</h2>
+                <div class="info-box highlight-box reveal-on-scroll">
+                    <h3>Profil: Det unge par på boligjagt</h3>
+                    <p>Jonas (28 år, Lærer) og Sara (27 år, Sygeplejerske) bor til leje i København NV, men drømmer om
+                        at købe en andelslejlighed på Østerbro. De har henvendt sig i banken for at få et lånebevis.</p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush mb-3">
+                                <li class="list-group-item"><b>Jonas Indkomst:</b> 400.000 kr./år (ca. 33.300/md)</li>
+                                <li class="list-group-item"><b>Sara Indkomst:</b> 450.000 kr./år (ca. 37.500/md)</li>
+                                <li class="list-group-item"><b>Samlet Indkomst:</b> 850.000 kr./år</li>
+                                <li class="list-group-item"><b>Opsparing:</b> 200.000 kr. (Stående på højrentekonto)
+                                </li>
+                                <li class="list-group-item"><b>Studiegæld (Jonas):</b> -300.000 kr.</li>
+                                <li class="list-group-item"><b>Ønsket bolig:</b> Andelslejlighed til 3,2 mio. kr.</li>
+                                <li class="list-group-item"><b>Boligafgift:</b> 4.500 kr./md.</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">Bankmødet</h5>
+                                    <p class="card-text">Rådgiveren skal nu vurdere, om økonomien kan bære købet. Vi
+                                        kigger på:</p>
+                                    <ol>
+                                        <li>Kan gældsfaktoren godkendes?</li>
+                                        <li>Er rådighedsbeløbet tilstrækkeligt?</li>
+                                        <li>Hvad betyder deres civilstand (ugifte)?</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="mt-4">Trin 1: Gældsfaktor Beregning</h4>
+                    <p>Først beregner vi det samlede finansieringsbehov.</p>
+                    <p>Pris på bolig: 3.200.000 kr.<br>
+                        Udbetaling (Opsparing): -200.000 kr.<br>
+                        <b>Nyt banklån: 3.000.000 kr.</b>
+                    </p>
+
+                    <p>Samlet gæld = Nyt banklån + Eksisterende studiegæld<br>
+                        <b>Samlet gæld = 3.000.000 + 300.000 = 3.300.000 kr.</b>
+                    </p>
+
+                    <div class="alert alert-info">
+                        $$ \text{Gældsfaktor} = \frac{3.300.000}{850.000} = \mathbf{3,88} $$
+                    </div>
+                    <p><b>Konklusion:</b> Gældsfaktoren er under 4,0, men i den høje ende ("Gul" zone). Da boligen
+                        ligger i København (Vækstområde), vil banken sandsynligvis kræve, at de vælger et lån med
+                        afvikling. De kan ikke få afdragsfrihed.</p>
+
+                    <!-- SANKEY: Jonas & Sara Budget -->
+                    <h4 class="mt-4">Trin 2: Budget og Rådighedsbeløb</h4>
+                    <p>Nu hvor vi har beregnet gældsfaktoren og forstået skatteforholdene, kan vi opstille det fulde månedlige budget for Jonas og Sara efter et boligkøb. Budgettet er rådgiverens ultimative værktøj til at afgøre, om parret reelt kan "sidde" i boligen.</p>
+                    <p>Med en samlet nettoindkomst på ca. 45.500 kr./md. (efter skat) og faste udgifter på ca. 29.500 kr./md. har parret et rådighedsbeløb på ca. <b>15.997 kr./md.</b> til mad, tøj, fornøjelser, opsparing og uforudsete udgifter. Ifølge Finanstilsynets vejledning er minimumet for et samlevende par ca. 11.500-14.500 kr./md., så parret ligger lige over grænsen. Det giver ikke meget luft.</p>
+                    <p>Hertil kommer et vigtigt forbehold: Bankerne stress-tester typisk budgettet med en rente, der er 1-3 procentpoint højere end den aktuelle. Hvis renten stiger fra 5,5 % til 8 %, vil låneydelsen stige med ca. 4.500 kr./md. — og rådighedsbeløbet falder til ca. 11.500 kr., som er i den absolut nedre ende. Det er denne analyse, rådgiveren præsenterer i bankmødet.</p>
+                    <p>Sankey-diagrammet herunder viser den månedlige pengestrøm fra parrets nettoløn til de enkelte udgiftsposter og det endelige rådighedsbeløb.</p>
+
+                    <div class="chart-container sankey-chart mb-2 wide">
+                        <canvas id="caseBudgetSankey"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 2.8 — Sankey-diagram: Jonas & Saras samlede
+                        månedlige budget efter boligkøb. Kilde: Egne beregninger baseret på Skattestyrelsen
+                        (2026).</small>
+
+                    <div class="iframe-container mb-3 mt-4">
+                        <iframe src="https://skat.tepedu.dk/couple_budget.html" title="Budgetberegner Par"></iframe>
+                    </div>
+
+                    <h4 class="mt-4">Trin 3: Optimering via Sambeskatning?</h4>
+                    <p>Lige nu er Jonas og Sara ugifte. Hvis vi antager, at de har renteudgifter på deres nye
+                        andelsboliglån på ca. 150.000 kr. årligt.</p>
+                    <p>Som ugifte kan de hver især trække 50% fra (hvis de begge står på lånet). Men hvad hvis den ene
+                        mister sit job eller går på barsel? </p>
+                    <p>Hvis de bliver gift, sikrer sambeskatningen, at de til enhver tid kan udnytte hinandens fradrag
+                        optimalt. Derudover sikrer det dem juridisk, hvis den ene skulle gå bort, så den anden kan blive
+                        boende i andelsboligen.</p>
+                    <p><b>Anbefaling:</b> Som rådgiver bør du anbefale dem at oprette et testamente eller blive gift,
+                        især når de køber fast ejendom sammen.</p>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.6 RENTEUDGIFTER BAR CHART -->
+                <!-- ============================================================ -->
+                <h2>2.6 Rentefradragets værdi i 2026</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Rentefradraget er en af de mest værdifulde skattefordele for boligejere og låntagere i Danmark. Når en kunde har renteudgifter (f.eks. på et boliglån, billån eller SU-lån), modregnes en del af disse udgifter i skatten. Men fradragsværdien er <i>ikke</i> ens for alle kroner — den er progressiv og afhænger af beløbets størrelse.</p>
+                    <p>I 2026 gælder følgende regler for <b>negativ nettokapitalindkomst</b> (renteudgifter minus renteindtægter):</p>
+                    <ul>
+                        <li><b>De første 50.000 kr.</b> (100.000 kr. for ægtepar): Fradragsværdi ca. <b>33,6 %</b>. Det betyder, at for hver 1.000 kr. i renteudgifter sparer kunden ca. 336 kr. i skat. Denne høje fradragsværdi skyldes, at fradraget påvirker både kommune- og bundskat.</li>
+                        <li><b>Beløb over 50.000 kr.</b> (100.000 kr. for ægtepar): Fradragsværdi falder til ca. <b>25,6 %</b>. Forskellen opstår, fordi den del af renteudgifterne, der overstiger grænsen, kun giver fradrag i kommuneskatten — ikke i bundskatten.</li>
+                    </ul>
+                    <p>For Jonas og Sara med en årlig renteudgift på ca. 128.800 kr. (realkreditrente + bankrente) betyder det en årlig skattebesparelse på ca. <b>38.000-42.000 kr.</b> — eller ca. 3.300 kr. pr. måned. Denne besparelse er allerede indregnet i deres budget, da skatten beregnes efter fradrag.</p>
+
+                    <div class="tip-box">
+                        <p><b>Rådgiver-tip:</b> Husk at gøre kunden opmærksom på, at fradragsværdien er højere for ægtepar (dobbelt grænse). Et ugift par med 150.000 kr. i renteudgifter "mister" fradragsværdi på den del, der ligger over 50.000 kr. pr. person. Et gift par med samme renteudgifter har en samlet grænse på 100.000 kr. — og får dermed mere ud af fradraget. Dette er endnu et argument for at gifte sig, når man køber bolig sammen.</p>
+                    </div>
+
+                    <p>Grafen herunder sammenligner den absolutte skattebesparelse (i kroner) ved forskellige niveauer af renteudgifter — for henholdsvis en enlig og et par.</p>
+
+                    <div class="chart-container mb-2 square wide" style="height:400px;">
+                        <canvas id="interestDeductionChart"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 2.9 — Fradragsværdi af renteudgifter ved forskellige
+                        niveauer (enlig vs. par). Kilde: Skattestyrelsen (2026).</small>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.7 SKATTEOPTIMERING -->
+                <!-- ============================================================ -->
+                <h2>2.7 Skatteoptimering & Pensionsfradrag</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Pensionsoptimering er et af de mest effektive skatteværktøjer, en finansiel rådgiver kan anvende. Princippet er simpelt: indbetalinger på pension reducerer den skattepligtige indkomst <i>nu</i>, mens beskatningen udskydes til pensionsalderen, hvor skatteprocenten typisk er lavere. Gevinsten er forskellen mellem marginalskatten i dag og marginalskatten som pensionist.</p>
+                    <p>I 2026 er de vigtigste pensionsordninger:</p>
+                    <ul>
+                        <li><b>Ratepension:</b> Årligt loft på <b>63.100 kr.</b> Indbetalingen er fuldt fradragsberettiget i den personlige indkomst, hvilket giver en øjeblikkelig skattebesparelse på op til 52 % for topskatteydere. Udbetalingen beskattes som personlig indkomst.</li>
+                        <li><b>Livrente:</b> <i>Intet loft</i> for arbejdsgiveradministrerede ordninger. Dette gør livrenten til det primære værktøj for kunder, der ønsker at nedbringe indkomsten under topskattegrænsen (777.900 kr. i 2026). For privattegnede livrenter gælder dog et loft.</li>
+                        <li><b>Aldersopsparing:</b> Et fast loft på <b>6.100 kr./år</b> (2026). Indbetalingen giver <i>ikke</i> fradrag, men til gengæld beskattes udbetalingen ikke (bortset fra PAL-skat på 15,3 % af afkastet). Aldersopsparingen er velegnet til kunder, der allerede har fyldt rate- og livrentekvoterne op.</li>
+                    </ul>
+                    <p>Men hvorfor gør kunderne det ikke bare? Her spiller <b>adfærdsøkonomi</b> en vigtig rolle. Fænomenet <i>present bias</i> (nutidsbias) beskriver vores tendens til at foretrække 1.000 kr. i dag frem for 2.000 kr. om 30 år — selvom det rationelle valg er klart. Ifølge <b>OECD's Financial Literacy Survey (2023)</b> er det kun 38 % af danske lønmodtagere, der aktivt optimerer deres pensionsindbetaling i forhold til skatten. Resten "lader det køre" på standardniveauet fra deres arbejdsgiverordning.</p>
+                    <p>Som rådgiver er din opgave at synliggøre den reelle gevinst. Sankey-diagrammet herunder viser, hvordan en indbetaling på 63.100 kr. på ratepension ændrer pengestrømmen for en lønmodtager med 700.000 kr. i bruttoløn. Bemærk, at pensionsindbetalingen "fjerner" penge fra skattegrundlaget, hvilket reducerer den samlede skat markant.</p>
+
+                    <div class="tip-box">
+                        <p><b>Rådgiver-tip:</b> Husk det ekstra pensionsfradrag (beskæftigelsesfradraget for pension): 12 % af pensionsindbetalingen (32 % hvis der er mere end 15 år til pensionsalderen), maks. 10.056 kr./26.816 kr. Dette giver et ekstra ligningsmæssigt fradrag oven i det direkte fradrag for indbetalingen. Mange rådgivere overser dette, men det kan betyde 3.000-8.000 kr. ekstra i skattebesparelse.</p>
+                    </div>
+
+                    <div class="chart-container sankey-chart mb-2 wide">
+                        <canvas id="pensionOptSankey"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 2.10 — Sankey-diagram: Effekt af pensionsindbetaling
+                        (63.100 kr. på ratepension) for en lønmodtager med 700.000 kr. bruttoløn. Kilde:
+                        Skattestyrelsen (2026).</small>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.8 PENSIONSFORMUE INTERNATIONAL -->
+                <!-- ============================================================ -->
+                <h3>2.7.1 Pensionsformue i international sammenligning</h3>
+                <div class="info-box reveal-on-scroll">
+                    <p>Det danske pensionssystem er internationalt anerkendt som et af de bedste i verden. Ifølge <b>OECD's Pension Markets in Focus (2024)</b> og <b>Mercer Global Pension Index</b> har Danmark den højeste pensionsformue pr. indbygger i EU og den næsthøjeste i verden (kun overgået af Island). Pensionsformuen udgør ca. <b>233 % af BNP</b> — næsten to en halv gange den samlede danske økonomi.</p>
+                    <p>Denne massive pensionsformue skyldes en kombination af flere faktorer:</p>
+                    <ol>
+                        <li><b>Obligatoriske arbejdsmarkedspensioner:</b> Siden starten af 1990'erne har de fleste danske overenskomster inkluderet obligatorisk pensionsindbetaling (typisk 12-17 % af bruttolønnen). Det betyder, at næsten alle lønmodtagere automatisk opbygger pensionsformue.</li>
+                        <li><b>Skatteincitamenter:</b> Det danske skattesystem belønner pensionsopsparing markant. Fradragsværdien af en pensionsindbetaling kan være op til 52 % for topskatteydere (se afsnit 2.7), mens beskatningen ved udbetaling typisk er 37-42 %. Denne "rabat" gør pensionsopsparing til en af de bedste investeringer, en dansker kan foretage.</li>
+                        <li><b>Langsigtede afkast:</b> De danske pensionskasser (ATP, PFA, Danica, Velliv m.fl.) har leveret solide langsigtede afkast på 7-10 % p.a. før skat over de seneste 30 år ifølge <b>Forsikring & Pension</b>.</li>
+                    </ol>
+                    <p>Grafen herunder viser pensionsformuen som andel af BNP for udvalgte lande. Bemærk den markante forskel mellem de nordeuropæiske velfærdsstater og de sydeuropæiske lande, hvor pensionssystemet primært er baseret på "pay-as-you-go" (løbende finansiering over skatten).</p>
+
+                    <div class="chart-container mb-2 square wide" style="height:500px;">
+                        <canvas id="pensionWealthChart"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 2.11 — Pensionsformue i % af BNP (udvalgte lande).
+                        Kilde: OECD Pension Markets in Focus (2024).</small>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.8 VÆRKTØJER OG KILDER -->
+                <!-- ============================================================ -->
+                <h2>2.8 Værktøjer og Kilder</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Som finansøkonom forventes det, at du kan indhente og validere data fra officielle kilder. I
+                        dette kapitel har vi benyttet:</p>
+                    <ul>
+                        <li><b>Finanstilsynet:</b> Vejledninger om kreditvurdering og rådighedsbeløb.</li>
+                        <li><b>Danmarks Statistik:</b> Forbrugsdata og indkomstfordeling.</li>
+                        <li><b>Finans Danmark:</b> Boligmarkedsstatistik og realkreditdata.</li>
+                        <li><b>Skattestyrelsen:</b> Satser for 2026.</li>
+                        <li><b>OECD:</b> Husholdningsgæld og pensionsformue, international sammenligning.</li>
+                        <li><b>Eurostat:</b> EU-sammenligning af skattetryk og gældsniveauer.</li>
                     </ul>
                 </div>
+
             </article>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Scripts — Same setup as kapitel1.html -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-sankey@0.12.1/dist/chartjs-chart-sankey.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/theme-toggle.js"></script>
     <script src="js/glossary.js"></script>
+    <script src="js/theme-toggle.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const ctx = document.getElementById('debtFactorChart');
-            if (ctx) {
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['2016', '2018', '2020', '2022', '2024', '2026'],
-                        datasets: [{
-                            label: 'Boligpris-indeks',
-                            data: [100, 112, 125, 145, 152, 160],
-                            borderColor: '#e74c3c',
-                            borderWidth: 2,
-                            fill: false
-                        }, {
-                            label: 'Løn-indeks',
-                            data: [100, 104, 109, 115, 122, 128],
-                            borderColor: '#008cff',
-                            borderWidth: 2,
-                            fill: false
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: { title: { display: true, text: 'Indeks (2014=100)' } }
-                        }
+        // ============================================================
+        // HELPERS — Identical to kapitel1.html
+        // ============================================================
+        function getTheme() { return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+        function themeColors() {
+            const dark = getTheme() === 'dark';
+            return {
+                grid: dark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.06)',
+                text: dark ? '#ffffff' : '#333',
+                tooltipBg: dark ? 'rgba(255,255,255,0.92)' : 'rgba(0,0,0,0.85)',
+                tooltipText: dark ? '#000' : '#fff',
+                labelBg: dark ? 'rgba(30,30,46,0.8)' : 'rgba(255,255,255,0.8)'
+            };
+        }
+        function fmt(n) { return n.toLocaleString('da-DK'); }
+        const COLORS = { bund: '#11998e', mellem: '#2193b0', top: '#f2994a', toptop: '#eb3349', am: '#764ba2', kommune: '#667eea', fradrag: '#38ef7d', neutral: '#999' };
+        const GRAD = {
+            bund: ['#11998e', '#38ef7d'],
+            mellem: ['#2193b0', '#6dd5ed'],
+            top: ['#f2994a', '#f2c94c'],
+            toptop: ['#eb3349', '#f45c43'],
+            am: ['#764ba2', '#667eea'],
+            kommune: ['#667eea', '#764ba2'],
+            fradrag: ['#38ef7d', '#11998e'],
+            neutral: ['#999999', '#cccccc']
+        };
+        function makeGrad(ctx, c1, c2, vertical) {
+            const area = ctx.chart ? ctx.chart.chartArea : null;
+            if (!area) return c1;
+            const g = vertical !== false
+                ? ctx.chart.ctx.createLinearGradient(0, area.bottom, 0, area.top)
+                : ctx.chart.ctx.createLinearGradient(area.left, 0, area.right, 0);
+            g.addColorStop(0, c1); g.addColorStop(1, c2);
+            return g;
+        }
+        function gradBg(c1, c2, alpha, vertical) {
+            return function (ctx) {
+                const area = ctx.chart ? ctx.chart.chartArea : null;
+                if (!area) return c1 + (alpha || '');
+                const g = vertical !== false
+                    ? ctx.chart.ctx.createLinearGradient(0, area.bottom, 0, area.top)
+                    : ctx.chart.ctx.createLinearGradient(area.left, 0, area.right, 0);
+                g.addColorStop(0, c1 + (alpha || '')); g.addColorStop(1, c2 + (alpha || ''));
+                return g;
+            };
+        }
+        const chartInstances = {};
+
+        // Helper to delay chart creation until visible
+        function initChartWhenVisible(canvasId, creatorFn) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        creatorFn();
+                        observer.disconnect();
                     }
                 });
-            }
+            }, { threshold: 0.15 });
+            observer.observe(canvas);
+        }
+
+        // Animated counters
+        function animateCounters() {
+            document.querySelectorAll('.stat-number[data-count]').forEach(el => {
+                if (el.dataset.animated) return;
+                const target = parseFloat(el.dataset.count), suffix = el.dataset.suffix || '', duration = 1500, start = performance.now();
+                const decimals = el.dataset.count.includes('.') ? (el.dataset.count.split('.')[1] || '').length : 0;
+                el.dataset.animated = '1';
+                (function frame(now) {
+                    const p = Math.min((now - start) / duration, 1), ease = 1 - Math.pow(1 - p, 3);
+                    const v = ease * target;
+                    el.textContent = (decimals ? v.toFixed(decimals) : Math.round(v).toLocaleString('da-DK')) + suffix;
+                    if (p < 1) requestAnimationFrame(frame);
+                })(start);
+            });
+        }
+        const counterObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) animateCounters(); }); }, { threshold: 0.3 });
+        document.querySelectorAll('.stat-card').forEach(c => counterObs.observe(c));
+
+        // ============================================================
+        // CHART 2.1: Consumption Doughnut
+        // ============================================================
+        initChartWhenVisible('consumptionChart', function () {
+            const c = themeColors();
+            new Chart(document.getElementById('consumptionChart').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Bolig', 'Fødevarer', 'Transport', 'Fritid & Kultur', 'Øvrige varer', 'Beklædning'],
+                    datasets: [{
+                        data: [29, 14, 12, 11, 29, 5],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)',
+                            'rgba(255, 99, 132, 0.8)'
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: { font: { family: 'Inter' }, color: c.text }
+                        }
+                    }
+                }
+            });
         });
+
+        // ============================================================
+        // SANKEY 2.2: Budget Flow — Enlig 480.000 kr.
+        // ============================================================
+        initChartWhenVisible('budgetFlowSankey', function () {
+            const c = themeColors();
+            // Enlig, 480.000 kr. bruttoløn, 2026 regler
+            const brutto = 480000;
+            const am = 38400;           // 8%
+            const bund = 46539;
+            const kommune = 90734;
+            const totalSkat = am + bund + kommune; // 175.673
+            const nettoAar = brutto - totalSkat;   // 304.327
+            const nettoMd = Math.round(nettoAar / 12); // ~25.360
+            // Faste udgifter (mdl. → årlige)
+            const bolig = 7000 * 12;    // 84.000
+            const transport = 2500 * 12; // 30.000
+            const forsikring = 1200 * 12; // 14.400
+            const abonnement = 800 * 12;  // 9.600
+            const fasteTotal = bolig + transport + forsikring + abonnement; // 138.000
+            const raadighed = nettoAar - fasteTotal; // ~166.327
+
+            new Chart(document.getElementById('budgetFlowSankey').getContext('2d'), {
+                type: 'sankey',
+                data: {
+                    datasets: [{
+                        data: [
+                            { from: 'Bruttoløn', to: 'Samlet skat', flow: totalSkat },
+                            { from: 'Bruttoløn', to: 'Nettoløn', flow: nettoAar },
+                            { from: 'Samlet skat', to: 'AM-bidrag', flow: am },
+                            { from: 'Samlet skat', to: 'Bundskat', flow: bund },
+                            { from: 'Samlet skat', to: 'Kommuneskat', flow: kommune },
+                            { from: 'Nettoløn', to: 'Bolig', flow: bolig },
+                            { from: 'Nettoløn', to: 'Transport', flow: transport },
+                            { from: 'Nettoløn', to: 'Forsikringer', flow: forsikring },
+                            { from: 'Nettoløn', to: 'Abonnementer', flow: abonnement },
+                            { from: 'Nettoløn', to: 'Rådighedsbeløb', flow: raadighed }
+                        ],
+                        colorFrom: ctx => {
+                            const from = ctx.dataset.data[ctx.dataIndex].from;
+                            return { 'Bruttoløn': '#667eea', 'Samlet skat': '#ef5350', 'Nettoløn': '#38ef7d' }[from] || '#999';
+                        },
+                        colorTo: ctx => {
+                            const to = ctx.dataset.data[ctx.dataIndex].to;
+                            return {
+                                'Nettoløn': '#38ef7d', 'Samlet skat': '#ef5350',
+                                'AM-bidrag': COLORS.am, 'Bundskat': COLORS.bund, 'Kommuneskat': COLORS.kommune,
+                                'Bolig': '#36a2eb', 'Transport': '#4bc0c0', 'Forsikringer': '#f2994a',
+                                'Abonnementer': '#9966ff', 'Rådighedsbeløb': '#38ef7d'
+                            }[to] || '#999';
+                        },
+                        colorMode: 'gradient',
+                        labels: {
+                            'Bruttoløn': 'Bruttoløn\n' + fmt(brutto) + ' kr.',
+                            'Samlet skat': 'Samlet skat\n' + fmt(totalSkat) + ' kr.',
+                            'Nettoløn': 'Nettoløn\n' + fmt(nettoAar) + ' kr.',
+                            'AM-bidrag': 'AM-bidrag\n' + fmt(am) + ' kr.',
+                            'Bundskat': 'Bundskat\n' + fmt(bund) + ' kr.',
+                            'Kommuneskat': 'Kommuneskat\n' + fmt(kommune) + ' kr.',
+                            'Bolig': 'Bolig\n' + fmt(bolig) + ' kr.',
+                            'Transport': 'Transport\n' + fmt(transport) + ' kr.',
+                            'Forsikringer': 'Forsikringer\n' + fmt(forsikring) + ' kr.',
+                            'Abonnementer': 'Abonnementer\n' + fmt(abonnement) + ' kr.',
+                            'Rådighedsbeløb': 'Rådighedsbeløb\n' + fmt(raadighed) + ' kr.'
+                        },
+                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text }
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, layout: { padding: { right: 140 } }, animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Budgetflow: Bruttoløn → Skat → Faste udgifter → Rådighedsbeløb (enlig, 480.000 kr.)', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: function (ctx) { const d = ctx.dataset.data[ctx.dataIndex]; return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.'; } } }
+                    },
+                    color: c.text
+                }
+            });
+        });
+
+        // ============================================================
+        // CHART 2.3: Boligpriser vs Løn (Line chart)
+        // ============================================================
+        initChartWhenVisible('debtFactorChart', function () {
+            const c = themeColors();
+            new Chart(document.getElementById('debtFactorChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'],
+                    datasets: [{
+                        label: 'Boligpris-indeks (Kbh)',
+                        data: [100, 108, 115, 120, 135, 155, 150, 148, 155, 160, 165],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        borderWidth: 3, fill: true, tension: 0.3, pointRadius: 4, pointHoverRadius: 6
+                    }, {
+                        label: 'Løn-indeks',
+                        data: [100, 102, 105, 108, 112, 115, 118, 122, 126, 130, 135],
+                        borderColor: '#008cff',
+                        backgroundColor: 'rgba(0, 140, 255, 0.1)',
+                        borderWidth: 3, fill: true, tension: 0.3, pointRadius: 4, pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        tooltip: { padding: 10, backgroundColor: c.tooltipBg, titleFont: { family: 'Space Grotesk', size: 14 }, bodyFont: { family: 'Inter', size: 13 } },
+                        legend: { labels: { font: { family: 'Inter' }, color: c.text } }
+                    },
+                    scales: {
+                        y: { title: { display: true, text: 'Indeks (2016=100)', color: c.text, font: { family: 'Inter', weight: 600 } }, grid: { color: c.grid }, ticks: { color: c.text, font: { family: 'IBM Plex Mono' } } },
+                        x: { grid: { display: false }, ticks: { color: c.text, font: { family: 'IBM Plex Mono' } } }
+                    }
+                }
+            });
+        });
+
+        // ============================================================
+        // SANKEY 2.4: Boligfinansiering 3.200.000 kr.
+        // ============================================================
+        initChartWhenVisible('housingFinanceSankey', function () {
+            const c = themeColors();
+            const pris = 3200000;
+            const udbetaling = 200000;
+            const realkredit = 2560000; // 80% af 3.200.000
+            const banklaan = 440000;    // resten
+            // Årlige ydelser (estimat)
+            const rkRente = 102400;    // ~4% af realkredit
+            const rkAfdrag = 64000;    // ~2.5%
+            const blRente = 26400;     // ~6% af banklån
+            const blAfdrag = 22000;
+
+            new Chart(document.getElementById('housingFinanceSankey').getContext('2d'), {
+                type: 'sankey',
+                data: {
+                    datasets: [{
+                        data: [
+                            { from: 'Boligpris', to: 'Realkreditlån', flow: realkredit },
+                            { from: 'Boligpris', to: 'Banklån', flow: banklaan },
+                            { from: 'Boligpris', to: 'Udbetaling', flow: udbetaling },
+                            { from: 'Realkreditlån', to: 'RK Rente', flow: rkRente },
+                            { from: 'Realkreditlån', to: 'RK Afdrag', flow: rkAfdrag },
+                            { from: 'Banklån', to: 'Bank Rente', flow: blRente },
+                            { from: 'Banklån', to: 'Bank Afdrag', flow: blAfdrag }
+                        ],
+                        colorFrom: ctx => {
+                            const from = ctx.dataset.data[ctx.dataIndex].from;
+                            return { 'Boligpris': '#667eea', 'Realkreditlån': '#2193b0', 'Banklån': '#f2994a' }[from] || '#999';
+                        },
+                        colorTo: ctx => {
+                            const to = ctx.dataset.data[ctx.dataIndex].to;
+                            return {
+                                'Realkreditlån': '#2193b0', 'Banklån': '#f2994a', 'Udbetaling': '#38ef7d',
+                                'RK Rente': '#ef5350', 'RK Afdrag': '#11998e',
+                                'Bank Rente': '#ef5350', 'Bank Afdrag': '#11998e'
+                            }[to] || '#999';
+                        },
+                        colorMode: 'gradient',
+                        labels: {
+                            'Boligpris': 'Boligpris\n' + fmt(pris) + ' kr.',
+                            'Realkreditlån': 'Realkreditlån (80%)\n' + fmt(realkredit) + ' kr.',
+                            'Banklån': 'Banklån (resten)\n' + fmt(banklaan) + ' kr.',
+                            'Udbetaling': 'Udbetaling\n' + fmt(udbetaling) + ' kr.',
+                            'RK Rente': 'RK Rente/år\n' + fmt(rkRente) + ' kr.',
+                            'RK Afdrag': 'RK Afdrag/år\n' + fmt(rkAfdrag) + ' kr.',
+                            'Bank Rente': 'Bank Rente/år\n' + fmt(blRente) + ' kr.',
+                            'Bank Afdrag': 'Bank Afdrag/år\n' + fmt(blAfdrag) + ' kr.'
+                        },
+                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text }
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, layout: { padding: { right: 140 } }, animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Boligfinansiering: 3.200.000 kr. andelsbolig', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: function (ctx) { const d = ctx.dataset.data[ctx.dataIndex]; return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.'; } } }
+                    },
+                    color: c.text
+                }
+            });
+        });
+
+        // ============================================================
+        // CHART 2.5: Husholdningsgæld international (Bar)
+        // ============================================================
+        initChartWhenVisible('householdDebtChart', function () {
+            const c = themeColors();
+            const countries = ['Rumænien', 'Polen', 'Tjekkiet', 'Østrig', 'Italien', 'Tyskland', 'Frankrig', 'Spanien', 'USA', 'Finland', 'UK', 'Sverige', 'Canada', 'Norge', 'Holland', 'Australien', 'Schweiz', 'Danmark'];
+            const values = [22, 38, 56, 58, 63, 83, 98, 100, 103, 123, 131, 166, 175, 210, 220, 195, 222, 236];
+
+            new Chart(document.getElementById('householdDebtChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: countries,
+                    datasets: [{
+                        label: 'Gæld (% af disponibel indkomst)',
+                        data: values,
+                        backgroundColor: countries.map((ct) =>
+                            ct === 'Danmark' ? gradBg('#eb3349', '#f45c43', 'bb', false)
+                                : ct === 'Sverige' || ct === 'Norge' || ct === 'Finland' ? gradBg('#11998e', '#38ef7d', 'aa', false)
+                                    : gradBg('#2193b0', '#6dd5ed', 'aa', false)
+                        ),
+                        borderColor: countries.map((ct) =>
+                            ct === 'Danmark' ? '#eb3349'
+                                : ct === 'Sverige' || ct === 'Norge' || ct === 'Finland' ? '#11998e'
+                                    : '#2193b0'
+                        ),
+                        borderWidth: 1.5, borderRadius: 0
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: { duration: 2500 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Husholdningernes gæld (% af disponibel indkomst, 2024)', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: ctx => ctx.parsed.x + '% af disponibel indkomst' } },
+                        annotation: {
+                            annotations: {
+                                avgLine: {
+                                    type: 'line', xMin: 120, xMax: 120,
+                                    borderColor: 'rgba(255,193,7,0.7)', borderWidth: 1.5, borderDash: [6, 4],
+                                    label: { display: true, content: 'OECD gns. ~120%', position: 'start', font: { size: 10 }, color: c.text, backgroundColor: c.labelBg, borderRadius: 0 }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { beginAtZero: true, max: 260, grid: { color: c.grid }, ticks: { color: c.text, callback: v => v + '%' } },
+                        y: { grid: { display: false }, ticks: { color: c.text, font: { size: 10 } } }
+                    }
+                }
+            });
+        });
+
+        // ============================================================
+        // SANKEY 2.6: Ugift par (Jonas 400k + Sara 450k)
+        // ============================================================
+        initChartWhenVisible('ugiftSankey', function () {
+            const c = themeColors();
+            // Jonas: 400.000
+            const jBrutto = 400000, jAm = 32000, jBund = 37235, jKommune = 72688;
+            const jSkat = jAm + jBund + jKommune; // 141.923
+            const jNetto = jBrutto - jSkat;        // 258.077
+            // Sara: 450.000
+            const sBrutto = 450000, sAm = 36000, sBund = 42726, sKommune = 83394;
+            const sSkat = sAm + sBund + sKommune;  // 162.120
+            const sNetto = sBrutto - sSkat;         // 287.880
+            const samletNetto = jNetto + sNetto;    // 545.957
+
+            new Chart(document.getElementById('ugiftSankey').getContext('2d'), {
+                type: 'sankey',
+                data: {
+                    datasets: [{
+                        data: [
+                            { from: 'Jonas løn', to: 'Jonas skat', flow: jSkat },
+                            { from: 'Jonas løn', to: 'Jonas netto', flow: jNetto },
+                            { from: 'Jonas skat', to: 'AM-bidrag (J)', flow: jAm },
+                            { from: 'Jonas skat', to: 'Bundskat (J)', flow: jBund },
+                            { from: 'Jonas skat', to: 'Kommuneskat (J)', flow: jKommune },
+                            { from: 'Sara løn', to: 'Sara skat', flow: sSkat },
+                            { from: 'Sara løn', to: 'Sara netto', flow: sNetto },
+                            { from: 'Sara skat', to: 'AM-bidrag (S)', flow: sAm },
+                            { from: 'Sara skat', to: 'Bundskat (S)', flow: sBund },
+                            { from: 'Sara skat', to: 'Kommuneskat (S)', flow: sKommune },
+                            { from: 'Jonas netto', to: 'Samlet disponibel', flow: jNetto },
+                            { from: 'Sara netto', to: 'Samlet disponibel', flow: sNetto }
+                        ],
+                        colorFrom: ctx => {
+                            const from = ctx.dataset.data[ctx.dataIndex].from;
+                            if (from.includes('Jonas')) return from.includes('skat') ? '#ef5350' : '#667eea';
+                            if (from.includes('Sara')) return from.includes('skat') ? '#ef5350' : '#f2994a';
+                            return '#999';
+                        },
+                        colorTo: ctx => {
+                            const to = ctx.dataset.data[ctx.dataIndex].to;
+                            if (to === 'Samlet disponibel') return '#38ef7d';
+                            if (to.includes('skat')) return '#ef5350';
+                            if (to.includes('netto')) return '#38ef7d';
+                            if (to.includes('AM')) return COLORS.am;
+                            if (to.includes('Bund')) return COLORS.bund;
+                            if (to.includes('Kommune')) return COLORS.kommune;
+                            return '#999';
+                        },
+                        colorMode: 'gradient',
+                        labels: {
+                            'Jonas løn': 'Jonas bruttoløn\n' + fmt(jBrutto) + ' kr.',
+                            'Sara løn': 'Sara bruttoløn\n' + fmt(sBrutto) + ' kr.',
+                            'Jonas skat': 'Jonas skat\n' + fmt(jSkat) + ' kr.',
+                            'Sara skat': 'Sara skat\n' + fmt(sSkat) + ' kr.',
+                            'Jonas netto': 'Jonas netto\n' + fmt(jNetto) + ' kr.',
+                            'Sara netto': 'Sara netto\n' + fmt(sNetto) + ' kr.',
+                            'AM-bidrag (J)': 'AM-bidrag\n' + fmt(jAm) + ' kr.',
+                            'Bundskat (J)': 'Bundskat\n' + fmt(jBund) + ' kr.',
+                            'Kommuneskat (J)': 'Kommuneskat\n' + fmt(jKommune) + ' kr.',
+                            'AM-bidrag (S)': 'AM-bidrag\n' + fmt(sAm) + ' kr.',
+                            'Bundskat (S)': 'Bundskat\n' + fmt(sBund) + ' kr.',
+                            'Kommuneskat (S)': 'Kommuneskat\n' + fmt(sKommune) + ' kr.',
+                            'Samlet disponibel': 'Samlet disponibel\n' + fmt(samletNetto) + ' kr.'
+                        },
+                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text }
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, layout: { padding: { right: 140 } }, animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Ugift par: Jonas (400.000 kr.) & Sara (450.000 kr.) — Individuel beskatning', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: function (ctx) { const d = ctx.dataset.data[ctx.dataIndex]; return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.'; } } }
+                    },
+                    color: c.text
+                }
+            });
+        });
+
+        // ============================================================
+        // SANKEY 2.7: Gift par (Jonas 400k + Sara 450k) — sambeskatning
+        // ============================================================
+        initChartWhenVisible('giftSankey', function () {
+            const c = themeColors();
+            // Gift: Personfradrag overføres (begge udnytter), renteudgifter deles optimalt
+            // Samlet indkomst: 850.000, samlet AM: 68.000
+            const samletBrutto = 850000;
+            const samletAm = 68000;
+            const samletBund = 78260;    // optimeret pga. fuld fradragsudnyttelse
+            const samletKommune = 152082;
+            const samletSkat = samletAm + samletBund + samletKommune; // 298.342
+            const samletNetto = samletBrutto - samletSkat;            // 551.658
+            // Forskel vs ugift: 551.658 - 545.957 = 5.701 kr. mere som gift
+
+            new Chart(document.getElementById('giftSankey').getContext('2d'), {
+                type: 'sankey',
+                data: {
+                    datasets: [{
+                        data: [
+                            { from: 'Samlet bruttoløn', to: 'Samlet skat', flow: samletSkat },
+                            { from: 'Samlet bruttoløn', to: 'Disponibel indkomst', flow: samletNetto },
+                            { from: 'Samlet skat', to: 'AM-bidrag', flow: samletAm },
+                            { from: 'Samlet skat', to: 'Bundskat', flow: samletBund },
+                            { from: 'Samlet skat', to: 'Kommuneskat', flow: samletKommune }
+                        ],
+                        colorFrom: ctx => {
+                            const from = ctx.dataset.data[ctx.dataIndex].from;
+                            return from === 'Samlet bruttoløn' ? '#667eea' : '#ef5350';
+                        },
+                        colorTo: ctx => {
+                            const to = ctx.dataset.data[ctx.dataIndex].to;
+                            return {
+                                'Disponibel indkomst': '#38ef7d', 'Samlet skat': '#ef5350',
+                                'AM-bidrag': COLORS.am, 'Bundskat': COLORS.bund, 'Kommuneskat': COLORS.kommune
+                            }[to] || '#999';
+                        },
+                        colorMode: 'gradient',
+                        labels: {
+                            'Samlet bruttoløn': 'Samlet bruttoløn\n' + fmt(samletBrutto) + ' kr.',
+                            'Samlet skat': 'Samlet skat\n' + fmt(samletSkat) + ' kr.',
+                            'Disponibel indkomst': 'Disponibel indkomst\n' + fmt(samletNetto) + ' kr.',
+                            'AM-bidrag': 'AM-bidrag\n' + fmt(samletAm) + ' kr.',
+                            'Bundskat': 'Bundskat\n' + fmt(samletBund) + ' kr.',
+                            'Kommuneskat': 'Kommuneskat\n' + fmt(samletKommune) + ' kr.'
+                        },
+                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text }
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, layout: { padding: { right: 140 } }, animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Gift par: Jonas & Sara (sambeskatning) — Disponibel: ' + fmt(samletNetto) + ' kr.', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: function (ctx) { const d = ctx.dataset.data[ctx.dataIndex]; return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.'; } } }
+                    },
+                    color: c.text
+                }
+            });
+        });
+
+        // ============================================================
+        // SANKEY 2.8: Jonas & Sara Budget efter boligkøb (mdl.)
+        // ============================================================
+        initChartWhenVisible('caseBudgetSankey', function () {
+            const c = themeColors();
+            // Månedlige tal (ca.)
+            const samletNettoMd = 45497; // ~545.957 / 12
+            const boligafgift = 4500;
+            const laanYdelse = 17900; // rente + afdrag pr. md (3 mio. lån ~5.5% + afdrag)
+            const elVandVarme = 2000;
+            const forsikring = 1500;
+            const transport = 3000;
+            const streaming = 600;
+            const fasteTotal = boligafgift + laanYdelse + elVandVarme + forsikring + transport + streaming;
+            const raadighed = samletNettoMd - fasteTotal;
+
+            new Chart(document.getElementById('caseBudgetSankey').getContext('2d'), {
+                type: 'sankey',
+                data: {
+                    datasets: [{
+                        data: [
+                            { from: 'Nettoløn (md.)', to: 'Boligafgift', flow: boligafgift },
+                            { from: 'Nettoløn (md.)', to: 'Låneydelse', flow: laanYdelse },
+                            { from: 'Nettoløn (md.)', to: 'El/Vand/Varme', flow: elVandVarme },
+                            { from: 'Nettoløn (md.)', to: 'Forsikringer', flow: forsikring },
+                            { from: 'Nettoløn (md.)', to: 'Transport', flow: transport },
+                            { from: 'Nettoløn (md.)', to: 'Streaming/Abb.', flow: streaming },
+                            { from: 'Nettoløn (md.)', to: 'Rådighedsbeløb', flow: raadighed }
+                        ],
+                        colorFrom: () => '#667eea',
+                        colorTo: ctx => {
+                            const to = ctx.dataset.data[ctx.dataIndex].to;
+                            return {
+                                'Boligafgift': '#36a2eb', 'Låneydelse': '#ef5350',
+                                'El/Vand/Varme': '#ffce56', 'Forsikringer': '#f2994a',
+                                'Transport': '#4bc0c0', 'Streaming/Abb.': '#9966ff',
+                                'Rådighedsbeløb': '#38ef7d'
+                            }[to] || '#999';
+                        },
+                        colorMode: 'gradient',
+                        labels: {
+                            'Nettoløn (md.)': 'Nettoløn (md.)\n' + fmt(samletNettoMd) + ' kr.',
+                            'Boligafgift': 'Boligafgift\n' + fmt(boligafgift) + ' kr.',
+                            'Låneydelse': 'Låneydelse\n' + fmt(laanYdelse) + ' kr.',
+                            'El/Vand/Varme': 'El/Vand/Varme\n' + fmt(elVandVarme) + ' kr.',
+                            'Forsikringer': 'Forsikringer\n' + fmt(forsikring) + ' kr.',
+                            'Transport': 'Transport\n' + fmt(transport) + ' kr.',
+                            'Streaming/Abb.': 'Streaming/Abb.\n' + fmt(streaming) + ' kr.',
+                            'Rådighedsbeløb': 'Rådighedsbeløb\n' + fmt(raadighed) + ' kr.'
+                        },
+                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text }
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, layout: { padding: { right: 140 } }, animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Jonas & Sara: Månedligt budget efter boligkøb', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: function (ctx) { const d = ctx.dataset.data[ctx.dataIndex]; return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.'; } } }
+                    },
+                    color: c.text
+                }
+            });
+        });
+
+        // ============================================================
+        // CHART 2.9: Rentefradrag (Bar)
+        // ============================================================
+        initChartWhenVisible('interestDeductionChart', function () {
+            const c = themeColors();
+            const levels = ['25.000', '50.000', '75.000', '100.000', '150.000', '200.000'];
+            const enlig = [8400, 16800, 23200, 29600, 42400, 55200];
+            const par = [8400, 16800, 25200, 33600, 46400, 55600];
+
+            new Chart(document.getElementById('interestDeductionChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: levels,
+                    datasets: [{
+                        label: 'Fradragsværdi (Enlig)',
+                        data: enlig,
+                        backgroundColor: gradBg('#2193b0', '#6dd5ed', 'cc'),
+                        borderColor: '#2193b0', borderWidth: 1.5, borderRadius: 0
+                    }, {
+                        label: 'Fradragsværdi (Par)',
+                        data: par,
+                        backgroundColor: gradBg('#11998e', '#38ef7d', 'cc'),
+                        borderColor: '#11998e', borderWidth: 1.5, borderRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Fradragsværdi af renteudgifter (kr.) — Enlig vs. Par (2026)', color: c.text, font: { size: 14, weight: 'bold' } },
+                        legend: { labels: { color: c.text, font: { family: 'Inter' } } },
+                        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + fmt(ctx.parsed.y) + ' kr.' } }
+                    },
+                    scales: {
+                        x: { title: { display: true, text: 'Renteudgifter (kr./år)', color: c.text }, grid: { display: false }, ticks: { color: c.text } },
+                        y: { title: { display: true, text: 'Skattebesparelse (kr.)', color: c.text }, grid: { color: c.grid }, ticks: { color: c.text, callback: v => fmt(v) + ' kr.' } }
+                    }
+                }
+            });
+        });
+
+        // ============================================================
+        // SANKEY 2.10: Pensionsoptimering (700k med 63.100 ratepension)
+        // ============================================================
+        initChartWhenVisible('pensionOptSankey', function () {
+            const c = themeColors();
+            const brutto = 700000;
+            const pension = 63100;
+            const bruttoEfterPension = brutto - pension; // 636.900
+            const am = Math.round(bruttoEfterPension * 0.08); // 50.952
+            const pi = bruttoEfterPension - am;               // 585.948
+            const bund = Math.round((pi - 54100) * 0.1201);   // 63.896
+            const kommune = Math.round((pi - 54100) * 0.25);  // 132.962
+            const totalSkat = am + bund + kommune;             // 247.810
+            const netto = bruttoEfterPension - totalSkat;      // 389.090
+            const sparetSkat = 32800; // approx. besparelse vs. ingen pension
+
+            new Chart(document.getElementById('pensionOptSankey').getContext('2d'), {
+                type: 'sankey',
+                data: {
+                    datasets: [{
+                        data: [
+                            { from: 'Bruttoløn', to: 'Ratepension', flow: pension },
+                            { from: 'Bruttoløn', to: 'Skattepligtig indkomst', flow: bruttoEfterPension },
+                            { from: 'Skattepligtig indkomst', to: 'Samlet skat', flow: totalSkat },
+                            { from: 'Skattepligtig indkomst', to: 'Disponibel indkomst', flow: netto },
+                            { from: 'Samlet skat', to: 'AM-bidrag', flow: am },
+                            { from: 'Samlet skat', to: 'Bundskat', flow: bund },
+                            { from: 'Samlet skat', to: 'Kommuneskat', flow: kommune }
+                        ],
+                        colorFrom: ctx => {
+                            const from = ctx.dataset.data[ctx.dataIndex].from;
+                            return { 'Bruttoløn': '#667eea', 'Skattepligtig indkomst': '#2193b0', 'Samlet skat': '#ef5350' }[from] || '#999';
+                        },
+                        colorTo: ctx => {
+                            const to = ctx.dataset.data[ctx.dataIndex].to;
+                            return {
+                                'Ratepension': '#f2994a', 'Skattepligtig indkomst': '#2193b0',
+                                'Disponibel indkomst': '#38ef7d', 'Samlet skat': '#ef5350',
+                                'AM-bidrag': COLORS.am, 'Bundskat': COLORS.bund, 'Kommuneskat': COLORS.kommune
+                            }[to] || '#999';
+                        },
+                        colorMode: 'gradient',
+                        labels: {
+                            'Bruttoløn': 'Bruttoløn\n' + fmt(brutto) + ' kr.',
+                            'Ratepension': 'Ratepension\n' + fmt(pension) + ' kr.',
+                            'Skattepligtig indkomst': 'Skattepligtig\n' + fmt(bruttoEfterPension) + ' kr.',
+                            'Samlet skat': 'Samlet skat\n' + fmt(totalSkat) + ' kr.',
+                            'Disponibel indkomst': 'Disponibel indkomst\n' + fmt(netto) + ' kr.',
+                            'AM-bidrag': 'AM-bidrag\n' + fmt(am) + ' kr.',
+                            'Bundskat': 'Bundskat\n' + fmt(bund) + ' kr.',
+                            'Kommuneskat': 'Kommuneskat\n' + fmt(kommune) + ' kr.'
+                        },
+                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text }
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, layout: { padding: { right: 140 } }, animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Pensionsoptimering: 700.000 kr. bruttoløn med 63.100 kr. ratepension', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: function (ctx) { const d = ctx.dataset.data[ctx.dataIndex]; return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.'; } } }
+                    },
+                    color: c.text
+                }
+            });
+        });
+
+        // ============================================================
+        // CHART 2.11: Pensionsformue i % af BNP (Bar)
+        // ============================================================
+        initChartWhenVisible('pensionWealthChart', function () {
+            const c = themeColors();
+            const countries = ['Grækenland', 'Tyskland', 'Frankrig', 'Spanien', 'Italien', 'Sverige', 'Finland', 'Norge', 'Canada', 'USA', 'UK', 'Schweiz', 'Australien', 'Holland', 'Island', 'Danmark'];
+            const values = [4, 8, 13, 15, 11, 95, 65, 62, 89, 142, 105, 148, 120, 213, 188, 233];
+
+            new Chart(document.getElementById('pensionWealthChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: countries,
+                    datasets: [{
+                        label: 'Pensionsformue (% af BNP)',
+                        data: values,
+                        backgroundColor: countries.map((ct) =>
+                            ct === 'Danmark' ? gradBg('#eb3349', '#f45c43', 'bb', false)
+                                : ct === 'Holland' || ct === 'Island' ? gradBg('#11998e', '#38ef7d', 'aa', false)
+                                    : gradBg('#667eea', '#764ba2', 'aa', false)
+                        ),
+                        borderColor: countries.map((ct) =>
+                            ct === 'Danmark' ? '#eb3349'
+                                : ct === 'Holland' || ct === 'Island' ? '#11998e'
+                                    : '#667eea'
+                        ),
+                        borderWidth: 1.5, borderRadius: 0
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: { duration: 2500 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Pensionsformue (% af BNP) — Udvalgte lande (2024)', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: ctx => ctx.parsed.x + '% af BNP' } }
+                    },
+                    scales: {
+                        x: { beginAtZero: true, max: 260, grid: { color: c.grid }, ticks: { color: c.text, callback: v => v + '%' } },
+                        y: { grid: { display: false }, ticks: { color: c.text, font: { size: 10 } } }
+                    }
+                }
+            });
+        });
+
     </script>
 </body>
 

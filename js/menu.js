@@ -2,10 +2,10 @@
 const menuItems = [
     { href: 'index.html', text: '0. Forside' },
     { href: 'kapitel1.html', text: '1. Skattesystemet 2026' },
-    { href: 'kapitel2.html', text: '2. Kreditvurdering & Gæld' },
-    { href: 'kapitel3.html', text: '3. MiFID II, Etik & ESG' },
-    { href: 'kapitel4.html', text: '4. Bolighandlen & Ejendomsskat' },
-    { href: 'kapitel5.html', text: '5. Realkredit & Finansiering' },
+    { href: 'kapitel2.html', text: '2. Kreditvurdering og Budget' },
+    { href: 'kapitel3.html', text: '3. Bolig: Ejer & Andel' },
+    { href: 'kapitel4.html', text: '4. Pension og Forsikring' },
+    { href: 'kapitel5.html', text: '5. Investering' },
     { href: 'ordliste.html', text: '9. Ordliste' }
 ];
 

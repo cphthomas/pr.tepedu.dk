@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>MiFID II, Etik & ESG - Privatøkonomisk Rådgivning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boligøkonomi 2026 - Privatøkonomisk Rådgivning</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Bootstrap Icons -->
@@ -24,13 +25,121 @@
     <link rel="stylesheet" href="css/glossary.css">
 
     <style>
-        .regulation-badge {
-            background: #2c3e50;
+        /* Square corners everywhere */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            border-radius: 0;
+            padding: 10px;
+        }
+
+        /* Chart container backgrounds for dark/light mode */
+        body:not(.dark-mode) .chart-container {
+            background-color: #ffffff;
+        }
+
+        body.dark-mode .chart-container {
+            background-color: #000000;
+        }
+
+        .chart-container.sankey-chart {
+            height: 70vh;
+        }
+
+        /* Stat cards */
+        .stat-card {
+            background: #fff;
+            border-radius: 0;
+            padding: 24px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+            border: 1px solid #e8e8e8;
+            height: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        [data-theme="dark"] .stat-card {
+            background: #1e1e2e;
+            border-color: #333;
+        }
+
+        [data-theme="dark"] .stat-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #333;
+        }
+
+        [data-theme="dark"] .stat-number {
+            color: #e0e0e0;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 6px;
+        }
+
+        [data-theme="dark"] .stat-label {
+            color: #aaa;
+        }
+
+        .stat-number.accent-purple {
+            color: #764ba2;
+        }
+
+        .stat-number.accent-green {
+            color: #11998e;
+        }
+
+        .stat-number.accent-orange {
+            color: #f2994a;
+        }
+
+        .stat-number.accent-blue {
+            color: #2193b0;
+        }
+
+        /* Reveal on scroll */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-on-scroll.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Tax calculator inputs */
+        .calc-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        [data-theme="dark"] .calc-input {
+            background: #2c2c3e;
+            border-color: #444;
             color: white;
-            padding: 5px 15px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-right: 10px;
+        }
+
+        /* Override Chart.js border radius */
+        canvas {
+            border-radius: 0 !important;
         }
     </style>
 </head>
@@ -41,12 +150,9 @@
         <div class="container-fluid">
             <a href="https://tepedu.dk/" target="_blank" rel="noopener noreferrer">
                 <img id="site-logo" src="images/tepedulogoanim.svg" alt="Te Pedu Logo"
-                    style="height: 35px; margin-right: 15px;">
+                    style="height:35px; margin-right:15px;">
             </a>
-            <a class="navbar-brand" href="index.html">
-                <i class="bi bi-house-door"></i>
-            </a>
-
+            <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i></a>
             <ul class="navbar-nav ml-auto align-items-center">
                 <li class="nav-item">
                     <a class="nav-link" id="theme-toggle" href="#" role="button" aria-label="Skift tema">
@@ -74,26 +180,22 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="bi bi-list icon-margin"></i>
-                    </a>
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                            class="bi bi-list icon-margin"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink"></div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="prev-page-link" href="kapitel2.html"><i class="bi bi-arrow-left"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="next-page-link" href="kapitel4.html"><i class="bi bi-arrow-right"></i></a>
-                </li>
+                <li class="nav-item"><a class="nav-link" id="prev-page-link" href="kapitel2.html"><i
+                            class="bi bi-arrow-left"></i></a></li>
+                <li class="nav-item"><a class="nav-link" id="next-page-link" href="kapitel4.html"><i
+                            class="bi bi-arrow-right"></i></a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Sidebar Navigation -->
+    <!-- Sidebar -->
     <div id="left-aligned-sidebar" class="sidebar">
-        <button id="sidebar-toggle-button" class="sidebar-toggle" aria-label="Toggle navigation">
-            <i class="bi bi-list"></i>
-        </button>
+        <button id="sidebar-toggle-button" class="sidebar-toggle" aria-label="Toggle navigation"><i
+                class="bi bi-list"></i></button>
         <div class="sidebar-content">
             <h5 class="sidebar-title">Indholdsfortegnelse</h5>
             <ul id="sidebar-toc" class="list-unstyled"></ul>
@@ -102,104 +204,490 @@
 
     <!-- Page Content -->
     <div class="content">
-        <div class="container-fluid mt-4 px-lg-5">
+        <div class="container mt-4">
             <article>
                 <div class="book-cover-wrapper">
-                    <div class="img-fluid" width="100%" style="min-height: 400px; background-color: #2c3e50;"></div>
-                    <h1 class="cover-text-overlay animate-cover-text" data-type-text="3 Etik & MiFID II"
-                        data-type-speed="150">3 Etik & MiFID II</h1>
+                    <!-- Placeholder video/image for Real Estate -->
+                    <div class="img-fluid" width="100%"
+                        style="min-height:400px; object-fit:cover; background: linear-gradient(45deg, #1e3c72, #2a5298);">
+                    </div>
+                    <h1 class="cover-text-overlay animate-cover-text" data-type-text="Bolig: Ejer & Andel"
+                        data-type-speed="150">Bolig: Ejer & Andel</h1>
                 </div>
 
-                <div class="info-box mt-4">
-                    <p class="lead">Finansiel rådgivning er et tillidserhverv. For at beskytte kunden og sikre markedets
-                        integritet er rådgiveren underlagt omfattende EU-lovgivning og etiske standarder.</p>
+                <div class="info-box reveal-on-scroll">
+                    <p>Det danske boligmarked er en hjørnesten i både samfundsøkonomien og den enkelte families
+                        privatøkonomi. For hovedparten af befolkningen udgør friværdien i boligen den største
+                        enkeltstående opsparing, ofte større end pensionsopsparingen. Boligmarkedet er dog også præget
+                        af kompleksitet: finansiering, skatteregler, juridiske dokumenter og konstante
+                        markedssvingninger.</p>
+                    <p>I 2026 befinder vi os i en æra efter den store boligskattereform fra 2024. Systemet er nu fuldt
+                        implementeret, og boligskatterne er mere direkte koblet til de aktuelle vurderinger. Samtidig
+                        har rentemarkedet stabiliseret sig på et niveau, der er højere end nullerne i 10'erne, men
+                        lavere end chokstigningerne i 2022. Dette kapitel er en dybdegående guide til boligøkonomi i
+                        2026, der dækker alt fra finansieringstyper og skatteregler til forskellen på ejer- og
+                        andelsboliger.</p>
                 </div>
 
-                <h2>3.1 MiFID II: Grundloven for investering</h2>
-                <div class="info-box">
-                    <p><span class="regulation-badge">EU-Direktiv</span> <b>MiFID II</b> (Markets in Financial
-                        Instruments Directive) er det centrale regelsæt, der styrer, hvordan banker og
-                        investeringsrådgivere skal agere. Formålet er tre-delt:</p>
+                <!-- Section 3.1: Historical Context -->
+                <h2>Historisk Udvikling: Fra Kartoffelkur til 2026</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>For at forstå nutidens boligmarked er det nødvendigt at se på historien. De seneste 30 år har
+                        budt på voldsomme stigninger i boligpriserne, kun afbrudt af finanskrisen i 2008 og rentechokket
+                        i 2022. En ejerlejlighed i København er i dag over 6 gange så meget værd som i 1992, korrigeret
+                        for inflation.</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Årti</th>
+                                    <th>Markante Begivenheder</th>
+                                    <th>Renteniveau</th>
+                                    <th>Markedstendens</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1990'erne</td>
+                                    <td><b>Kartoffelkuren</b> (slut 80'er) virkede stadig. Opsving fra 1993.</td>
+                                    <td>Højt (6-10%)</td>
+                                    <td>Stigende fra lavt niveau.</td>
+                                </tr>
+                                <tr>
+                                    <td>2000-2008</td>
+                                    <td><b>Flexlån</b> og <b>Afdragsfrihed</b> (2003) introduceres. "Boligboblen"
+                                        opbygges.</td>
+                                    <td>Faldende (4-5%)</td>
+                                    <td>eksplosiv vækst → Crash (2008).</td>
+                                </tr>
+                                <tr>
+                                    <td>2009-2020</td>
+                                    <td>Finanskrise efterfulgt af <b>Negative Renter</b>. Urbanisering driver
+                                        storbypriser.</td>
+                                    <td>Historisk lavt (0-1%)</td>
+                                    <td>Stabilt til kraftigt stigende i byer.</td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022</td>
+                                    <td>Corona-boom efterfulgt af <b>Inflationskrise</b>. Renterne 4-dobles på 6 mdr.
+                                    </td>
+                                    <td>Stiger til 5-6%</td>
+                                    <td>Prisfald (10-15%) og stagnering.</td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2026</td>
+                                    <td><b>Boligskattereform</b> træder i kraft. Markedet stabiliseres.</td>
+                                    <td>Stabilt (3-4%)</td>
+                                    <td>Moderat vækst (3-5% p.a.).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-3">Tabel 3.1 — Historisk overblik over det danske
+                        boligmarked.</small>
+
+                    <h3>Renteudviklingen 2000-2026</h3>
+                    <p>Figuren herunder viser udviklingen i den lange realkreditrente (fastforrentet) og den korte rente
+                        (F1/F-kort). Bemærk de historisk lave renter fra 2015-2021, der drev priserne op, og det bratte
+                        skift i 2022.</p>
+                    <div class="chart-container mb-2 square wide"><canvas id="interestRateChart"></canvas></div>
+                    <small class="d-block text-left mt-2">Figur 3.1 — Realkreditrenter (Gns. effektiv rente). Kilde:
+                        Finans Danmark & Nationalbanken.</small>
+
+                    <h3>Prisudvikling: Hus vs. Lejlighed</h3>
+                    <p>Lejligheder i storbyerne har historisk set været mere volatile end parcelhuse på landsplan. De
+                        stiger hurtigere i opgangstider men falder også dybere i kriser.</p>
+                    <div class="chart-container mb-2 square wide"><canvas id="priceIndexChart"></canvas></div>
+                    <small class="d-block text-left mt-2">Figur 3.2 — Prisindeks (1995=100). Ejerlejligheder vs.
+                        Parcelhuse. Kilde: Danmarks Statistik.</small>
+                </div>
+
+                <!-- Section 3.2: Boligformer -->
+                <h2>Boligformer & Ejerstrukturer</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>I Danmark skelner vi primært mellem to typer af selvejede boliger: <b><span class="legal-term"
+                                data-definition="Fast ejendom hvor du ejer skødet på grunden og bygningen."
+                                data-slug="ejerbolig">Ejerbolig</span></b> og <b><span class="legal-term"
+                                data-definition="Brugsret til en bolig via medlemsskab af en andelsforening."
+                                data-slug="andelsbolig">Andelsbolig</span></b>. Derudover findes lejeboliger (almene og
+                        private), som ikke behandles i dybden her.</p>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="stat-card text-left h-100">
+                                <h4 class="text-primary"><i class="bi bi-house-fill"></i> Ejerbolig</h4>
+                                <hr>
+                                <p><b>Det klassiske valg:</b> Du ejer murstenene og grunden (ved hus) eller en ideel
+                                    anpart af grunden (ved ejerlejlighed).</p>
+                                <ul>
+                                    <li><b>Finansiering:</b> 80% Realkredit (billigst), 15% Banklån, 5% Udbetaling.</li>
+                                    <li><b>Skat:</b> Du betaler Ejendomsværdiskat og Grundskyld.</li>
+                                    <li><b>Gevinst:</b> Skattefri ved salg (Parcelhusreglen).</li>
+                                    <li><b>Frihed:</b> Høj grad af frihed til renovering og udlejning (dog underlagt
+                                        ejerforeningsvedtægter ved lejligheder).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="stat-card text-left h-100">
+                                <h4 class="text-success"><i class="bi bi-people-fill"></i> Andelsbolig</h4>
+                                <hr>
+                                <p><b>Fællesskabet:</b> Du køber et andelsbevis i en forening, der giver brugsret til en
+                                    specifik lejlighed. Foreningen ejer bygningen.</p>
+                                <ul>
+                                    <li><b>Finansiering:</b> Kun Banklån (Andelsboliglån, typisk højere rente). Ingen
+                                        realkredit direkte til andelshaver.</li>
+                                    <li><b>Husleje:</b> Du betaler "Boligafgift" til foreningens drift og fællesgæld.
+                                    </li>
+                                    <li><b>Prisloft:</b> Maksimalprisen er fastsat ved lov (Andelskrone).</li>
+                                    <li><b>Skat:</b> Ingen ejendomsværdiskat direkte. Grundskyld betales via
+                                        boligafgiften.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Andelsbolig - Værdiansættelse</h3>
+                    <p>Prisen på en andelsbolig er ikke fri, men underlagt et loft. Andelskronen kan opgøres på tre
+                        måder:</p>
                     <ol>
-                        <li><b>Investorbeskyttelse:</b> Sikre at kunden forstår risikoen.</li>
-                        <li><b>Gennemsigtighed:</b> Alle omkostninger skal lægges frem (f.eks. provisioner).</li>
-                        <li><b>Markedsintegritet:</b> Forebygge markedsmisbrug.</li>
+                        <li><b>Anskaffelsesprisen:</b> Hvad kostede ejendommen, da den blev bygget/købt? (Sjældent brugt
+                            i dag).</li>
+                        <li><b>Valuarvurdering:</b> En ejendomsmægler vurderer ejendommen som udlejningsejendom. (Meget
+                            udbredt, giver høje priser).</li>
+                        <li><b>Offentlig Vurdering:</b> Den nye 2026-vurdering. Efter reformen kan den offentlige
+                            vurdering bruges, men mange foreninger foretrækker valuar, da de offentlige vurderinger af
+                            udlejningsejendomme kan være lavere.</li>
                     </ol>
+                    <div class="alert alert-warning">
+                        <b>OBS:</b> Når du køber andelsbolig, er det afgørende at tjekke foreningens gæld. Hvis
+                        foreningen har gæld (fællesgæld), hæfter du for en del af den via boligafgiften. Teknisk pris =
+                        Andelspris + Andel af fællesgæld.
+                    </div>
                 </div>
 
-                <h3>Kategorisering af kunder</h3>
-                <p>Ikke alle kunder har brug for samme grad af beskyttelse. MiFID II opdeler i tre grupper:</p>
-                <ul>
-                    <li><b>Detailkunder:</b> Private investorer. Har krav på den højeste grad af beskyttelse.</li>
-                    <li><b>Professionelle kunder:</b> Institutioner eller meget velhavende personer med stor erfaring.
-                    </li>
-                    <li><b>Godkendte modparter:</b> Andre banker eller forsikringsselskaber.</li>
-                </ul>
+                <!-- Section 3.3: Finansiering -->
+                <h2>Finansiering i Dybden</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Det unikke ved det danske boligmarked er <span class="legal-term"
+                            data-definition="Det system der sikrer at realkreditobligationer matcher lånene 1:1."
+                            data-slug="realkreditsystem">realkreditsystemet</span>. Når du låner penge i Totalkredit,
+                        Realkredit Danmark eller Jyske Realkredit, udsteder de obligationer på børsen, som investorer
+                        køber. Det sikrer lave renter og gennemsigtighed.</p>
 
-                <h2>3.2 Egnethedstest vs. Hensigtsmæssighedstest</h2>
-                <div class="info-box">
-                    <p>Før du må sælge et produkt til en kunde, skal du teste dem:</p>
-                    <ul>
-                        <li><b>Egnethedstest (Suitability):</b> Påkrævet ved rådgivning. Du skal kende kundens økonomi,
-                            risikovillighed og tidshorisont.</li>
-                        <li><b>Hensigtsmæssighedstest (Appropriateness):</b> Påkrævet ved "execution only" (hvor kunden
-                            selv handler komplekse produkter). Her testes kun kundens viden og erfaring.</li>
-                    </ul>
-                </div>
+                    <h3>Låntyperne</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered text-center">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Låntype</th>
+                                    <th>Rentesikkerhed</th>
+                                    <th>Renteniveau (2026)</th>
+                                    <th>Risiko</th>
+                                    <th>Konverterbar?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-left"><b>Fastforrentet</b><br>(Obligationslån)</td>
+                                    <td>Fast i 30 år</td>
+                                    <td>~4,0%</td>
+                                    <td>Lav</td>
+                                    <td><span class="badge badge-success">JA - Kursgevinst</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left"><b>FlexKort / F-kort</b><br>(CITA-baseret)</td>
+                                    <td>Ny rente hver 6. mdr.</td>
+                                    <td>~2,5%</td>
+                                    <td>Høj</td>
+                                    <td>Nej (kurs ~100)</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left"><b>F1 / F3 / F5</b><br>(Tilpasningslån)</td>
+                                    <td>Fast i 1, 3 eller 5 år</td>
+                                    <td>~2,8%</td>
+                                    <td>Mellem</td>
+                                    <td>Begrænset</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                <h2>4.3 ESG: Den nye grønne standard</h2>
-                <div class="info-box">
-                    <p>Siden 2022 er det lovpligtigt for rådgivere at inddrage <b>bæredygtighedspræferencer</b> i deres
-                        rådgivning. ESG står for:</p>
-                    <div class="row text-center mt-3">
-                        <div class="col-md-4">
-                            <div class="p-3 bg-light rounded shadow-sm h-100">
-                                <h5 class="text-success">Environmental</h5>
-                                <p class="small">Klima, CO2-aftryk, biodiversitet.</p>
-                            </div>
+                    <div class="row mt-4">
+                        <div class="col-lg-6">
+                            <h4>Fastforrentet lån & Konvertering</h4>
+                            <p>Det fastforrentede lån er "kongen" af lån. Du kender din ydelse i 30 år. Men lånet har en
+                                skjult superkraft: <b>Konverteringsretten</b>.</p>
+                            <ul>
+                                <li><b>Hvis renten stiger:</b> Kursen på din obligation falder. Du kan indfri dit lån
+                                    til kurs 80 (f.eks.) og skære 20% af din restgæld. Ulempen er, at du skal optage et
+                                    nyt lån til en højere rente.</li>
+                                <li><b>Hvis renten falder:</b> Du kan omlægge lånet tilkurs 100 (pari) og få en lavere
+                                    månedlig ydelse.</li>
+                            </ul>
                         </div>
-                        <div class="col-md-4">
-                            <div class="p-3 bg-light rounded shadow-sm h-100">
-                                <h5 class="text-primary">Social</h5>
-                                <p class="small">Menneskerettigheder, arbejdsforhold.</p>
-                            </div>
+                        <div class="col-lg-6">
+                            <h4>Hvad er bidragssats?</h4>
+                            <p>Udover renten betaler du en <b>bidragssats</b> til realkreditinstituttet. Det er deres
+                                gebyr for at administrere lånet og dække tab. Bidragssatsen afhænger af:</p>
+                            <ol>
+                                <li><b>Belåningsgrad:</b> De yderste 60-80% er dyre end de inderste 0-40%.</li>
+                                <li><b>Låntype:</b> Afdragsfrie lån og variable lån er dyrere i bidrag end faste lån med
+                                    afdrag.</li>
+                            </ol>
+                            <p>I 2026 ligger bidraget typisk mellem 0,6% og 1,2% p.a.</p>
                         </div>
-                        <div class="col-md-4">
-                            <div class="p-3 bg-light rounded shadow-sm h-100">
-                                <h5 class="text-secondary">Governance</h5>
-                                <p class="small">Selskabsledelse, antikorruption.</p>
-                            </div>
+                    </div>
+
+                    <h3>Lånefordeling i Danmark 2026</h3>
+                    <p>Grafen viser, hvordan danske boligejere har fordelt deres gæld. Efter rentechokket i 2022 søgte
+                        mange mod sikkerhed (fast), men i 2025/2026 er interessen for de korte renter (F-kort) vendt
+                        tilbage grundet rentespændet.</p>
+                    <div class="row">
+                        <div class="col-md-8 mx-auto">
+                            <div class="chart-container square"><canvas id="loanDistributionChart"></canvas></div>
                         </div>
                     </div>
                 </div>
 
-                <h2>4.4 Uafhængighed og Provisioner</h2>
-                <div class="info-box">
-                    <p>En rådgiver skal oplyse, om de er <b>uafhængige</b> eller <b>ikke-uafhængige</b>. En
-                        ikke-uafhængig rådgiver (typisk i en bank) må modtage provisioner fra de selskaber, hvis
-                        produkter de sælger, forudsat at det "øger kvaliteten af rådgivningen" og oplyses til kunden.
+                <!-- Section 3.4: Købsprocessen -->
+                <h2>Købsprocessen - Trin for Trin</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>At købe bolig er en juridisk tung proces. Her er de vigtigste trin og dokumenter, du støder på.
+                    </p>
+
+                    <div class="accordion" id="buyingProcessAccordion">
+                        <div class="card bg-light border-0 mb-2">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0"><button class="btn btn-link btn-block text-left text-dark"
+                                        type="button" data-toggle="collapse" data-target="#collapseOne">
+                                        1. Købebevis & Budget
+                                    </button></h5>
+                            </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#buyingProcessAccordion">
+                                <div class="card-body">
+                                    Før du kigger, skal du i banken. Banken beregner dit <b>rådighedsbeløb</b> og din
+                                    <b>gældsfaktor</b> (gæld / bruttoindkomst, typisk max 4). Du får et købebevis, der
+                                    fortæller, hvad du må købe for.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card bg-light border-0 mb-2">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0"><button class="btn btn-link btn-block text-left text-dark"
+                                        type="button" data-toggle="collapse" data-target="#collapseTwo">
+                                        2. Fremvisning & Rapporter
+                                    </button></h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#buyingProcessAccordion">
+                                <div class="card-body">
+                                    Når du finder drømmeboligen, skal du nærlæse:
+                                    <ul>
+                                        <li><b>Tilstandsrapport:</b> Byggesagkyndigs gennemgang af fejl og mangler (K1,
+                                            K2, K3).</li>
+                                        <li><b>El-installationsrapport:</b> Tjek af ulovlige el-installationer.</li>
+                                        <li><b>Energimærke:</b> Viser boligens energiforbrug (A-G). Vigtigt for
+                                            varmeudgiften.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card bg-light border-0 mb-2">
+                            <div class="card-header" id="headingThree">
+                                <h5 class="mb-0"><button class="btn btn-link btn-block text-left text-dark"
+                                        type="button" data-toggle="collapse" data-target="#collapseThree">
+                                        3. Købsaftale & Rådgiverforbehold
+                                    </button></h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                data-parent="#buyingProcessAccordion">
+                                <div class="card-body">
+                                    Du underskriver en købsaftale. VIGTIGT: Få altid indskrevet et <b>advokat- og
+                                        bankforbehold</b>. Det betyder, at handlen kun gælder, hvis din rådgiver og bank
+                                    godkender den. Du har også lovpligtig 6 dages fortrydelsesret (koster 1% af
+                                    købesummen).
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card bg-light border-0 mb-2">
+                            <div class="card-header" id="headingFour">
+                                <h5 class="mb-0"><button class="btn btn-link btn-block text-left text-dark"
+                                        type="button" data-toggle="collapse" data-target="#collapseFour">
+                                        4. Berigtigelse & Tinglysning
+                                    </button></h5>
+                            </div>
+                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                data-parent="#buyingProcessAccordion">
+                                <div class="card-body">
+                                    Advokaten laver skødet, som tinglyses digitalt.
+                                    <ul>
+                                        <li><b>Skødeafgift:</b> 1.850 kr. + 0.6% af købesummen.</li>
+                                        <li><b>Pantebrevsafgift:</b> 1.825 kr. + 1.25% af lånets størrelse (Nedsat fra
+                                            1.45% pr. 1. jan 2026).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Omkostninger ved køb (Kontantbehov)</h3>
+                    <p>Udover udbetalingen på 5% skal du have kontanter klar til "omkostninger ud over købesummen".
+                        Disse kan ikke finansieres i realkredit.</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm text-right">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th class="text-left">Post</th>
+                                    <th>Estimat (Hus til 3 mio. kr.)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-left">Tinglysning af skøde (0,6% + 1.850)</td>
+                                    <td>19.850 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Tinglysning af lån (1,25% + 1.825)</td>
+                                    <td>35.575 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Ejerskifteforsikring (½ præmie)</td>
+                                    <td>Ca. 10.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Advokat / Køberrådgiver</td>
+                                    <td>Ca. 10.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Bankgebyrer / Kurtage</td>
+                                    <td>Ca. 5.000 kr.</td>
+                                </tr>
+                                <tr class="font-weight-bold table-active">
+                                    <td class="text-left">I alt kontantbehov (udover 5%)</td>
+                                    <td>Ca. 80.425 kr.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Section 3.5: Boligskat 2026 -->
+                <h2>Boligskatter 2026 - Guide til det nye system</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Med boligskattereformen er skatten nu bundet op på de nye offentlige vurderinger. Systemet er
+                        designet til at "følge markedet", men med indbyggede bremser for at beskytte boligejerne.</p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Ejendomsværdiskat</h3>
+                            <p>Skat af selve boligens værdi. Betales til staten.</p>
+                            <ul>
+                                <li><b>Sats under grænse:</b> 0,51% (op til ca. 9,0 mio. kr. i 2026).</li>
+                                <li><b>Sats over grænse:</b> 1,4% (progressiv beskatning).</li>
+                                <li><b>Skattegrundlag:</b> 80% af ejendomsvurderingen.</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Grundskyld (Ejendomsskat)</h3>
+                            <p>Skat af grundens værdi. Betales til kommunen via skattebilletten.</p>
+                            <ul>
+                                <li><b>Sats:</b> Fastsættes af kommunen (maks 30 promille / 3,0%).</li>
+                                <li><b>Varians:</b> Lavest i Gentofte, højest i yderkommuner.</li>
+                                <li><b>Skattegrundlag:</b> 80% af grundvurderingen.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box highlight-box mt-3">
+                        <h4>Vigtige principper i 2026</h4>
+                        <ul>
+                            <li><b>Forsigtighedsprincippet:</b> Skatten beregnes kun af 80% af vurderingen. Vurderes dit
+                                hus til 5 mio., beskattes du kun af 4 mio. Dette kompenserer for usikkerheden i
+                                vurderingen.</li>
+                            <li><b>Skatterabat (Eksisterende ejere):</b> Ejer du en bolig før reformen (overgangsåret
+                                2024), har du en permanent skatterabat, så du ikke stiger i skat ved overgangen.
+                                Rabatten følger bolig<i>ejeren</i>, ikke boligen. Ved salg bortfalder rabatten for den
+                                nye køber.</li>
+                            <li><b>Indefrysningsordning:</b> Stigninger i grundskylden kan automatisk indefryses som et
+                                lån hos kommunen, som først betales ved salg.</li>
+                        </ul>
+                    </div>
+
+                    <div class="chart-container mb-2 square wide"><canvas id="taxRateComparisonChart"></canvas></div>
+                    <small class="d-block text-left mt-2">Figur 3.3 — Effektiv beskatning 2023 (gammel) vs. 2026 (ny)
+                        for et gennemsnitshus.</small>
+                </div>
+
+                <!-- Section 3.6: Cases Recap & Expansion -->
+                <h2>Cases - Fra Drøm til Virkelighed</h2>
+
+                <!-- Repeat Case 1 & 2 from previous version but keep them integrated better -->
+                <div class="info-box reveal-on-scroll">
+                    <h3>Case: Familieliv i forstaden (Ejerbolig)</h3>
+                    <p>Sofie og Peter (Par, 30'erne) køber villa til 4.0 mio. kr. Indkomst: 900.000 kr. De vælger fast
+                        forrentet lån for tryghed.</p>
+                    <p><i>Sankey-diagrammet herunder viser deres månedlige pengestrøm i 2026-kroner.</i></p>
+                    <div class="chart-container sankey-chart mb-2 square wide">
+                        <canvas id="coupleHousingSankey"></canvas>
+                    </div>
+                </div>
+
+                <div class="info-box reveal-on-scroll">
+                    <h3>Case: Det svære førstegangskøb (Andel vs Ejer)</h3>
+                    <p>Jonas (Single, 27 år) har 450.000 kr. i indkomst. Han kigger på en 2V lejlighed i Odense til 2.0
+                        mio. kr.</p>
+                    <p><b>Valget:</b></p>
+                    <ul>
+                        <li><b>Ejerlejlighed:</b> Højere månedlig ydelse, men opsparing via afdrag på realkredit.
+                            Skattefri gevinstmulighed.</li>
+                        <li><b>Andelsbolig:</b> Lav månedlig boligafgift (hvis sund forening), men dyrere banklån til
+                            købet. Mindre friværdisbeskyttelse.</li>
+                    </ul>
+                    <p><i>I 2026 vælger mange førstegangskøbere andelsboligen som "trdesten" ind på markedet pga. de
+                            lavere etableringsomkostninger (ingen tinglysningsafgift på skøde, kun på lån/-pant).</i>
                     </p>
                 </div>
 
-                <h2>4.5 Case: Den etiske gråzone</h2>
-                <div class="info-box highlight-box">
-                    <h3>Investor-mismatch: Erik (78 år)</h3>
-                    <p>Erik har 2 mio. kr. i frie midler. Han vil gerne have et stabilt afkast. En rådgiver foreslår en
-                        "Gearing-model" med høj risiko for at maksimere provisionen.</p>
-                    <p><b>Rådgiverens fejl:</b></p>
+                <div class="info-box reveal-on-scroll">
+                    <h3>Case: Forældrekøb - Er det slut?</h3>
+                    <p>Tidligere var forældrekøb (virksomhedsordningen) en gylden vej. I 2026 er reglerne strammet:</p>
                     <ul>
-                        <li><b>Brud på Egnethed:</b> Eriks tidshorisont er kort, og hans risikovillighed er lav.</li>
-                        <li><b>Etisk brud:</b> Rådgiveren sætter egne interesser (provision) over kundens tarv.</li>
-                        <li><b>Konsekvens:</b> Dette kan føre til erstatningsansvar og bøder fra Finanstilsynet.</li>
+                        <li><b>Rentefradrag:</b> Beskåret i virksomhedsordningen.</li>
+                        <li><b>Vurdering:</b> Man kan ikke længere overdrage til "15%-reglen" (offentlig vurdering minus
+                            15%) hvis den offentlige vurdering er blevet opdateret og "retvisende".</li>
+                        <li><b>Husleje:</b> Markedslejen skal fastsættes korrekt, hvilket beskattes hos forældrene.</li>
                     </ul>
+                    <p><b>Konklusion 2026:</b> Forældrekøb er ikke længere en skattefidus, men primært en metode til at
+                        sikre bolig til barnet i store studiebyer.</p>
                 </div>
 
-                <h2>4.6 Data-indsigt: Kundernes fokus på bæredygtighed</h2>
-                <div class="info-box">
-                    <p>Her ser vi den stigende tendens til, at kunder vælger investeringsprodukter baseret på deres
-                        ESG-radar profil.</p>
-                    <div class="chart-container" style="position: relative; height: 500px; width: 100%;">
-                        <canvas id="esgTrendChart"></canvas>
+                <!-- Section 3.7: Sommerhuse -->
+                <h2>Sommerhuse og Fritidsboliger</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Sommerhusmarkedet har sine egne regler. Mange danskere drømmer om et fristed, og i 2026 er
+                        reglerne gunstige for udlejning.</p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Finansiering</h4>
+                            <p>Reglerne er strammere end helårsbolig:</p>
+                            <ul>
+                                <li><b>Max 75% Realkreditbelåning</b> (mod 80% for helårs).</li>
+                                <li>Ofte krav om højere rådighedsbeløb, da det er en "Luksusforbrugsbolig".</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Udlejning (Bundfradrag 2026)</h4>
+                            <p>De første <b>46.100 kr.</b> (indeksreguleret, 2024-niveau) pr. år er skattefrie ved
+                                udlejning gennem bureau.</p>
+                            <ul>
+                                <li>40% af indtægten over bundfradraget trækkes også fra.</li>
+                                <li>Reel skat af lejeindtægt er ofte under 5-10% effektivt.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -208,19 +696,22 @@
                     <p><small><b>Termer i dette kapitel:</b></small></p>
                     <ul>
                         <li><span class="term"
-                                data-tooltip="En test der sikrer at et produkt passer til kundens samlede profil.">Egnethedstest</span>
+                                data-tooltip="Det beløb du har tilbage til mad og fornøjelser, når faste udgifter er betalt.">Rådighedsbeløb</span>
                         </li>
                         <li><span class="term"
-                                data-tooltip="Inducerende betalinger (provisioner) fra tredjepart.">Inducements</span>
+                                data-tooltip="Lånets hovedstol i forhold til boligens værdi.">Belåningsgrad</span></li>
+                        <li><span class="term"
+                                data-tooltip="Gebyr til realkreditinstituttet. Betales ud over renten.">Bidragssats</span>
                         </li>
                         <li><span class="term"
-                                data-tooltip="Et tillæg af bæredygtighedskriterier til investeringsanalysen.">ESG-screening</span>
+                                data-tooltip="Officiel registrering af rettigheder over fast ejendom.">Tinglysning</span>
                         </li>
                         <li><span class="term"
-                                data-tooltip="EU's nye 'ordbog' over hvad der må kaldes en bæredygtig investering.">Taksonomi</span>
+                                data-tooltip="Lovpligtig rapport om boligens fysiske tilstand ved salg.">Tilstandsrapport</span>
                         </li>
                     </ul>
                 </div>
+
             </article>
         </div>
     </div>
@@ -229,37 +720,226 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-sankey"></script> <!-- Required for Sankey -->
     <script src="js/menu.js"></script>
     <script src="js/script.js"></script>
     <script src="js/theme-toggle.js"></script>
     <script src="js/glossary.js"></script>
 
     <script>
+        // Global Chart Defaults
+        Chart.defaults.font.family = "'Space Grotesk', 'Inter', sans-serif";
+        Chart.defaults.color = '#666';
+
+        // Lazy Loader Helper
+        function initChartWhenVisible(canvasId, chartConfigFn) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        chartConfigFn();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            observer.observe(canvas);
+        }
+
+        // Helper for gradients
+        function grad(ctx, c1, c2) {
+            const chart = ctx.chart;
+            const area = chart.chartArea;
+            if (!area) return c1;
+            const g = chart.ctx.createLinearGradient(area.left, 0, area.right, 0);
+            g.addColorStop(0, c1);
+            g.addColorStop(1, c2);
+            return g;
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
-            const ctx = document.getElementById('esgTrendChart');
-            if (ctx) {
-                new Chart(ctx, {
-                    type: 'radar',
+
+            // 1. Interest Rate History Chart
+            initChartWhenVisible('interestRateChart', function () {
+                const ctxInt = document.getElementById('interestRateChart');
+                new Chart(ctxInt, {
+                    type: 'line',
                     data: {
-                        labels: ['Miljø', 'Social', 'Ledelse', 'Afkast', 'Sikkerhed'],
+                        labels: ['2000', '2004', '2008', '2012', '2016', '2020', '2022', '2024', '2026 (P)'],
                         datasets: [{
-                            label: 'Kunde A (Traditionel)',
-                            data: [30, 20, 40, 95, 80],
-                            borderColor: '#bdc3c7',
-                            backgroundColor: 'rgba(189, 195, 199, 0.2)'
-                        }, {
-                            label: 'Kunde B (Bæredygtighedsfokuseret)',
-                            data: [90, 85, 70, 70, 60],
-                            borderColor: '#2ecc71',
-                            backgroundColor: 'rgba(46, 204, 113, 0.2)'
+                            label: 'Lang Rente (Fast 30 år)',
+                            data: [7.5, 5.0, 7.0, 4.0, 2.5, 0.5, 5.0, 4.0, 4.1],
+                            borderColor: '#11998e',
+                            backgroundColor: 'rgba(17, 153, 142, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3,
+                            pointRadius: 3
+                        },
+                        {
+                            label: 'Kort Rente (F1/F-kort)',
+                            data: [5.0, 2.5, 5.5, 1.0, 0.0, -0.5, 3.5, 3.8, 2.8],
+                            borderColor: '#764ba2',
+                            backgroundColor: 'rgba(118, 75, 162, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3,
+                            pointRadius: 3,
+                            borderDash: [5, 5]
                         }]
                     },
                     options: {
                         responsive: true,
-                        maintainAspectRatio: false
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: { legend: { position: 'top' } },
+                        scales: { y: { title: { display: true, text: 'Rente (%)' } } }
                     }
                 });
-            }
+            });
+
+            // 2. Price Index Chart
+            initChartWhenVisible('priceIndexChart', function () {
+                const ctxPrice = document.getElementById('priceIndexChart');
+                new Chart(ctxPrice, {
+                    type: 'line',
+                    data: {
+                        labels: ['1995', '2000', '2005', '2007 (Top)', '2009 (Bund)', '2015', '2020', '2022 (Top)', '2024'],
+                        datasets: [{
+                            label: 'Ejerlejligheder (Indeks)',
+                            data: [100, 160, 240, 310, 220, 300, 410, 480, 460],
+                            borderColor: '#f2994a',
+                            backgroundColor: 'rgba(242, 153, 74, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Parcelhuse (Indeks)',
+                            data: [100, 140, 190, 230, 180, 210, 260, 290, 285],
+                            borderColor: '#2193b0',
+                            backgroundColor: 'rgba(33, 147, 176, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: { legend: { position: 'top' } },
+                        scales: { y: { title: { display: true, text: 'Indeks (1995=100)' } } }
+                    }
+                });
+            });
+
+            // 3. Loan Distribution (Doughnut)
+            initChartWhenVisible('loanDistributionChart', function () {
+                const ctxLoan = document.getElementById('loanDistributionChart');
+                new Chart(ctxLoan, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Fastforrentet (m/afdrag)', 'Fastforrentet (u/afdrag)', 'Variabel (F-kort/F1)', 'Variabel (F5/F3)'],
+                        datasets: [{
+                            data: [35, 15, 30, 20],
+                            backgroundColor: [
+                                '#11998e', // Teal
+                                '#0e7a72', // Darker Teal
+                                '#764ba2', // Purple
+                                '#5a387e'  // Darker Purple
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'right' },
+                            title: { display: true, text: 'Fordeling af realkreditlån (2026 estimat)' }
+                        }
+                    }
+                });
+            });
+
+            // 4. Tax Rate Comparison (Bar)
+            initChartWhenVisible('taxRateComparisonChart', function () {
+                const ctxTaxComp = document.getElementById('taxRateComparisonChart');
+                new Chart(ctxTaxComp, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2023 (Gammelt System)', '2026 (Nyt System)'],
+                        datasets: [
+                            {
+                                label: 'Ejendomsværdiskat',
+                                data: [1.0, 0.51], // Nominal rates comparison (simplified)
+                                backgroundColor: '#eb3349'
+                            },
+                            {
+                                label: 'Grundskyld (Gns. promille/10)',
+                                data: [2.6, 2.4], // 26 promille vs 24 promille scaled
+                                backgroundColor: '#f45c43'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { y: { title: { display: true, text: 'Nominel sats (%)' }, beginAtZero: true } },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    afterBody: function () { return "Bemærk: Satserne er lavere i 2026, men beregnes af højere offentlige vurderinger."; }
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+
+            // 5. Sankey Chart for Couple Case Refilled
+            initChartWhenVisible('coupleHousingSankey', function () {
+                const ctxSankey = document.getElementById('coupleHousingSankey');
+                if (ctxSankey && typeof Chart.registry.controllers.sankey !== 'undefined') {
+                    const dataPoints = [
+                        { from: 'Bruttoindkomst', to: 'Skat', flow: 32000 },
+                        { from: 'Bruttoindkomst', to: 'Udbetalt', flow: 43000 },
+
+                        { from: 'Udbetalt', to: 'Realkredit (4%)', flow: 14500 },
+                        { from: 'Udbetalt', to: 'Banklån (7%)', flow: 4000 },
+                        { from: 'Udbetalt', to: 'Ejerudgifter', flow: 3500 },
+                        { from: 'Udbetalt', to: 'Rådighedsbeløb', flow: 21000 },
+
+                        { from: 'Realkredit (4%)', to: 'Renter (Fradragsberettiget)', flow: 10500 },
+                        { from: 'Realkredit (4%)', to: 'Afdrag (Opsparing)', flow: 4000 },
+
+                        { from: 'Rådighedsbeløb', to: 'Mad', flow: 6000 },
+                        { from: 'Rådighedsbeløb', to: 'Børn', flow: 4000 },
+                        { from: 'Rådighedsbeløb', to: 'Bil', flow: 3000 },
+                        { from: 'Rådighedsbeløb', to: 'Sjov', flow: 8000 }
+                    ];
+
+                    new Chart(ctxSankey, {
+                        type: 'sankey',
+                        data: {
+                            datasets: [{
+                                label: 'Boligøkonomi Flow',
+                                data: dataPoints,
+                                colorFrom: (c) => "#666",
+                                colorTo: (c) => "#666",
+                                colorMode: 'gradient',
+                                labels: {
+                                    "Bruttoindkomst": "Indkomst (75.000)",
+                                    "Udbetalt": "Udbetalt (43.000)",
+                                }
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false } }
+                        }
+                    });
+                }
+            });
         });
     </script>
 </body>
