@@ -35,6 +35,59 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        .stat-card {
+            background-color: var(--card-bg, #ffffff);
+            border-radius: 0 !important;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] .stat-card {
+            background-color: var(--card-bg, #121212);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+
+        .stat-number.accent-green { color: #27ae60; }
+        .stat-number.accent-blue  { color: #2193b0; }
+        .stat-number.accent-orange { color: #f2994a; }
+        .stat-number.accent-purple { color: #764ba2; }
+
+        .tip-box {
+            border-left: 4px solid #f2994a;
+            background-color: rgba(242, 153, 74, 0.08);
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            border-radius: 0;
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -109,37 +162,193 @@
                 </div>
 
                 <div class="info-box reveal-on-scroll">
-                    <p>Investering er afgørende for at bevare og forøge den langsigtede købekraft af opsparede midler.
-                        Inflation udhuler kontante opsparinger over tid, hvilket gør markedet til et vigtigt element for
-                        både frie midler og pensionsmidler.</p>
+                    <p>Investering er afgørende for at bevare og forøge den langsigtede købekraft af opsparede midler. Inflation udhuler kontante opsparinger over tid, hvilket gør markedet til et vigtigt element for både frie midler og pensionsmidler. Dette kapitel gennemgår de centrale investeringsprodukter, skattereglerne og de praktiske rådgivningsovervejelser.</p>
                 </div>
 
-                <h2>5.1 Kom i gang med investering</h2>
+                <h2>5.1 Grundprincipper for investering</h2>
                 <div class="info-box reveal-on-scroll">
-                    <p>Den grundlæggende regel i investering er <b>spredning</b> (diversificering). Som rådgiver skal du
-                        vejlede kunden i forhold til:</p>
-                    <ul>
-                        <li><b>Tidshorisont:</b> Hvor længe kan kunden undvære pengene? Over 5-7 år kan aktier være
-                            fornuftige; under 3 år er kontanter eller korte obligationer at foretrække.</li>
-                        <li><b>Risikoprofil:</b> Hvor stort et værdifald kan kunden tolerere mentalt og økonomisk?</li>
-                        <li><b>Omkostninger:</b> Løbende omkostninger (ÅOP) har en massiv effekt på afkast over tid.
-                            Passive indeksfonde er ofte at foretrække fremfor dyre, aktivt forvaltede fonde.</li>
-                    </ul>
+                    <p>Den grundlæggende regel i investering er <b>spredning</b> (diversificering). Som rådgiver skal du vejlede kunden i forhold til tre nøgleparametre:</p>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-4 mb-3">
+                            <div class="stat-card text-left" style="height:100%;">
+                                <div class="font-weight-bold mb-2" style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">Tidshorisont</div>
+                                <p class="small">Over 5-7 år: Aktier og aktiefonde er fornuftige — historisk afkast 7-10% p.a. Under 3 år: Kontanter, korte obligationer eller pengemarkedsfonde. Tidshorisonten er den vigtigste parameter.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="stat-card text-left" style="height:100%;">
+                                <div class="font-weight-bold mb-2" style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">Risikoprofil</div>
+                                <p class="small">Hvor stort et midlertidigt kursfald kan kunden tolerere? En kunde, der sælger i panik ved -20%, bør have en lavere aktieandel end en, der kan holde fast i 5 år med tab.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="stat-card text-left" style="height:100%;">
+                                <div class="font-weight-bold mb-2" style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">Omkostninger (ÅOP)</div>
+                                <p class="small">Løbende omkostninger (ÅOP) har en massiv effekt over tid. En forskel på 1% i ÅOP over 30 år reducerer den endelige formue med ca. 25%. Passive indeksfonde (ÅOP ~0,1-0,3%) er ofte bedre end aktivt forvaltede (ÅOP ~1-2%).</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p><b>Diversificering i praksis:</b> En simpel og effektiv portefølje for en privatinvestor kan bestå af et globalt aktieindeks (f.eks. MSCI World) og eventuelt en obligationsandel, der stiger med alderen. Jo tættere på pensionsalderen, desto lavere aktieandel.</p>
                 </div>
 
-                <h2>5.2 Skatteregler for investering i 2026</h2>
+                <h2>5.2 Investeringsprodukter og værdipapirer</h2>
                 <div class="info-box reveal-on-scroll">
-                    <p>Skattesystemet for private investeringer i Danmark opererer med tre hovedtyper af beskatning:</p>
+                    <p>Der findes en bred vifte af investeringsprodukter. Som rådgiver skal du kende de vigtigste og deres skattemæssige behandling:</p>
+                    <div class="table-responsive mt-3">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Produkt</th>
+                                    <th>Beskrivelse</th>
+                                    <th>Beskatning</th>
+                                    <th>Princip</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Enkeltaktier</b></td>
+                                    <td>Direkte ejerskab i en virksomhed. Høj risiko, høj potentiel gevinst.</td>
+                                    <td>Aktieindkomst: 27% / 42%</td>
+                                    <td>Realisationsprincip</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Investeringsforeninger (udb.)</b></td>
+                                    <td>Fonde der udbetaler udbytte løbende. Typisk aktiebaserede.</td>
+                                    <td>Aktieindkomst: 27% / 42%</td>
+                                    <td>Realisationsprincip</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Investeringsforeninger (akk.)</b></td>
+                                    <td>Akkumulerende fonde geninvesterer afkastet. Beskattes som kapitalindkomst.</td>
+                                    <td>Kapitalindkomst: ~37-42%</td>
+                                    <td>Lagerprincip</td>
+                                </tr>
+                                <tr>
+                                    <td><b>ETF'er (aktiebaserede)</b></td>
+                                    <td>Børshandlede fonde. Billige og effektive. Beskatning afhænger af type.</td>
+                                    <td>Aktieindkomst: 27% / 42%</td>
+                                    <td>Realisationsprincip</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Obligationer</b></td>
+                                    <td>Lån til stat eller virksomhed. Lavere risiko, lavere afkast.</td>
+                                    <td>Kapitalindkomst: ~37-42%</td>
+                                    <td>Lagerprincip</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Aktiesparekonto (ASK)</b></td>
+                                    <td>Særlig skattefordelt konto. Max indskud 139.900 kr. (2026).</td>
+                                    <td><b>17% (PAL-lignende)</b></td>
+                                    <td>Lagerprincip</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-2 text-muted"><b>Tabel 5.1</b> — Oversigt over investeringsprodukter og beskatning. Kilde: Skattestyrelsen (2026).</small>
+                </div>
+
+                <h2>5.3 Aktiesparekontoen (ASK) i dybden</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Aktiesparekontoen er i 2026 det mest attraktive skatteoptimerende investeringsprodukt for private investorer. Den kombinerer en lav fast skat med bred investeringsfrihed.</p>
+
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-3 mb-3">
+                            <div class="stat-card">
+                                <div class="stat-number accent-green">17%</div>
+                                <div class="stat-label">Beskatningssats<br><small>Mod 27–42% på frie midler</small></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="stat-card">
+                                <div class="stat-number accent-blue">139.900 kr.</div>
+                                <div class="stat-label">Max indskud 2026<br><small>Hævet fra 135.900 kr. i 2025</small></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="stat-card">
+                                <div class="stat-number accent-orange">Lager</div>
+                                <div class="stat-label">Beskatningsprincip<br><small>Skat af urealiserede gevinster hvert år</small></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="stat-card">
+                                <div class="stat-number accent-purple">1 pr. person</div>
+                                <div class="stat-label">Antal konti<br><small>Én ASK pr. skatteyder</small></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>5.3.1 Hvad kan man investere i på ASK?</h3>
+                    <p>ASK'en kan bruges til at investere i <b>aktier, aktiebaserede investeringsforeninger og ETF'er</b>, der er godkendt af Skattestyrelsen. Obligationer og akkumulerende fonde kan <i>ikke</i> placeres på en ASK.</p>
+
+                    <h3>5.3.2 Fordele og ulemper</h3>
+                    <div class="row mt-2">
+                        <div class="col-md-6 mb-3">
+                            <div class="stat-card text-left" style="height:100%;">
+                                <div class="font-weight-bold mb-2 text-success">Fordele</div>
+                                <ul class="small mb-0">
+                                    <li>Markant lavere skat (17% vs. 27-42%)</li>
+                                    <li>Tab kan fremføres og modregnes i fremtidige gevinster på kontoen</li>
+                                    <li>Bred investeringsfrihed inden for godkendte produkter</li>
+                                    <li>Indskudsloftet stiger hvert år — man kan "fylde op" løbende</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="stat-card text-left" style="height:100%;">
+                                <div class="font-weight-bold mb-2 text-danger">Ulemper</div>
+                                <ul class="small mb-0">
+                                    <li>Lagerbeskatning: skat betales hvert år, også af urealiserede gevinster</li>
+                                    <li>Kræver likviditet til skattebetalingen i gode år</li>
+                                    <li>Kun ét indskudsloft pr. person — ægtefæller kan ikke dele</li>
+                                    <li>Begrænset til aktiebaserede produkter</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box mt-3">
+                        <p><b>Rådgivningsstrategi:</b> ASK'en bør typisk fyldes op <i>først</i>, inden kunden investerer i frie midler. For et ægtepar kan de tilsammen have 2 × 139.900 kr. = 279.800 kr. på ASK til 17% skat. Resten investeres i frie midler til 27-42%. Kombiner gerne med pensionsindbetalinger for den optimale skattestruktur.</p>
+                    </div>
+                    <small class="d-block text-left mt-3 text-muted"><b>Kilde:</b> <a href="https://skat.dk/borger/aktier-og-andre-vaerdipapirer/aktiesparekonto" target="_blank">skat.dk — Aktiesparekonto</a> · <a href="https://www.nordea.dk/privat/produkter/investering/aktiesparekonto.html" target="_blank">Nordea</a> · <a href="https://www.grantthornton.dk/nyhederogpublikationer/nyheder/nyheder-2026/nyt-loft-giver-din-aktiesparekonto-endnu-stoerre-fordele/" target="_blank">Grant Thornton (2026)</a></small>
+                </div>
+
+                <h2>5.4 Skatteregler for investering i 2026</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>To centrale principper styrer beskatningen af investeringsafkast i Danmark:</p>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-6 mb-3">
+                            <div class="stat-card text-left" style="height:100%;">
+                                <div class="font-weight-bold mb-2" style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">Realisationsprincippet</div>
+                                <p class="small">Skat betales først, når gevinsten er realiseret (aktien er solgt). Gælder for enkeltaktier og udbyttebetalende investeringsforeninger. <b>Fordel:</b> Man kan udskyde skatten ved at holde aktier i mange år. <b>Ulempe:</b> Kan skabe en "lock-in" effekt, hvor kunden holder fast i dårlige aktier for at undgå skat.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="stat-card text-left" style="height:100%;">
+                                <div class="font-weight-bold mb-2" style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">Lagerprincippet</div>
+                                <p class="small">Skat betales hvert år af årets gevinst/tab, uanset om man har solgt. Gælder for ASK, akkumulerende fonde og obligationer. <b>Fordel:</b> Tab kan modregnes løbende. <b>Ulempe:</b> Kræver likviditet til skattebetalingen i år med store kursgevinster.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p><b>Aktieindkomst 2026:</b> 27% af de første <b>61.100 kr.</b> pr. person (dobbelt for ægtefæller: 122.200 kr.) og 42% af resten. Gælder for aktier, udbyttebetalende investeringsforeninger og ETF'er.</p>
+                    <p><b>Kapitalindkomst:</b> Ca. 37-42% afhængig af kommuneskat og renteudgifter. Gælder for obligationer og akkumulerende fonde.</p>
+                    <div class="tip-box mt-3">
+                        <p><b>Rådgivningspointe — udnyt ægtefælles bundgrænse:</b> Et ægtepar kan tilsammen have 122.200 kr. i aktieindkomst til 27%. Har den ene ægtefælle ingen aktieindkomst, kan det betale sig at flytte aktier til den ægtefælle, der ikke udnytter sin bundgrænse — og dermed spare op til 9.150 kr. i skat om året.</p>
+                    </div>
+                    <small class="d-block text-left mt-3 text-muted"><b>Kilde:</b> <a href="https://skat.dk/borger/aktier-og-andre-vaerdipapirer/skat-af-aktier" target="_blank">skat.dk — Skat af aktier</a> · Skatteministeriet (2026).</small>
+                </div>
+
+                <h2>5.5 Investeringsrådgivning og MiFID II</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Når du som rådgiver anbefaler investeringsprodukter, er du underlagt <b>MiFID II-reglerne</b> (EU-direktiv om finansielle markeder). De centrale krav er:</p>
                     <ul>
-                        <li><b>Aktieindkomst:</b> 27 % af de første ca. 63.300 kr. (2026-niveau) pr. person (det
-                            dobbelte for ægtefæller) og 42 % af resten. Gælder for danske og udenlandske aktier samt
-                            aktiebaserede udbyttebetalende investeringsforeninger.</li>
-                        <li><b>Kapitalindkomst:</b> Omkring 37-42 % afhængig af renteudgifter/kommuneskat. Gælder for
-                            obligationer og akkumulerende fonde.</li>
-                        <li><b>Aktiesparekonto (ASK):</b> En særlig konto med en lav, årlig lagerskat (17 %).
-                            Indskudsloftet i 2026 er 147.300 kr. Den er yderst attraktiv som det første
-                            investeringskøretøj for begyndere og øvede takket være den gunstige beskatning.</li>
+                        <li><b>Egnethedstest:</b> Du skal sikre, at produktet passer til kundens viden, erfaring, økonomi og tidshorisont. En 70-årig med lav risikoappetit bør ikke anbefales en 100% aktieportefølje.</li>
+                        <li><b>Omkostningsgennemsigtighed:</b> Du skal oplyse om alle omkostninger — ÅOP, transaktionsomkostninger og eventuelle provisioner.</li>
+                        <li><b>Best Execution:</b> Du skal søge det bedst mulige resultat for kunden ved handel.</li>
                     </ul>
+                    <p>Som finansøkonom er det din pligt at rådgive inden for lovens rammer og altid sætte kundens interesse først — ikke bankens salgsmål.</p>
+                    <small class="d-block text-left mt-2 text-muted"><b>Kilde:</b> MiFID II (EU-direktiv 2014/65/EU) · Finanstilsynet.</small>
                 </div>
 
             </article>

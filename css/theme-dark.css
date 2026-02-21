@@ -22,6 +22,7 @@
     --chart-grid: rgba(255, 255, 255, 0.35);
     --chart-text: #ffffff;
     --card-bg: #121212;
+    --text-color: #ffffff;
 }
 
 /* Base dark theme styles */
@@ -118,8 +119,21 @@
 [data-theme="dark"] .simulation-card *,
 [data-theme="dark"] .tax-calculator *,
 [data-theme="dark"] .info-box *,
-[data-theme="dark"] .example-box * {
+[data-theme="dark"] .example-box *,
+[data-theme="dark"] .list-group-item * {
     color: inherit !important;
+}
+
+[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .text-dark {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-secondary {
+    color: var(--text-secondary) !important;
 }
 
 [data-theme="dark"] .card-header,

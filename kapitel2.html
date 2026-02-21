@@ -36,7 +36,8 @@
         }
 
         [data-theme="dark"] .chart-container {
-            background-color: #000000;
+            background-color: var(--chart-bg, #000000);
+            box-shadow: none !important;
         }
 
         .chart-container.sankey-chart {
@@ -62,9 +63,9 @@
         }
 
         [data-theme="dark"] .stat-card {
-            background-color: #1e1e2e;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background-color: var(--card-bg, #121212);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.25);
         }
 
         /* Simulation Card Styles */
@@ -73,7 +74,7 @@
             border: 1px solid rgba(0, 0, 0, 0.08) !important;
             border-left: 6px solid #27ae60 !important;
             background-color: var(--card-bg, #ffffff);
-            color: #333;
+            color: var(--text-primary);
             padding: 35px 40px !important;
             text-align: left;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
@@ -88,15 +89,15 @@
         }
 
         [data-theme="dark"] .simulation-card {
-            background-color: #1e1e2e;
-            border-color: rgba(255, 255, 255, 0.05) !important;
+            background-color: var(--card-bg, #121212);
+            border-color: var(--border-color) !important;
             border-left: 6px solid #2ecc71 !important;
-            color: #fff;
+            color: var(--text-primary);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.25) !important;
         }
 
         .simulation-card:hover {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
-            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
         }
 
         .simulation-btn {
@@ -118,11 +119,11 @@
             font-size: 2.8rem;
             font-weight: 800;
             line-height: 1.1;
-            color: #333;
+            color: var(--text-primary);
         }
 
         [data-theme="dark"] .stat-number {
-            color: #fff;
+            color: var(--text-primary);
         }
 
         .stat-label {
@@ -168,7 +169,7 @@
 
         .stat-label {
             font-size: 0.85rem;
-            color: #666;
+            color: var(--text-secondary);
             margin-top: 6px;
         }
 
@@ -239,7 +240,7 @@
             font-size: 0.8rem;
             font-weight: 400;
             margin-top: 5px;
-            color: #666;
+            color: var(--text-secondary);
         }
 
         [data-theme="dark"] .credit-pillar-sub {
@@ -251,13 +252,13 @@
             overflow: hidden;
             width: 100%;
             padding-top: 75%;
-            border: 1px solid #e8e8e8;
+            border: 1px solid var(--border-color);
             background: var(--card-bg, #ffffff);
         }
 
         [data-theme="dark"] .iframe-container {
-            border-color: #333;
-            background: #1e1e2e;
+            border-color: var(--border-color);
+            background: var(--bg-primary, #000000);
         }
 
         .iframe-container iframe {
@@ -551,7 +552,8 @@
                                         gældsfaktoren er pæn, og formuen er tilstrækkelig til udbetaling.
                                         <br><br>
                                         Men hans budget afslører problemet: husleje 14.500 kr. + to billån 8.200 kr. +
-                                        forsikringer og abonnementer 4.500 kr. Det efterlader kun <b>3.800 kr./md.</b> til
+                                        forsikringer og abonnementer 4.500 kr. Det efterlader kun <b>3.800 kr./md.</b>
+                                        til
                                         mad, tøj og alt andet. Finanstilsynets retningslinje er <b>8.500 kr./md.</b>
                                         for en enlig. Mange banker opererer i praksis med lavere interne minimumskrav
                                         — typisk 6.000-7.000 kr. — men selv det er Lars langt fra at opfylde.
@@ -814,16 +816,11 @@
                     </div>
 
                     <div class="simulation-card">
-                        <div class="font-weight-bold mb-3" style="font-family:'Space Grotesk'; font-size: 1.5rem;">Prøv
-                            simuleringen selv
-                        </div>
-                        <p class="mb-4" style="font-style:italic; position: relative; z-index: 2;">Test
-                            selv kundens
-                            økonomi ved f.eks. jobskifte eller huskøb: Indsæt ovenstående faktorer og vurder, hvordan
-                            fremtiden påvirker bundlinjen.</p>
+                        <div class="font-weight-bold mb-2" style="font-family:'Space Grotesk'; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">Prøv simuleringen selv</div>
+                        <p class="mb-4 text-muted" style="font-style:italic;">Test selv kundens økonomi ved f.eks. jobskifte eller huskøb: Indsæt ovenstående faktorer og vurder, hvordan fremtiden påvirker bundlinjen.</p>
                         <a href="https://skat.tepedu.dk/budget.html" target="_blank"
-                            class="btn font-weight-bold shadow-sm"
-                            style="background-color:#145a32 !important; color:#ffffff !important; border-radius:0 !important; border: 1px solid #145a32 !important; text-transform:uppercase; letter-spacing:1px; padding:12px 28px; font-style:italic; display:inline-flex; align-items:center; gap:8px; position: relative; z-index: 2; text-decoration: none; transition: all 0.3s ease;">
+                            class="btn simulation-btn font-weight-bold"
+                            style="text-transform:uppercase; letter-spacing:1px; padding:12px 28px;">
                             Åbn Budgetberegner (Enlig)
                         </a>
                     </div>
@@ -1262,16 +1259,11 @@
                         (2026).</small>
 
                     <div class="simulation-card mt-4 mb-4">
-                        <div class="font-weight-bold mb-3" style="font-family:'Space Grotesk'; font-size: 1.5rem;">Prøv
-                            simuleringen selv
-                        </div>
-                        <p class="mb-4" style="font-style:italic; position: relative; z-index: 2;">Prøv selv: Du kan
-                            selv
-                            simulere familiens budget på baggrund af nye
-                            skatteregler.</p>
+                        <div class="font-weight-bold mb-2" style="font-family:'Space Grotesk'; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">Prøv simuleringen selv</div>
+                        <p class="mb-4 text-muted" style="font-style:italic;">Simuler familiens budget på baggrund af nye skatteregler — prøv f.eks. at ændre indkomst eller boligudgifter.</p>
                         <a href="https://skat.tepedu.dk/couple_budget.html" target="_blank"
-                            class="btn font-weight-bold shadow-sm"
-                            style="background-color:#145a32 !important; color:#ffffff !important; border-radius:0 !important; border: 1px solid #145a32 !important; text-transform:uppercase; letter-spacing:1px; padding:12px 28px; font-style:italic; display:inline-flex; align-items:center; gap:8px; position: relative; z-index: 2; text-decoration: none; transition: all 0.3s ease;">
+                            class="btn simulation-btn font-weight-bold"
+                            style="text-transform:uppercase; letter-spacing:1px; padding:12px 28px;">
                             Åbn Budgetberegner (Par / Sambeskatning)
                         </a>
                     </div>
@@ -1408,6 +1400,30 @@
                             Dette er endnu et argument for at gifte sig, når man køber bolig sammen.</p>
                     </div>
 
+                    <div class="card bg-light mb-3 border-0 shadow-sm" style="border-radius:0 !important; background:var(--card-bg, #f8f9fa);">
+                        <div class="card-body">
+                            <div class="font-weight-bold mb-3" style="font-size:0.9rem; text-transform:uppercase; letter-spacing:0.05em;">Beregningseksempel: Enlig med 80.000 kr. i renteudgifter</div>
+                            <div class="row text-center">
+                                <div class="col-md-4">
+                                    <div class="text-muted small text-uppercase mb-1">Første 50.000 kr.</div>
+                                    <div style="font-size:1.4rem; font-weight:700; font-family:'Space Grotesk'; color:#27ae60;">× 33,6%</div>
+                                    <div class="small text-muted">= <b>16.800 kr.</b> i skattebesparelse</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-muted small text-uppercase mb-1">Resterende 30.000 kr.</div>
+                                    <div style="font-size:1.4rem; font-weight:700; font-family:'Space Grotesk'; color:#f2994a;">× 25,6%</div>
+                                    <div class="small text-muted">= <b>7.680 kr.</b> i skattebesparelse</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-muted small text-uppercase mb-1">Samlet besparelse</div>
+                                    <div style="font-size:1.4rem; font-weight:700; font-family:'Space Grotesk';">24.480 kr./år</div>
+                                    <div class="small text-muted">= <b>2.040 kr./md.</b></div>
+                                </div>
+                            </div>
+                            <hr style="margin: 1rem 0; border-color: var(--border-color);">
+                            <p class="small text-muted mb-0"><b>Rådgivningspointe:</b> Grænsen på 50.000 kr. (100.000 kr. for ægtepar) er afgørende. En enlig med 80.000 kr. i renteudgifter "mister" fradragsværdi på de 30.000 kr. over grænsen. Et gift par med samme renteudgifter har en samlet grænse på 100.000 kr. og får den høje fradragsværdi på hele beløbet.</p>
+                        </div>
+                    </div>
                     <p>Grafen herunder sammenligner den absolutte skattebesparelse (i kroner) ved forskellige niveauer
                         af renteudgifter — for henholdsvis en enlig og et par.</p>
 
@@ -1419,9 +1435,107 @@
                 </div>
 
                 <!-- ============================================================ -->
-                <!-- 2.8 SKATTEOPTIMERING -->
+                <!-- 2.8 ÆGTEFÆLLES PERSONFRADRAG -->
                 <!-- ============================================================ -->
-                <h2>2.8 Skatteoptimering & Pension (Overordnet)</h2>
+                <h2>2.8 Ægtefælles personfradrag — en overset fordel</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>I Danmark er skat personlig — men for ægtepar gælder en vigtig undtagelse: <b>uudnyttet personfradrag kan overføres til ægtefællen</b>. Personfradraget i 2026 er <b>54.100 kr.</b> Hvis den ene ægtefælle ikke har indkomst nok til at udnytte sit fulde fradrag, overføres resten automatisk.</p>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-4 mb-3">
+                            <div class="stat-card">
+                                <div class="stat-number accent-green">54.100 kr.</div>
+                                <div class="stat-label">Personfradrag pr. person (2026)</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="stat-card">
+                                <div class="stat-number accent-blue">~12.000 kr.</div>
+                                <div class="stat-label">Potentiel skattebesparelse<br><small>ved fuld overførsel til ægtefælle</small></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="stat-card">
+                                <div class="stat-number accent-orange">Gift</div>
+                                <div class="stat-label">Kun for ægtepar<br><small>Samlevende har ikke denne ret</small></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p><b>Eksempel:</b> Sofie er på barsel og har en indkomst på 25.000 kr. i det pågældende år. Hendes personfradrag er 54.100 kr., men hun udnytter kun 25.000 kr. De resterende 29.100 kr. overføres automatisk til hendes mand Lars, som dermed betaler ca. <b>10.000–11.000 kr. mindre i skat</b> det år.</p>
+                    <p><b>Rådgivningspointe:</b> Dette er et af de stærkeste argumenter for at gifte sig frem for blot at være samlevende, særligt når den ene part er på barsel, studerer eller er deltidsansat. For samlevende par gælder denne mulighed <i>ikke</i> — de betaler skat som to uafhængige personer.</p>
+                    <div class="tip-box">
+                        <p><b>Praktisk:</b> Overførslen sker automatisk via årsopgørelsen og kræver ingen handling fra parret. Rådgiveren bør dog gøre kunden opmærksom på fordelen, da mange ikke er bevidste om den — og den kan have stor betydning for budgettet i år med asymmetrisk indkomst (barsel, studieår, sygdom).</p>
+                    </div>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.9 ADFÆRDSØKONOMI -->
+                <!-- ============================================================ -->
+                <h2>2.9 Adfærdsøkonomi: Hvorfor fejler vi?</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Selvom matematikken er klar, træffer kunder ofte irrationelle beslutninger. Som rådgiver er det ikke nok at kende reglerne — du skal også forstå de psykologiske mekanismer, der styrer kundens adfærd. Inden for <b>Behavioral Finance</b> taler vi om tre centrale fælder:</p>
+
+                    <div class="row mt-4">
+                        <div class="col-md-4 mb-4">
+                            <div class="stat-card text-left" style="height:100%;">
+                                <div class="font-weight-bold mb-2" style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">Tabsaversion</div>
+                                <p class="small text-muted mb-2"><i>Loss Aversion</i></p>
+                                <p class="small">Kunder føler smerten ved et tab på 10.000 kr. dobbelt så stærkt som glæden ved en gevinst på 10.000 kr. Det gør dem for konservative — de undgår f.eks. at indbetale på pension af frygt for at "miste" likviditet nu.</p>
+                                <div class="mt-auto p-3 small" style="background: var(--card-bg, #f8f9fa); border-left: 3px solid var(--text-color, #333); opacity: 0.85;">
+                                    <b>Rådgivning:</b> Vis kunden, hvad de <i>faktisk</i> mister efter skat — ikke bruttobeløbet. En pensionsindbetaling på 10.000 kr. koster kun ca. 4.800 kr. netto for en topskatteyder.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="stat-card text-left" style="height:100%;">
+                                <div class="font-weight-bold mb-2" style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">Nutids-bias</div>
+                                <p class="small text-muted mb-2"><i>Present Bias</i></p>
+                                <p class="small">Vi værdsætter 1.000 kr. i dag højere end 2.000 kr. om 10 år. Det forklarer, hvorfor mange underprioriterer pensionsopsparing, selvom skattefordelen er massiv og "risikofri".</p>
+                                <div class="mt-auto p-3 small" style="background: var(--card-bg, #f8f9fa); border-left: 3px solid var(--text-color, #333); opacity: 0.85;">
+                                    <b>Rådgivning:</b> Brug konkrete tal: "Du indbetaler 5.000 kr. nu og sparer 2.600 kr. i skat med det samme. Du 'vinder' allerede i dag."
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="stat-card text-left" style="height:100%;">
+                                <div class="font-weight-bold mb-2" style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">Mental Accounting</div>
+                                <p class="small text-muted mb-2"><i>Mentale konti</i></p>
+                                <p class="small">Kunder opdeler penge i "mentale konti" — "skattepenge", "opsparing", "forbrug" — og behandler dem forskelligt. En bonus betragtes som "ekstra" og bruges til forbrug, selvom den skattemæssigt er identisk med løn.</p>
+                                <div class="mt-auto p-3 small" style="background: var(--card-bg, #f8f9fa); border-left: 3px solid var(--text-color, #333); opacity: 0.85;">
+                                    <b>Rådgivning:</b> Hjælp kunden med at se økonomien som en helhed. En bonus på 50.000 kr. er kun 24.000 kr. netto — men 50.000 kr. på pension.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>2.9.1 Case: "Skatte-rabat-fælden"</h3>
+                    <p>Simone har fået en bonus på <b>50.000 kr.</b> Hun overvejer at bruge den på en ny rejse. Som hendes rådgiver viser du hende regnestykket:</p>
+                    <div class="card bg-light mb-3 border-0 shadow-sm" style="border-radius:0 !important; background:var(--card-bg, #f8f9fa);">
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-md-4">
+                                    <div class="font-weight-bold text-muted small text-uppercase mb-1">Bonus brutto</div>
+                                    <div style="font-size:1.8rem; font-weight:700; font-family:'Space Grotesk';">50.000 kr.</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="font-weight-bold text-muted small text-uppercase mb-1">Til udbetaling (topskat ~52%)</div>
+                                    <div style="font-size:1.8rem; font-weight:700; font-family:'Space Grotesk'; color:#eb3349;">24.000 kr.</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="font-weight-bold text-muted small text-uppercase mb-1">På pension (hele beløbet)</div>
+                                    <div style="font-size:1.8rem; font-weight:700; font-family:'Space Grotesk'; color:#27ae60;">50.000 kr.</div>
+                                </div>
+                            </div>
+                            <hr style="margin: 1rem 0; border-color: var(--border-color);">
+                            <p class="small text-muted mb-0"><b>Konklusion:</b> Simone "betaler" kun 24.000 kr. i tabt forbrug for at få 50.000 kr. i pensionsopsparing. Skattebesparelsen på 26.000 kr. er en øjeblikkelig, risikofri gevinst.</p>
+                        </div>
+                    </div>
+                    <small class="d-block text-left mt-2 text-muted"><b>Kilde:</b> Behavioral Finance-teori, Kahneman & Tversky (1979). Anvendt i privatøkonomisk rådgivning.</small>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 2.10 SKATTEOPTIMERING -->
+                <!-- ============================================================ -->
+                <h2>2.10 Skatteoptimering & Pension (Overordnet)</h2>
                 <div class="info-box reveal-on-scroll">
                     <p>Pensionsoptimering er et af de mest effektive skatteværktøjer, da indbetalinger påvirker den
                         skattepligtige indkomst og dermed kundens rådighedsbeløb. Som finansiel rådgiver er det vigtigt
@@ -1430,9 +1544,9 @@
                 </div>
 
                 <!-- ============================================================ -->
-                <!-- 2.9 VÆRKTØJER OG KILDER -->
+                <!-- 2.11 VÆRKTØJER OG KILDER -->
                 <!-- ============================================================ -->
-                <h2>2.9 Værktøjer og Kilder</h2>
+                <h2>2.11 Værktøjer og Kilder</h2>
                 <div class="info-box reveal-on-scroll">
                     <p>Som finansøkonom forventes det, at du kan indhente og validere data fra officielle kilder. I
                         dette kapitel har vi benyttet:</p>
@@ -1786,12 +1900,12 @@
                                 let deviance = (m.debt - 120).toFixed(0);
                                 let devianceStr = parseFloat(deviance) > 0 ? "+" + deviance + "%point" : deviance + "%point";
                                 const popupHtml = `
-                                    <div style="font-family: 'Inter', sans-serif; font-size: 13px; color: #333; min-width: 170px;">
+                                    <div style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-primary); min-width: 170px;">
                                         <b style="font-size: 15px; display: block; margin-bottom: 4px;">${m.nameDk}</b>
-                                        <hr style="margin: 4px 0; border: none; border-top: 1px solid #ccc;">
+                                        <hr style="margin: 4px 0; border: none; border-top: 1px solid var(--border-color);">
                                         <table style="width: 100%; border-collapse: collapse; margin-top: 4px;">
                                             <tr><td style="padding: 2px 0;"><b>Husholdningsgæld:</b></td><td style="text-align: right;">${m.debt}%</td></tr>
-                                            <tr><td style="padding: 2px 0; font-size: 11px; color: #666;">Afvigelse gns (~120%):</td><td style="text-align: right; color: ${parseFloat(deviance) > 0 ? '#eb3349' : '#11998e'};">${devianceStr}</td></tr>
+                                            <tr><td style="padding: 2px 0; font-size: 11px; color: var(--text-secondary);">Afvigelse gns (~120%):</td><td style="text-align: right; color: ${parseFloat(deviance) > 0 ? '#eb3349' : '#11998e'};">${devianceStr}</td></tr>
                                         </table>
                                     </div>
                                 `;
