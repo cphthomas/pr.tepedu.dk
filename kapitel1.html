@@ -29,11 +29,11 @@
         }
 
         /* Chart container backgrounds for dark/light mode */
-        body:not(.dark-mode) .chart-container {
-            background-color: #ffffff;
+        :root:not([data-theme="dark"]) .chart-container {
+            background-color: var(--card-bg, #ffffff);
         }
 
-        body.dark-mode .chart-container {
+        [data-theme="dark"] .chart-container {
             background-color: #000000;
         }
 
@@ -44,7 +44,7 @@
 
         /* Stat cards: white, shadow on hover, square */
         .stat-card {
-            background: #fff;
+            background: var(--card-bg, #ffffff);
             border-radius: 0;
             padding: 24px;
             text-align: center;
@@ -119,7 +119,7 @@
 
         /* Tax calculator: white card, square */
         .tax-calculator {
-            background: #fff;
+            background: var(--card-bg, #ffffff);
             border: 1px solid #e8e8e8;
             border-radius: 0;
             padding: 30px;

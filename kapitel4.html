@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Bolighandlen & Ejendomsskat - Privatøkonomisk Rådgivning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pension & Forsikring 2026 - Privatøkonomisk Rådgivning</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Bootstrap Icons -->
@@ -22,6 +23,46 @@
     <link rel="stylesheet" href="css/theme-light.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.svg">
     <link rel="stylesheet" href="css/glossary.css">
+
+    <style>
+        /* Square corners everywhere */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            border-radius: 0;
+            padding: 10px;
+        }
+
+        /* Chart container backgrounds for dark/light mode */
+        :root:not([data-theme="dark"]) .chart-container {
+            background-color: var(--chart-bg, #ffffff);
+        }
+
+        [data-theme="dark"] .chart-container {
+            background-color: var(--chart-bg, #000000);
+        }
+
+        .chart-container.sankey-chart {
+            height: 70vh;
+        }
+
+        /* Reveal on scroll */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-on-scroll.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Override Chart.js border radius */
+        canvas {
+            border-radius: 0 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,12 +71,9 @@
         <div class="container-fluid">
             <a href="https://tepedu.dk/" target="_blank" rel="noopener noreferrer">
                 <img id="site-logo" src="images/tepedulogoanim.svg" alt="Te Pedu Logo"
-                    style="height: 35px; margin-right: 15px;">
+                    style="height:35px; margin-right:15px;">
             </a>
-            <a class="navbar-brand" href="index.html">
-                <i class="bi bi-house-door"></i>
-            </a>
-
+            <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i></a>
             <ul class="navbar-nav ml-auto align-items-center">
                 <li class="nav-item">
                     <a class="nav-link" id="theme-toggle" href="#" role="button" aria-label="Skift tema">
@@ -63,26 +101,22 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="bi bi-list icon-margin"></i>
-                    </a>
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                            class="bi bi-list icon-margin"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink"></div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="prev-page-link" href="kapitel3.html"><i class="bi bi-arrow-left"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="next-page-link" href="kapitel5.html"><i class="bi bi-arrow-right"></i></a>
-                </li>
+                <li class="nav-item"><a class="nav-link" id="prev-page-link" href="kapitel3.html"><i
+                            class="bi bi-arrow-left"></i></a></li>
+                <li class="nav-item"><a class="nav-link" id="next-page-link" href="kapitel5.html"><i
+                            class="bi bi-arrow-right"></i></a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Sidebar Navigation -->
+    <!-- Sidebar -->
     <div id="left-aligned-sidebar" class="sidebar">
-        <button id="sidebar-toggle-button" class="sidebar-toggle" aria-label="Toggle navigation">
-            <i class="bi bi-list"></i>
-        </button>
+        <button id="sidebar-toggle-button" class="sidebar-toggle" aria-label="Toggle navigation"><i
+                class="bi bi-list"></i></button>
         <div class="sidebar-content">
             <h5 class="sidebar-title">Indholdsfortegnelse</h5>
             <ul id="sidebar-toc" class="list-unstyled"></ul>
@@ -91,105 +125,129 @@
 
     <!-- Page Content -->
     <div class="content">
-        <div class="container-fluid mt-4 px-lg-5">
+        <div class="container mt-4">
             <article>
                 <div class="book-cover-wrapper">
-                    <div class="img-fluid" width="100%" style="min-height: 400px; background-color: #2c3e50;"></div>
-                    <h1 class="cover-text-overlay animate-cover-text" data-type-text="4 Bolighandlen"
-                        data-type-speed="150">4 Bolighandlen</h1>
-                </div>
-
-                <div class="info-box mt-4">
-                    <p class="lead">At købe bolig er både en livsstilsbeslutning og en stor investering. Siden 2024 er
-                        reglerne for ejendomsbeskatning blev radikalt ændret, hvilket stiller nye krav til rådgiverens
-                        viden om 2024-vurderinger og skatterabatter.</p>
-                </div>
-
-                <h2>4.1 Den nye Ejendomsskattereform (fra 2024)</h2>
-                <div class="info-box">
-                    <p>Før 2024 var boligskatterne låst, men med det nye system følger skatterne nu vurderingerne op og
-                        ned. For at undgå chokstigninger er der indført to centrale værn:</p>
-                    <ul>
-                        <li><b>Skatterabat:</b> Hvis de nye skatter er højere end dem fra 2023, får nuværende ejere en
-                            personlig skatterabat, der dækker stigningen. Rabatten følger ejeren, ikke boligen.</li>
-                        <li><b>Forsigtighedsnedslaget:</b> Der trækkes automatisk 20 % fra vurderingen, før skatten
-                            beregnes, for at tage højde for usikkerhed i modellen.</li>
-                    </ul>
-                </div>
-
-                <h2>4.2 Ejendomsværdiskat vs. Grundskyld</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card p-3 h-100">
-                            <h5>Ejendomsværdiskat</h5>
-                            <p>Skat af selve værdien af huset og grunden. Betales til staten via årsopgørelsen.</p>
-                            <p class="small font-weight-bold">Sats: 0,51 % op til 9,2 mio. kr.</p>
-                        </div>
+                    <div class="img-fluid" width="100%"
+                        style="min-height:400px; object-fit:cover; background: linear-gradient(45deg, #2a5298, #1e3c72);">
                     </div>
-                    <div class="col-md-6">
-                        <div class="card p-3 h-100 border-primary">
-                            <h5>Grundskyld</h5>
-                            <p>Skat af selve jordens værdi. Betales nu også via årsopgørelsen til staten (før via
-                                kommunen).</p>
-                            <p class="small font-weight-bold">Sats: Varierer pr. kommune.</p>
-                        </div>
-                    </div>
+                    <h1 class="cover-text-overlay animate-cover-text" data-type-text="Pension og Forsikring"
+                        data-type-speed="150">Pension og Forsikring</h1>
                 </div>
 
-                <h2 class="mt-5">4.3 Processen i en bolighandel</h2>
-                <p>Som økonomisk rådgiver skal du guide kunden gennem de tre faser:</p>
-                <ol>
-                    <li><b>Før købet:</b> Køberrådgivning, kreditgodkendelse og gennemgang af salgsopstilling.</li>
-                    <li><b>Under handlen:</b> Forhandling, advokatforbehold og underskrift på købsaftale.</li>
-                    <li><b>Efter købet:</b> Berigtigelse, skøde, tinglysning og refusionsopgørelse.</li>
-                </ol>
-
-                <h2>4.4 Refusionsopgørelsen: Den endelige afregning</h2>
-                <div class="info-box">
-                    <p>Refusionsopgørelsen er det afsluttende regnskab mellem køber og sælger. Her fordeles udgifter,
-                        som er betalt forud eller bagud (f.eks. ejendomsskatter, vand, varme og kontingent til
-                        grundejerforening).</p>
+                <div class="info-box reveal-on-scroll">
+                    <p>Pension og forsikring udgør sammen med boligfinansiering de tungeste poster i en moderne
+                        privatøkonomi.
+                        Det er områder forbundet med stor kompleksitet og langsigtet planlægning, hvilket gør uvildig og
+                        professionel rådgivning afgørende.</p>
                 </div>
 
-                <h2>4.5 Case: Beregning af skatterabat</h2>
-                <div class="info-box highlight-box">
-                    <h3>Case: Parcelhus i Gladsaxe</h3>
-                    <p>Sælge købte huset i 2010. I 2024 stiger skatten med 15.000 kr. pga. nye vurderinger.</p>
+                <h2>4.1 Skatteoptimering & Pensionsfradrag</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Pensionsoptimering er et af de mest effektive skatteværktøjer, en finansiel rådgiver kan anvende.
+                        Princippet er simpelt: indbetalinger på pension reducerer den skattepligtige indkomst <i>nu</i>,
+                        mens beskatningen udskydes til pensionsalderen, hvor skatteprocenten typisk er lavere. Gevinsten
+                        er forskellen mellem marginalskatten i dag og marginalskatten som pensionist.</p>
+                    <p>I 2026 er de vigtigste pensionsordninger:</p>
                     <ul>
-                        <li><b>Sælger:</b> Betaler intet ekstra, da han får en skatterabat på 15.000 kr.</li>
-                        <li><b>Ny Køber:</b> Hvis Mads køber huset nu, overtager han <b>ikke</b> rabatten. Han skal
-                            betale de fulde 15.000 kr. mere end sælger gjorde.</li>
-                    </ul>
-                    <p>Dette er en kritisk pointe i rådgivningen: Nye ejere betaler ofte mere i skat end den forrige
-                        ejer!</p>
-                </div>
-
-                <h2>4.6 Data-indsigt: Ejerudgifter over tid</h2>
-                <div class="info-box">
-                    <p>Ejerudgiften i en salgsopstilling inkluderer alt undtagen selve lånet. Her ser vi gennemsnitlige
-                        ejerudgifter for et standard parcelhus.</p>
-                    <div class="chart-container" style="position: relative; height: 500px; width: 100%;">
-                        <canvas id="housingCostChart"></canvas>
-                    </div>
-                </div>
-
-                <div class="glossary-section mt-5">
-                    <hr>
-                    <p><small><b>Termer i dette kapitel:</b></small></p>
-                    <ul>
-                        <li><span class="term"
-                                data-tooltip="Det beløb du betaler skat af efter forsigtighedsnedslaget på 20 %.">Beskatningsgrundlag</span>
-                        </li>
-                        <li><span class="term"
-                                data-tooltip="Det regnskab der sikrer at køber og sælger betaler hver deres del af de løbende udgifter.">Refusionsopgørelse</span>
-                        </li>
-                        <li><span class="term"
-                                data-tooltip="Den officielle registrering af ejerskab hos Tinglysningsretten.">Skøde</span>
-                        </li>
-                        <li><span class="term"
-                                data-tooltip="En forsikring der dækker skjulte fejl i 5-10 år.">Ejerskifteforsikring</span>
+                        <li><b><span class="legal-term"
+                                    data-definition="En pensionsordning, der udbetales i rater over en årrække, typisk 10-30 år."
+                                    data-example="Hvis du indbetaler 63.100 kr. på en ratepension, får du fuldt fradrag i din personlige indkomst."
+                                    data-slug="ratepension">Ratepension:</span></b> Årligt loft på <b>63.100 kr.</b>
+                            Indbetalingen er fuldt
+                            fradragsberettiget i den personlige indkomst, hvilket giver en øjeblikkelig skattebesparelse
+                            på op til 52 % for topskatteydere. Udbetalingen beskattes som personlig indkomst.</li>
+                        <li><b><span class="legal-term"
+                                    data-definition="En livslang pensionsudbetaling, der varer så længe du lever."
+                                    data-example="Livrenten er god til at sikre, at man ikke løber tør for penge, uanset hvor gammel man bliver."
+                                    data-slug="livrente">Livrente:</span></b> <i>Intet loft</i> for
+                            arbejdsgiveradministrerede ordninger. Dette gør
+                            livrenten til det primære værktøj for kunder, der ønsker at nedbringe indkomsten under
+                            topskattegrænsen (777.900 kr. i 2026). For privattegnede livrenter gælder dog et loft.</li>
+                        <li><b><span class="legal-term"
+                                    data-definition="En pensionsopsparing uden fradrag for indbetalinger, men med skattefri udbetalinger."
+                                    data-example="Aldersopsparing er ideel, hvis man vil undgå modregning i folkepensionens tillæg."
+                                    data-slug="aldersopsparing">Aldersopsparing:</span></b> Et fast loft på <b>6.100
+                                kr./år</b> (2026). Indbetalingen giver
+                            <i>ikke</i> fradrag, men til gengæld beskattes udbetalingen ikke (bortset fra PAL-skat på
+                            15,3 % af afkastet). Aldersopsparingen er velegnet til kunder, der allerede har fyldt rate-
+                            og livrentekvoterne op.
                         </li>
                     </ul>
+                    <p>Men hvorfor gør kunderne det ikke bare? Her spiller <b>adfærdsøkonomi</b> en vigtig rolle.
+                        Fænomenet <i>present bias</i> (nutidsbias) beskriver vores tendens til at foretrække 1.000 kr. i
+                        dag frem for 2.000 kr. om 30 år — selvom det rationelle valg er klart. Ifølge <b>OECD's
+                            Financial Literacy Survey (2023)</b> er det kun 38 % af danske lønmodtagere, der aktivt
+                        optimerer deres pensionsindbetaling i forhold til skatten. Resten "lader det køre" på
+                        standardniveauet fra deres arbejdsgiverordning.</p>
+                    <p>Som rådgiver er din opgave at synliggøre den reelle gevinst. Sankey-diagrammet herunder viser,
+                        hvordan en indbetaling på 63.100 kr. på ratepension ændrer pengestrømmen for en lønmodtager med
+                        700.000 kr. i bruttoløn. Bemærk, at pensionsindbetalingen "fjerner" penge fra skattegrundlaget,
+                        hvilket reducerer den samlede skat markant.</p>
+
+                    <div class="tip-box">
+                        <p><b>Rådgiver-tip:</b> Husk det ekstra pensionsfradrag (beskæftigelsesfradraget for pension):
+                            12 % af pensionsindbetalingen (32 % hvis der er mere end 15 år til pensionsalderen), maks.
+                            10.056 kr./26.816 kr. Dette giver et ekstra ligningsmæssigt fradrag oven i det direkte
+                            fradrag for indbetalingen. Mange rådgivere overser dette, men det kan betyde 3.000-8.000 kr.
+                            ekstra i skattebesparelse.</p>
+                    </div>
+
+                    <div class="chart-container sankey-chart mb-2 wide">
+                        <canvas id="pensionOptSankey"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 4.1 — Sankey-diagram: Effekt af pensionsindbetaling
+                        (63.100 kr. på ratepension) for en lønmodtager med 700.000 kr. bruttoløn. Kilde:
+                        Skattestyrelsen (2026).</small>
+                </div>
+
+                <h2>4.2 Pensionsformue i international sammenligning</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Det danske pensionssystem er internationalt anerkendt som et af de bedste i verden. Ifølge
+                        <b>OECD's Pension Markets in Focus (2024)</b> og <b>Mercer Global Pension Index</b> har Danmark
+                        den højeste pensionsformue pr. indbygger i EU og den næsthøjeste i verden (kun overgået af
+                        Island). Pensionsformuen udgør ca. <b>233 % af BNP</b> — næsten to en halv gange den samlede
+                        danske økonomi.
+                    </p>
+                    <p>Denne massive pensionsformue skyldes en kombination af flere faktorer:</p>
+                    <ol>
+                        <li><b>Obligatoriske arbejdsmarkedspensioner:</b> Siden starten af 1990'erne har de fleste
+                            danske overenskomster inkluderet obligatorisk pensionsindbetaling (typisk 12-17 % af
+                            bruttolønnen). Det betyder, at næsten alle lønmodtagere automatisk opbygger pensionsformue.
+                        </li>
+                        <li><b>Skatteincitamenter:</b> Det danske skattesystem belønner pensionsopsparing markant.
+                            Fradragsværdien af en pensionsindbetaling kan være op til 52 %, mens beskatningen ved
+                            udbetaling typisk er 37-42 %. Denne "rabat" gør
+                            pensionsopsparing til en af de bedste investeringer, en dansker kan foretage.</li>
+                        <li><b>Langsigtede afkast:</b> De danske pensionskasser (ATP, PFA, Danica, Velliv m.fl.) har
+                            leveret solide langsigtede afkast på 7-10 % p.a. før skat over de seneste 30 år ifølge
+                            <b>Forsikring & Pension</b>.
+                        </li>
+                    </ol>
+                    <p>Grafen herunder viser pensionsformuen som andel af BNP for udvalgte lande. Bemærk den markante
+                        forskel mellem de nordeuropæiske velfærdsstater og de sydeuropæiske lande, hvor pensionssystemet
+                        primært er baseret på "pay-as-you-go" (løbende finansiering over skatten).</p>
+
+                    <div class="chart-container mb-2 square wide" style="height:500px;">
+                        <canvas id="pensionWealthChart"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 4.2 — Pensionsformue i % af BNP (udvalgte lande).
+                        Kilde: OECD Pension Markets in Focus (2024).</small>
+                </div>
+
+                <h2>4.3 Forsikringer i rådgivningen</h2>
+                <div class="info-box reveal-on-scroll">
+                    <p>Forsikring dækker primært over to områder i privatøkonomisk rådgivning:</p>
+                    <ul>
+                        <li><b>Skadesforsikring:</b> Dækning af materiel, herunder indboforsikring, husforsikring
+                            (særligt vigtig ved ejerskifte), samt bil- og rejseforsikringer.</li>
+                        <li><b>Personforsikring:</b> Livsforsikring, tab af erhvervsevne samt kritisk sygdom. Disse
+                            forsikringer er oftest bundet op på pensionsordningerne og kræver en holistisk gennemgang
+                            for at undgå overforsikring ("dobbelt-dækning") og underforsikring.</li>
+                    </ul>
+                    <p>God rådgivning involverer en vurdering af kundens forsikringsbehov på tværs af platforme, og at
+                        sikre at de rigtige dækningssummer og begunstigelser (hvem får udbetalt penge ved død) er
+                        korrekt opsat.</p>
                 </div>
             </article>
         </div>
@@ -199,30 +257,142 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-sankey"></script> <!-- Required for Sankey -->
     <script src="js/menu.js"></script>
     <script src="js/script.js"></script>
     <script src="js/theme-toggle.js"></script>
     <script src="js/glossary.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const ctx = document.getElementById('housingCostChart');
-            if (ctx) {
-                new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Grundskyld', 'Ejendomsværdiskat', 'Forsikringer', 'Vedligehold', 'Grundejerforening'],
-                        datasets: [{
-                            data: [1500, 2500, 800, 2000, 300],
-                            backgroundColor: ['#2c3e50', '#008cff', '#e67e22', '#27ae60', '#95a5a6']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false
+        // Global Chart Defaults
+        Chart.defaults.font.family = "'Space Grotesk', 'Inter', sans-serif";
+        Chart.defaults.color = '#666';
+
+        // Lazy Loader Helper
+        function initChartWhenVisible(canvasId, chartConfigFn) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        chartConfigFn();
+                        observer.unobserve(canvas);
                     }
                 });
-            }
+            }, { rootMargin: "0px 0px 200px 0px" });
+
+            observer.observe(canvas);
+        }
+
+        // ============================================================
+        // SANKEY 4.1: Pensionsoptimering (700k med 63.100 ratepension)
+        // ============================================================
+        initChartWhenVisible('pensionOptSankey', function () {
+            const c = themeColors();
+            const brutto = 700000;
+            const pension = 63100;
+            const bruttoEfterPension = brutto - pension; // 636.900
+            const am = Math.round(bruttoEfterPension * 0.08); // 50.952
+            const pi = bruttoEfterPension - am;               // 585.948
+            const bund = Math.round((pi - 54100) * 0.1201);   // 63.896
+            const kommune = Math.round((pi - 54100) * 0.25);  // 132.962
+            const totalSkat = am + bund + kommune;             // 247.810
+            const netto = bruttoEfterPension - totalSkat;      // 389.090
+            const sparetSkat = 32800; // approx. besparelse vs. ingen pension
+
+            new Chart(document.getElementById('pensionOptSankey').getContext('2d'), {
+                type: 'sankey',
+                data: {
+                    datasets: [{
+                        data: [
+                            { from: 'Bruttoløn', to: 'Ratepension', flow: pension },
+                            { from: 'Bruttoløn', to: 'Skattepligtig indkomst', flow: bruttoEfterPension },
+                            { from: 'Skattepligtig indkomst', to: 'Samlet skat', flow: totalSkat },
+                            { from: 'Skattepligtig indkomst', to: 'Disponibel indkomst', flow: netto },
+                            { from: 'Samlet skat', to: 'AM-bidrag', flow: am },
+                            { from: 'Samlet skat', to: 'Bundskat', flow: bund },
+                            { from: 'Samlet skat', to: 'Kommuneskat', flow: kommune }
+                        ],
+                        colorFrom: ctx => {
+                            const from = ctx.dataset.data[ctx.dataIndex].from;
+                            return { 'Bruttoløn': '#667eea', 'Skattepligtig indkomst': '#2193b0', 'Samlet skat': '#ef5350' }[from] || '#999';
+                        },
+                        colorTo: ctx => {
+                            const to = ctx.dataset.data[ctx.dataIndex].to;
+                            return {
+                                'Ratepension': '#f2994a', 'Skattepligtig indkomst': '#2193b0',
+                                'Disponibel indkomst': '#38ef7d', 'Samlet skat': '#ef5350',
+                                'AM-bidrag': COLORS.am, 'Bundskat': COLORS.bund, 'Kommuneskat': COLORS.kommune
+                            }[to] || '#999';
+                        },
+                        colorMode: 'gradient',
+                        labels: {
+                            'Bruttoløn': 'Bruttoløn\n' + fmt(brutto) + ' kr.',
+                            'Ratepension': 'Ratepension\n' + fmt(pension) + ' kr.',
+                            'Skattepligtig indkomst': 'Skattepligtig\n' + fmt(bruttoEfterPension) + ' kr.',
+                            'Samlet skat': 'Samlet skat\n' + fmt(totalSkat) + ' kr.',
+                            'Disponibel indkomst': 'Disponibel indkomst\n' + fmt(netto) + ' kr.',
+                            'AM-bidrag': 'AM-bidrag\n' + fmt(am) + ' kr.',
+                            'Bundskat': 'Bundskat\n' + fmt(bund) + ' kr.',
+                            'Kommuneskat': 'Kommuneskat\n' + fmt(kommune) + ' kr.'
+                        },
+                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text }
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, layout: { padding: { right: 140 } }, animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Pensionsoptimering: 700.000 kr. bruttoløn med 63.100 kr. ratepension', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: function (ctx) { const d = ctx.dataset.data[ctx.dataIndex]; return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.'; } } }
+                    },
+                    color: c.text
+                }
+            });
+        });
+
+        // ============================================================
+        // CHART 4.2: Pensionsformue i % af BNP (Bar)
+        // ============================================================
+        initChartWhenVisible('pensionWealthChart', function () {
+            const c = themeColors();
+            const countries = ['Grækenland', 'Tyskland', 'Frankrig', 'Spanien', 'Italien', 'Sverige', 'Finland', 'Norge', 'Canada', 'USA', 'UK', 'Schweiz', 'Australien', 'Holland', 'Island', 'Danmark'];
+            const values = [4, 8, 13, 15, 11, 95, 65, 62, 89, 142, 105, 148, 120, 213, 188, 233];
+
+            new Chart(document.getElementById('pensionWealthChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: countries,
+                    datasets: [{
+                        label: 'Pensionsformue (% af BNP)',
+                        data: values,
+                        backgroundColor: countries.map((ct) =>
+                            ct === 'Danmark' ? gradBg('#eb3349', '#f45c43', 'bb', false)
+                                : ct === 'Holland' || ct === 'Island' ? gradBg('#11998e', '#38ef7d', 'aa', false)
+                                    : gradBg('#667eea', '#764ba2', 'aa', false)
+                        ),
+                        borderColor: countries.map((ct) =>
+                            ct === 'Danmark' ? '#eb3349'
+                                : ct === 'Holland' || ct === 'Island' ? '#11998e'
+                                    : '#667eea'
+                        ),
+                        borderWidth: 0, borderRadius: 0, barPercentage: 0.7
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: { duration: 2500 },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Pensionsformue (% af BNP) — Udvalgte lande (2024)', color: c.text, font: { size: 14, weight: 'bold' } },
+                        tooltip: { callbacks: { label: ctx => ctx.parsed.x + '% af BNP' } }
+                    },
+                    scales: {
+                        x: { beginAtZero: true, max: 260, grid: { color: c.grid }, ticks: { color: c.text, callback: v => v + '%' } },
+                        y: { grid: { display: false }, ticks: { color: c.text, font: { size: 10 } } }
+                    }
+                }
+            });
         });
     </script>
 </body>

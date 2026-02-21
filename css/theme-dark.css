@@ -19,8 +19,9 @@
     --table-stripe: #000000;
     --table-hover: #000000;
     --chart-bg: #000000;
-    --chart-grid: rgba(255, 255, 255, 0.1);
+    --chart-grid: rgba(255, 255, 255, 0.35);
     --chart-text: #ffffff;
+    --card-bg: #121212;
 }
 
 /* Base dark theme styles */
@@ -62,15 +63,15 @@
 
 /* Info boxes and example boxes already have shadows defined above */
 [data-theme="dark"] .info-box:hover {
-    box-shadow: 0 12px 24px rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 12px 24px rgba(255, 255, 255, 0.35) !important;
 }
 
 [data-theme="dark"] .example-box:hover {
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3) !important;
 }
 
 [data-theme="dark"] .table-responsive {
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.25) !important;
     border: none !important;
     outline: none !important;
 }
@@ -80,6 +81,69 @@
     border: none !important;
 }
 
+/* Bootstrap and common container overrides */
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-light,
+[data-theme="dark"] .card,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .simulation-card,
+[data-theme="dark"] .tax-calculator,
+[data-theme="dark"] .info-box,
+[data-theme="dark"] .example-box,
+[data-theme="dark"] .list-group-item,
+[data-theme="dark"] .modal-content {
+    background-color: var(--card-bg, #121212) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.25) !important;
+}
+
+[data-theme="dark"] .list-group {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .list-group-item {
+    border: 1px solid var(--border-color) !important;
+}
+
+[data-theme="dark"] .list-group-flush .list-group-item {
+    border-left: 0 !important;
+    border-right: 0 !important;
+}
+
+[data-theme="dark"] .bg-white *,
+[data-theme="dark"] .bg-light *,
+[data-theme="dark"] .card *,
+[data-theme="dark"] .stat-card *,
+[data-theme="dark"] .simulation-card *,
+[data-theme="dark"] .tax-calculator *,
+[data-theme="dark"] .info-box *,
+[data-theme="dark"] .example-box * {
+    color: inherit !important;
+}
+
+[data-theme="dark"] .card-header,
+[data-theme="dark"] .modal-header {
+    background-color: #252525 !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .card-footer,
+[data-theme="dark"] .modal-footer {
+    background-color: #252525 !important;
+    border-top: 1px solid var(--border-color) !important;
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .stat-card:hover,
+[data-theme="dark"] .simulation-card:hover,
+[data-theme="dark"] .tax-calculator:hover,
+[data-theme="dark"] .info-box:hover,
+[data-theme="dark"] .example-box:hover {
+    box-shadow: 0 12px 24px rgba(255, 255, 255, 0.35) !important;
+    transform: translateY(-4px);
+}
 
 /* Typography */
 [data-theme="dark"] h1,
@@ -89,7 +153,7 @@
 [data-theme="dark"] h5,
 [data-theme="dark"] h6 {
     color: var(--text-primary);
-    background-color: #000000 !important;
+    background-color: transparent !important;
 }
 
 /* Content headings - pure black background */
@@ -127,7 +191,7 @@
     background-color: #000000 !important;
     border-bottom: none !important;
     /* Light shadow under navbar */
-    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.25) !important;
 }
 
 [data-theme="dark"] .navbar-light .navbar-nav .nav-link {
@@ -179,7 +243,7 @@
 [data-theme="dark"] .dropdown-menu {
     background-color: #000000 !important;
     border-color: var(--border-color);
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.25) !important;
 }
 
 [data-theme="dark"] .dropdown-item {
@@ -198,7 +262,7 @@
     border-left-color: var(--info-box-border);
     color: var(--text-primary);
     /* White shadow separates from background */
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.25) !important;
     border: none !important;
     outline: none !important;
 }
@@ -220,7 +284,7 @@
     border-left-color: var(--example-box-border);
     color: var(--text-primary);
     /* White shadow separates from background */
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.25) !important;
     border: none !important;
     outline: none !important;
 }
@@ -268,21 +332,21 @@
 
 [data-theme="dark"] .table-hover tbody tr:hover,
 [data-theme="dark"] .table tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.15) !important;
+    background-color: rgba(255, 255, 255, 0.35) !important;
     color: #ffffff !important;
     cursor: pointer !important;
 }
 
 /* Ensure hover effect works on table cells as well */
 [data-theme="dark"] .table tbody tr:hover td {
-    background-color: rgba(255, 255, 255, 0.15) !important;
+    background-color: rgba(255, 255, 255, 0.35) !important;
     color: #ffffff !important;
 }
 
 /* Override any inline styles that might interfere */
 [data-theme="dark"] .table-hover tbody tr:hover[style],
 [data-theme="dark"] .table tbody tr:hover[style] {
-    background-color: rgba(255, 255, 255, 0.15) !important;
+    background-color: rgba(255, 255, 255, 0.35) !important;
 }
 
 [data-theme="dark"] .table-bordered {
@@ -313,7 +377,7 @@
     background: #000000 !important;
     border: 2px solid rgba(255, 255, 255, 0.2) !important;
     color: #ffffff !important;
-    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.25) !important;
 }
 
 [data-theme="dark"] .policy-step {
@@ -350,7 +414,7 @@
 [data-theme="dark"] .chart-container {
     background-color: var(--chart-bg) !important;
     color: var(--chart-text) !important;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.25) !important;
 }
 
 [data-theme="dark"] .chart-loading {
@@ -433,7 +497,7 @@
 
 /* Book card hover shadow for dark mode */
 [data-theme="dark"] .book-card:hover {
-    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.35) !important;
 }
 
 [data-theme="dark"] .book-card a:hover {
@@ -498,7 +562,7 @@
     background-color: #000000 !important;
     color: #ffffff !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.25) !important;
 }
 
 [data-theme="dark"] .info-popup h6 {
@@ -520,7 +584,7 @@
     border-left: 4px solid #4a9eff !important;
     color: var(--text-primary) !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.25) !important;
 }
 
 [data-theme="dark"] .alert p,
@@ -543,7 +607,7 @@
     background-color: #000000 !important;
     border-left-color: #4a9eff !important;
     color: var(--text-primary) !important;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.25) !important;
 }
 
 [data-theme="dark"] div[style*="background-color: #f0f9ff"] p,
@@ -559,7 +623,7 @@
     background-color: #000000 !important;
     border-left-color: #f59e0b !important;
     color: var(--text-primary) !important;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.25) !important;
 }
 
 [data-theme="dark"] div[style*="background-color: #fef3c7"] p,
@@ -578,7 +642,7 @@
     background-color: #000000 !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
     color: var(--text-primary) !important;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.25) !important;
 }
 
 /* Policy figure containers - override inline bg-white */
@@ -619,8 +683,12 @@
 /* Override any inline white backgrounds in dark mode */
 [data-theme="dark"] [style*="background: #ffffff"],
 [data-theme="dark"] [style*="background:#ffffff"],
+[data-theme="dark"] [style*="background: #fff"],
+[data-theme="dark"] [style*="background:#fff"],
 [data-theme="dark"] [style*="background-color: #ffffff"],
-[data-theme="dark"] [style*="background-color:#ffffff"] {
+[data-theme="dark"] [style*="background-color:#ffffff"],
+[data-theme="dark"] [style*="background-color: #fff"],
+[data-theme="dark"] [style*="background-color:#fff"] {
     background: #000000 !important;
     background-color: #000000 !important;
 }

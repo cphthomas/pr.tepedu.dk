@@ -23,6 +23,7 @@
     --chart-grid: rgba(0, 0, 0, 0.1);
     --chart-text: #222222;
     --shadow-faint: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --card-bg: #ffffff;
 }
 
 /* Base light theme styles */

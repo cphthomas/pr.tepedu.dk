@@ -6,7 +6,7 @@ const menuItems = [
     { href: 'kapitel3.html', text: '3. Bolig: Ejer & Andel' },
     { href: 'kapitel4.html', text: '4. Pension og Forsikring' },
     { href: 'kapitel5.html', text: '5. Investering' },
-    { href: 'ordliste.html', text: '9. Ordliste' }
+    { href: 'kapitel6.html', text: '6. Ordliste' }
 ];
 
 // Initialize menu when DOM is loaded
@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let path = window.location.pathname.toLowerCase();
     let currentPage = 'index.html';
 
-    if (path.includes('ordliste.html')) {
-        currentPage = 'ordliste.html';
+    if (path.includes('kapitel6.html')) {
+        currentPage = 'kapitel6.html';
     } else {
         let match = path.match(/kapitel\d+\.html/);
         if (match) currentPage = match[0];
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     } else {
         // Fallback for untracked pages
-        if (prevLink) prevLink.href = 'ordliste.html';
+        if (prevLink) prevLink.href = 'kapitel6.html';
         if (nextLink) nextLink.href = 'kapitel1.html';
     }
 });

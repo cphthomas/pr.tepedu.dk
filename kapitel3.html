@@ -34,11 +34,11 @@
         }
 
         /* Chart container backgrounds for dark/light mode */
-        body:not(.dark-mode) .chart-container {
-            background-color: #ffffff;
+        :root:not([data-theme="dark"]) .chart-container {
+            background-color: var(--card-bg, #ffffff);
         }
 
-        body.dark-mode .chart-container {
+        [data-theme="dark"] .chart-container {
             background-color: #000000;
         }
 
@@ -48,7 +48,7 @@
 
         /* Stat cards */
         .stat-card {
-            background: #fff;
+            background: var(--card-bg, #ffffff);
             border-radius: 0;
             padding: 24px;
             text-align: center;
@@ -308,8 +308,10 @@
                 <div class="info-box reveal-on-scroll">
                     <p>I Danmark skelner vi primært mellem to typer af selvejede boliger: <b><span class="legal-term"
                                 data-definition="Fast ejendom hvor du ejer skødet på grunden og bygningen."
+                                data-example="Et parcelhus eller en ejerlejlighed er typiske ejerboliger."
                                 data-slug="ejerbolig">Ejerbolig</span></b> og <b><span class="legal-term"
                                 data-definition="Brugsret til en bolig via medlemsskab af en andelsforening."
+                                data-example="Når du bor i en andelsboligforening, ejer du en andel af foreningens formue og har brugsret til en lejlighed."
                                 data-slug="andelsbolig">Andelsbolig</span></b>. Derudover findes lejeboliger (almene og
                         private), som ikke behandles i dybden her.</p>
 
@@ -365,13 +367,74 @@
                         foreningen har gæld (fællesgæld), hæfter du for en del af den via boligafgiften. Teknisk pris =
                         Andelspris + Andel af fællesgæld.
                     </div>
+
+                    <h3 class="mt-5">Finansieringen: Hvor kommer pengene fra?</h3>
+                    <p>For at forstå boligsikringens grundsten i Danmark, må vi se på, hvordan boligerne betales:</p>
+                    <h4 class="mt-4">Ejerbolig (klassisk model)</h4>
+                    <ul>
+                        <li><b>5 % egenbetaling:</b> Kundens egen udbetaling (lovkrav fra Finanstilsynet).</li>
+                        <li><b>Op til 80 % realkreditlån:</b> Det billigste lån i Danmark med sikkerhed i selve
+                            ejendommen.</li>
+                        <li><b>Resten (typisk 15 %) banklån:</b> Dækker oftest gabet mellem realkredit og udbetaling.
+                        </li>
+                    </ul>
+                    <p>Dette system bygger på, at der rent praktisk og juridisk kan <i>tinglyses pant i selve den faste
+                            ejendom</i>.</p>
+
+                    <h4 class="mt-4">Andelsbolig – hvordan er det typisk?</h4>
+                    <p>Ved en andelsbolig køber du en brugsret i en forening, ikke fast ejendom. Derfor gælder følgende
+                        faktorer:</p>
+                    <ul>
+                        <li><span class="text-danger">❌</span> <b>Ingen realkreditlån:</b> Der kan ikke tinglyses
+                            realkreditpant i selve andelen.</li>
+                        <li><span class="text-success">✅</span> <b>Finansieres typisk med banklån:</b> Hele gælden
+                            ligger i udgangspunktet som et banklån.</li>
+                        <li><span class="text-success">✅</span> <b>Udbetaling:</b> Ofte krav om 5–20 % i udbetaling for
+                            at optage andelsboliglånet.</li>
+                        <li><span class="text-success">✅</span> <b>Resten:</b> Finansieres som et andelsboliglån direkte
+                            i restgælden til banken.</li>
+                    </ul>
+
+                    <p><b>Typisk struktur:</b> 5–20 % egenbetaling og 80–95 % banklån (andelsboliglån). Renten her er
+                        normalt noget højere end realkreditrenten til en ejerbolig, da banken indtager en større risiko
+                        og ikke opnår samme sikre tinglyste dækning.</p>
+
+                    <div class="card border-0 mb-4 shadow-sm"
+                        style="border-left: 4px solid #11998e; background:var(--card-bg, #f8f9fa); border-radius:0;">
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold">Eksempel: Køb af Andelsbolig</h5>
+                            <ul class="mb-0">
+                                <li><b>Købspris:</b> 2.000.000 kr.</li>
+                                <li><b>10 % udbetaling:</b> 200.000 kr.</li>
+                                <li><b>Restfinansiering:</b> 1.800.000 kr. som rent andelsboliglån (Ingen realkredit).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p><i>Undtagelser?</i> Nogle få banker kan undtagelsesvis strukturere finansieringen anderledes,
+                        f.eks. i kombination med prioritetslån, men i sin rene essens er og bliver det stadigvæk
+                        bankfinansiering — markant forskelligt fra realkreditten ved ejerboligen.</p>
+
+                    <h4 class="mt-4">Sankey-diagram (Ejerbolig)</h4>
+                    <p>Sankey-diagrammet herunder viser, hvordan en normal <b>ejerboligpris</b> på 3.200.000 kr. opdeles
+                        i finansieringskilder, og hvad de årlige ydelser (rente + afdrag) er for hver del. Bemærk
+                        forskellen i renteniveauet mellem realkredit og det dyre banklån — det er derfor, det altid kan
+                        betale sig at maksimere realkreditbelåningen for huse og ejerlejligheder.</p>
+
+                    <div class="chart-container sankey-chart mb-2 wide">
+                        <canvas id="housingFinanceSankey"></canvas>
+                    </div>
+                    <small class="d-block text-left mt-2">Figur 3.2A — Sankey-diagram: Finansieringsstruktur for køb af
+                        en Ejerbolig til 3.200.000 kr. (15% banklån, 5% udbetaling). Kilde: Finans Danmark
+                        (2026).</small>
                 </div>
 
                 <!-- Section 3.3: Finansiering -->
                 <h2>Finansiering i Dybden</h2>
                 <div class="info-box reveal-on-scroll">
                     <p>Det unikke ved det danske boligmarked er <span class="legal-term"
-                            data-definition="Det system der sikrer at realkreditobligationer matcher lånene 1:1."
+                            data-definition="Det system der sikrer at realkreditobligationer matcher lånene 1:1, hvilket giver lave og gennemsigtige renter."
+                            data-example="Når du optager et lån i et realkreditinstitut, udsteder instituttet obligationer til investorer på børsen."
                             data-slug="realkreditsystem">realkreditsystemet</span>. Når du låner penge i Totalkredit,
                         Realkredit Danmark eller Jyske Realkredit, udsteder de obligationer på børsen, som investorer
                         køber. Det sikrer lave renter og gennemsigtighed.</p>
@@ -429,7 +492,10 @@
                         </div>
                         <div class="col-lg-6">
                             <h4>Hvad er bidragssats?</h4>
-                            <p>Udover renten betaler du en <b>bidragssats</b> til realkreditinstituttet. Det er deres
+                            <p>Udover renten betaler du en <span class="legal-term"
+                                    data-definition="En løbende afgift til realkreditinstituttet for administration og sikkerhedsstillelse."
+                                    data-example="En bidragssats på 0,8 % betyder, at du betaler 8.000 kr. om året pr. lånt million udover renten."
+                                    data-slug="bidragssats">bidragssats</span> til realkreditinstituttet. Det er deres
                                 gebyr for at administrere lånet og dække tab. Bidragssatsen afhænger af:</p>
                             <ol>
                                 <li><b>Belåningsgrad:</b> De yderste 60-80% er dyre end de inderste 0-40%.</li>
@@ -890,6 +956,69 @@
                                     afterBody: function () { return "Bemærk: Satserne er lavere i 2026, men beregnes af højere offentlige vurderinger."; }
                                 }
                             }
+                        }
+                    }
+                });
+            });
+
+            // ============================================================
+            // SANKEY: Boligfinansiering 3.200.000 kr. (Ejerbolig)
+            // ============================================================
+            initChartWhenVisible('housingFinanceSankey', function () {
+                const pris = 3200000;
+                const udbetaling = 200000;
+                const realkredit = 2560000; // 80% af 3.200.000
+                const banklaan = 440000;    // resten
+                // Årlige ydelser (estimat)
+                const rkRente = 102400;    // ~4% af realkredit
+                const rkAfdrag = 64000;    // ~2.5%
+                const blRente = 26400;     // ~6% af banklån
+                const blAfdrag = 22000;
+
+                new Chart(document.getElementById('housingFinanceSankey').getContext('2d'), {
+                    type: 'sankey',
+                    data: {
+                        datasets: [{
+                            data: [
+                                { from: 'Boligpris', to: 'Realkreditlån', flow: realkredit },
+                                { from: 'Boligpris', to: 'Banklån', flow: banklaan },
+                                { from: 'Boligpris', to: 'Udbetaling', flow: udbetaling },
+                                { from: 'Realkreditlån', to: 'RK Rente', flow: rkRente },
+                                { from: 'Realkreditlån', to: 'RK Afdrag', flow: rkAfdrag },
+                                { from: 'Banklån', to: 'Bank Rente', flow: blRente },
+                                { from: 'Banklån', to: 'Bank Afdrag', flow: blAfdrag }
+                            ],
+                            colorFrom: ctx => {
+                                const from = ctx.dataset.data[ctx.dataIndex].from;
+                                return { 'Boligpris': '#667eea', 'Realkreditlån': '#2193b0', 'Banklån': '#f2994a' }[from] || '#999';
+                            },
+                            colorTo: ctx => {
+                                const to = ctx.dataset.data[ctx.dataIndex].to;
+                                return {
+                                    'Realkreditlån': '#2193b0', 'Banklån': '#f2994a', 'Udbetaling': '#38ef7d',
+                                    'RK Rente': '#ef5350', 'RK Afdrag': '#11998e',
+                                    'Bank Rente': '#ef5350', 'Bank Afdrag': '#11998e'
+                                }[to] || '#999';
+                            },
+                            colorMode: 'gradient',
+                            labels: {
+                                'Boligpris': 'Boligpris\n3.200.000 kr.',
+                                'Realkreditlån': 'Realkreditlån (80%)\n2.560.000 kr.',
+                                'Banklån': 'Banklån (resten)\n440.000 kr.',
+                                'Udbetaling': 'Udbetaling\n200.000 kr.',
+                                'RK Rente': 'RK Rente/år\n102.400 kr.',
+                                'RK Afdrag': 'RK Afdrag/år\n64.000 kr.',
+                                'Bank Rente': 'Bank Rente/år\n26.400 kr.',
+                                'Bank Afdrag': 'Bank Afdrag/år\n22.000 kr.'
+                            },
+                            size: 'max', nodeWidth: 20
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false, layout: { padding: { right: 140 } }, animation: { duration: 2000 },
+                        plugins: {
+                            legend: { display: false },
+                            title: { display: true, text: 'Boligfinansiering: 3.200.000 kr. Ejerbolig', font: { size: 14, weight: 'bold' } }
                         }
                     }
                 });
