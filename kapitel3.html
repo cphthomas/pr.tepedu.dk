@@ -21,127 +21,9 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/theme-dark.css">
     <link rel="stylesheet" href="css/theme-light.css">
+    <link rel="stylesheet" href="css/chapters-shared.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.svg">
     <link rel="stylesheet" href="css/glossary.css">
-
-    <style>
-        /* Square corners everywhere */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            border-radius: 0;
-            padding: 10px;
-        }
-
-        /* Chart container backgrounds for dark/light mode */
-        :root:not([data-theme="dark"]) .chart-container {
-            background-color: var(--card-bg, #ffffff);
-        }
-
-        [data-theme="dark"] .chart-container {
-            background-color: #000000;
-        }
-
-        .chart-container.sankey-chart {
-            height: 70vh;
-        }
-
-        /* Stat cards */
-        .stat-card {
-            background: var(--card-bg, #ffffff);
-            border-radius: 0;
-            padding: 24px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-color);
-            height: 100%;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        [data-theme="dark"] .stat-card {
-            background: var(--card-bg, #121212);
-            border-color: var(--text-primary);
-        }
-
-        [data-theme="dark"] .stat-card:hover {
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .stat-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            line-height: 1.1;
-            color: var(--text-primary);
-        }
-
-        [data-theme="dark"] .stat-number {
-            color: #e0e0e0;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: 6px;
-        }
-
-        [data-theme="dark"] .stat-label {
-            color: #aaa;
-        }
-
-        .stat-number.accent-purple {
-            color: #764ba2;
-        }
-
-        .stat-number.accent-green {
-            color: #11998e;
-        }
-
-        .stat-number.accent-orange {
-            color: #f2994a;
-        }
-
-        .stat-number.accent-blue {
-            color: #2193b0;
-        }
-
-        /* Reveal on scroll */
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .reveal-on-scroll.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Tax calculator inputs */
-        .calc-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            border-radius: 0;
-        }
-
-        [data-theme="dark"] .calc-input {
-            background: #2c2c3e;
-            border-color: #444;
-            color: white;
-        }
-
-        /* Override Chart.js border radius */
-        canvas {
-            border-radius: 0 !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -836,8 +718,8 @@
                         datasets: [{
                             label: 'Lang Rente (Fast 30 år)',
                             data: [7.5, 5.0, 7.0, 4.0, 2.5, 0.5, 5.0, 4.0, 4.1],
-                            borderColor: '#11998e',
-                            backgroundColor: 'rgba(17, 153, 142, 0.1)',
+                            borderColor: '#1a3a5c',
+                            backgroundColor: 'rgba(26, 58, 92, 0.1)',
                             borderWidth: 3,
                             tension: 0.3,
                             pointRadius: 3
@@ -845,8 +727,8 @@
                         {
                             label: 'Kort Rente (F1/F-kort)',
                             data: [5.0, 2.5, 5.5, 1.0, 0.0, -0.5, 3.5, 3.8, 2.8],
-                            borderColor: '#764ba2',
-                            backgroundColor: 'rgba(118, 75, 162, 0.1)',
+                            borderColor: '#6a9ab5',
+                            backgroundColor: 'rgba(106, 154, 181, 0.1)',
                             borderWidth: 3,
                             tension: 0.3,
                             pointRadius: 3,
@@ -873,16 +755,16 @@
                         datasets: [{
                             label: 'Ejerlejligheder (Indeks)',
                             data: [100, 160, 240, 310, 220, 300, 410, 480, 460],
-                            borderColor: '#f2994a',
-                            backgroundColor: 'rgba(242, 153, 74, 0.1)',
+                            borderColor: '#3d6b8e',
+                            backgroundColor: 'rgba(61, 107, 142, 0.1)',
                             borderWidth: 3,
                             tension: 0.3
                         },
                         {
                             label: 'Parcelhuse (Indeks)',
                             data: [100, 140, 190, 230, 180, 210, 260, 290, 285],
-                            borderColor: '#2193b0',
-                            backgroundColor: 'rgba(33, 147, 176, 0.1)',
+                            borderColor: '#1a3a5c',
+                            backgroundColor: 'rgba(26, 58, 92, 0.1)',
                             borderWidth: 3,
                             tension: 0.3
                         }]
@@ -907,10 +789,10 @@
                         datasets: [{
                             data: [35, 15, 30, 20],
                             backgroundColor: [
-                                '#11998e', // Teal
-                                '#0e7a72', // Darker Teal
-                                '#764ba2', // Purple
-                                '#5a387e'  // Darker Purple
+                                '#1a3a5c', // Mørk marine
+                                '#2d4a6a', // Mellem marine
+                                '#3d6b8e', // Stålblå
+                                '#6a9ab5'  // Lys stålblå
                             ],
                             borderWidth: 0
                         }]
@@ -937,12 +819,12 @@
                             {
                                 label: 'Ejendomsværdiskat',
                                 data: [1.0, 0.51], // Nominal rates comparison (simplified)
-                                backgroundColor: '#eb3349'
+                                backgroundColor: '#6a9ab5'
                             },
                             {
                                 label: 'Grundskyld (Gns. promille/10)',
                                 data: [2.6, 2.4], // 26 promille vs 24 promille scaled
-                                backgroundColor: '#f45c43'
+                                backgroundColor: '#1a3a5c'
                             }
                         ]
                     },
@@ -990,14 +872,14 @@
                             ],
                             colorFrom: ctx => {
                                 const from = ctx.dataset.data[ctx.dataIndex].from;
-                                return { 'Boligpris': '#667eea', 'Realkreditlån': '#2193b0', 'Banklån': '#f2994a' }[from] || '#999';
+                                return { 'Boligpris': '#3d6b8e', 'Realkreditlån': '#1a3a5c', 'Banklån': '#6a9ab5' }[from] || '#999';
                             },
                             colorTo: ctx => {
                                 const to = ctx.dataset.data[ctx.dataIndex].to;
                                 return {
-                                    'Realkreditlån': '#2193b0', 'Banklån': '#f2994a', 'Udbetaling': '#38ef7d',
-                                    'RK Rente': '#ef5350', 'RK Afdrag': '#11998e',
-                                    'Bank Rente': '#ef5350', 'Bank Afdrag': '#11998e'
+                                    'Realkreditlån': '#1a3a5c', 'Banklån': '#6a9ab5', 'Udbetaling': '#8fb5cc',
+                                    'RK Rente': '#5b7fa0', 'RK Afdrag': '#2d4a6a',
+                                    'Bank Rente': '#7a9db8', 'Bank Afdrag': '#3d6b8e'
                                 }[to] || '#999';
                             },
                             colorMode: 'gradient',
@@ -1027,7 +909,7 @@
             // 5. Sankey Chart for Couple Case Refilled
             initChartWhenVisible('coupleHousingSankey', function () {
                 const ctxSankey = document.getElementById('coupleHousingSankey');
-                if (ctxSankey && typeof Chart.registry.controllers.sankey !== 'undefined') {
+                if (ctxSankey) {
                     const dataPoints = [
                         { from: 'Bruttoindkomst', to: 'Skat', flow: 32000 },
                         { from: 'Bruttoindkomst', to: 'Udbetalt', flow: 43000 },
@@ -1046,24 +928,46 @@
                         { from: 'Rådighedsbeløb', to: 'Sjov', flow: 8000 }
                     ];
 
-                    new Chart(ctxSankey, {
+                    new Chart(ctxSankey.getContext('2d'), {
                         type: 'sankey',
                         data: {
                             datasets: [{
                                 label: 'Boligøkonomi Flow',
                                 data: dataPoints,
-                                colorFrom: (c) => "#666",
-                                colorTo: (c) => "#666",
+                                colorFrom: ctx => {
+                                    const from = ctx.dataset.data[ctx.dataIndex].from;
+                                    return { 'Bruttoindkomst': '#1a3a5c', 'Udbetalt': '#3d6b8e', 'Realkredit (4%)': '#5b7fa0', 'Rådighedsbeløb': '#6a9ab5' }[from] || '#8fb5cc';
+                                },
+                                colorTo: ctx => {
+                                    const to = ctx.dataset.data[ctx.dataIndex].to;
+                                    return {
+                                        'Skat': '#2d4a6a', 'Udbetalt': '#3d6b8e', 'Realkredit (4%)': '#5b7fa0', 'Banklån (7%)': '#4d8aae', 'Ejerudgifter': '#7a9db8', 'Rådighedsbeløb': '#6a9ab5',
+                                        'Renter (Fradragsberettiget)': '#b0c4d8', 'Afdrag (Opsparing)': '#b0c4d8', 'Mad': '#b0c4d8', 'Børn': '#b0c4d8', 'Bil': '#b0c4d8', 'Sjov': '#b0c4d8'
+                                    }[to] || '#8fb5cc';
+                                },
                                 colorMode: 'gradient',
                                 labels: {
                                     "Bruttoindkomst": "Indkomst (75.000)",
                                     "Udbetalt": "Udbetalt (43.000)",
-                                }
+                                    "Skat": "Skat",
+                                    "Realkredit (4%)": "Realkredit (14.500)",
+                                    "Banklån (7%)": "Banklån (4.000)",
+                                    "Ejerudgifter": "Ejerudgifter (3.500)",
+                                    "Rådighedsbeløb": "Rådighed (21.000)",
+                                    "Renter (Fradragsberettiget)": "Renter",
+                                    "Afdrag (Opsparing)": "Afdrag",
+                                    "Mad": "Mad",
+                                    "Børn": "Børn",
+                                    "Bil": "Bil",
+                                    "Sjov": "Fritid"
+                                },
+                                size: 'max', nodeWidth: 20
                             }]
                         },
                         options: {
                             responsive: true,
                             maintainAspectRatio: false,
+                            layout: { padding: { right: 100 } },
                             plugins: { legend: { display: false } }
                         }
                     });

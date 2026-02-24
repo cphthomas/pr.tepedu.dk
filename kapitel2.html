@@ -16,281 +16,9 @@
     <link rel="stylesheet" href="css/theme-dark.css">
     <link rel="stylesheet" href="css/theme-light.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.svg">
-    <link rel="stylesheet" href="css/glossary.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-    <style>
-        /* Square corners overriden to remove borders completely for bar charts */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            padding: 10px;
-            border: none !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-        }
-
-        /* Chart container backgrounds for dark/light mode */
-        :root:not([data-theme="dark"]) .chart-container {
-            background-color: var(--card-bg, #ffffff);
-        }
-
-        [data-theme="dark"] .chart-container {
-            background-color: var(--chart-bg, #000000);
-            box-shadow: none !important;
-        }
-
-        .chart-container.sankey-chart {
-            height: 80vh;
-            /* Extra height for Sankey diagrams to show all labels */
-        }
-
-        /* Stat cards: theme aligned */
-        .stat-card {
-            background-color: var(--card-bg, #ffffff);
-            border-radius: 0 !important;
-            padding: 30px 20px;
-            text-align: center;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            height: 100%;
-            transition: box-shadow 0.3s ease;
-            position: relative;
-        }
-
-        .stat-card:hover {
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-        }
-
-        [data-theme="dark"] .stat-card {
-            background-color: var(--card-bg, #121212);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.25);
-        }
-
-        /* Simulation Card Styles */
-        .simulation-card {
-            border-radius: 0 !important;
-            border: 1px solid rgba(0, 0, 0, 0.08) !important;
-            border-left: 6px solid #27ae60 !important;
-            background-color: var(--card-bg, #ffffff);
-            color: var(--text-primary);
-            padding: 35px 40px !important;
-            text-align: left;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
-            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            position: relative;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        [data-theme="dark"] .simulation-card {
-            background-color: var(--card-bg, #121212);
-            border-color: var(--border-color) !important;
-            border-left: 6px solid #2ecc71 !important;
-            color: var(--text-primary);
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.25) !important;
-        }
-
-        .simulation-card:hover {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        .simulation-btn {
-            background-color: #145a32 !important;
-            color: #ffffff !important;
-            border: none !important;
-            border-radius: 0 !important;
-            transition: all 0.3s ease;
-        }
-
-        .simulation-btn:hover {
-            background-color: #0d381f !important;
-            box-shadow: 0 4px 12px rgba(20, 90, 50, 0.2);
-            opacity: 1;
-        }
-
-        .stat-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 800;
-            line-height: 1.1;
-            color: var(--text-primary);
-        }
-
-        [data-theme="dark"] .stat-number {
-            color: var(--text-primary);
-        }
-
-        .stat-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #64748b;
-            margin-top: 10px;
-        }
-
-        [data-theme="dark"] .stat-label {
-            color: #aaa;
-        }
-
-        @keyframes pillarIconAnim {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.15);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .icon-circle i,
-        .icon-circle svg {
-            animation: pillarIconAnim 3s infinite ease-in-out;
-        }
-
-        .animate-padlock {
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-        }
-
-        [data-theme="dark"] .stat-number {
-            color: #e0e0e0;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: 6px;
-        }
-
-        [data-theme="dark"] .stat-label {
-            color: #aaa;
-        }
-
-        .stat-number.accent-purple {
-            color: #764ba2;
-        }
-
-        .stat-number.accent-green {
-            color: #11998e;
-        }
-
-        .stat-number.accent-orange {
-            color: #f2994a;
-        }
-
-        .stat-number.accent-blue {
-            color: #2193b0;
-        }
-
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .reveal-on-scroll.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Specific for this chapter */
-        .credit-pillar {
-            text-align: center;
-            padding: 30px 20px;
-            border: 2px solid #008cff;
-            border-radius: 50%;
-            width: 180px;
-            height: 180px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 20px auto;
-            background: rgba(0, 140, 255, 0.05);
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            color: #008cff;
-            transition: all 0.3s ease;
-        }
-
-        .credit-pillar:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0, 140, 255, 0.2);
-            background: rgba(0, 140, 255, 0.1);
-        }
-
-        [data-theme="dark"] .credit-pillar {
-            border-color: #38ef7d;
-            background: rgba(56, 239, 125, 0.1);
-            color: #38ef7d;
-        }
-
-        .credit-pillar-sub {
-            font-size: 0.8rem;
-            font-weight: 400;
-            margin-top: 5px;
-            color: var(--text-secondary);
-        }
-
-        [data-theme="dark"] .credit-pillar-sub {
-            color: #aaa;
-        }
-
-        .iframe-container {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            padding-top: 75%;
-            border: 1px solid var(--border-color);
-            background: var(--card-bg, #ffffff);
-        }
-
-        [data-theme="dark"] .iframe-container {
-            border-color: var(--border-color);
-            background: var(--bg-primary, #000000);
-        }
-
-        .iframe-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .comparison-table .check {
-            color: #2ecc71;
-        }
-
-        .comparison-table .cross {
-            color: #e74c3c;
-        }
-
-        .tip-box {
-            border-left: 4px solid #f2994a;
-            background-color: rgba(242, 153, 74, 0.1);
-            padding: 15px;
-            margin: 20px 0;
-        }
-
-        [data-theme="dark"] .tip-box {
-            background-color: rgba(242, 153, 74, 0.05);
-        }
-    </style>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="css/chapters-shared.css">
 </head>
 
 <body>
@@ -372,40 +100,28 @@
                     </div>
                     <div class="row text-center mt-3">
                         <div class="col-6 col-md-4 mb-4">
-                            <div
-                                style="font-size: 2.2rem; font-weight: 800; color: var(--text-color); font-family: 'Space Grotesk';">
-                                46,3%</div>
-                            <div class="small text-muted">Skattetryk i DK<br>(% af BNP, 2025)</div>
+                            <div class="stat-number">46,3%</div>
+                            <div class="stat-label">Skattetryk i DK<br>(% af BNP, 2025)</div>
                         </div>
                         <div class="col-6 col-md-4 mb-4">
-                            <div
-                                style="font-size: 2.2rem; font-weight: 800; color: var(--text-color); font-family: 'Space Grotesk';">
-                                54.100 kr.</div>
-                            <div class="small text-muted">Personfradrag 2026<br>(voksne)</div>
+                            <div class="stat-number">54.100 kr.</div>
+                            <div class="stat-label">Personfradrag 2026<br>(voksne)</div>
                         </div>
                         <div class="col-6 col-md-4 mb-4">
-                            <div
-                                style="font-size: 2.2rem; font-weight: 800; color: var(--text-color); font-family: 'Space Grotesk';">
-                                3,5</div>
-                            <div class="small text-muted">Maks. gældsfaktor<br>(lav risiko)</div>
+                            <div class="stat-number">3,5</div>
+                            <div class="stat-label">Maks. gældsfaktor<br>(lav risiko)</div>
                         </div>
                         <div class="col-6 col-md-4 mb-4">
-                            <div
-                                style="font-size: 2.2rem; font-weight: 800; color: var(--text-color); font-family: 'Space Grotesk';">
-                                8.500 kr.</div>
-                            <div class="small text-muted">Anbefalet rådighedsbeløb<br>(enlig, md.)</div>
+                            <div class="stat-number">8.500 kr.</div>
+                            <div class="stat-label">Anbefalet rådighedsbeløb<br>(enlig, md.)</div>
                         </div>
                         <div class="col-6 col-md-4 mb-4">
-                            <div
-                                style="font-size: 2.2rem; font-weight: 800; color: var(--text-color); font-family: 'Space Grotesk';">
-                                14.500 kr.</div>
-                            <div class="small text-muted">Anbefalet rådighedsbeløb<br>(par, md.)</div>
+                            <div class="stat-number">14.500 kr.</div>
+                            <div class="stat-label">Anbefalet rådighedsbeløb<br>(par, md.)</div>
                         </div>
                         <div class="col-6 col-md-4 mb-4">
-                            <div
-                                style="font-size: 2.2rem; font-weight: 800; color: var(--text-color); font-family: 'Space Grotesk';">
-                                + 2.500 kr.</div>
-                            <div class="small text-muted">Rådighedsbeløb tillæg<br>(pr. barn, md.)</div>
+                            <div class="stat-number">+ 2.500 kr.</div>
+                            <div class="stat-label">Rådighedsbeløb tillæg<br>(pr. barn, md.)</div>
                         </div>
                     </div>
                     <div class="text-left mt-2" style="border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
@@ -455,7 +171,7 @@
                                 <div
                                     class="card-body p-4 text-center d-flex flex-column align-items-center justify-content-center">
                                     <div class="icon-circle mb-3"
-                                        style="width:70px;height:70px;background:#008cff;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+                                        style="width:70px;height:70px;background:#1a3a5c;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(26,58,92,0.25);">
                                         <svg width="34" height="34" viewBox="0 0 24 24" fill="none"
                                             class="animate-padlock" stroke="currentColor" stroke-width="2">
                                             <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
@@ -465,8 +181,8 @@
                                     <div class="h4 font-weight-bold"
                                         style="color:var(--text-color); font-family:'Space Grotesk'">
                                         Rådighedsbeløb</div>
-                                    <div class="badge mb-3 text-uppercase"
-                                        style="letter-spacing:1px; background:rgba(128,128,128,0.1); color:var(--text-color) !important; padding:8px 12px; border:none;">
+                                    <div class="text-uppercase mb-3"
+                                        style="font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 700; color: var(--text-secondary); opacity: 0.8;">
                                         Likviditet & Robusthed</div>
                                     <p class="text-muted small mt-auto">Kan kunden betale sine regninger hver måned -
                                         også hvis renten stiger?</p>
@@ -479,7 +195,7 @@
                                 <div
                                     class="card-body p-4 text-center d-flex flex-column align-items-center justify-content-center">
                                     <div class="icon-circle mb-3"
-                                        style="width:70px;height:70px;background:#eb3349;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+                                        style="width:70px;height:70px;background:#3d6b8e;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(61,107,142,0.25);">
                                         <svg width="34" height="34" viewBox="0 0 24 24" fill="none"
                                             class="animate-padlock" stroke="currentColor" stroke-width="2">
                                             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -489,8 +205,8 @@
                                     <div class="h4 font-weight-bold"
                                         style="color:var(--text-color); font-family:'Space Grotesk'">
                                         Gældsfaktor</div>
-                                    <div class="badge mb-3 text-uppercase"
-                                        style="letter-spacing:1px; background:rgba(128,128,128,0.1); color:var(--text-color) !important; padding:8px 12px; border:none;">
+                                    <div class="text-uppercase mb-3"
+                                        style="font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 700; color: var(--text-secondary); opacity: 0.8;">
                                         Samlet Gældsbyrde</div>
                                     <p class="text-muted small mt-auto">Hvor stor er gælden i forhold til indkomsten? Et
                                         mål for soliditet.</p>
@@ -503,7 +219,7 @@
                                 <div
                                     class="card-body p-4 text-center d-flex flex-column align-items-center justify-content-center">
                                     <div class="icon-circle mb-3"
-                                        style="width:70px;height:70px;background:#38ef7d;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+                                        style="width:70px;height:70px;background:#6a9ab5;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(106,154,181,0.25);">
                                         <svg width="34" height="34" viewBox="0 0 24 24" fill="none"
                                             class="animate-padlock" stroke="currentColor" stroke-width="2">
                                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -513,8 +229,8 @@
                                     <div class="h4 font-weight-bold"
                                         style="color:var(--text-color); font-family:'Space Grotesk'">
                                         Formue</div>
-                                    <div class="badge mb-3 text-uppercase"
-                                        style="letter-spacing:1px; background:rgba(128,128,128,0.1); color:var(--text-color) !important; padding:8px 12px; border:none;">
+                                    <div class="text-uppercase mb-3"
+                                        style="font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 700; color: var(--text-secondary); opacity: 0.8;">
                                         Polstring & Sikkerhed</div>
                                     <p class="text-muted small mt-auto">Er formuen positiv? Er der aktiver der kan
                                         realiseres i nødstilfælde?</p>
@@ -541,12 +257,12 @@
                                 <div class="card-body p-4 d-flex flex-column">
                                     <div class="h5 font-weight-bold mb-2"
                                         style="font-family:'Space Grotesk'; color:var(--text-color);"><i
-                                            class="bi bi-wallet2 mr-2"></i>Ben 1: Rådighedsbeløb</div>
+                                            class="bi bi-wallet2 mr-2 animate-padlock"></i>Ben 1: Rådighedsbeløb</div>
                                     <p class="small text-muted mb-3"><b>Hvad tester det?</b> Om kunden måned for måned
                                         kan betale sine regninger — og stadig have penge til mad, tøj og uforudsete
                                         udgifter. Det er "livets råderum."</p>
                                     <div class="mt-auto p-3 small"
-                                        style="background: var(--card-bg, #f8f9fa); border-left: 3px solid var(--text-color, #333); opacity: 0.85;">
+                                        style="background: var(--card-bg, #f8f9fa); border-radius: 4px; opacity: 0.85;">
                                         <b>Eksempel:</b> Lars, 36 år, vil købe en lejlighed til 2,8 mio. kr.
                                         Han tjener 38.000 kr./md. netto og har kun 120.000 kr. i samlet gæld —
                                         gældsfaktoren er pæn, og formuen er tilstrækkelig til udbetaling.
@@ -570,12 +286,13 @@
                                 <div class="card-body p-4 d-flex flex-column">
                                     <div class="h5 font-weight-bold mb-2"
                                         style="font-family:'Space Grotesk'; color:var(--text-color);"><i
-                                            class="bi bi-bar-chart-line mr-2"></i>Ben 2: Gældsfaktor</div>
+                                            class="bi bi-bar-chart-line mr-2 animate-padlock"></i>Ben 2: Gældsfaktor
+                                    </div>
                                     <p class="small text-muted mb-3"><b>Hvad tester det?</b> Om den samlede gæld er
                                         bæredygtig over tid ift. indkomsten — og om kunden kan modstå rentestigninger
                                         eller jobskifte.</p>
                                     <div class="mt-auto p-3 small"
-                                        style="background: var(--card-bg, #f8f9fa); border-left: 3px solid var(--text-color, #333); opacity: 0.85;">
+                                        style="background: var(--card-bg, #f8f9fa); border-radius: 4px; opacity: 0.85;">
                                         <b>Eksempel:</b> Sofie, 41 år, tjener 720.000 kr./år brutto som salgschef og
                                         har 500.000 kr. i opsparing. Rådighedsbeløbet er komfortabelt på 12.000
                                         kr./md. — Ben 1 og 3 er solide.
@@ -597,12 +314,12 @@
                                 <div class="card-body p-4 d-flex flex-column">
                                     <div class="h5 font-weight-bold mb-2"
                                         style="font-family:'Space Grotesk'; color:var(--text-color);"><i
-                                            class="bi bi-piggy-bank mr-2"></i>Ben 3: Formue</div>
+                                            class="bi bi-piggy-bank mr-2 animate-padlock"></i>Ben 3: Formue</div>
                                     <p class="small text-muted mb-3"><b>Hvad tester det?</b> Om kunden har en finansiel
                                         buffer — til udbetaling, uforudsete udgifter og som tegn på evnen til at spare
                                         op.</p>
                                     <div class="mt-auto p-3 small"
-                                        style="background: var(--card-bg, #f8f9fa); border-left: 3px solid var(--text-color, #333); opacity: 0.85;">
+                                        style="background: var(--card-bg, #f8f9fa); border-radius: 4px; opacity: 0.85;">
                                         <b>Eksempel:</b> Peter og Hanne, begge sidst i 30'erne, har en samlet
                                         nettoindkomst på 68.000 kr./md. og ingen eksisterende gæld. Rådighedsbeløbet
                                         er på 18.000 kr./md. — Ben 1 og 2 er stærke, og gældsfaktoren på et
@@ -801,7 +518,7 @@
                         rådighedsbeløb på hele 20.200 kr. om måneden.</p>
 
                     <div class="card border-0 mb-4 shadow-sm"
-                        style="border-left: 4px solid #11998e; border-radius:10px; background:var(--card-bg, #f8f9fa);">
+                        style="border-left: 4px solid var(--accent-blue); border-radius:10px; background:var(--accent-blue-light);">
                         <div class="card-body">
                             <h5 class="card-title font-weight-bold">Indsatte værdier i beregneren:</h5>
                             <ul class="mb-0 text-muted">
@@ -816,8 +533,12 @@
                     </div>
 
                     <div class="simulation-card">
-                        <div class="font-weight-bold mb-2" style="font-family:'Space Grotesk'; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">Prøv simuleringen selv</div>
-                        <p class="mb-4 text-muted" style="font-style:italic;">Test selv kundens økonomi ved f.eks. jobskifte eller huskøb: Indsæt ovenstående faktorer og vurder, hvordan fremtiden påvirker bundlinjen.</p>
+                        <div class="font-weight-bold mb-2"
+                            style="font-family:'Space Grotesk'; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Prøv simuleringen selv</div>
+                        <p class="mb-4 text-muted" style="font-style:italic;">Test selv kundens økonomi ved f.eks.
+                            jobskifte eller huskøb: Indsæt ovenstående faktorer og vurder, hvordan fremtiden påvirker
+                            bundlinjen.</p>
                         <a href="https://skat.tepedu.dk/budget.html" target="_blank"
                             class="btn simulation-btn font-weight-bold"
                             style="text-transform:uppercase; letter-spacing:1px; padding:12px 28px;">
@@ -971,6 +692,29 @@
                     <div class="chart-container mb-2 square wide p-0"
                         style="height:500px; border: 1px solid var(--grid-color) !important; overflow: hidden; position: relative;">
                         <div id="euDebtComparisonMap" style="width: 100%; height: 100%; z-index: 1;"></div>
+                        <!-- Farveskala legende -->
+                        <div id="euDebtLegend"
+                            style="position:absolute; bottom:24px; right:12px; z-index:500; background:var(--card-bg,rgba(255,255,255,0.92)); border:1px solid var(--border-color,#ddd); border-radius:4px; padding:10px 14px; font-family:'Inter',sans-serif; font-size:11px; box-shadow:0 2px 8px rgba(0,0,0,0.13); min-width:145px;">
+                            <div
+                                style="font-weight:700; margin-bottom:6px; font-size:11px; text-transform:uppercase; letter-spacing:0.07em; color:var(--text-primary,#222);">
+                                Gæld (% af disp. indkomst)</div>
+                            <div style="display:flex; align-items:center; gap:7px; margin-bottom:3px;">
+                                <div style="width:18px;height:12px;border-radius:2px;background:#11998e;"></div><span
+                                    style="color:var(--text-primary,#333);">Lav &lt; 60%</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:7px; margin-bottom:3px;">
+                                <div style="width:18px;height:12px;border-radius:2px;background:#f1c40f;"></div><span
+                                    style="color:var(--text-primary,#333);">Middel ~120%</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:7px; margin-bottom:3px;">
+                                <div style="width:18px;height:12px;border-radius:2px;background:#f39c12;"></div><span
+                                    style="color:var(--text-primary,#333);">Høj ~160%</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:7px;">
+                                <div style="width:18px;height:12px;border-radius:2px;background:#eb3349;"></div><span
+                                    style="color:var(--text-primary,#333);">Meget høj &gt; 200%</span>
+                            </div>
+                        </div>
                     </div>
                     <small class="d-block text-left mt-2">Figur 2.5 — Husholdningernes gæld i % af disponibel indkomst.
                         Kilde: OECD (2024), Eurostat.</small>
@@ -995,8 +739,8 @@
                     <div class="row mt-4">
                         <div class="col-md-6 mb-3">
                             <div class="card h-100">
-                                <div class="card-header bg-dark text-white font-weight-bold">
-                                    <i class="bi bi-person-check-fill mr-2"></i> Personfradrag overføres
+                                <div class="card-header text-white font-weight-bold" style="background:#1a3a5c;">
+                                    <i class="bi bi-person-check-fill mr-2 animate-padlock"></i> Personfradrag overføres
                                 </div>
                                 <div class="card-body">
                                     <p class="card-text">Hver person har i 2026 et personfradrag på <b>54.100 kr.</b>
@@ -1010,8 +754,8 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="card h-100">
-                                <div class="card-header bg-dark text-white font-weight-bold">
-                                    <i class="bi bi-graph-up mr-2"></i> Kapitalindkomst Optimering
+                                <div class="card-header text-white font-weight-bold" style="background:#1a3a5c;">
+                                    <i class="bi bi-graph-up mr-2 animate-padlock"></i> Kapitalindkomst Optimering
                                 </div>
                                 <div class="card-body">
                                     <p class="card-text">Positiv kapitalindkomst (renter m.m.) beskattes progressivt.
@@ -1058,7 +802,7 @@
                                     <td>Overførsel af personfradrag</td>
                                     <td>0 kr.</td>
                                     <td>Op til ca. 20.000 kr. i sparet skat (hvis den ene ikke har indkomst).</td>
-                                    <td><span class="text-success">+20.000 kr.</span></td>
+                                    <td><span>+20.000 kr.</span></td>
                                 </tr>
                                 <tr>
                                     <td>Grænse for lav kapitalindkomstskat</td>
@@ -1259,8 +1003,11 @@
                         (2026).</small>
 
                     <div class="simulation-card mt-4 mb-4">
-                        <div class="font-weight-bold mb-2" style="font-family:'Space Grotesk'; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">Prøv simuleringen selv</div>
-                        <p class="mb-4 text-muted" style="font-style:italic;">Simuler familiens budget på baggrund af nye skatteregler — prøv f.eks. at ændre indkomst eller boligudgifter.</p>
+                        <div class="font-weight-bold mb-2"
+                            style="font-family:'Space Grotesk'; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Prøv simuleringen selv</div>
+                        <p class="mb-4 text-muted" style="font-style:italic;">Simuler familiens budget på baggrund af
+                            nye skatteregler — prøv f.eks. at ændre indkomst eller boligudgifter.</p>
                         <a href="https://skat.tepedu.dk/couple_budget.html" target="_blank"
                             class="btn simulation-btn font-weight-bold"
                             style="text-transform:uppercase; letter-spacing:1px; padding:12px 28px;">
@@ -1400,28 +1147,37 @@
                             Dette er endnu et argument for at gifte sig, når man køber bolig sammen.</p>
                     </div>
 
-                    <div class="card bg-light mb-3 border-0 shadow-sm" style="border-radius:0 !important; background:var(--card-bg, #f8f9fa);">
+                    <div class="card bg-light mb-3 border-0 shadow-sm"
+                        style="border-radius:0 !important; background:var(--card-bg, #f8f9fa);">
                         <div class="card-body">
-                            <div class="font-weight-bold mb-3" style="font-size:0.9rem; text-transform:uppercase; letter-spacing:0.05em;">Beregningseksempel: Enlig med 80.000 kr. i renteudgifter</div>
+                            <div class="font-weight-bold mb-3"
+                                style="font-size:0.9rem; text-transform:uppercase; letter-spacing:0.05em;">
+                                Beregningseksempel: Enlig med 80.000 kr. i renteudgifter</div>
                             <div class="row text-center">
                                 <div class="col-md-4">
                                     <div class="text-muted small text-uppercase mb-1">Første 50.000 kr.</div>
-                                    <div style="font-size:1.4rem; font-weight:700; font-family:'Space Grotesk'; color:#27ae60;">× 33,6%</div>
+                                    <div style="font-size:1.4rem; font-weight:700; font-family:'Space Grotesk';">
+                                        × 33,6%</div>
                                     <div class="small text-muted">= <b>16.800 kr.</b> i skattebesparelse</div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="text-muted small text-uppercase mb-1">Resterende 30.000 kr.</div>
-                                    <div style="font-size:1.4rem; font-weight:700; font-family:'Space Grotesk'; color:#f2994a;">× 25,6%</div>
+                                    <div style="font-size:1.4rem; font-weight:700; font-family:'Space Grotesk';">
+                                        × 25,6%</div>
                                     <div class="small text-muted">= <b>7.680 kr.</b> i skattebesparelse</div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="text-muted small text-uppercase mb-1">Samlet besparelse</div>
-                                    <div style="font-size:1.4rem; font-weight:700; font-family:'Space Grotesk';">24.480 kr./år</div>
+                                    <div style="font-size:1.4rem; font-weight:700; font-family:'Space Grotesk';">24.480
+                                        kr./år</div>
                                     <div class="small text-muted">= <b>2.040 kr./md.</b></div>
                                 </div>
                             </div>
                             <hr style="margin: 1rem 0; border-color: var(--border-color);">
-                            <p class="small text-muted mb-0"><b>Rådgivningspointe:</b> Grænsen på 50.000 kr. (100.000 kr. for ægtepar) er afgørende. En enlig med 80.000 kr. i renteudgifter "mister" fradragsværdi på de 30.000 kr. over grænsen. Et gift par med samme renteudgifter har en samlet grænse på 100.000 kr. og får den høje fradragsværdi på hele beløbet.</p>
+                            <p class="small text-muted mb-0"><b>Rådgivningspointe:</b> Grænsen på 50.000 kr. (100.000
+                                kr. for ægtepar) er afgørende. En enlig med 80.000 kr. i renteudgifter "mister"
+                                fradragsværdi på de 30.000 kr. over grænsen. Et gift par med samme renteudgifter har en
+                                samlet grænse på 100.000 kr. og får den høje fradragsværdi på hele beløbet.</p>
                         </div>
                     </div>
                     <p>Grafen herunder sammenligner den absolutte skattebesparelse (i kroner) ved forskellige niveauer
@@ -1439,31 +1195,45 @@
                 <!-- ============================================================ -->
                 <h2>2.8 Ægtefælles personfradrag — en overset fordel</h2>
                 <div class="info-box reveal-on-scroll">
-                    <p>I Danmark er skat personlig — men for ægtepar gælder en vigtig undtagelse: <b>uudnyttet personfradrag kan overføres til ægtefællen</b>. Personfradraget i 2026 er <b>54.100 kr.</b> Hvis den ene ægtefælle ikke har indkomst nok til at udnytte sit fulde fradrag, overføres resten automatisk.</p>
+                    <p>I Danmark er skat personlig — men for ægtepar gælder en vigtig undtagelse: <b>uudnyttet
+                            personfradrag kan overføres til ægtefællen</b>. Personfradraget i 2026 er <b>54.100 kr.</b>
+                        Hvis den ene ægtefælle ikke har indkomst nok til at udnytte sit fulde fradrag, overføres resten
+                        automatisk.</p>
                     <div class="row mt-3 mb-3">
                         <div class="col-md-4 mb-3">
                             <div class="stat-card">
-                                <div class="stat-number accent-green">54.100 kr.</div>
+                                <div class="stat-number">54.100 kr.</div>
                                 <div class="stat-label">Personfradrag pr. person (2026)</div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <div class="stat-card">
-                                <div class="stat-number accent-blue">~12.000 kr.</div>
-                                <div class="stat-label">Potentiel skattebesparelse<br><small>ved fuld overførsel til ægtefælle</small></div>
+                                <div class="stat-number">~12.000 kr.</div>
+                                <div class="stat-label">Potentiel skattebesparelse<br><small>ved fuld overførsel til
+                                        ægtefælle</small></div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <div class="stat-card">
-                                <div class="stat-number accent-orange">Gift</div>
-                                <div class="stat-label">Kun for ægtepar<br><small>Samlevende har ikke denne ret</small></div>
+                                <div class="stat-number">Gift</div>
+                                <div class="stat-label">Kun for ægtepar<br><small>Samlevende har ikke denne ret</small>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <p><b>Eksempel:</b> Sofie er på barsel og har en indkomst på 25.000 kr. i det pågældende år. Hendes personfradrag er 54.100 kr., men hun udnytter kun 25.000 kr. De resterende 29.100 kr. overføres automatisk til hendes mand Lars, som dermed betaler ca. <b>10.000–11.000 kr. mindre i skat</b> det år.</p>
-                    <p><b>Rådgivningspointe:</b> Dette er et af de stærkeste argumenter for at gifte sig frem for blot at være samlevende, særligt når den ene part er på barsel, studerer eller er deltidsansat. For samlevende par gælder denne mulighed <i>ikke</i> — de betaler skat som to uafhængige personer.</p>
+                    <p><b>Eksempel:</b> Sofie er på barsel og har en indkomst på 25.000 kr. i det pågældende år. Hendes
+                        personfradrag er 54.100 kr., men hun udnytter kun 25.000 kr. De resterende 29.100 kr. overføres
+                        automatisk til hendes mand Lars, som dermed betaler ca. <b>10.000–11.000 kr. mindre i skat</b>
+                        det år.</p>
+                    <p><b>Rådgivningspointe:</b> Dette er et af de stærkeste argumenter for at gifte sig frem for blot
+                        at være samlevende, særligt når den ene part er på barsel, studerer eller er deltidsansat. For
+                        samlevende par gælder denne mulighed <i>ikke</i> — de betaler skat som to uafhængige personer.
+                    </p>
                     <div class="tip-box">
-                        <p><b>Praktisk:</b> Overførslen sker automatisk via årsopgørelsen og kræver ingen handling fra parret. Rådgiveren bør dog gøre kunden opmærksom på fordelen, da mange ikke er bevidste om den — og den kan have stor betydning for budgettet i år med asymmetrisk indkomst (barsel, studieår, sygdom).</p>
+                        <p><b>Praktisk:</b> Overførslen sker automatisk via årsopgørelsen og kræver ingen handling fra
+                            parret. Rådgiveren bør dog gøre kunden opmærksom på fordelen, da mange ikke er bevidste om
+                            den — og den kan have stor betydning for budgettet i år med asymmetrisk indkomst (barsel,
+                            studieår, sygdom).</p>
                     </div>
                 </div>
 
@@ -1472,64 +1242,96 @@
                 <!-- ============================================================ -->
                 <h2>2.9 Adfærdsøkonomi: Hvorfor fejler vi?</h2>
                 <div class="info-box reveal-on-scroll">
-                    <p>Selvom matematikken er klar, træffer kunder ofte irrationelle beslutninger. Som rådgiver er det ikke nok at kende reglerne — du skal også forstå de psykologiske mekanismer, der styrer kundens adfærd. Inden for <b>Behavioral Finance</b> taler vi om tre centrale fælder:</p>
+                    <p>Selvom matematikken er klar, træffer kunder ofte irrationelle beslutninger. Som rådgiver er det
+                        ikke nok at kende reglerne — du skal også forstå de psykologiske mekanismer, der styrer kundens
+                        adfærd. Inden for <b>Behavioral Finance</b> taler vi om tre centrale fælder:</p>
 
                     <div class="row mt-4">
                         <div class="col-md-4 mb-4">
                             <div class="stat-card text-left" style="height:100%;">
-                                <div class="font-weight-bold mb-2" style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">Tabsaversion</div>
+                                <div class="font-weight-bold mb-2"
+                                    style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">
+                                    Tabsaversion</div>
                                 <p class="small text-muted mb-2"><i>Loss Aversion</i></p>
-                                <p class="small">Kunder føler smerten ved et tab på 10.000 kr. dobbelt så stærkt som glæden ved en gevinst på 10.000 kr. Det gør dem for konservative — de undgår f.eks. at indbetale på pension af frygt for at "miste" likviditet nu.</p>
-                                <div class="mt-auto p-3 small" style="background: var(--card-bg, #f8f9fa); border-left: 3px solid var(--text-color, #333); opacity: 0.85;">
-                                    <b>Rådgivning:</b> Vis kunden, hvad de <i>faktisk</i> mister efter skat — ikke bruttobeløbet. En pensionsindbetaling på 10.000 kr. koster kun ca. 4.800 kr. netto for en topskatteyder.
+                                <p class="small">Kunder føler smerten ved et tab på 10.000 kr. dobbelt så stærkt som
+                                    glæden ved en gevinst på 10.000 kr. Det gør dem for konservative — de undgår f.eks.
+                                    at indbetale på pension af frygt for at "miste" likviditet nu.</p>
+                                <div class="mt-auto p-3 small"
+                                    style="background: var(--card-bg, #f8f9fa); border-left: 3px solid var(--text-color, #333); opacity: 0.85;">
+                                    <b>Rådgivning:</b> Vis kunden, hvad de <i>faktisk</i> mister efter skat — ikke
+                                    bruttobeløbet. En pensionsindbetaling på 10.000 kr. koster kun ca. 4.800 kr. netto
+                                    for en topskatteyder.
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-4">
                             <div class="stat-card text-left" style="height:100%;">
-                                <div class="font-weight-bold mb-2" style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">Nutids-bias</div>
+                                <div class="font-weight-bold mb-2"
+                                    style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">
+                                    Nutids-bias</div>
                                 <p class="small text-muted mb-2"><i>Present Bias</i></p>
-                                <p class="small">Vi værdsætter 1.000 kr. i dag højere end 2.000 kr. om 10 år. Det forklarer, hvorfor mange underprioriterer pensionsopsparing, selvom skattefordelen er massiv og "risikofri".</p>
-                                <div class="mt-auto p-3 small" style="background: var(--card-bg, #f8f9fa); border-left: 3px solid var(--text-color, #333); opacity: 0.85;">
-                                    <b>Rådgivning:</b> Brug konkrete tal: "Du indbetaler 5.000 kr. nu og sparer 2.600 kr. i skat med det samme. Du 'vinder' allerede i dag."
+                                <p class="small">Vi værdsætter 1.000 kr. i dag højere end 2.000 kr. om 10 år. Det
+                                    forklarer, hvorfor mange underprioriterer pensionsopsparing, selvom skattefordelen
+                                    er massiv og "risikofri".</p>
+                                <div class="mt-auto p-3 small"
+                                    style="background: var(--card-bg, #f8f9fa); border-left: 3px solid var(--text-color, #333); opacity: 0.85;">
+                                    <b>Rådgivning:</b> Brug konkrete tal: "Du indbetaler 5.000 kr. nu og sparer 2.600
+                                    kr. i skat med det samme. Du 'vinder' allerede i dag."
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-4">
                             <div class="stat-card text-left" style="height:100%;">
-                                <div class="font-weight-bold mb-2" style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">Mental Accounting</div>
+                                <div class="font-weight-bold mb-2"
+                                    style="font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary);">
+                                    Mental Accounting</div>
                                 <p class="small text-muted mb-2"><i>Mentale konti</i></p>
-                                <p class="small">Kunder opdeler penge i "mentale konti" — "skattepenge", "opsparing", "forbrug" — og behandler dem forskelligt. En bonus betragtes som "ekstra" og bruges til forbrug, selvom den skattemæssigt er identisk med løn.</p>
-                                <div class="mt-auto p-3 small" style="background: var(--card-bg, #f8f9fa); border-left: 3px solid var(--text-color, #333); opacity: 0.85;">
-                                    <b>Rådgivning:</b> Hjælp kunden med at se økonomien som en helhed. En bonus på 50.000 kr. er kun 24.000 kr. netto — men 50.000 kr. på pension.
+                                <p class="small">Kunder opdeler penge i "mentale konti" — "skattepenge", "opsparing",
+                                    "forbrug" — og behandler dem forskelligt. En bonus betragtes som "ekstra" og bruges
+                                    til forbrug, selvom den skattemæssigt er identisk med løn.</p>
+                                <div class="mt-auto p-3 small"
+                                    style="background: var(--card-bg, #f8f9fa); border-left: 3px solid var(--text-color, #333); opacity: 0.85;">
+                                    <b>Rådgivning:</b> Hjælp kunden med at se økonomien som en helhed. En bonus på
+                                    50.000 kr. er kun 24.000 kr. netto — men 50.000 kr. på pension.
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <h3>2.9.1 Case: "Skatte-rabat-fælden"</h3>
-                    <p>Simone har fået en bonus på <b>50.000 kr.</b> Hun overvejer at bruge den på en ny rejse. Som hendes rådgiver viser du hende regnestykket:</p>
-                    <div class="card bg-light mb-3 border-0 shadow-sm" style="border-radius:0 !important; background:var(--card-bg, #f8f9fa);">
+                    <p>Simone har fået en bonus på <b>50.000 kr.</b> Hun overvejer at bruge den på en ny rejse. Som
+                        hendes rådgiver viser du hende regnestykket:</p>
+                    <div class="card bg-light mb-3 border-0 shadow-sm"
+                        style="border-radius:0 !important; background:var(--card-bg, #f8f9fa);">
                         <div class="card-body">
                             <div class="row text-center">
                                 <div class="col-md-4">
-                                    <div class="font-weight-bold text-muted small text-uppercase mb-1">Bonus brutto</div>
-                                    <div style="font-size:1.8rem; font-weight:700; font-family:'Space Grotesk';">50.000 kr.</div>
+                                    <div class="font-weight-bold text-muted small text-uppercase mb-1">Bonus brutto
+                                    </div>
+                                    <div style="font-size:1.8rem; font-weight:700; font-family:'Space Grotesk';">50.000
+                                        kr.</div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="font-weight-bold text-muted small text-uppercase mb-1">Til udbetaling (topskat ~52%)</div>
-                                    <div style="font-size:1.8rem; font-weight:700; font-family:'Space Grotesk'; color:#eb3349;">24.000 kr.</div>
+                                    <div class="font-weight-bold text-muted small text-uppercase mb-1">Til udbetaling
+                                        (topskat ~52%)</div>
+                                    <div style="font-size:1.8rem; font-weight:700; font-family:'Space Grotesk';">
+                                        24.000 kr.</div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="font-weight-bold text-muted small text-uppercase mb-1">På pension (hele beløbet)</div>
-                                    <div style="font-size:1.8rem; font-weight:700; font-family:'Space Grotesk'; color:#27ae60;">50.000 kr.</div>
+                                    <div class="font-weight-bold text-muted small text-uppercase mb-1">På pension (hele
+                                        beløbet)</div>
+                                    <div style="font-size:1.8rem; font-weight:700; font-family:'Space Grotesk';">
+                                        50.000 kr.</div>
                                 </div>
                             </div>
                             <hr style="margin: 1rem 0; border-color: var(--border-color);">
-                            <p class="small text-muted mb-0"><b>Konklusion:</b> Simone "betaler" kun 24.000 kr. i tabt forbrug for at få 50.000 kr. i pensionsopsparing. Skattebesparelsen på 26.000 kr. er en øjeblikkelig, risikofri gevinst.</p>
+                            <p class="small text-muted mb-0"><b>Konklusion:</b> Simone "betaler" kun 24.000 kr. i tabt
+                                forbrug for at få 50.000 kr. i pensionsopsparing. Skattebesparelsen på 26.000 kr. er en
+                                øjeblikkelig, risikofri gevinst.</p>
                         </div>
                     </div>
-                    <small class="d-block text-left mt-2 text-muted"><b>Kilde:</b> Behavioral Finance-teori, Kahneman & Tversky (1979). Anvendt i privatøkonomisk rådgivning.</small>
+                    <small class="d-block text-left mt-2 text-muted"><b>Kilde:</b> Behavioral Finance-teori, Kahneman &
+                        Tversky (1979). Anvendt i privatøkonomisk rådgivning.</small>
                 </div>
 
                 <!-- ============================================================ -->
@@ -1574,7 +1376,6 @@
     <script
         src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
     <script src="js/menu.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/script.js"></script>
     <script src="js/glossary.js"></script>
     <script src="js/theme-toggle.js"></script>
@@ -1595,16 +1396,16 @@
             };
         }
         function fmt(n) { return n.toLocaleString('da-DK'); }
-        const COLORS = { bund: '#11998e', mellem: '#2193b0', top: '#f2994a', toptop: '#eb3349', am: '#764ba2', kommune: '#667eea', fradrag: '#38ef7d', neutral: '#999' };
+        const COLORS = { bund: '#2d4a6a', mellem: '#3d6b8e', top: '#4d8aae', toptop: '#1a3a5c', am: '#7a9db8', kommune: '#5b7fa0', fradrag: '#8fb5cc', neutral: '#b0c4d8' };
         const GRAD = {
-            bund: ['#11998e', '#38ef7d'],
-            mellem: ['#2193b0', '#6dd5ed'],
-            top: ['#f2994a', '#f2c94c'],
-            toptop: ['#eb3349', '#f45c43'],
-            am: ['#764ba2', '#667eea'],
-            kommune: ['#667eea', '#764ba2'],
-            fradrag: ['#38ef7d', '#11998e'],
-            neutral: ['#999999', '#cccccc']
+            bund: ['#1a3a5c', '#2d4a6a'],
+            mellem: ['#2d4a6a', '#3d6b8e'],
+            top: ['#3d6b8e', '#4d8aae'],
+            toptop: ['#0d2540', '#1a3a5c'],
+            am: ['#4d6d86', '#7a9db8'],
+            kommune: ['#3a6080', '#5b7fa0'],
+            fradrag: ['#6a9ab5', '#8fb5cc'],
+            neutral: ['#8fa9be', '#b0c4d8']
         };
         function makeGrad(ctx, c1, c2, vertical) {
             const area = ctx.chart ? ctx.chart.chartArea : null;
@@ -1673,15 +1474,15 @@
                     datasets: [{
                         data: [29, 14, 12, 11, 29, 5],
                         backgroundColor: [
-                            'rgba(54, 162, 235, 0.8)',
-                            'rgba(255, 206, 86, 0.8)',
-                            'rgba(75, 192, 192, 0.8)',
-                            'rgba(153, 102, 255, 0.8)',
-                            'rgba(255, 159, 64, 0.8)',
-                            'rgba(255, 99, 132, 0.8)'
+                            'rgba(26, 58, 92, 0.85)',
+                            'rgba(61, 107, 142, 0.85)',
+                            'rgba(77, 138, 174, 0.85)',
+                            'rgba(106, 154, 181, 0.85)',
+                            'rgba(143, 181, 204, 0.85)',
+                            'rgba(176, 196, 216, 0.85)'
                         ],
-                        borderColor: '#fff',
-                        borderWidth: 2
+                        borderColor: 'transparent',
+                        borderWidth: 0
                     }]
                 },
                 options: {
@@ -1692,6 +1493,13 @@
                         legend: {
                             position: 'right',
                             labels: { font: { family: 'Inter', size: 12 }, color: c.text, padding: 15, usePointStyle: true }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (ctx) {
+                                    return ' ' + ctx.label + ': ' + ctx.parsed + '%';
+                                }
+                            }
                         }
                     }
                 }
@@ -1737,16 +1545,16 @@
                         ],
                         colorFrom: ctx => {
                             const from = ctx.dataset.data[ctx.dataIndex].from;
-                            return { 'Bruttoløn': '#667eea', 'Samlet skat': '#ef5350', 'Nettoløn': '#38ef7d' }[from] || '#999';
+                            return { 'Bruttoløn': '#1a3a5c', 'Samlet skat': '#4d6d86', 'Nettoløn': '#5b7fa0' }[from] || '#8fa9be';
                         },
                         colorTo: ctx => {
                             const to = ctx.dataset.data[ctx.dataIndex].to;
                             return {
-                                'Nettoløn': '#38ef7d', 'Samlet skat': '#ef5350',
+                                'Nettoløn': '#5b7fa0', 'Samlet skat': '#4d6d86',
                                 'AM-bidrag': COLORS.am, 'Bundskat': COLORS.bund, 'Kommuneskat': COLORS.kommune,
-                                'Bolig': '#36a2eb', 'Transport': '#4bc0c0', 'Forsikringer': '#f2994a',
-                                'Abonnementer': '#9966ff', 'Rådighedsbeløb': '#38ef7d'
-                            }[to] || '#999';
+                                'Bolig': '#3d6b8e', 'Transport': '#4d8aae', 'Forsikringer': '#6a9ab5',
+                                'Abonnementer': '#7a9db8', 'Rådighedsbeløb': '#8fb5cc'
+                            }[to] || '#b0c4d8';
                         },
                         colorMode: 'gradient',
                         labels: {
@@ -1789,13 +1597,15 @@
                     datasets: [{
                         label: 'Boligpris-indeks (Kbh)',
                         data: [100, 108, 115, 120, 135, 155, 150, 148, 155, 160, 165],
-                        backgroundColor: 'rgba(231, 76, 60, 0.4)',
-                        borderWidth: 0, fill: true, tension: 0.3, pointRadius: 0, pointHoverRadius: 0, pointHitRadius: 10
+                        backgroundColor: 'rgba(26, 58, 92, 0.35)',
+                        borderColor: '#1a3a5c', borderWidth: 2,
+                        fill: true, tension: 0.3, pointRadius: 0, pointHoverRadius: 0, pointHitRadius: 10
                     }, {
                         label: 'Løn-indeks',
                         data: [100, 102, 105, 108, 112, 115, 118, 122, 126, 130, 135],
-                        backgroundColor: 'rgba(0, 140, 255, 0.4)',
-                        borderWidth: 0, fill: true, tension: 0.3, pointRadius: 0, pointHoverRadius: 0, pointHitRadius: 10
+                        backgroundColor: 'rgba(77, 138, 174, 0.25)',
+                        borderColor: '#4d8aae', borderWidth: 2,
+                        fill: true, tension: 0.3, pointRadius: 0, pointHoverRadius: 0, pointHitRadius: 10
                     }]
                 },
                 options: {
@@ -1965,19 +1775,19 @@
                         ],
                         colorFrom: ctx => {
                             const from = ctx.dataset.data[ctx.dataIndex].from;
-                            if (from.includes('Jonas')) return from.includes('skat') ? '#ef5350' : '#667eea';
-                            if (from.includes('Sara')) return from.includes('skat') ? '#ef5350' : '#f2994a';
-                            return '#999';
+                            if (from.includes('Jonas')) return from.includes('skat') ? '#4d6d86' : '#1a3a5c';
+                            if (from.includes('Sara')) return from.includes('skat') ? '#6a9ab5' : '#3d6b8e';
+                            return '#8fa9be';
                         },
                         colorTo: ctx => {
                             const to = ctx.dataset.data[ctx.dataIndex].to;
-                            if (to === 'Samlet disponibel') return '#38ef7d';
-                            if (to.includes('skat')) return '#ef5350';
-                            if (to.includes('netto')) return '#38ef7d';
+                            if (to === 'Samlet disponibel') return '#5b7fa0';
+                            if (to.includes('skat')) return '#4d6d86';
+                            if (to.includes('netto')) return '#5b7fa0';
                             if (to.includes('AM')) return COLORS.am;
                             if (to.includes('Bund')) return COLORS.bund;
                             if (to.includes('Kommune')) return COLORS.kommune;
-                            return '#999';
+                            return '#8fa9be';
                         },
                         colorMode: 'gradient',
                         labels: {
@@ -2038,14 +1848,14 @@
                         ],
                         colorFrom: ctx => {
                             const from = ctx.dataset.data[ctx.dataIndex].from;
-                            return from === 'Samlet bruttoløn' ? '#667eea' : '#ef5350';
+                            return from === 'Samlet bruttoløn' ? '#1a3a5c' : '#4d6d86';
                         },
                         colorTo: ctx => {
                             const to = ctx.dataset.data[ctx.dataIndex].to;
                             return {
-                                'Disponibel indkomst': '#38ef7d', 'Samlet skat': '#ef5350',
+                                'Disponibel indkomst': '#5b7fa0', 'Samlet skat': '#4d6d86',
                                 'AM-bidrag': COLORS.am, 'Bundskat': COLORS.bund, 'Kommuneskat': COLORS.kommune
-                            }[to] || '#999';
+                            }[to] || '#8fa9be';
                         },
                         colorMode: 'gradient',
                         labels: {
@@ -2100,15 +1910,15 @@
                             { from: 'Nettoløn (md.)', to: 'Streaming/Abb.', flow: streaming },
                             { from: 'Nettoløn (md.)', to: 'Rådighedsbeløb', flow: raadighed }
                         ],
-                        colorFrom: () => '#667eea',
+                        colorFrom: () => '#2d4a6a',
                         colorTo: ctx => {
                             const to = ctx.dataset.data[ctx.dataIndex].to;
                             return {
-                                'Boligafgift': '#36a2eb', 'Låneydelse': '#ef5350',
-                                'El/Vand/Varme': '#ffce56', 'Forsikringer': '#f2994a',
-                                'Transport': '#4bc0c0', 'Streaming/Abb.': '#9966ff',
-                                'Rådighedsbeløb': '#38ef7d'
-                            }[to] || '#999';
+                                'Boligafgift': '#3d6b8e', 'Låneydelse': '#2d4a6a',
+                                'El/Vand/Varme': '#6a9ab5', 'Forsikringer': '#5b7fa0',
+                                'Transport': '#4d8aae', 'Streaming/Abb.': '#7a9db8',
+                                'Rådighedsbeløb': '#8fb5cc'
+                            }[to] || '#b0c4d8';
                         },
                         colorMode: 'gradient',
                         labels: {
@@ -2152,12 +1962,12 @@
                     datasets: [{
                         label: 'Fradragsværdi (Enlig)',
                         data: enlig,
-                        backgroundColor: gradBg('#2193b0', '#6dd5ed', 'cc', true),
+                        backgroundColor: gradBg('#3d6b8e', '#4d8aae', 'cc', true),
                         borderColor: '#2193b0', borderWidth: 0, borderRadius: 0, barPercentage: 0.8
                     }, {
                         label: 'Fradragsværdi (Par)',
                         data: par,
-                        backgroundColor: gradBg('#11998e', '#38ef7d', 'cc', true),
+                        backgroundColor: gradBg('#2d4a6a', '#3d6b8e', 'cc', true),
                         borderColor: '#11998e', borderWidth: 0, borderRadius: 0, barPercentage: 0.8
                     }]
                 },
