@@ -34,6 +34,25 @@
     --accent-blue-light: rgba(74, 127, 168, 0.1);
 }
 
+/* Force completely clean tables (No white borders or lines) */
+table.table {
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+}
+
+table.table th,
+table.table td,
+table.table tr,
+table.table thead,
+table.table tbody {
+    border: none !important;
+}
+
+table.table-bordered {
+    border: none !important;
+}
+
+
 /* Stat Cards & Numbers */
 .stat-card {
     background: var(--card-bg);
@@ -47,8 +66,8 @@
 }
 
 .stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .stat-number {
@@ -85,12 +104,13 @@
     margin: 20px 0;
     border-radius: 0 !important;
     border: 1px solid var(--border-color);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .info-box:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* Chart Containers */
@@ -101,7 +121,14 @@
     padding: 15px;
     margin: 20px 0;
     border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chart-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 :root:not([data-theme="dark"]) .chart-container {
@@ -116,6 +143,17 @@
     border: none !important;
     box-shadow: none !important;
     background: transparent !important;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.info-box.borderless,
+.stat-card.borderless {
+    border: none;
+    box-shadow: none !important;
+    background: transparent;
+    padding: 15px;
+    /* Restored padding for text content */
 }
 
 .chart-container.wide {
@@ -166,16 +204,7 @@
     transform: translateY(0);
 }
 
-/* Legal Terms */
-.legal-term {
-    border-bottom: 2px dotted #ccc;
-    cursor: help;
-    transition: background-color 0.2s;
-}
-
-.legal-term:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
+/* Legal Terms styling moved to glossary.css */
 
 /* Simulation / Case Cards */
 .simulation-card {

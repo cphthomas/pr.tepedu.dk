@@ -365,7 +365,7 @@
 
 [data-theme="dark"] .table-bordered {
     border-color: #404040 !important;
-    border-top: 1px solid #404040 !important;
+    border-top: none !important;
 }
 
 [data-theme="dark"] .table-bordered th,
@@ -374,11 +374,11 @@
 }
 
 [data-theme="dark"] .table {
-    border-top: 1px solid #404040 !important;
+    border-top: none !important;
 }
 
 [data-theme="dark"] .table thead th {
-    border-top: 1px solid #404040 !important;
+    border-top: none !important;
 }
 
 [data-theme="dark"] .table-dark {

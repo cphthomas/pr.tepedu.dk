@@ -162,14 +162,27 @@ body:not(.light-mode) .table-container table {
     background: #252525;
 }
 
-/* Remove all borders from tables */
+/* Remove all borders and spacing from tables */
+.table,
 .table-bordered,
 .table-bordered tbody,
 .table-bordered tr,
 .table-bordered td,
-.table-bordered th {
+.table-bordered th,
+.table th,
+.table td,
+.comparison-table th,
+.comparison-table td {
     border: none !important;
 }
+
+.table,
+.table-bordered,
+.comparison-table {
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+}
+
 
 
 
