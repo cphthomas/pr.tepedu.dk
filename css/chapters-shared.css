@@ -34,20 +34,25 @@
 }
 
 /* Quiz link section at chapter bottoms */
-.quiz-links-section {
-    margin-top: 3.5rem;
-    margin-bottom: 3.5rem;
+.quiz-links-wrap {
     margin-left: 200px;
+    transition: margin-left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 @media (min-width: 992px) {
-    .quiz-links-section {
+    .quiz-links-wrap {
         margin-left: 380px;
     }
 }
 
-.quiz-links-section .container {
-    max-width: 1140px;
+/* Follow the same sidebar-open shift as .content */
+.content.sidebar-open ~ .quiz-links-wrap {
+    margin-left: 300px;
+}
+
+.quiz-links-section {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
 }
 
 .quiz-links-section h2 {
@@ -55,7 +60,7 @@
 }
 
 .quiz-links-section .effectLinks {
-    background: #dbeafe !important;
+    background: #d5dde6 !important;
     color: #1a3a5c !important;
     margin-bottom: 14px !important;
     padding: 18px 22px !important;
