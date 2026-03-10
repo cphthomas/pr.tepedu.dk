@@ -33,6 +33,58 @@
     color: #ffffff !important;
 }
 
+/* Quiz link section at chapter bottoms */
+.quiz-links-section {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+    margin-left: 200px;
+}
+
+@media (min-width: 992px) {
+    .quiz-links-section {
+        margin-left: 380px;
+    }
+}
+
+.quiz-links-section .container {
+    max-width: 1140px;
+}
+
+.quiz-links-section h2 {
+    margin-bottom: 1.5rem;
+}
+
+.quiz-links-section .effectLinks {
+    background: #dbeafe !important;
+    color: #1a3a5c !important;
+    margin-bottom: 14px !important;
+    padding: 18px 22px !important;
+    line-height: 1.35;
+    font-style: normal;
+}
+
+.quiz-links-section .effectLinks::after {
+    background: #1a3a5c !important;
+    color: #ffffff !important;
+    padding: 18px 22px !important;
+}
+
+.quiz-links-section .effectLinks:hover {
+    background: #1a3a5c !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .quiz-links-section .effectLinks {
+    background: rgba(74, 127, 168, 0.2) !important;
+    color: #dbeafe !important;
+}
+
+[data-theme="dark"] .quiz-links-section .effectLinks::after,
+[data-theme="dark"] .quiz-links-section .effectLinks:hover {
+    background: #4a7fa8 !important;
+    color: #ffffff !important;
+}
+
 [data-theme="dark"] {
     --text-primary: #e0e0e0;
     --text-secondary: #aaaaaa;
