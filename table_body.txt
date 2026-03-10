@@ -1,0 +1,377 @@
+                            <tbody>
+                                <tr>
+                                    <td><b>Allianz (ALV)</b></td>
+                                    <td>ca. 110 mia. EUR</td>
+                                    <td>165 mia. EUR</td>
+                                    <td>26,50 EUR</td>
+                                    <td>10,5</td>
+                                    <td>9,8</td>
+                                    <td>
+                                        <p><b>Forsikring:</b> Stabil indtjening trods stigende naturskader.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b>"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Prissætningskraft:</b> Har succesfuldt hævet præmierne for at dække inflationen.</li>
+                                            <li><b>Asset Management:</b> PIMCO leverer solide resultater i et højrentemiljø.</li>
+                                            <li><b>Kursudvikling:</b> Steget 10% i 2025. Klassisk defensiv aktie med høj udbyttesikkerhed.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Alphabet (GOOGL)</b></td>
+                                    <td>ca. 2.150 mia. USD</td>
+                                    <td>345 mia. USD</td>
+                                    <td>7,80 USD</td>
+                                    <td>24,2</td>
+                                    <td>20,5</td>
+                                    <td>
+                                        <p><b>Søgning:</b> Forsvarer markedsandele mod AI-konkurrenter.</p>
+                                        <p><i>Analytiker-konsensus (02.03.2026):</i> <b>"Hold/Buy"</b></p>
+                                        <ul>
+                                            <li><b>Gemini-integration:</b> AI i søgning har stabiliseret brugertallet, men øget omkostningerne pr. søgning.</li>
+                                            <li><b>YouTube-vækst:</b> Stærk performance i streaming-annoncer.</li>
+                                            <li><b>Kursudvikling:</b> Har haltet efter markedet med kun 10% vækst pga. regulatorisk pres og frygt for disruptering af søgemodellen.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Amazon (AMZN)</b></td>
+                                    <td>ca. 2.200 mia. USD</td>
+                                    <td>680 mia. USD</td>
+                                    <td>6,10 USD</td>
+                                    <td>45,0</td>
+                                    <td>35,2</td>
+                                    <td>
+                                        <p><b>Logistik/AWS:</b> Marginforbedring i retail og stærk cloud-vækst.</p>
+                                        <p><i>Analytiker-konsensus (04.03.2026):</i> <b>"Buy"</b></p>
+                                        <ul>
+                                            <li><b>AWS-acceleration:</b> Cloud-divisionen nyder godt af AI-træningsbehov.</li>
+                                            <li><b>Annonce-vækst:</b> Reklameindtægter på platformen vokser hurtigere end e-handel.</li>
+                                            <li><b>Kursudvikling:</b> Steget 30% i 2025. Oplevede et fald på 8% i Q3 2025 pga. bekymring om forbrugernes købekraft.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>A.P. Møller - Mærsk</b></td>
+                                    <td>ca. 255 mia. DKK</td>
+                                    <td>54 mia. USD</td>
+                                    <td>326,26 DKK (TTM)</td>
+                                    <td>6,9</td>
+                                    <td>395,8*</td>
+                                    <td>
+                                        <p><b>Cyklisk:</b> Lav aktuel <span class="legal-term" data-slug="pe">P/E</span> pga. historisk indtjening.</p>
+                                        <p><i>Analytiker-konsensus (03.03.2026):</i> <b>"Underperform"</b></p>
+                                        <ul>
+                                            <li><b>Forward P/E Anomali:</b> Den ekstremt høje <span class="legal-term" data-slug="forward-pe">Forward P/E</span> på 395,8 skyldes et forventet markant dyk i indtjeningen (EPS) i 2026. Det signalerer ikke nødvendigvis en overvurdering, men snarere en normalisering efter ekstraordinære fragtrater.</li>
+                                            <li><b>Overkapacitet:</b> Mange nye skibe leveres i 2025/2026, hvilket presser raterne globalt.</li>
+                                            <li><b>Logistik-strategi:</b> Transformationen mod landbaseret logistik tager længere tid og kræver flere investeringer end oprindeligt estimeret.</li>
+                                            <li><b>Kursudvikling:</b> Faldet 22% over det seneste år. Ramt af global afmatning i varehandel og normalisering efter fragt-boomet i 2024.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Apple (AAPL)</b></td>
+                                    <td>ca. 3.910 mia. USD</td>
+                                    <td>410 mia. USD</td>
+                                    <td>7,15 USD</td>
+                                    <td>32,4</td>
+                                    <td>28,2</td>
+                                    <td>
+                                        <p><b>Cash Cow:</b> Stabil vækst i services og økosystem.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b>"Buy"</b></p>
+                                        <ul>
+                                            <li><b>AI-cyklus:</b> iPhone 17 (2025) med fuld AI-integration har drevet en stor udskiftningsbølge.</li>
+                                            <li><b>Kina-risiko:</b> Fortsat pres fra lokale konkurrenter som Huawei.</li>
+                                            <li><b>Kursudvikling:</b> Steget 18% i 2025. Stabil performance med lav volatilitet ift. øvrige tech-aktier.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>ASML (ASML)</b></td>
+                                    <td>ca. 380 mia. EUR</td>
+                                    <td>32 mia. EUR</td>
+                                    <td>24,50 EUR</td>
+                                    <td>42,1</td>
+                                    <td>30,4</td>
+                                    <td>
+                                        <p><b>Monopol:</b> EUV-maskiner er uundværlige for næste generation af chips.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b>"Strong Buy"</b></p>
+                                        <ul>
+                                            <li><b>High-NA EUV:</b> Levering af de nyeste maskiner til Intel og TSMC sikrer vækst in 2026/2027.</li>
+                                            <li><b>Geopolitik:</b> Eksportrestriktioner til Kina er indregnet i kursen.</li>
+                                            <li><b>Kursudvikling:</b> Faldt 15% i starten af 2025, men er siden steget 40% på AI-hardware boomet.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>BP (BP)</b></td>
+                                    <td>ca. 95 mia. GBP</td>
+                                    <td>215 mia. USD</td>
+                                    <td>0,95 USD</td>
+                                    <td>7,2</td>
+                                    <td>8,1</td>
+                                    <td>
+                                        <p><b>Energi:</b> Højere risiko pga. hurtigere grøn omstilling.</p>
+                                        <p><i>Analytiker-konsensus (03.03.2026):</i> <b>"Hold"</b></p>
+                                        <ul>
+                                            <li><b>Raffinaderi-marginer:</b> Svagere efterspørgsel i Europa har ramt indtjeningen i Q4 2025.</li>
+                                            <li><b>Strategisk usikkerhed:</b> Markedet tvivler på lønsomheden i de grønne investeringer.</li>
+                                            <li><b>Kursudvikling:</b> Faldt 8% i slutningen af 2025. Halter efter Shell og TotalEnergies.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>HSBC (HSBA)</b></td>
+                                    <td>ca. 155 mia. GBP</td>
+                                    <td>68 mia. USD</td>
+                                    <td>1,45 USD</td>
+                                    <td>6,8</td>
+                                    <td>7,5</td>
+                                    <td>
+                                        <p><b>Bank:</b> Stor eksponering mod vækstmarkeder i Asien.</p>
+                                        <p><i>Analytiker-konsensus (04.03.2026):</i> <b>"Hold"</b></p>
+                                        <ul>
+                                            <li><b>Kinesisk ejendomskrise:</b> Fortsatte nedskrivninger på lån i Kina har tynget resultatet.</li>
+                                            <li><b>Renteniveau:</b> Nyder godt af de højere renter i Europa og USA.</li>
+                                            <li><b>Kursudvikling:</b> Faldt 12% i midten af 2025, men er stabiliseret i starten af 2026 på bedre asiatiske nøgletal.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>IBM (IBM)</b></td>
+                                    <td>ca. 225 mia. USD</td>
+                                    <td>62 mia. USD</td>
+                                    <td>9,85 USD</td>
+                                    <td>22,8</td>
+                                    <td>25,4</td>
+                                    <td>
+                                        <p><b>Legacy/AI:</b> Forsøger at transformere fra konsulent til AI-platform.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b>"Sell"</b></p>
+                                        <ul>
+                                            <li><b>Disruption:</b> AI-automatisering truer IBM's kerneforretning inden for vedligeholdelse af legacy-systemer (COBOL).</li>
+                                            <li><b>Vækst-udfordringer:</b> Watsonx vinder ikke markedsandele hurtigt nok ift. Azure og AWS.</li>
+                                            <li><b>Kursudvikling:</b> Faldt 18% i 2025 efter Morgan Stanley nedjustering. Investorer flygter mod renere AI-spillere.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Intel (INTC)</b></td>
+                                    <td>ca. 145 mia. USD</td>
+                                    <td>58 mia. USD</td>
+                                    <td>0,45 USD</td>
+                                    <td>95,2</td>
+                                    <td>112,5</td>
+                                    <td>
+                                        <p><b>Turnaround:</b> Kæmper for at genvinde teknologisk førerskab.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b>"Sell"</b></p>
+                                        <ul>
+                                            <li><b>Foundry-tab:</b> Massive investeringer i nye fabrikker tynger cash flowet markant.</li>
+                                            <li><b>Markedsandele:</b> Fortsat tab til AMD i datacentre og Nvidia i AI-chips.</li>
+                                            <li><b>Kursudvikling:</b> Faldt 35% over det seneste år. Betragtes som en højrisiko-aktie med usikker fremtid.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>LVMH (MC.PA)</b></td>
+                                    <td>ca. 420 mia. EUR</td>
+                                    <td>92 mia. EUR</td>
+                                    <td>34,20 EUR</td>
+                                    <td>24,5</td>
+                                    <td>22,8</td>
+                                    <td>
+                                        <p><b>Luksus:</b> Enestående prissætningskraft og brand-portefølje.</p>
+                                        <p><i>Analytiker-konsensus (03.03.2026):</i> <b>"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Kina-recovery:</b> Forbrugertilliden i Kina er begyndt at vende i 2026, hvilket løfter salget.</li>
+                                            <li><b>Diversificering:</b> Stærk vækst i "Fashion & Leather Goods" kompenserer for svagere ure/smykker.</li>
+                                            <li><b>Kursudvikling:</b> Faldt 10% i 2025 pga. global økonomisk usikkerhed, men har genvundet det tabte i Q1 2026.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Meta (META)</b></td>
+                                    <td>ca. 1.390 mia. USD</td>
+                                    <td>175 mia. USD</td>
+                                    <td>22,40 USD</td>
+                                    <td>28,5</td>
+                                    <td>22,1</td>
+                                    <td>
+                                        <p><b>Ad-Tech:</b> AI-optimerede annoncer giver rekordoverskud.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b>"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Llama-succes:</b> Open-source AI-strategien har styrket Metas position i tech-miljøet.</li>
+                                            <li><b>Reels-monetisering:</b> Video-indhold giver nu højere annonce-afkast end traditionelle opslag.</li>
+                                            <li><b>Kursudvikling:</b> Steget 45% i 2025. Kursen er tæt på all-time high trods fortsatte investeringer i Reality Labs.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Microsoft (MSFT)</b></td>
+                                    <td>ca. 3.450 mia. USD</td>
+                                    <td>285 mia. USD</td>
+                                    <td>12,80 USD</td>
+                                    <td>38,2</td>
+                                    <td>31,5</td>
+                                    <td>
+                                        <p><b>Cloud/AI:</b> Azure dominerer enterprise AI-markedet.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b>"Strong Buy"</b></p>
+                                        <ul>
+                                            <li><b>Copilot-monetisering:</b> Software-indtjeningen fra AI-assistenter er nu en væsentlig vækstdriver.</li>
+                                            <li><b>Cloud-vækst:</b> Azure vokser fortsat med +25% årligt.</li>
+                                            <li><b>Kursudvikling:</b> Jævn stigning på 25% over det seneste år uden markante dyk.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Novartis (NOVN.SW)</b></td>
+                                    <td>ca. 210 mia. CHF</td>
+                                    <td>52 mia. CHF</td>
+                                    <td>7,10 CHF</td>
+                                    <td>16,2</td>
+                                    <td>14,5</td>
+                                    <td>
+                                        <p><b>Pharma:</b> Strømlinet forretning efter spin-off af Sandoz.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b>"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Fokus-områder:</b> Stærk position inden for hjerte-kar og immunologi.</li>
+                                            <li><b>Kapitalallokering:</b> Store aktietilbagekøbsprogrammer understøtter kursen.</li>
+                                            <li><b>Kursudvikling:</b> Steget 12% i 2025. Stabil udbytteaktie med lav risiko.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Novo Nordisk (NOVO B)</b></td>
+                                    <td>ca. 4.800 mia. DKK</td>
+                                    <td>312 mia. DKK</td>
+                                    <td>24,20 DKK</td>
+                                    <td>31,2</td>
+                                    <td>28,8</td>
+                                    <td>
+                                        <p><b>Kvalitet/Vækst:</b> Stærk <span class="legal-term" data-slug="eps">EPS</span>-vækst drevet af GLP-1 (Ozempic/Wegovy).</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b>"Buy" (moderat)</b></p>
+                                        <ul>
+                                            <li><b>Kursfald:</b> Aktien er faldet ca. 38% fra toppen i 2024 frem til primo 2026.</li>
+                                            <li><b>2026-Guidance:</b> Selskabet har skuffet markedet med forventning om et fald i salg og driftsindtjening på 5-13% i 2026.</li>
+                                            <li><b>Konkurrence & Politik:</b> Eli Lilly (Zepbound) vinder markedsandele, og Medicare-prisforhandlinger i USA presser avancerne markant.</li>
+                                            <li><b>Værdiansættelse:</b> Handles nu til P/E 19 (2026e), hvilket er historisk billigt ift. Eli Lilly (P/E 30).</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Nvidia (NVDA)</b></td>
+                                    <td>ca. 5.100 mia. USD</td>
+                                    <td>323 mia. USD</td>
+                                    <td>8,30 USD</td>
+                                    <td>36,5</td>
+                                    <td>22,4</td>
+                                    <td>
+                                        <p><b>Dominans:</b> Markant vækst pga. AI-infrastruktur. <span class="legal-term" data-slug="forward-pe">Forward P/E</span> er moderat ift. væksten.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b>"Strong Buy"</b></p>
+                                        <ul>
+                                            <li><b>Blackwell-efterspørgsel:</b> Ordrebogen er fyldt frem til 2027.</li>
+                                            <li><b>Software-voldgrav:</b> CUDA-platformen gør det svært for konkurrenter at vinde indpas.</li>
+                                            <li><b>Kursudvikling:</b> Steget 140% over det seneste år. Oplevede et kortvarigt "flash crash" på 10% i august 2025 pga. frygt for overinvestering i datacentre, men genvandt alt på to uger.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Roche (ROG.SW)</b></td>
+                                    <td>ca. 215 mia. CHF</td>
+                                    <td>62 mia. CHF</td>
+                                    <td>18,40 CHF</td>
+                                    <td>14,5</td>
+                                    <td>13,8</td>
+                                    <td>
+                                        <p><b>Pharma:</b> Fokus på onkologi og diagnostik.</p>
+                                        <p><i>Analytiker-konsensus (04.03.2026):</i> <b>"Hold"</b></p>
+                                        <ul>
+                                            <li><b>Pipeline-huller:</b> Flere vigtige lægemidler har mistet patentbeskyttelse.</li>
+                                            <li><b>Diagnostik-vækst:</b> God performance i laboratorie-udstyr, men ikke nok til at drive kursen markant op.</li>
+                                            <li><b>Kursudvikling:</b> Flad udvikling over de seneste 2 år. Betragtes som en sikker havn med lav vækst.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>SAP (SAP)</b></td>
+                                    <td>ca. 230 mia. EUR</td>
+                                    <td>35 mia. EUR</td>
+                                    <td>6,20 EUR</td>
+                                    <td>35,8</td>
+                                    <td>28,4</td>
+                                    <td>
+                                        <p><b>Enterprise:</b> Cloud-transformationen er fuldført med succes.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b>"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Business AI:</b> Integration af AI i ERP-systemer øger kundeloyaliteten og priserne.</li>
+                                            <li><b>Cloud-backlog:</b> Rekordhøj ordrebeholdning sikrer indtjeningen de kommende år.</li>
+                                            <li><b>Kursudvikling:</b> Steget 35% i 2025. En af de bedst præsterende europæiske tech-aktier.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Shell (SHEL)</b></td>
+                                    <td>ca. 210 mia. GBP</td>
+                                    <td>320 mia. USD</td>
+                                    <td>4,80 USD</td>
+                                    <td>8,5</td>
+                                    <td>9,2</td>
+                                    <td>
+                                        <p><b>Energi:</b> Fokus på naturgas og aktionærafkast.</p>
+                                        <p><i>Analytiker-konsensus (02.03.2026):</i> <b>"Buy"</b></p>
+                                        <ul>
+                                            <li><b>LNG-dominans:</b> Shell drager fordel af Europas skift væk fra russisk gas.</li>
+                                            <li><b>Udbytte:</b> Høj direkte afkast og aggressive tilbagekøb.</li>
+                                            <li><b>Kursudvikling:</b> Steget 15% i 2025. Følger olieprisen tæt, men har outperformeret sektoren pga. gas-eksponering.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Siemens (SIE)</b></td>
+                                    <td>ca. 150 mia. EUR</td>
+                                    <td>82 mia. EUR</td>
+                                    <td>11,20 EUR</td>
+                                    <td>16,5</td>
+                                    <td>14,2</td>
+                                    <td>
+                                        <p><b>Industri 4.0:</b> Førende inden for digitalisering af produktion.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b>"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Digital Industries:</b> Høj efterspørgsel på software til fabriksautomatisering.</li>
+                                            <li><b>Smart Infrastructure:</b> Grøn omstilling af bygninger og elnet driver væksten.</li>
+                                            <li><b>Kursudvikling:</b> Steget 22% i 2025. Outperformer det generelle industrimarked.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Tesla (TSLA)</b></td>
+                                    <td>ca. 1.270 mia. USD</td>
+                                    <td>122 mia. USD</td>
+                                    <td>2,69 USD</td>
+                                    <td>332,5</td>
+                                    <td>172,4</td>
+                                    <td>
+                                        <p><b>Vækst/AI:</b> Prissat som teknologiselskab (FSD/Robotter), ikke blot bilproducent. Ekstrem risiko.</p>
+                                        <p><i>Analytiker-konsensus (04.03.2026):</i> <b>"Hold"</b></p>
+                                        <ul>
+                                            <li><b>Robotaxi:</b> Lanceringen i starten af 2026 har stabiliseret kursen efter et svært 2025.</li>
+                                            <li><b>Marginpres:</b> Priskrige i Kina har barberet 5% af bruttomarginen.</li>
+                                            <li><b>Kursudvikling:</b> Meget volatil. Faldt 25% i første halvår af 2025 pga. vigende efterspørgsel på Model 3/Y, men steg 40% i Q1 2026 på AI-optimisme.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>TotalEnergies (TTE)</b></td>
+                                    <td>ca. 165 mia. EUR</td>
+                                    <td>235 mia. USD</td>
+                                    <td>9,20 EUR</td>
+                                    <td>7,8</td>
+                                    <td>8,4</td>
+                                    <td>
+                                        <p><b>Energi:</b> Bedst i klassen til at balancere olie/gas og vedvarende energi.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b>"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Multi-energi:</b> Store investeringer i sol og vind begynder at give stabile cash flows.</li>
+                                            <li><b>Lav break-even:</b> Olieproduktionen er profitabel selv ved priser under $50.</li>
+                                            <li><b>Kursudvikling:</b> Stabil med 8% vækst in 2025 plus et attraktivt udbytte.</li>
+                                        </ul>
+                                    </td>
+                                </tr>

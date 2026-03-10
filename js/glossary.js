@@ -10,26 +10,91 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let hideTimeout;
 
-    const terms = document.querySelectorAll('.legal-term');
+    const glossaryData = {};
 
-    terms.forEach(termElement => {
-        termElement.addEventListener('mouseenter', (e) => {
-            clearTimeout(hideTimeout);
+    // First, fetch all definitions from kapitel6.html if we are not on that page
+    // Or just fetch them once to have a central registry
+    const glossaryUrl = window.location.pathname.includes('kapitel6.html') ? 'kapitel6.html' : 'kapitel6.html';
+    
+    // Check if we are running on file:// protocol (local development)
+    const isLocalFile = window.location.protocol === 'file:';
+    
+    if (isLocalFile) {
+        console.warn('Kører lokalt via file:// - Fetch af kapitel6.html kan være blokeret af CORS. Bruger data-attributter som fallback.');
+        initTooltips();
+    } else {
+        fetch(glossaryUrl)
+            .then(response => {
+                if (!response.ok) throw new Error('Netværksfejl ved hentning af ordliste');
+                return response.text();
+            })
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const items = doc.querySelectorAll('.glossary-term-item');
+                
+                items.forEach(item => {
+                    const titleEl = item.querySelector('.term-title');
+                    const defEl = item.querySelector('.term-definition');
+                    const exEl = item.querySelector('.term-example small');
+                    
+                    if (titleEl && titleEl.id) {
+                        const slug = titleEl.id.replace('term-', '').toLowerCase();
+                        const defText = defEl ? defEl.textContent.trim() : '';
+                        const exText = exEl ? exEl.innerHTML.replace(/<strong>Eksempel:<\/strong>\s*/i, '').trim() : '';
+                        
+                        glossaryData[slug] = {
+                            definition: defText,
+                            example: exText
+                        };
+                    }
+                });
+                
+                // Now that we have the data, initialize tooltips
+                initTooltips();
+            })
+            .catch(err => {
+                console.error('Kunne ikke hente ordliste-data:', err);
+                initTooltips(); // Fallback to data attributes
+            });
+    }
 
-            const term = termElement.textContent.trim();
-            const definition = termElement.getAttribute('data-definition');
-            const example = termElement.getAttribute('data-example');
-            const slug = termElement.getAttribute('data-slug');
+    function initTooltips() {
+        const terms = document.querySelectorAll('.legal-term');
 
-            tooltip.innerHTML = `
-                <h4>${term}</h4>
-                <div class="definition">${definition}</div>
-                ${example ? `<div class="example"><strong>Eksempel:</strong> ${example}</div>` : ''}
-                <div class="footer" style="cursor: pointer;" onclick="window.open('kapitel6.html#term-${slug}', '_blank')">
-                    <span>Læs mere i ordlisten</span>
-                    <i class="bi bi-arrow-right"></i>
-                </div>
-            `;
+        terms.forEach(termElement => {
+            termElement.addEventListener('mouseenter', (e) => {
+                clearTimeout(hideTimeout);
+
+                const term = termElement.textContent.trim();
+                const slug = termElement.getAttribute('data-slug') ? termElement.getAttribute('data-slug').toLowerCase() : null;
+                
+                // Priority: 1. Loaded glossaryData, 2. data-attributes
+                let definition = termElement.getAttribute('data-definition');
+                let example = termElement.getAttribute('data-example');
+                
+                if (slug && glossaryData[slug]) {
+                    // Only override if glossaryData has content
+                    if (glossaryData[slug].definition) {
+                        definition = glossaryData[slug].definition;
+                    }
+                    if (glossaryData[slug].example) {
+                        example = glossaryData[slug].example;
+                    }
+                }
+
+                tooltip.innerHTML = `
+                    <div class="header">
+                        <i class="bi bi-info-circle-fill"></i>
+                        <h4>${term}</h4>
+                    </div>
+                    <div class="definition">${definition || 'Ingen definition tilgængelig.'}</div>
+                    ${example ? `<div class="example"><strong>Eksempel:</strong> ${example}</div>` : ''}
+                    <div class="footer" style="cursor: pointer;" onclick="window.open('kapitel6.html#term-${slug}', '_blank')">
+                        <span>LÆS MERE I ORDLISTEN</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                `;
 
             // Allow transitions to calculate height
             tooltip.style.visibility = 'hidden';
@@ -64,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300);
         });
     });
+    }
 
     // Keep tooltip open when hovering over it
     tooltip.addEventListener('mouseenter', () => {

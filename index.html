@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/front-style.css">
     <link rel="stylesheet" href="css/theme-dark.css">
     <link rel="stylesheet" href="css/theme-light.css">
+    <link rel="stylesheet" href="css/search.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.svg">
 
     <style>
@@ -74,6 +75,21 @@
             </a>
 
             <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <div class="search-container">
+                        <a class="nav-link search-toggle" id="search-toggle" href="#" role="button" aria-label="Søg">
+                            <i class="bi bi-search"></i>
+                        </a>
+                        <div class="search-dropdown" id="search-dropdown">
+                            <div class="search-input-wrapper">
+                                <input type="text" class="search-input" id="search-input" placeholder="Søg i alle kapitler..." autocomplete="off">
+                            </div>
+                            <div class="search-results" id="search-results">
+                                <div class="search-no-results">Indtast søgeord foroven</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" id="theme-toggle" href="#" role="button" aria-label="Skift tema">
                         <div class="theme-icon-wrapper">
@@ -241,6 +257,7 @@
     <script src="js/info.js"></script>
     <script src="js/front-script.js"></script>
     <script src="js/theme-toggle.js"></script>
+    <script src="js/search.js"></script>
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 

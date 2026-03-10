@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <title>Quiz Kap. 2.4: Beskatning af par</title>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+     <link rel="stylesheet" href="styles.css">
+     <link rel="icon" href="favicon.svg">
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <style>.card-body { font-size: 1em; } .card img { max-width: 100%; height: auto; }</style>
+</head>
+
+<body data-formål="Forståelse af sambeskatning og ægtefælles skattefordele."
+     data-forudsætning="Kendskab til personfradrag og kapitalindkomst.">
+     <header>
+          <a href="index.html" target="_blank"><img src="tepedulogoanim.svg" alt="Logo" width="8%"></a>
+          <h2>Quiz Kap. 2.4: Beskatning af par</h2>
+     </header>
+
+     <div class="container">
+          <div class="row justify-content-center">
+               <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card mt-5">
+                         <div class="card-body">
+                              <div id="postProgressContent" class="mt-4" style="color: rgb(255, 255, 255);">
+                                   <div><h1>Kapitel 2: Beskatning af par og sambeskatning</h1></div>
+                              </div>
+                              <br><br>
+                              <h1 id="question" class="card-title"></h1>
+                              <div id="options" class="mt-4"></div>
+                              <div id="progress-bar" class="progress-bar-container"></div>
+
+<!-- 1 -->
+<div class="question" data-question="Hvad betyder sambeskatning?"
+     data-answer="0"
+     data-explanation="Sambeskatning er en skattemæssig ordning for ægtefæller, der gør det muligt at overføre uudnyttede personfradrag og kapitalindkomstgrænser mellem parterne. Ugifte har ikke denne mulighed.">
+     <div class="option" data-option="Overførsel af uudnyttede personfradrag og kapitalindkomstgrænser mellem ægtefæller"></div>
+     <div class="option" data-option="At begge parter i et forhold betaler præcis den samme procentsats i indkomstskat"></div>
+     <div class="option" data-option="At man deler sin samlede årsindkomst 50/50 uanset hvem der har tjent pengene"></div>
+     <div class="option" data-option="At man pålægges en dobbelt skattebyrde fordi man bor to personer på samme adresse"></div>
+</div>
+<!-- 2 -->
+<div class="question" data-question="Hvad sker der med uudnyttet personfradrag hos ugifte samlevende?"
+     data-answer="2"
+     data-explanation="Hos ugifte går uudnyttet personfradrag tabt. Hos ægtefæller overføres det automatisk til den anden part. Skatteværdien af fuldt uudnyttet personfradrag er ca. 20.000 kr.">
+     <div class="option" data-option="Det overføres automatisk til partneren til modregning i dennes personlige skat"></div>
+     <div class="option" data-option="Det udbetales som en kontant skattegodtgørelse til borgeren ved årets udgang"></div>
+     <div class="option" data-option="Det går uigenkaldeligt tabt og kan ikke udnyttes af andre eller gemmes"></div>
+     <div class="option" data-option="Det overføres automatisk til modregning i den skattepligtige indkomst næste år"></div>
+</div>
+<!-- 3 -->
+<div class="question" data-question="Hvad er kapitalindkomstgrænsen for ægtefæller (lav beskatning)?"
+     data-answer="1"
+     data-explanation="For enlige er grænsen 52.400 kr. For sambeskattede ægtefæller fordobles den til 104.800 kr. uanset hvem der har tjent kapitalindkomsten.">
+     <div class="option" data-option="52.400 kr."></div>
+     <div class="option" data-option="104.800 kr."></div>
+     <div class="option" data-option="122.200 kr."></div>
+     <div class="option" data-option="200.000 kr."></div>
+</div>
+<!-- 4 -->
+<div class="question" data-question="Hvilke skatteelementer er IKKE påvirket af sambeskatning?"
+     data-answer="3"
+     data-explanation="AM-bidrag og topskat er individuelle - sambeskatning ændrer ikke deres beregning. Kun personfradrag, bundskat, kommuneskat og kapitalindkomstgrænser påvirkes.">
+     <div class="option" data-option="Det personlige fradrag for voksne over 18 år i husstanden"></div>
+     <div class="option" data-option="Den fælles grænse for beskatning af positiv kapitalindkomst"></div>
+     <div class="option" data-option="Beregningen af den gennemsnitlige kommuneskatteprocent"></div>
+     <div class="option" data-option="Arbejdsmarkedsbidraget (AM-bidrag) og beregningen af topskat"></div>
+</div>
+<!-- 5 -->
+<div class="question" data-question="Hvor meget kan sambeskatning typisk spare et par om året?"
+     data-answer="0"
+     data-explanation="I scenarier med forskellig indkomst (fx den ene på barsel/studie) kan sambeskatning spare op mod 20.000 kr./år alene på personfradragsoverførsel.">
+     <div class="option" data-option="Op mod 20.000 kr."></div>
+     <div class="option" data-option="Maksimalt 1.000 kr."></div>
+     <div class="option" data-option="Der er ingen reel økonomisk besparelse ved at vælge sambeskatning"></div>
+     <div class="option" data-option="Besparelsen gælder udelukkende for par der begge betaler topskat"></div>
+</div>
+<!-- 6 -->
+<div class="question" data-question="Hvem har mulighed for sambeskatning?"
+     data-answer="2"
+     data-explanation="Kun ægtefæller (gifte) har mulighed for sambeskatning. Ugifte samlevende har ikke denne mulighed - deres uudnyttede personfradrag går tabt.">
+     <div class="option" data-option="Alle par der har haft fælles folkeregisteradresse i mindst to år"></div>
+     <div class="option" data-option="Udelukkende par der har fælles børn under 18 år i husstanden"></div>
+     <div class="option" data-option="Kun par der er juridisk gift og dermed omfattet af ægteskabsloven"></div>
+     <div class="option" data-option="Kun par hvor begge parter betaler topskat af deres personlige indkomst"></div>
+</div>
+<!-- 7 -->
+<div class="question" data-question="Hvad overføres ved sambeskatning?"
+     data-answer="0"
+     data-explanation="Sambeskatning gør det muligt at overføre uudnyttede personfradrag og kapitalindkomstgrænser mellem ægtefæller. AM-bidrag og topskat er individuelle.">
+     <div class="option" data-option="Uudnyttede personfradrag og grænser for positiv kapitalindkomst"></div>
+     <div class="option" data-option="Betalt arbejdsmarkedsbidrag (AM-bidrag) og beregnet topskat"></div>
+     <div class="option" data-option="Optjente pensionsrettigheder og anciennitet i det offentlige system"></div>
+     <div class="option" data-option="Udelukkende fradrag for renteudgifter på fælles optagne boliglån"></div>
+</div>
+<!-- 8 -->
+<div class="question" data-question="Hvornår giver sambeskatning størst gevinst?"
+     data-answer="1"
+     data-explanation="Sambeskatning giver størst gevinst når den ene har lav eller ingen indkomst (barsel, studie, arbejdsløs) og den anden har fuld indkomst. Uudnyttet personfradrag overføres.">
+     <div class="option" data-option="Når begge ægtefæller har præcis den samme månedlige indkomst"></div>
+     <div class="option" data-option="Når den ene part har en meget lav eller slet ingen årsindkomst"></div>
+     <div class="option" data-option="Ordningen er udelukkende fordelagtig for folkepensionister over 70 år"></div>
+     <div class="option" data-option="Når begge ægtefæller har indkomster der ligger langt over topskattegrænsen"></div>
+</div>
+<!-- 9 -->
+<div class="question" data-question="Hvad er kapitalindkomstgrænsen for enlige (2026)?"
+     data-answer="0"
+     data-explanation="For enlige er kapitalindkomstgrænsen 52.400 kr. For sambeskattede ægtefæller fordobles den til 104.800 kr.">
+     <div class="option" data-option="52.400 kr."></div>
+     <div class="option" data-option="54.100 kr."></div>
+     <div class="option" data-option="61.100 kr."></div>
+     <div class="option" data-option="104.800 kr."></div>
+</div>
+<!-- 10 -->
+<div class="question" data-question="Skifter man automatisk til sambeskatning ved ægteskab?"
+     data-answer="0"
+     data-explanation="Ved ægteskab vælges sambeskatning typisk automatisk eller ved ansøgning. Det er en skattemæssig ordning man aktivt vælger.">
+     <div class="option" data-option="Ja, det sker typisk automatisk i skattesystemet ved indgåelse af ægteskab"></div>
+     <div class="option" data-option="Nej, man skal altid ansøge om det hvert år i forbindelse med årsopgørelsen"></div>
+     <div class="option" data-option="Det sker først automatisk efter at man har været gift i mindst fem år"></div>
+     <div class="option" data-option="Kun hvis begge parter har en dokumenteret indkomst over personfradraget"></div>
+</div>
+<!-- 11 -->
+<div class="question" data-question="Hvad er skatteværdien af fuldt uudnyttet personfradrag (ca.)?"
+     data-answer="1"
+     data-explanation="Skatteværdien af fuldt uudnyttet personfradrag (54.100 kr.) er ca. 20.000 kr. ved 37% skat. Det er den værdi der går tabt for ugifte.">
+     <div class="option" data-option="0 kr."></div>
+     <div class="option" data-option="Ca. 20.000 kr."></div>
+     <div class="option" data-option="54.100 kr."></div>
+     <div class="option" data-option="Ca. 5.000 kr."></div>
+</div>
+<!-- 12 -->
+<div class="question" data-question="Påvirker sambeskatning topskattegrænsen?"
+     data-answer="1"
+     data-explanation="AM-bidrag og topskat er individuelle - sambeskatning ændrer ikke deres beregning. Kun personfradrag, bundskat, kommuneskat og kapitalindkomstgrænser påvirkes.">
+     <div class="option" data-option="Ja, topskattegrænsen fordobles automatisk for det samlede par"></div>
+     <div class="option" data-option="Nej, topskatten beregnes altid individuelt for hver enkelt person"></div>
+     <div class="option" data-option="Ja, grænsen halveres hvis den ene part ikke er i beskæftigelse"></div>
+     <div class="option" data-option="Kun hvis den lavest lønnede part tjener under personfradragets grænse"></div>
+</div>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+     <script src="script.js"></script>
+</body>
+
+</html>

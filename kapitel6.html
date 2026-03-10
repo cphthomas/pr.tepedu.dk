@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/chapters-shared.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.svg">
     <link rel="stylesheet" href="css/glossary.css">
+    <link rel="stylesheet" href="css/search.css">
 </head>
 
 <body>
@@ -34,6 +35,21 @@
             </a>
             <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i></a>
             <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <div class="search-container">
+                        <a class="nav-link search-toggle" id="search-toggle" href="#" role="button" aria-label="Søg">
+                            <i class="bi bi-search"></i>
+                        </a>
+                        <div class="search-dropdown" id="search-dropdown">
+                            <div class="search-input-wrapper">
+                                <input type="text" class="search-input" id="search-input" placeholder="Søg i alle kapitler..." autocomplete="off">
+                            </div>
+                            <div class="search-results" id="search-results">
+                                <div class="search-no-results">Indtast søgeord foroven</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" id="theme-toggle" href="#" role="button" aria-label="Skift tema">
                         <div class="theme-icon-wrapper">
@@ -96,6 +112,14 @@
     <div class="info-box glossary-letter-section reveal-on-scroll" id="letter-A">
         <div class="letter-header-wrapper">
             <h2 class="letter-header">A</h2>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-accumulate" class="term-title">Accumulate</h4>
+            <p class="term-definition">En anbefaling der minder om "Buy", men ofte med en længere tidshorisont. Analytikeren foreslår at købe aktien gradvist over tid, da den anses for at være undervurderet på lang sigt.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> En råvare som Lithium kan have en "Accumulate" anbefaling, hvis prisen er lav nu, men forventes at stige markant over de næste 2-3 år pga. strukturel mangel.</small>
+            </div>
         </div>
         <div class="glossary-term-item">
             <h4 id="term-afdragsfrihed" class="term-title">Afdragsfrihed</h4>
@@ -196,8 +220,7 @@
                             skatter. Det er den første "mur", indkomsten møder.</p>
             <div class="term-example">
                 <i class="bi bi-info-circle text-primary mr-2"></i>
-                <small><strong>Eksempel:</strong> Ved en bruttoløn på 50.000 kr. trækkes der 4.000 kr. i
-                                    AM-bidrag, hvorefter den personlige indkomst udgør 46.000 kr.</small>
+                <small><strong>Eksempel:</strong> Ved bruttoløn 50.000 kr.: AM-bidrag = 50.000 × 8 % = 4.000 kr. Den personlige indkomst udgør herefter 46.000 kr.</small>
             </div>
         </div>
         <div class="glossary-term-item">
@@ -242,6 +265,14 @@
             <h2 class="letter-header">B</h2>
         </div>
         <div class="glossary-term-item">
+            <h4 id="term-buy" class="term-title">Buy</h4>
+            <p class="term-definition">En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien.</small>
+            </div>
+        </div>
+        <div class="glossary-term-item">
             <h4 id="term-balanceprincip" class="term-title">Balanceprincip</h4>
             <p class="term-definition">Den lovmæssige kobling i realkreditsystemet,
                             der sikrer, at udbetalte lån og de bagvedliggende obligationer matcher præcis i forhold til
@@ -279,6 +310,14 @@
             </div>
         </div>
         <div class="glossary-term-item">
+            <h4 id="term-beta" class="term-title">Beta</h4>
+            <p class="term-definition">Et risikomål i aktieanalyse, der viser, hvor følsom en aktie er over for udsving i markedet som helhed. En beta omkring 1 betyder, at aktien typisk følger markedet, mens en beta over 1 indikerer større kursudsving end markedet.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle mr-2" style="color: var(--theme-primary);"></i>
+                <small><strong>Eksempel:</strong> Aktie med beta 1,5: Ved markedstigning 10 % forventes aktien at stige 1,5 × 10 % = 15 %; ved markedsfald 10 % falder den ca. 15 %.</small>
+            </div>
+        </div>
+        <div class="glossary-term-item">
             <h4 id="term-begunstigelse" class="term-title">Begunstigelse</h4>
             <p class="term-definition">Beslutning om, hvem der skal modtage pengene
                             fra din livsforsikring eller pensionsopsparing ved din død. Hvis intet er angivet, tilfalder
@@ -298,9 +337,7 @@
                             LTV).</p>
             <div class="term-example">
                 <i class="bi bi-info-circle text-primary mr-2"></i>
-                <small><strong>Eksempel:</strong> Ejer du et hus til 4 mio. kr. og har lån for
-                                    3,2 mio. kr., er din belåningsgrad 80 %, hvilket er maksimumgrænsen for
-                                    realkreditbelåning.</small>
+                <small><strong>Eksempel:</strong> Hus til 4 mio. kr. og lån for 3,2 mio. kr.: Belåningsgrad = 3,2 ÷ 4 = 80 %, hvilket er maksimum for realkreditbelåning.</small>
             </div>
         </div>
         <div class="glossary-term-item">
@@ -311,9 +348,7 @@
                             den offentlige ejendomsvurdering for at tage højde for usikkerhed.</p>
             <div class="term-example">
                 <i class="bi bi-info-circle text-primary mr-2"></i>
-                <small><strong>Eksempel:</strong> Hvis dit hus vurderes til 5 mio. kr., er dit
-                                    beskatningsgrundlag 4 mio. kr., og det er dette beløb, din ejendomsværdiskat og
-                                    grundskyld beregnes af.</small>
+                <small><strong>Eksempel:</strong> Hus vurderet til 5 mio. kr.: Beskatningsgrundlag = 5 mio. × 80 % = 4 mio. kr., som ejendomsværdiskat og grundskyld beregnes af.</small>
             </div>
         </div>
         <div class="glossary-term-item">
@@ -375,8 +410,28 @@
                             personlige indkomst (efter AM-bidrag), som overstiger det årlige personfradrag.</p>
             <div class="term-example">
                 <i class="bi bi-info-circle text-primary mr-2"></i>
-                <small><strong>Eksempel:</strong> Ved en indkomst på 300.000 kr. betales bundskat af
-                                    beløbet efter AM-bidrag, minus personfradraget på 54.100 kr.</small>
+                <small><strong>Eksempel:</strong> Indkomst 300.000 kr. efter AM-bidrag, minus personfradrag 54.100 kr.: Skattepligtigt beløb = 245.900 kr. Bundskat (12,01 %) ≈ 29.532 kr.</small>
+            </div>
+        </div>
+    </div>
+    <div class="info-box glossary-letter-section reveal-on-scroll" id="letter-D">
+        <div class="letter-header-wrapper">
+            <h2 class="letter-header">D</h2>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-diversificering" class="term-title">Diversificering (risikospredning)</h4>
+            <p class="term-definition">Bevidst spredning af investeringer på flere aktivklasser, brancher og geografier, så et tab ét sted ikke vælter hele porteføljen. Formålet er at reducere udsving og tabsrisiko uden nødvendigvis at sænke det forventede langsigtede afkast.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> En kunde fordeler formuen med 40 % globale aktier, 40 % obligationer og 20 % råvarer i stedet for 100 % danske aktier. Når aktiemarkedet falder, dæmper obligationer og råvarer det samlede tab, så porteføljen bedre kan stå igennem urolige perioder.</small>
+            </div>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-risikospredning" class="term-title">Risikospredning</h4>
+            <p class="term-definition">Praktisk anvendelse af diversificering – at fordele risikoen på mange forskellige investeringer i stedet for at koncentrere den få steder.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> En portefølje med både bolig, pensionsopsparing, aktier, obligationer og lidt råvarer har langt bedre risikospredning end en kunde, der udelukkende ejer én udlejningsejendom finansieret med høj gæld.</small>
             </div>
         </div>
     </div>
@@ -482,6 +537,14 @@
                                     egenfinansiering.</small>
             </div>
         </div>
+        <div class="glossary-term-item">
+            <h4 id="term-eps" class="term-title">EPS (Earnings Per Share)</h4>
+            <p class="term-definition">Indtjening pr. aktie. Beregnes som selskabets resultat efter skat divideret med antal udestående aktier og er et centralt nøgletal i aktieanalyse.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle mr-2" style="color: var(--theme-primary);"></i>
+                <small><strong>Eksempel:</strong> Et selskab med overskud på 1 mia. kr. og 10 mio. aktier: EPS = 1.000.000.000 kr. ÷ 10.000.000 = 100 kr. pr. aktie.</small>
+            </div>
+        </div>
     </div>
     <div class="info-box glossary-letter-section reveal-on-scroll" id="letter-F">
         <div class="letter-header-wrapper">
@@ -534,10 +597,26 @@
                                     i forhold til deres indkomst.</small>
             </div>
         </div>
+        <div class="glossary-term-item">
+            <h4 id="term-forward-pe" class="term-title">Forward P/E</h4>
+            <p class="term-definition">Forventet P/E baseret på analytikernes estimerede EPS for næste regnskabsår. Bruges til at vurdere, om en aktie er billig eller dyr i forhold til dens fremtidige indtjeningsevne.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Ved aktiekurs 850 kr. og forventet EPS næste år 50 kr.: Forward P/E = 850 ÷ 50 = 17. Bruges ofte til vækstaktier.</small>
+            </div>
+        </div>
     </div>
     <div class="info-box glossary-letter-section reveal-on-scroll" id="letter-G">
         <div class="letter-header-wrapper">
             <h2 class="letter-header">G</h2>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-gav" class="term-title">GAV (Gennemsnitlig Anskaffelsesværdi)</h4>
+            <p class="term-definition">Den gennemsnitlige pris, du har betalt for dine værdipapirer, inklusive alle handelsomkostninger (kurtage). GAV bruges som referencepunkt for at beregne din gevinst eller dit tab, når du sælger.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> 100 aktier til kurs 150 + 150 kr. kurtage: Samlet pris = 15.150 kr. GAV = 15.150 ÷ 100 = 151,50 kr. pr. aktie.</small>
+            </div>
         </div>
         <div class="glossary-term-item">
             <h4 id="term-grundskyld" class="term-title">Grundskyld</h4>
@@ -547,9 +626,7 @@
                             skatter.</p>
             <div class="term-example">
                 <i class="bi bi-info-circle text-primary mr-2"></i>
-                <small><strong>Eksempel:</strong> Hvis din grund er vurderet til 1,5 mio.
-                                    kr., og kommunens grundskyldspromille er 10, skal du betale 15.000 kr. om året i
-                                    grundskyld direkte over din løn efter skat.</small>
+                <small><strong>Eksempel:</strong> Grund vurderet til 1,5 mio. kr. og kommunens grundskyldspromille 10 ‰: Grundskyld = 1.500.000 × 0,010 = 15.000 kr. om året.</small>
             </div>
         </div>
         <div class="glossary-term-item">
@@ -560,9 +637,7 @@
                             låne.</p>
             <div class="term-example">
                 <i class="bi bi-info-circle text-primary mr-2"></i>
-                <small><strong>Eksempel:</strong> Hvis jeres husstand tjener 1.000.000 kr. om
-                                    året og har en samlet gæld på 3.500.000 kr., er jeres gældsfaktor 3,5, hvilket
-                                    normalt betragtes som en sund og acceptabel gældsbyrde.</small>
+                <small><strong>Eksempel:</strong> Husstand med bruttoindkomst 1.000.000 kr. og gæld 3.500.000 kr.: Gældsfaktor = 3.500.000 ÷ 1.000.000 = 3,5, hvilket normalt er en sund gældsbyrde.</small>
             </div>
         </div>
         <div class="glossary-term-item">
@@ -582,6 +657,14 @@
     <div class="info-box glossary-letter-section reveal-on-scroll" id="letter-I">
         <div class="letter-header-wrapper">
             <h2 class="letter-header">I</h2>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-inflation" class="term-title">Inflation</h4>
+            <p class="term-definition">Vedvarende stigning i det generelle prisniveau, som gradvist udhuler købekraften af kontanter og opsparing, hvis afkastet ikke følger med prisudviklingen.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Hvis inflationen er 2 % om året, skal en opsparing på 1 mio. kr. vokse til mindst 1.020.000 kr. blot for at bevare samme købekraft det efterfølgende år.</small>
+            </div>
         </div>
         <div class="glossary-term-item">
             <h4 id="term-investeringsforening" class="term-title">Investeringsforening</h4>
@@ -635,6 +718,14 @@
             <div class="term-example">
                 <i class="bi bi-info-circle text-primary mr-2"></i>
                 <small><strong>Eksempel:</strong> Når din arbejdsgiver hver måned indeholder A-skat og AM-bidrag, før lønnen sættes ind på kontoen, er det en praktisk konsekvens af kildeskattesystemet.</small>
+            </div>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-kurtage" class="term-title">Kurtage</h4>
+            <p class="term-definition">Handelsomkostninger (gebyr) betalt til bank eller børsmægler for at gennemføre køb og salg af værdipapirer. Kurtagen påvirker både den samlede anskaffelsessum og nettoudbyttet ved en handel.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Ved et aktiekøb på 100.000 kr. og en kurtage på 0,15 % betaler investoren 150 kr. i gebyr, som lægges oven i den samlede købspris.</small>
             </div>
         </div>
         <div class="glossary-term-item">
@@ -705,6 +796,14 @@
             <h2 class="letter-header">L</h2>
         </div>
         <div class="glossary-term-item">
+            <h4 id="term-lagerbeskatning" class="term-title">Lager (Lagerbeskatning)</h4>
+            <p class="term-definition">Beskatning efter lagerprincippet betyder, at du beskattes af årets værdistigning på dine investeringer uanset om du sælger eller ej. Gevinster og tab afregnes årligt til markedsværdi. For ETF'er og visse fonde på Skats positivliste gælder lagerbeskatning som aktieindkomst (27 % / 42 %). ASK og pensionsmidler bruger også lagerprincippet, men med lavere satser.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Du har en ETF til 100.000 kr., som stiger til 110.000 kr. i løbet af året. Selv om du ikke sælger, skal du betale skat af de 10.000 kr. i urealiserede gevinster det år.</small>
+            </div>
+        </div>
+        <div class="glossary-term-item">
             <h4 id="term-livrente" class="term-title">Livrente</h4>
             <p class="term-definition">En livsvarig pensionsforsikring, der sikrer dig en fast
                             månedlig udbetaling så længe du lever. Der er intet loft for indbetalinger via
@@ -736,6 +835,14 @@
                 <i class="bi bi-info-circle text-primary mr-2"></i>
                 <small><strong>Eksempel:</strong> Hvis du køber aktier for 100.000 kr. og låner 50.000 kr.
                                     til købet, er din LTV 50 %.</small>
+            </div>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-netto-provenu" class="term-title">Netto Provenu</h4>
+            <p class="term-definition">Det beløb, der er tilbage efter salg af et aktiv (fx aktier), når alle direkte salgsomkostninger som kurtage og evt. kursskæring er fratrukket. Det er dette beløb, der sammenholdes med din anskaffelsessum (GAV) for at beregne gevinst eller tab.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Salgspris 10.000 kr. minus 29 kr. kurtage: Netto provenu = 10.000 − 29 = 9.971 kr.</small>
             </div>
         </div>
         <div class="glossary-term-item">
@@ -782,9 +889,7 @@
                             AM-bidrag). Den skal lukke "hullet" mellem bund- og topskat.</p>
             <div class="term-example">
                 <i class="bi bi-info-circle text-primary mr-2"></i>
-                <small><strong>Eksempel:</strong> En lønmodtager med en indkomst på 680.000 kr. betaler
-                                    7,5
-                                    % i mellemskat af de sidste 40.000 kr.</small>
+                <small><strong>Eksempel:</strong> Indkomst 680.000 kr. over grænsen 640.000 kr.: Mellemskat = (680.000 − 640.000) × 7,5 % = 3.000 kr.</small>
             </div>
         </div>
         <div class="glossary-term-item">
@@ -843,6 +948,14 @@
     <div class="info-box glossary-letter-section reveal-on-scroll" id="letter-P">
         <div class="letter-header-wrapper">
             <h2 class="letter-header">P</h2>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-pe" class="term-title">P/E (Price/Earnings)</h4>
+            <p class="term-definition">Pris-til-indtjening-forholdet. Viser hvor mange kroner investoren betaler for hver krone opgjort indtjening og bruges til at vurdere, om en aktie er dyr eller billig i forhold til sin nuværende indtjening.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle mr-2" style="color: var(--theme-primary);"></i>
+                <small><strong>Eksempel:</strong> Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening. Lav P/E kan indikere undervurdering; høj P/E ofte forventet vækst.</small>
+            </div>
         </div>
         <div class="glossary-term-item">
             <h4 id="term-pal-skat" class="term-title">PAL-skat</h4>
@@ -906,6 +1019,14 @@
             </div>
         </div>
         <div class="glossary-term-item">
+            <h4 id="term-progressionsgraense" class="term-title">Progressionsgrænse</h4>
+            <p class="term-definition">En beløbsgrænse for beskatning af aktieindkomst. Gevinster op til denne grænse beskattes med en lavere sats (27 %), mens gevinster derover beskattes med en højere sats (42 %). I 2026 er grænsen 67.100 kr. for enlige og det dobbelte for ægtefæller.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Har du en gevinst på 100.000 kr., betaler du 27 % af de første 61.000 kr. (2026-sats) og 42 % af de resterende 39.000 kr.</small>
+            </div>
+        </div>
+        <div class="glossary-term-item">
             <h4 id="term-privatoekonomi" class="term-title">Privatøkonomi</h4>
             <p class="term-definition">Forvaltningen af en persons eller en husstands
                             økonomiske ressourcer, herunder budgetlægning, opsparing, gæld og investering.</p>
@@ -941,10 +1062,34 @@
                                     efter parcelhusreglen.</small>
             </div>
         </div>
+        <div class="glossary-term-item">
+            <h4 id="term-pe-ttm" class="term-title">P/E (TTM)</h4>
+            <p class="term-definition">P/E beregnet ud fra den faktiske indtjening de seneste 12 måneder (TTM = Trailing Twelve Months). Bruges til at få et bagudskuende, realiseret billede af værdiansættelsen.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle mr-2" style="color: var(--theme-primary);"></i>
+                <small><strong>Eksempel:</strong> Ved aktiekurs 750 kr. og EPS 25 kr. de sidste 12 måneder: P/E (TTM) = 750 ÷ 25 = 30.</small>
+            </div>
+        </div>
     </div>
     <div class="info-box glossary-letter-section reveal-on-scroll" id="letter-R">
         <div class="letter-header-wrapper">
             <h2 class="letter-header">R</h2>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-renteniveau" class="term-title">Renteniveau</h4>
+            <p class="term-definition">Det generelle niveau for renter i økonomien, udtrykkende prisen for at låne penge og det afkast, investorer kan opnå på risikofrie eller lavrisiko placeringer.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Når centralbankens styringsrente hæves fra 0 % til 3 %, stiger både ydelsen på variabelt forrentede lån og det afkast, der kan opnås på kontant- og obligationsinvesteringer.</small>
+            </div>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-realformue" class="term-title">Realformue</h4>
+            <p class="term-definition">Formuens købekraft efter inflation – dvs. hvad opsparing og investeringer reelt kan omsættes til i varer og tjenester, når prisstigninger er indregnet.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Hvis en portefølje giver 4 % i nominelt afkast, og inflationen er 2 %, vokser realformuen kun omkring 2 % målt i faktisk købekraft.</small>
+            </div>
         </div>
         <div class="glossary-term-item">
             <h4 id="term-ratepension" class="term-title">Ratepension</h4>
@@ -981,6 +1126,14 @@
             </div>
         </div>
         <div class="glossary-term-item">
+            <h4 id="term-realisationsbeskatning" class="term-title">Realisationsbeskatning</h4>
+            <p class="term-definition">Beskatning først når du realiserer gevinsten – dvs. sælger investeringen eller modtager udbytte. Du betaler altså ikke skat af urealiserede kursstigninger år for år. Udbyttebetalende danske investeringsforeninger beskattes typisk efter realisationsprincippet som aktieindkomst (27 % / 42 %). Fordelen er skatteudskydelse: du kan lade gevinster vokse uden at betale skat, før du sælger.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Du køber en dansk investeringsforening for 100.000 kr. Efter 5 år er den 150.000 kr. værd. Du betaler først skat af de 50.000 kr., når du sælger – ikke løbende hvert år.</small>
+            </div>
+        </div>
+        <div class="glossary-term-item">
             <h4 id="term-rentefradrag" class="term-title">Rentefradrag</h4>
             <p class="term-definition">Et skattemæssigt fradrag (ligningsmæssigt
                             fradrag) for dine renteudgifter på lån. Fradraget betyder, at en del af din renteudgift
@@ -988,9 +1141,7 @@
                             %.</p>
             <div class="term-example">
                 <i class="bi bi-info-circle text-primary mr-2"></i>
-                <small><strong>Eksempel:</strong> Betaler du 50.000 kr. i renter om året, vil dit
-                                    rentefradrag betyde, at du reelt betaler ca. 12.500-16.500 kr. mindre i skat over
-                                    hele året.</small>
+                <small><strong>Eksempel:</strong> Renteudgift 50.000 kr.: Skatteværdi ca. 25-33 % = 50.000 × 0,25 til 0,33 = 12.500-16.500 kr. mindre i skat.</small>
             </div>
         </div>
         <div class="glossary-term-item">
@@ -1009,6 +1160,14 @@
     <div class="info-box glossary-letter-section reveal-on-scroll" id="letter-S">
         <div class="letter-header-wrapper">
             <h2 class="letter-header">S</h2>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-sell" class="term-title">Sell</h4>
+            <p class="term-definition">En direkte salgsanbefaling. Analytikeren forventer et kursfald eller mener, at aktien er betydeligt overvurderet i forhold til virksomhedens reelle værdi og fremtidsudsigter.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Ved tegn på fundamentale problemer i forretningsmodellen eller en ekstremt høj værdiansættelse kan analytikere give en "Sell" anbefaling.</small>
+            </div>
         </div>
         <div class="glossary-term-item">
             <h4 id="term-sambeskatning" class="term-title">Sambeskatning</h4>
@@ -1059,6 +1218,14 @@
             </div>
         </div>
         <div class="glossary-term-item">
+            <h4 id="term-skattepligtig-gevinst" class="term-title">Skattepligtig Gevinst</h4>
+            <p class="term-definition">Forskellen mellem salgsprisen (netto provenu) og købsprisen (GAV). Hvis provenuet er højere end GAV, er der en gevinst; ellers er der et tab.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Netto provenu 12.000 kr. og GAV 10.000 kr.: Skattepligtig gevinst = 12.000 − 10.000 = 2.000 kr.</small>
+            </div>
+        </div>
+        <div class="glossary-term-item">
             <h4 id="term-skattevaerdi" class="term-title">Skatteværdi</h4>
             <p class="term-definition">Den faktiske kontante værdi af et skattefradrag.
                             Det er det beløb i kroner og øre, som din skattebetaling falder med for hver krones fradrag
@@ -1086,6 +1253,14 @@
     <div class="info-box glossary-letter-section reveal-on-scroll" id="letter-T">
         <div class="letter-header-wrapper">
             <h2 class="letter-header">T</h2>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-ttm" class="term-title">TTM (Trailing Twelve Months)</h4>
+            <p class="term-definition">Et nøgletals-begreb der angiver, at tallet er beregnet ud fra de seneste 12 afsluttede måneder (rullende fire kvartaler) og ikke et kalender- eller regnskabsår. Bruges bl.a. ved P/E (TTM) og EPS (TTM) for at få et mere aktuelt billede af indtjeningen.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Når en aktie analyseres med P/E (TTM), bruges selskabets samlede indtjening i de seneste 4 kvartaler, så nøgletallet afspejler den nyeste udvikling i forretningen fremfor et gammelt regnskabsår.</small>
+            </div>
         </div>
         <div class="glossary-term-item">
             <h4 id="term-topskat" class="term-title">Topskat</h4>
@@ -1127,6 +1302,14 @@
             <h2 class="letter-header">U</h2>
         </div>
         <div class="glossary-term-item">
+            <h4 id="term-underperform" class="term-title">Underperform</h4>
+            <p class="term-definition">En analytikeranbefaling der indikerer, at en aktie forventes at klare sig dårligere end markedet eller sektoren som helhed i den kommende periode. Ses ofte som et mildt salgssignal eller en advarsel om svagere vækst.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> En virksomhed mister gradvist markedsandele til konkurrenter, og analytikere vurderer, at aktien vil stige mindre – eller falde mere – end resten af sektoren. De ændrer derfor anbefalingen fra "Hold" til "Underperform".</small>
+            </div>
+        </div>
+        <div class="glossary-term-item">
             <h4 id="term-ulykkesforsikring" class="term-title">Ulykkesforsikring</h4>
             <p class="term-definition">En forsikring der yder skattefri
                             dækning ved varige mén eller tandskader som følge af et ulykkestilfælde (en pludselig,
@@ -1142,6 +1325,14 @@
     <div class="info-box glossary-letter-section reveal-on-scroll" id="letter-V">
         <div class="letter-header-wrapper">
             <h2 class="letter-header">V</h2>
+        </div>
+        <div class="glossary-term-item">
+            <h4 id="term-valutakurs" class="term-title">Valutakurs</h4>
+            <p class="term-definition">Prisen på én valuta udtrykt i en anden valuta. Ved handel med udenlandske aktier skal beløbet omregnes til DKK ved hjælp af valutakursen på handelsdagen.</p>
+            <div class="term-example">
+                <i class="bi bi-info-circle text-primary mr-2"></i>
+                <small><strong>Eksempel:</strong> Køber du en aktie til 100 USD ved en dollarkurs på 7,00, koster aktien 700 DKK.</small>
+            </div>
         </div>
         <div class="glossary-term-item">
             <h4 id="term-variabel-rente" class="term-title">Variabel rente</h4>
@@ -1213,7 +1404,27 @@
     <script src="js/menu.js"></script>
     <script src="js/script.js"></script>
     <script src="js/theme-toggle.js"></script>
+    <script src="js/search.js"></script>
     <script src="js/glossary.js"></script>
+    <script>
+        // Scroll til ord ved landning via hash (fx fra tooltip "Læs mere i ordlisten")
+        (function () {
+            function scrollToTerm() {
+                var hash = window.location.hash;
+                if (!hash || !hash.startsWith('#term-')) return;
+                var el = document.getElementById(hash.slice(1));
+                if (el) {
+                    el.scrollIntoView({ block: 'start', behavior: 'smooth' });
+                }
+            }
+            if (document.readyState === 'complete') {
+                setTimeout(scrollToTerm, 50);
+            } else {
+                window.addEventListener('load', function () { setTimeout(scrollToTerm, 50); });
+            }
+            window.addEventListener('hashchange', scrollToTerm);
+        })();
+    </script>
 </body>
 
 </html>

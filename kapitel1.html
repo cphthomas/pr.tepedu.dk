@@ -20,6 +20,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="css/chapters-shared.css">
     <link rel="stylesheet" href="css/glossary.css">
+    <link rel="stylesheet" href="css/search.css">
 </head>
 
 <body>
@@ -32,6 +33,21 @@
             </a>
             <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i></a>
             <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <div class="search-container">
+                        <a class="nav-link search-toggle" id="search-toggle" href="#" role="button" aria-label="Søg">
+                            <i class="bi bi-search"></i>
+                        </a>
+                        <div class="search-dropdown" id="search-dropdown">
+                            <div class="search-input-wrapper">
+                                <input type="text" class="search-input" id="search-input" placeholder="Søg i alle kapitler..." autocomplete="off">
+                            </div>
+                            <div class="search-results" id="search-results">
+                                <div class="search-no-results">Indtast søgeord foroven</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" id="theme-toggle" href="#" role="button" aria-label="Skift tema">
                         <div class="theme-icon-wrapper">
@@ -788,7 +804,7 @@
                     <p><span data-definition="Den skatteprocent man betaler af den sidst tjente krone; afgørende for incitamentet til at arbejde ekstra eller indbetale til pension." data-example="For en topskatteyder er marginalskatten ca. 56 %, hvilket betyder man beholder 44 øre for hver ekstra krone, man tjener." class="legal-term"
                             data-slug="marginalskat">Marginalskatten</span> er den skat, der betales af den <b>sidst
                             tjente krone</b>. Det er et centralt begreb i skatteoptimering, fordi den viser, hvor
-                        stor en adnel af en ekstra tjent krone der afleveres til beskatning. <span data-definition="Den skatteprocent man betaler af den sidst tjente krone; afgørende for incitamentet til at arbejde ekstra eller indbetale til pension." data-example="For en topskatteyder er marginalskatten ca. 56 %, hvilket betyder man beholder 44 øre for hver ekstra krone, man tjener." class="legal-term"
+                        stor en andel af en ekstra tjent krone der afleveres til beskatning. <span data-definition="Den skatteprocent man betaler af den sidst tjente krone; afgørende for incitamentet til at arbejde ekstra eller indbetale til pension." data-example="For en topskatteyder er marginalskatten ca. 56 %, hvilket betyder man beholder 44 øre for hver ekstra krone, man tjener." class="legal-term"
                             data-slug="marginalskat">Marginalskatten</span>
                         påvirker direkte beslutninger
                         om overarbejde, lønforhandling og pensionsindbetalinger.</p>
@@ -923,31 +939,75 @@
 
                 <h3>1.7.3 Det skrå skatteloft</h3>
                 <div class="info-box reveal-on-scroll">
-                    <p>Det skrå skatteloft sikrer, at den samlede <span data-definition="Den skatteprocent man betaler af den sidst tjente krone; afgørende for incitamentet til at arbejde ekstra eller indbetale til pension." data-example="For en topskatteyder er marginalskatten ca. 56 %, hvilket betyder man beholder 44 øre for hver ekstra krone, man tjener." class="legal-term" data-slug="marginalskat">marginalskat</span>
-                        (ekskl.
-                        <span data-definition="En frivillig medlemsafgift til Folkekirken, der opkræves sammen med kommuneskatten (gennemsnitligt 0,7 % af det skattepligtige beløb)." data-example="For et medlem af Folkekirken betales der typisk omkring 0,7-0,9 % i kirkeskat, hvilket trækkes automatisk sammen med kommuneskatten." class="legal-term" data-slug="kirkeskat">kirkeskat</span> og <span data-definition="En lovpligtig bruttoskat på 8 %, som opkræves af al arbejdsindkomst (løn, honorarer mm.) før fradrag og før beregning af øvrige skatter. Det er den første &quot;mur&quot;, indkomsten møder." data-example="Ved en bruttoløn på 50.000 kr. trækkes der 4.000 kr. i AM-bidrag, hvorefter den personlige indkomst udgør 46.000 kr."
-                            class="legal-term" data-slug="am-bidrag">AM-bidrag</span>)
-                        aldrig
-                        overstiger en vis procentsats. Efter reformen i 2026 er dette loft <b>52,07 %</b> for <span data-definition="En statslig tillægsskat på yderligere 7,5 % (oven i mellemskatten, i alt 15 %), som betales af den personlige indkomst over topskattegrænsen (ca. 780.000 kr. efter AM-bidrag i 2026)." data-example="Ved en indkomst på 850.000 kr. betaler kunden 15 % i samlet tillægsskat (mellem- og topskat) af det beløb, der ligger over topskattegrænsen."
-                            class="legal-term" data-slug="topskat">topskat</span>
-                        og
-                        <b>57,07 %</b> for den nye <span class="legal-term" data-slug="top-topskat"
-                            data-definition="Højeste skattetrin for indkomster over ca. 2,6 mio. kr."
-                            data-example="Top-topskatten har sit eget, højere skatteloft.">top-topskat</span>.
-                        Hvis <span data-definition="Den skatteprocent man betaler af den sidst tjente krone; afgørende for incitamentet til at arbejde ekstra eller indbetale til pension." data-example="For en topskatteyder er marginalskatten ca. 56 %, hvilket betyder man beholder 44 øre for hver ekstra krone, man tjener." class="legal-term" data-slug="marginalskat">marginalskatten</span>
-                        ville overstige dette niveau,
-                        reduceres den statslige skat tilsvarende.
+                    <p>Det skrå skatteloft fungerer som en form for "nødbremse", der sikrer, at den samlede <span
+                            data-definition="Den skatteprocent man betaler af den sidst tjente krone; afgørende for incitamentet til at arbejde ekstra eller indbetale til pension."
+                            data-example="For en topskatteyder er marginalskatten ca. 56 %, hvilket betyder man beholder 44 øre for hver ekstra krone, man tjener."
+                            class="legal-term" data-slug="marginalskat">marginalskat</span> (ekskl. <span
+                            data-definition="En frivillig medlemsafgift til Folkekirken, der opkræves sammen med kommuneskatten (gennemsnitligt 0,7 % af det skattepligtige beløb)."
+                            data-example="For et medlem af Folkekirken betales der typisk omkring 0,7-0,9 % i kirkeskat, hvilket trækkes automatisk sammen med kommuneskatten."
+                            class="legal-term" data-slug="kirkeskat">kirkeskat</span> og <span
+                            data-definition="En lovpligtig bruttoskat på 8 %, som opkræves af al arbejdsindkomst (løn, honorarer mm.) før fradrag og før beregning af øvrige skatter. Det er den første &quot;mur&quot;, indkomsten møder."
+                            data-example="Ved en bruttoløn på 50.000 kr. trækkes der 4.000 kr. i AM-bidrag, hvorefter den personlige indkomst udgør 46.000 kr."
+                            class="legal-term" data-slug="am-bidrag">AM-bidrag</span>) aldrig overstiger en fastsat
+                        procentsats. </p>
+
+                    <p><b>Hvorfor har vi loftet?</b> Forestil dig en person, der bor i en kommune med en meget høj <span
+                            data-definition="En lokal indkomstskat der betales til bopælskommunen; satsen fastsættes af det enkelte byråd (typisk mellem 23 % og 26,5 %)."
+                            data-example="Bor du i en kommune med 25 % skat, betaler du 250 kr. for hver 1.000 kr. du tjener efter AM-bidrag og fradrag til din kommune."
+                            class="legal-term" data-slug="kommuneskat">kommuneskat</span> (f.eks. Langeland med 27,8 %).
+                        Uden loftet ville deres samlede skat af den sidst tjente krone blive uforholdsmæssigt høj sammenlignet
+                        med en person i en lavskattekommune (f.eks. Gentofte med 22,8 %). Loftet sikrer geografisk lighed:
+                        Hvis din <span
+                            data-definition="En lokal indkomstskat der betales til bopælskommunen; satsen fastsættes af det enkelte byråd (typisk mellem 23 % og 26,5 %)."
+                            data-example="Bor du i en kommune med 25 % skat, betaler du 250 kr. for hver 1.000 kr. du tjener efter AM-bidrag og fradrag til din kommune."
+                            class="legal-term" data-slug="kommuneskat">kommuneskat</span> er høj, "giver staten rabat" på
+                        deres del af skatten, så du aldrig betaler mere end loftet.</p>
+
+                    <p><b>Satser og den reelle marginalskat (2026):</b></p>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Skattetrin</th>
+                                    <th>Loft (ekskl. AM-bidrag)</th>
+                                    <th>Reel marginalskat (inkl. AM-bidrag)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span
+                                            data-definition="En statslig tillægsskat på yderligere 7,5 % (oven i mellemskatten, i alt 15 %), som betales af den personlige indkomst over topskattegrænsen (ca. 780.000 kr. efter AM-bidrag i 2026)."
+                                            data-example="Ved en indkomst på 850.000 kr. betaler kunden 15 % i samlet tillægsskat (mellem- og topskat) af det beløb, der ligger over topskattegrænsen."
+                                            class="legal-term" data-slug="topskat">Topskat</span></td>
+                                    <td>52,07 %</td>
+                                    <td><b>~ 55,9 %</b></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="legal-term" data-slug="top-topskat"
+                                            data-definition="Højeste skattetrin for indkomster over ca. 2,6 mio. kr."
+                                            data-example="Top-topskatten har sit eget, højere skatteloft.">Top-topskat</span>
+                                    </td>
+                                    <td>57,07 %</td>
+                                    <td><b>~ 60,5 %</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p><b>Hvorfor er den reelle skat højere end loftet?</b> Det skyldes, at man altid betaler 8 % i <span
+                            data-definition="En lovpligtig bruttoskat på 8 %, som opkræves af al arbejdsindkomst (løn, honorarer mm.) før fradrag og før beregning af øvrige skatter. Det er den første &quot;mur&quot;, indkomsten møder."
+                            data-example="Ved en bruttoløn på 50.000 kr. trækkes der 4.000 kr. i AM-bidrag, hvorefter den personlige indkomst udgør 46.000 kr."
+                            class="legal-term" data-slug="am-bidrag">AM-bidrag</span> først, og dette tæller ikke med i
+                        selve loftet. Regnestykket for en person i top-topskat ser således ud: <br>
+                        <code>8 % (AM-bidrag) + (92 % resterende &times; 57,07 % loft) &approx; 60,5 %</code>
                     </p>
-                    <p>I praksis betyder det skrå skatteloft, at borgere i kommuner med høj <span data-definition="En lokal indkomstskat der betales til bopælskommunen; satsen fastsættes af det enkelte byråd (typisk mellem 23 % og 26,5 %)." data-example="Bor du i en kommune med 25 % skat, betaler du 250 kr. for hver 1.000 kr. du tjener efter AM-bidrag og fradrag til din kommune." class="legal-term"
-                            data-slug="kommuneskat">kommuneskat</span>
-                        ikke straffes
-                        ekstra hårdt. Hvis f.eks. <span data-definition="En lokal indkomstskat der betales til bopælskommunen; satsen fastsættes af det enkelte byråd (typisk mellem 23 % og 26,5 %)." data-example="Bor du i en kommune med 25 % skat, betaler du 250 kr. for hver 1.000 kr. du tjener efter AM-bidrag og fradrag til din kommune." class="legal-term" data-slug="kommuneskat">kommuneskatten</span>
-                        er 27 % og den samlede <span data-definition="Den skatteprocent man betaler af den sidst tjente krone; afgørende for incitamentet til at arbejde ekstra eller indbetale til pension." data-example="For en topskatteyder er marginalskatten ca. 56 %, hvilket betyder man beholder 44 øre for hver ekstra krone, man tjener." class="legal-term" data-slug="marginalskat">marginalskat</span>
-                        dermed
-                        ville
-                        overstige 52,07 %, nedsættes den statslige del i skatteberegningen, så loftet overholdes.
-                        Skatteloftet gælder kun for selve skatteberegningen — det ændrer ikke den officielle
-                        kommuneskattesats.</p>
+
+                    <p><small><i>Bemærk: <span
+                                    data-definition="En frivillig medlemsafgift til Folkekirken, der opkræves sammen med kommuneskatten (gennemsnitligt 0,7 % af det skattepligtige beløb)."
+                                    data-example="For et medlem af Folkekirken betales der typisk omkring 0,7-0,9 % i kirkeskat, hvilket trækkes automatisk sammen med kommuneskatten."
+                                    class="legal-term" data-slug="kirkeskat">Kirkeskat</span> er aldrig inkluderet i disse
+                                lofter. Medlemmer af folkekirken skal typisk lægge ca. 0,7 % oveni den samlede
+                                beregning.</i></small></p>
                 </div>
 
                 <h3>1.7.4 Kommuneskatter i Danmark: Alle 98 kommuner</h3>
@@ -2548,6 +2608,7 @@
     <script src="js/script.js"></script>
     <script src="js/glossary.js"></script>
     <script src="js/theme-toggle.js"></script>
+    <script src="js/search.js"></script>
 
     <script>
         function getTheme() { return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
@@ -3773,6 +3834,26 @@
             document.querySelectorAll('.book-cover-wrapper video').forEach(v => { v.addEventListener('ended', function () { const o = document.createElement('div'); o.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;background-color:white;z-index:1;'; this.parentElement.appendChild(o); }); });
         });
     </script>
+
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 id="quiz">1.7 Quiz</h2>
+                <br>
+                <a href="https://quiz.tepedu.dk/pr1.1" class="effectLinks" data-replace="Åben quiz: Skattesystemets historie" target="_blank"></a>
+                <br>
+                <a href="https://quiz.tepedu.dk/pr1.2" class="effectLinks" data-replace="Åben quiz: AM-bidrag og skattetrin" target="_blank"></a>
+                <br>
+                <a href="https://quiz.tepedu.dk/pr1.3" class="effectLinks" data-replace="Åben quiz: Marginalskat og skatteloft" target="_blank"></a>
+                <br>
+                <a href="https://quiz.tepedu.dk/pr1.4" class="effectLinks" data-replace="Åben quiz: Personfradrag og beskæftigelsesfradrag" target="_blank"></a>
+                <br>
+                <a href="https://quiz.tepedu.dk/pr1.5" class="effectLinks" data-replace="Åben quiz: Kapitalindkomst og aktieindkomst" target="_blank"></a>
+                <br>
+                <a href="https://quiz.tepedu.dk/pr1.6" class="effectLinks" data-replace="Åben quiz: Skat i international sammenligning" target="_blank"></a>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

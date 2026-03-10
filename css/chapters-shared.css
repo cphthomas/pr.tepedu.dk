@@ -22,6 +22,17 @@
     --font-sans: 'Inter', sans-serif;
 }
 
+/* Effect Links Marine Blue Hover */
+.effectLinks:hover {
+    background-color: #1a3a5c !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .effectLinks:hover {
+    background-color: #4a7fa8 !important;
+    color: #ffffff !important;
+}
+
 [data-theme="dark"] {
     --text-primary: #e0e0e0;
     --text-secondary: #aaaaaa;
@@ -40,6 +51,40 @@ table.table {
     border-spacing: 0 !important;
 }
 
+/* Dark mode table improvements: discrete lines and row shading */
+[data-theme="dark"] table.table {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] table.table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] table.table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] table.table thead tr,
+[data-theme="dark"] table.table thead th {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25) !important;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* General rule for legal-terms in dark headers (e.g. table-dark) */
+.table-dark th .legal-term,
+thead.table-dark th .legal-term,
+.table thead[style*="background"] th .legal-term {
+    color: #ffffff !important;
+    border-bottom-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.table-dark th .legal-term:hover,
+thead.table-dark th .legal-term:hover,
+.table thead[style*="background"] th .legal-term:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-bottom-color: #ffffff !important;
+}
+
 table.table th,
 table.table td,
 table.table tr,
@@ -52,6 +97,44 @@ table.table-bordered {
     border: none !important;
 }
 
+/* Tabel 5.6 — ingen scroll, sidste søjle får mest plads */
+.table-wrapper-56 {
+    overflow: visible;
+    max-width: 100%;
+}
+.table-56 {
+    width: 100% !important;
+    table-layout: fixed;
+    font-size: 0.9rem;
+}
+.table-56 th,
+.table-56 td {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    padding: 0.6rem 0.6rem;
+    vertical-align: top;
+}
+.table-56 th:last-child,
+.table-56 td:last-child {
+    min-width: 0;
+    width: 45%;
+}
+.table-56 thead th {
+    font-weight: 600;
+    line-height: 1.3;
+    /* Override global rule in css/styles.css: .content table th { white-space: nowrap; } */
+    white-space: normal !important;
+    word-break: break-word;
+    hyphens: auto;
+    color: #ffffff !important;
+}
+.table-56 tbody td {
+    line-height: 1.4;
+}
+.table-56 tbody tr:hover td {
+    background-color: var(--accent-marine-light);
+}
 
 /* Stat Cards & Numbers */
 .stat-card {
@@ -269,6 +352,21 @@ table.table-bordered {
     box-shadow: 0 10px 30px rgba(26, 58, 92, 0.2);
 }
 
+/* Calculation blocks — brand-consistent highlight for formulas/numbers */
+.calc-block {
+    background-color: var(--accent-marine-light);
+    border-radius: 0 !important;
+    padding: 12px 16px;
+    margin: 8px 0 16px 0;
+    font-family: Consolas, monospace;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.calc-block.calc-emphasis {
+    border-left: 5px solid var(--accent-marine) !important;
+}
+
 /* Tip Boxes — identical look to simulation-card */
 .tip-box {
     border-radius: 0 !important;
@@ -410,6 +508,144 @@ canvas {
 }
 
 /* Icon Animations */
+.info-box i.bi,
+.icon-animated {
+    display: inline-block;
+    transform-origin: 50% 55%;
+    will-change: transform, filter;
+    transform: translateZ(0);
+    transition: transform 260ms ease, filter 260ms ease, opacity 260ms ease, color 260ms ease;
+    animation: icon-gentle 3.8s ease-in-out infinite;
+    animation-delay: var(--icon-delay, 0s);
+    opacity: 0.96;
+}
+
+.tip-box:hover i.bi,
+.tip-box:focus-within i.bi,
+.tip-box:hover .icon-animated,
+.tip-box:focus-within .icon-animated {
+    animation-play-state: paused;
+    transform: translateY(-2px) scale(1.06) rotate(-3deg);
+    opacity: 1;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.12));
+}
+
+.navbar i.bi,
+.sidebar i.bi {
+    display: inline-block;
+    transform-origin: 50% 55%;
+    will-change: transform, filter;
+    transition: transform 220ms ease, filter 220ms ease, opacity 220ms ease;
+    opacity: 0.9;
+}
+
+.navbar .nav-link:hover i.bi,
+.navbar .nav-link:focus-visible i.bi,
+.sidebar button:hover i.bi,
+.sidebar button:focus-visible i.bi {
+    transform: translateY(-1px) scale(1.08) rotate(-4deg);
+    opacity: 1;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.12));
+}
+
+.navbar .nav-link:hover .bi-arrow-left,
+.navbar .nav-link:focus-visible .bi-arrow-left {
+    transform: translateX(-2px) translateY(-1px) scale(1.08);
+}
+
+.navbar .nav-link:hover .bi-arrow-right,
+.navbar .nav-link:focus-visible .bi-arrow-right {
+    transform: translateX(2px) translateY(-1px) scale(1.08);
+}
+
+/* Subtle staggering for concept tip-boxes */
+.mt-4 > .tip-box:nth-of-type(1) h5 > i.bi { --icon-delay: 0s; }
+.mt-4 > .tip-box:nth-of-type(2) h5 > i.bi { --icon-delay: -0.7s; }
+.mt-4 > .tip-box:nth-of-type(3) h5 > i.bi { --icon-delay: -1.4s; }
+.mt-4 > .tip-box:nth-of-type(4) h5 > i.bi { --icon-delay: -2.1s; }
+
+@keyframes icon-gentle {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+
+    35% {
+        transform: translateY(-3px) rotate(-1.8deg) scale(1.04);
+    }
+
+    65% {
+        transform: translateY(1px) rotate(1.2deg) scale(0.99);
+    }
+}
+
+.tip-box:hover .bi-arrow-repeat,
+.tip-box:focus-within .bi-arrow-repeat {
+    transform: translateY(-2px) scale(1.06) rotate(12deg);
+}
+
+/* Make the four concept icons clearly, but still discreetly, animated */
+.tip-box h5 .bi-clock-history {
+    animation: icon-clock 3.2s ease-in-out infinite;
+    color: rgba(0, 0, 0, 0.78);
+}
+
+.tip-box h5 .bi-arrow-repeat {
+    animation: icon-loop 2.8s ease-in-out infinite;
+}
+
+.tip-box h5 .bi-calculator {
+    animation: icon-calc 3.4s ease-in-out infinite;
+}
+
+.tip-box h5 .bi-shield-lock {
+    animation: icon-shield 3.6s ease-in-out infinite;
+}
+
+@keyframes icon-clock {
+    0%,
+    100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-6deg) scale(1.03); }
+    55% { transform: rotate(4deg) scale(1.03); }
+}
+
+@keyframes icon-loop {
+    0%,
+    100% { transform: rotate(0deg) scale(1); }
+    45% { transform: rotate(14deg) scale(1.05); }
+}
+
+@keyframes icon-calc {
+    0%,
+    100% { transform: translateY(0) scale(1); }
+    40% { transform: translateY(-3px) scale(1.05); }
+    70% { transform: translateY(0) scale(0.99); }
+}
+
+@keyframes icon-shield {
+    0%,
+    100% { transform: scale(1); }
+    45% { transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .info-box i.bi,
+    .icon-animated,
+    .animate-padlock {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        filter: none !important;
+    }
+
+    .navbar i.bi,
+    .sidebar i.bi {
+        transition: none !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}
+
 .animate-padlock {
     animation: floating 4s ease-in-out infinite;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);

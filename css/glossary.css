@@ -79,39 +79,42 @@
 }
 
 .glossary-tooltip h4 {
-    margin: 0 0 12px 0;
+    margin: 0;
     font-family: var(--font-display, 'Space Grotesk', sans-serif);
     font-size: 16px;
     font-weight: 700;
     color: #ffffff !important;
     display: flex;
     align-items: center;
-    gap: 10px;
+}
+
+.glossary-tooltip .header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.glossary-tooltip .header i {
+    font-size: 18px;
+    color: #ffffff;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 0;
 }
 
 .glossary-tooltip h4::before {
-    content: 'i';
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    background: rgba(255, 255, 255, 0.15);
-    color: #ffffff;
-    border-radius: 0 !important;
-    font-family: 'Times New Roman', serif;
-    font-style: italic;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+    display: none;
 }
 
-.glossary-tooltip:hover h4::before {
+.glossary-tooltip:hover .header i {
     animation: iconPulse 1.5s infinite ease-in-out;
     background: rgba(255, 255, 255, 0.25);
-    color: var(--accent-marine, #1a3a5c);
 }
 
 .glossary-tooltip .definition {
@@ -168,14 +171,13 @@
     color: #ffffff !important;
 }
 
-[data-theme="dark"] .glossary-tooltip h4::before {
+[data-theme="dark"] .glossary-tooltip .header i {
     background: rgba(255, 255, 255, 0.15) !important;
     color: #e0e0e0 !important;
 }
 
-[data-theme="dark"] .glossary-tooltip:hover h4::before {
+[data-theme="dark"] .glossary-tooltip:hover .header i {
     background: rgba(255, 255, 255, 0.25) !important;
-    color: var(--accent-blue, #4a7fa8) !important;
 }
 
 [data-theme="dark"] .glossary-tooltip .definition {
@@ -197,7 +199,13 @@
     color: var(--accent-blue, #4a7fa8) !important;
 }
 
-/* Offset for table rows in glossary when linked to (navbar + alphabet header on kapitel9) */
+/* Offset for glossary term targets when linked to (fixed navbar) */
+.term-title[id^="term-"],
+h4[id^="term-"] {
+    scroll-margin-top: 120px;
+}
+
+/* Legacy: table rows in glossary */
 tr[id^="term-"] {
     scroll-margin-top: 220px;
 }

@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/theme-light.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.svg">
     <link rel="stylesheet" href="css/glossary.css">
+    <link rel="stylesheet" href="css/search.css">
 
     <link rel="stylesheet" href="css/chapters-shared.css">
 </head>
@@ -37,6 +38,21 @@
             </a>
             <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i></a>
             <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <div class="search-container">
+                        <a class="nav-link search-toggle" id="search-toggle" href="#" role="button" aria-label="Søg">
+                            <i class="bi bi-search"></i>
+                        </a>
+                        <div class="search-dropdown" id="search-dropdown">
+                            <div class="search-input-wrapper">
+                                <input type="text" class="search-input" id="search-input" placeholder="Søg i alle kapitler..." autocomplete="off">
+                            </div>
+                            <div class="search-results" id="search-results">
+                                <div class="search-no-results">Indtast søgeord foroven</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" id="theme-toggle" href="#" role="button" aria-label="Skift tema">
                         <div class="theme-icon-wrapper">
@@ -183,7 +199,14 @@
                                     <td>Meget lav</td>
                                     <td>0-2 år</td>
                                     <td>2,5 - 3,0 %</td>
-                                    <td>Likviditetsbuffer og tryghed</td>
+                                    <td>
+                                        <p><b>Likviditetsbuffer og tryghed:</b> Fungerer som porteføljens sikkerhedsnet.</p>
+                                        <ul>
+                                            <li><b>Nødreserve:</b> Dækker uforudsete udgifter uden behov for at sælge aktiver med tab.</li>
+                                            <li><b>Købekraft:</b> Giver mulighed for at købe op i markedet under kursfald (rebalancering).</li>
+                                            <li><b>Kapitalbevarelse:</b> Beskytter mod nominelle tab i urolige tider.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><b>Korte <span data-definition="Standardiserede gældsbreve udstedt af stater, realkreditinstitutter eller virksomheder; investoren udlåner kapital mod en fastsat rente (kupon)." data-example="Ved køb af en statsobligation låner du penge til den danske stat mod at modtage en fast årlig rentebetaling." class="legal-term" data-slug="obligationer">obligationer</span></b>
@@ -191,7 +214,14 @@
                                     <td>Lav</td>
                                     <td>2-4 år</td>
                                     <td>3,5 - 4,5 %</td>
-                                    <td>Stabilitet og renteafkast</td>
+                                    <td>
+                                        <p><b>Stabilitet og renteafkast:</b> Fungerer som porteføljens "støddæmper".</p>
+                                        <ul>
+                                            <li><b>Løbende indkomst:</b> Leverer stabile rentebetalinger (kuponafkast).</li>
+                                            <li><b>Risikoreduktion:</b> Har typisk lavere kursudsving end aktier og ejendomme.</li>
+                                            <li><b>Modvægt:</b> Stiger ofte i værdi, når renterne falder eller aktiemarkedet er nervøst.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><b>Globale <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term" data-slug="aktier">aktier</span></b>
@@ -199,21 +229,42 @@
                                     <td>Mellem/Høj</td>
                                     <td>5-7+ år</td>
                                     <td>7,0 - 9,0 %</td>
-                                    <td>Langsigtet vækst og værdiskabelse</td>
+                                    <td>
+                                        <p><b>Langsigtet vækst og værdiskabelse:</b> Porteføljens primære motor for formueopbygning.</p>
+                                        <ul>
+                                            <li><b>Ejerandel:</b> Giver del i virksomhedernes overskud og globale økonomiske vækst.</li>
+                                            <li><b>Inflationsbeskyttelse:</b> Virksomheder kan ofte hæve priserne i takt med inflationen.</li>
+                                            <li><b>Diversificering:</b> Spreder risikoen på tværs af sektorer, lande og valutaer.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><b>Emerging Markets</b></td>
                                     <td>Høj</td>
                                     <td>10+ år</td>
                                     <td>9,0 - 11,0 %</td>
-                                    <td>Vækstpotentiale og diversificering</td>
+                                    <td>
+                                        <p><b>Vækstpotentiale og diversificering:</b> Porteføljens "krydderi" med højere risiko.</p>
+                                        <ul>
+                                            <li><b>Højere vækst:</b> Eksponering mod lande med hurtigere økonomisk udvikling end vesten.</li>
+                                            <li><b>Demografisk fordel:</b> Drager fordel af voksende middelklasser i f.eks. Asien og Latinamerika.</li>
+                                            <li><b>Lav korrelation:</b> Bevæger sig ofte anderledes end modne markeder, hvilket styrker spredningen.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><b>Ejendomme (Udlejning)</b></td>
                                     <td>Mellem</td>
                                     <td>10+ år</td>
                                     <td>5,0 - 7,0 %</td>
-                                    <td>Inflationssikring og løbende cashflow</td>
+                                    <td>
+                                        <p><b>Inflationssikring og løbende cashflow:</b> En stabiliserende realaktiv-komponent.</p>
+                                        <ul>
+                                            <li><b>Lejeindtægter:</b> Giver et forudsigeligt, løbende cashflow til porteføljen.</li>
+                                            <li><b>Værdistigning:</b> Potentiale for langsigtet stigning i ejendommens markedsværdi.</li>
+                                            <li><b>Inflationslink:</b> Lejekontrakter er ofte indeksregulerede, hvilket beskytter købekraften.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -221,16 +272,31 @@
                     <small class="d-block text-left mt-2 text-muted">Tabel 5.2 — Historiske afkastforventninger
                         og aktivallokering. Kilde: Nationalbanken (2026).</small>
 
-                    <div class="chart-container wide reveal-on-scroll borderless" style="height: 450px;">
-                        <canvas id="riskReturnChart"></canvas>
-                    </div>
-                    <small class="d-block text-left mt-2 text-muted">Figur 5.1 — Markowitz' Porteføljeteori: Efficient
-                        Frontier og aktivallokering. Kurven illustrerer de optimale porteføljer, der giver det maksimale
-                        forventede afkast for et givet risikoniveau. Kilde: Harry Markowitz / Nobelprize.org.</small>
+                    <p class="mt-4"><b><span class="legal-term"
+                                data-definition="Spredning af investeringer på mange forskellige aktiver, så et tab ét sted ikke vælter hele porteføljen."
+                                data-example="En kunde investerer 40 % i obligationer, 40 % i globale aktier og 20 % i råvarer i stedet for kun danske aktier. Når aktiemarkedet falder, dæmper obligationer og råvarer det samlede tab."
+                                data-slug="diversificering">Diversificering</span>:</b> Ved at kombinere aktiver, der
+                        ikke bevæger sig synkront (lav korrelation), kan man reducere den samlede porteføljerisiko. Dette
+                        er rådgiverens vigtigste værktøj til at skabe "robuste" porteføljer, der kan modstå
+                        markedsturbulens.</p>
 
-                    <p class="mt-4"><b>Diversificering:</b> Ved at kombinere aktiver, der ikke bevæger sig synkront (lav
-                        korrelation), kan man reducere den samlede porteføljerisiko. Dette er rådgiverens vigtigste
-                        værktøj til at skabe "robuste" porteføljer, der kan modstå markedsturbulens.</p>
+                    <p><b>Intuition:</b> Det er bedre at have "mange ben at stå på" end at satse alt på én branche, ét
+                        land eller én aktivtype. Når ét område rammes, kan andre dele af porteføljen holde værdien eller
+                        endda stige.</p>
+
+                    <div class="calc-block">
+                        <p class="mb-2"><b>Eksempel: Udiversificeret vs. diversificeret portefølje</b></p>
+                        <ul class="mb-0">
+                            <li><b>Portefølje A:</b> 100 % danske bankaktier. Fald i sektoren på -30 % giver ca. -30 % på
+                                hele formuen.</li>
+                            <li><b>Portefølje B:</b> 40 % globale aktier, 40 % obligationer og 20 % råvarer. Samme fald på
+                                -30 % i aktiedelen kombineret med 0 % på obligationer og +5 % på råvarer giver samlet et
+                                mere begrænset tab på porteføljen.</li>
+                        </ul>
+                    </div>
+
+                    <p class="mt-3">Som rådgiver bør du derfor altid oversætte kundens risikoprofil til en konkret
+                        fordeling på flere aktivklasser frem for at diskutere enkeltaktier isoleret.</p>
                 </div>
 
                 <h2>5.3 Det Nye Personskattesystem 2026</h2>
@@ -239,8 +305,8 @@
                         skatte-trin afgørende for at beregne kundens reelle <span data-definition="Den skatteprocent man betaler af den sidst tjente krone; afgørende for incitamentet til at arbejde ekstra eller indbetale til pension." data-example="For en topskatteyder er marginalskatten ca. 56 %, hvilket betyder man beholder 44 øre for hver ekstra krone, man tjener." class="legal-term"
                             data-slug="marginalskat">marginalskat</span> og
                         dermed værdien af f.eks.
-                        pensionsindbetalinger eller <span data-definition="Et skattemæssigt fradrag (ligningsmæssigt fradrag) for dine renteudgifter på lån. Fradraget betyder, at en del af din renteudgift dækkes af staten i form af lavere skat. Skatteværdien af rentefradrag er p.t. ca. 25-33 %." data-example="Betaler du 50.000 kr. i renter om året, vil dit rentefradrag betyde, at du reelt betaler ca. 12.500-16.500 kr. mindre i skat over hele året." class="legal-term" data-slug="rentefradrag" legal-term"
-                            data-slug="boliglaan">boliglån</span>.">rentefradrag</span>.
+                        pensionsindbetalinger eller <span data-definition="Et skattemæssigt fradrag (ligningsmæssigt fradrag) for dine renteudgifter på lån. Fradraget betyder, at en del af din renteudgift dækkes af staten i form af lavere skat. Skatteværdien af rentefradrag er p.t. ca. 25-33 %." data-example="Renteudgift 50.000 kr.: Skatteværdi ca. 25-33 % = 12.500-16.500 kr. mindre i skat." class="legal-term" data-slug="rentefradrag">rentefradrag</span>
+                        på <span data-definition="Et lån optaget i banken, som typisk bruges til at finansiere de resterende 15 % af en ejerboligs købspris udover realkreditlånet (80 %) og udbetalingen (5 %). Bankboliglån har normalt en variabel rente, der er væsentligt højere end renten på realkreditlån." data-example="Ved køb af et hus til 4 mio. kr. optager du et realkreditlån på 3,2 mio. kr. og et boliglån i banken på 600.000 kr. til at dække resten af finansieringen." class="legal-term" data-slug="boliglaan">boliglån</span>.
                     </p>
 
                     <div class="table-responsive mt-3 mb-4">
@@ -250,28 +316,26 @@
                                 <tr>
                                     <th>Skattetrin</th>
                                     <th>Sats 2026</th>
-                                    <th>Grænse (efter <span data-definition="En lovpligtig bruttoskat på 8 %, som opkræves af al arbejdsindkomst (løn, honorarer mm.) før fradrag og før beregning af øvrige skatter. Det er den første &quot;mur&quot;, indkomsten møder." data-example="Ved en bruttoløn på 50.000 kr. trækkes der 4.000 kr. i AM-bidrag, hvorefter den personlige indkomst udgør 46.000 kr." class="legal-term" data-slug="am-bidrag">AM-bidrag</span>)
+                                    <th>Grænse (efter <span data-definition="En lovpligtig bruttoskat på 8 %, som opkræves af al arbejdsindkomst (løn, honorarer mm.) før fradrag og før beregning af øvrige skatter. Det er den første &quot;mur&quot;, indkomsten møder." data-example="Ved bruttoløn 50.000 kr.: AM-bidrag = 50.000 × 8 % = 4.000 kr. Den personlige indkomst udgør herefter 46.000 kr." class="legal-term" data-slug="am-bidrag">AM-bidrag</span>)
                                     </th>
                                     <th>Effekt for rådgivning</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><b><span data-definition="En statslig indkomstskat på p.t. 12,01 % (2026), som betales personlige indkomst (efter AM-bidrag), som overstiger det årlige personfradrag." data-example="Ved en indkomst på 300.000 kr. betales bundskat af beløbet efter AM-bidrag, minus personfradraget på 54.100 kr." class="legal-term" data-slug="bundskat"
-                                                legal-term" data-slug="am-bidrag">AM-bidrag</span>.">Bundskat</span></b>
-                                    </td>
+                                    <td><b><span data-definition="En statslig indkomstskat på p.t. 12,01 % (2026), som betales af den personlige indkomst (efter AM-bidrag), der overstiger det årlige personfradrag." data-example="Ved en indkomst på 300.000 kr. betales bundskat af beløbet efter AM-bidrag, minus personfradraget på 54.100 kr." class="legal-term" data-slug="bundskat">Bundskat</span></b></td>
                                     <td>12,01 %</td>
                                     <td>Over 54.100 kr. (<span data-definition="Et fast årligt beløb som de fleste skattepligtige personer kan tjene helt skattefrit (ca. 54.100 kr. for voksne i 2026)." data-example="Hvis din årsindkomst er 50.000 kr., betaler du intet i bund- eller kommuneskat, da beløbet er dækket af personfradraget." class="legal-term" data-slug="personfradrag">Personfradrag</span>)
                                     </td>
                                     <td>Standardbeskatning for alle.</td>
                                 </tr>
                                 <tr>
-                                    <td><b><span data-definition="Et progressivt skattetrin genindført med 2026-reformen på 7,5 %, som betales af den personlige indkomst, der overstiger ca. 640.000 kr. (efter AM-bidrag). Den skal lukke &quot;hullet&quot; mellem bund- og topskat." data-example="En lønmodtager med en indkomst på 680.000 kr. betaler 7,5 % i mellemskat af de sidste 40.000 kr." class="legal-term" data-slug="mellemskat">Mellemskat</span>
+                                    <td><b><span data-definition="Et progressivt skattetrin genindført med 2026-reformen på 7,5 %, som betales af den personlige indkomst, der overstiger ca. 640.000 kr. (efter AM-bidrag). Den skal lukke &quot;hullet&quot; mellem bund- og topskat." data-example="Indkomst 680.000 kr. over grænsen 640.000 kr.: Mellemskat = (680.000 − 640.000) × 7,5 % = 3.000 kr." class="legal-term" data-slug="mellemskat">Mellemskat</span>
                                             (NY)</b></td>
                                     <td>7,50 %</td>
                                     <td>Over 641.200 kr.</td>
-                                    <td>Reducerer realværdien af <span data-definition="Et skattemæssigt fradrag (ligningsmæssigt fradrag) for dine renteudgifter på lån. Fradraget betyder, at en del af din renteudgift dækkes af staten i form af lavere skat. Skatteværdien af rentefradrag er p.t. ca. 25-33 %." data-example="Betaler du 50.000 kr. i renter om året, vil dit rentefradrag betyde, at du reelt betaler ca. 12.500-16.500 kr. mindre i skat over hele året." class="legal-term" data-slug="rentefradrag"
-                                            legal-term" data-slug="boliglaan">boliglån</span>.">rentefradrag</span>
+                                    <td>Reducerer realværdien af <span data-definition="Et skattemæssigt fradrag (ligningsmæssigt fradrag) for dine renteudgifter på lån. Fradraget betyder, at en del af din renteudgift dækkes af staten i form af lavere skat. Skatteværdien af rentefradrag er p.t. ca. 25-33 %." data-example="Renteudgift 50.000 kr.: Skatteværdi ca. 25-33 % = 12.500-16.500 kr. mindre i skat." class="legal-term" data-slug="rentefradrag">rentefradrag</span>
+                                        på <span data-definition="Et lån optaget i banken, som typisk bruges til at finansiere de resterende 15 % af en ejerboligs købspris udover realkreditlånet (80 %) og udbetalingen (5 %). Bankboliglån har normalt en variabel rente, der er væsentligt højere end renten på realkreditlån." data-example="Ved køb af et hus til 4 mio. kr. optager du et realkreditlån på 3,2 mio. kr. og et boliglån i banken på 600.000 kr. til at dække resten af finansieringen." class="legal-term" data-slug="boliglaan">boliglån</span>
                                         for middelindkomster.</td>
                                 </tr>
                                 <tr>
@@ -316,21 +380,21 @@
                             <tbody>
                                 <tr>
                                     <td><b>Earnings Per Share</b></td>
-                                    <td>EPS</td>
+                                    <td><span class="legal-term" data-definition="Indtjening pr. aktie. Beregnes som selskabets resultat efter skat divideret med antal udestående aktier." data-example="Et selskab med overskud på 1 mia. kr. og 10 mio. aktier har EPS = 100 kr. pr. aktie." data-slug="eps">EPS</span></td>
                                     <td>Resultat efter skat / Antal <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term" data-slug="aktier">aktier</span>
                                     </td>
                                     <td>Selskabets indtjening pr. ejerandel. Grundstenen i værdiansættelse.</td>
                                 </tr>
                                 <tr>
                                     <td><b>Price / Earnings</b></td>
-                                    <td>P/E-værdi</td>
-                                    <td>Aktiekurs / EPS</td>
+                                    <td><span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Angiver hvor mange kroner investoren betaler for hver krone opgjort indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E-værdi</span></td>
+                                    <td>Aktiekurs / <span class="legal-term" data-definition="Indtjening pr. aktie. Beregnes som selskabets resultat efter skat divideret med antal udestående aktier." data-example="Et selskab med overskud på 1 mia. kr. og 10 mio. aktier har EPS = 100 kr. pr. aktie." data-slug="eps">EPS</span></td>
                                     <td>Hvor mange kroner betaler investor for 1 kr. opgjort indtjening? Udtryk for høj hhv. lav relativ prissætning.</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Forward P/E</b></td>
+                                    <td><b><span class="legal-term" data-definition="Forventet P/E baseret på analytikernes estimerede EPS for næste regnskabsår." data-example="Ved aktiekurs 850 kr. og forventet EPS næste år 50 kr. er Forward P/E = 17. Bruges til vækstaktier." data-slug="forward-pe">Forward P/E</span></b></td>
                                     <td>Fwd P/E</td>
-                                    <td>Aktiekurs / Forventet EPS næste år</td>
+                                    <td>Aktiekurs / Forventet <span class="legal-term" data-definition="Indtjening pr. aktie. Beregnes som selskabets resultat efter skat divideret med antal udestående aktier." data-example="Et selskab med overskud på 1 mia. kr. og 10 mio. aktier har EPS = 100 kr. pr. aktie." data-slug="eps">EPS</span> næste år</td>
                                     <td>Markedets forventning til fremtidig vækst. Afgørende for vækstaktier.</td>
                                 </tr>
                                 <tr>
@@ -353,40 +417,42 @@
 
                 <h2>5.5 Praktisk Eksempel: Aktiehandel (Nvidia)</h2>
                 <div class="info-box reveal-on-scroll">
-                    <div class="info-box border-dark shadow-sm p-4"
-                        style="border-radius: 0 !important; background-color: #ffffff;">
-                        <h5>Case: Køb og Salg af 100 NVDA-aktier</h5>
-                        <p>Som rådgiver skal du kunne guide kunden gennem de reelle omkostninger og skatteeffekter ved
-                            en transaktion.</p>
+                    <h4>Case: Køb og Salg af 100 NVDA-aktier</h4>
+                    <p class="font-italic">Som rådgiver skal du kunne guide kunden gennem de reelle omkostninger og skatteeffekter ved
+                        en transaktion.</p>
 
-                        <div class="mb-3">
-                            <b>1. Køb (Januar 2026):</b>James køber 100 <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term" data-slug="aktier">aktier</span>
-                            til kurs 150 USD.<br>
-                            <div class="p-2 bg-light mb-2" style="font-family: Consolas, monospace; color: inherit;">
-                                Kursværdi: 100 × 150 × 7,00 (Valuta) = 105.000 DKK<br>
-                                + <span class="legal-term" data-definition="Gebyr for handel med værdipapirer."
-                                    data-slug="kurtage">Kurtage</span> (0,15 %): 157,50 DKK<br>
-                                = <span class="legal-term"
-                                    data-definition="Gennemsnitlig Anskaffelsesværdi. Inkluderer handelsomkostninger."
-                                    data-slug="gav">GAV</span>: 105.157,50 DKK</div>
+                    <div class="mb-4">
+                        <b>1. Køb (Januar 2026):</b> James køber 100 <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term" data-slug="aktier">aktier</span>
+                        til kurs 150 USD.
+                        <div class="calc-block calc-emphasis">
+                            Kursværdi: 100 × 150 × 7,00 (<span class="legal-term" data-definition="Prisen på én valuta udtrykt i en anden valuta. Ved handel med udenlandske aktier skal beløbet omregnes til DKK." data-example="Køber du en aktie til 100 USD ved en dollarkurs på 7,00, koster aktien 700 DKK." data-slug="valutakurs">Valutakurs</span>) = 105.000 DKK<br>
+                            + <span class="legal-term" data-definition="Handelsomkostninger (gebyr) til banken eller børsmægleren for at gennemføre en handel med værdipapirer."
+                                data-example="Ved et køb til 100.000 kr. og en kurtage på 0,15 %, betaler du 150 kr. i gebyr." data-slug="kurtage">Kurtage</span> (0,15 %): 157,50 DKK<br>
+                            = <span class="legal-term"
+                                data-definition="Gennemsnitlig Anskaffelsesværdi. Den samlede pris for værdipapirerne inklusiv handelsomkostninger (kurtage), divideret med antallet af enheder. Bruges til at beregne gevinst eller tab ved salg."
+                                data-example="100 aktier til kurs 100 + 29 kr. kurtage: Samlet pris = 10.029 kr. GAV = 10.029 ÷ 100 = 100,29 kr. pr. aktie." data-slug="gav">GAV</span>: 105.157,50 DKK
                         </div>
+                    </div>
 
-                        <div class="mb-3">
-                            <b>2. Salg (Juni 2026):</b>James sælger til kurs 180 USD.<br>
-                            <div class="p-2 bg-light mb-2" style="font-family: Consolas, monospace; color: inherit;">
-                                Salgspris: 100 × 180 × 7,00 (Valuta) = 126.000 DKK<br>
-                                - Kurtage (0,15 %): 189 DKK<br>
-                                = Netto Provenu: 125.811 DKK</div>
+                    <div class="mb-4">
+                        <b>2. Salg (Juni 2026):</b> James sælger til kurs 180 USD.
+                        <div class="calc-block calc-emphasis">
+                            Salgspris: 100 × 180 × 7,00 (<span class="legal-term" data-definition="Prisen på én valuta udtrykt i en anden valuta. Ved handel med udenlandske aktier skal beløbet omregnes til DKK." data-example="Køber du en aktie til 100 USD ved en dollarkurs på 7,00, koster aktien 700 DKK." data-slug="valutakurs">Valutakurs</span>) = 126.000 DKK<br>
+                            - <span class="legal-term" data-definition="Handelsomkostninger (gebyr) til banken eller børsmægleren for at gennemføre en handel med værdipapirer."
+                                data-example="Ved et salg til 120.000 kr. og en kurtage på 0,15 %, betaler du 180 kr. i gebyr." data-slug="kurtage">Kurtage</span> (0,15 %): 189 DKK<br>
+                            = <span class="legal-term" data-definition="Det beløb, der er tilbage efter salg af et aktiv, når alle direkte salgsomkostninger (fx kurtage) er fratrukket." data-example="Salgspris 10.000 kr. minus 29 kr. kurtage: Netto provenu = 10.000 − 29 = 9.971 kr." data-slug="netto-provenu">Netto Provenu</span>: 125.811 DKK
                         </div>
+                    </div>
 
-                        <div class="mb-3">
-                            <b>3. Skatteberegning (2026 satser):</b><br>
-                            <div class="p-2 bg-light mb-2" style="font-family: Consolas, monospace; color: inherit;">
-                                Skattepligtig gevinst: 125.811 - 105.157,50 = 20.653,50 DKK<br>
-                                Da beløbet er under <span class="legal-term"
-                                    data-definition="Grænse for hvornår aktieindkomst beskattes med en højere sats."
-                                    data-slug="progressionsgraense">progressionsgrænsen</span> (67.100 kr.):<br>
-                                Skat (27 %): 5.576,45 DKK</div>
+                    <div class="mb-4">
+                        <b>3. Skatteberegning (2026 satser):</b>
+                        <div class="calc-block calc-emphasis">
+                            <span class="legal-term" data-definition="Forskellen mellem salgsprisen (netto provenu) og købsprisen (GAV). Hvis provenuet er højere end GAV, er der en gevinst; ellers er der et tab." data-example="Netto provenu 12.000 kr. og GAV 10.000 kr.: Skattepligtig gevinst = 12.000 − 10.000 = 2.000 kr." data-slug="skattepligtig-gevinst">Skattepligtig gevinst</span>: 125.811 - 105.157,50 = 20.653,50 DKK<br>
+                            Da beløbet er under <span class="legal-term"
+                                data-definition="En beløbsgrænse for beskatning af aktieindkomst. Gevinster op til denne grænse beskattes med 27 %, mens gevinster derover beskattes med 42 % (2026 satser)."
+                                data-example="Har du en gevinst på 100.000 kr., betaler du 27 % af de første 61.000 kr. (2026-sats) og 42 % af de resterende 39.000 kr."
+                                data-slug="progressionsgraense">progressionsgrænsen</span> (67.100 kr.):<br>
+                            Skat (27 %): 5.576,45 DKK
                         </div>
                     </div>
 
@@ -408,9 +474,7 @@
                                     <tr>
                                         <td><b>Defensive</b></td>
                                         <td>Stabil indtjening uanset økonomi (medicin, fødevarer, forsyning). Lav
-                                            <span class="legal-term"
-                                                data-definition="Mål for kursfølsomhed ift. markedet. < 1 er defensivt."
-                                                data-slug="beta">Beta</span>.
+                                            <span class="legal-term" data-definition="Mål for kursfølsomhed ift. markedet. En beta under 1 er defensivt; over 1 svinger aktien mere end markedet." data-example="Aktie med beta 1,5: Ved markedstigning 10 % forventes aktien at stige 1,5 × 10 % = 15 %." data-slug="beta">Beta</span>.
                                         </td>
                                         <td>Novo Nordisk, Coloplast, Tryg</td>
                                         <td>Beskyttelse i krisetider. "Safe haven".</td>
@@ -431,26 +495,256 @@
                 <h2>5.6 Selskabsanalyse og Aktievurdering (2026 Status)</h2>
                 <div class="info-box reveal-on-scroll">
                     <p>Som rådgiver skal du kunne analysere konkrete cases baseret på fundamentale data.
-                        Herunder præsenteres en omfattende oversigt pr. marts 2026 for fire selskaber, der
+                        Herunder præsenteres en omfattende oversigt pr. marts 2026 for en række globale selskaber, der
                         definerer det aktuelle marked. Bemærk hvordan vækstaktier (Nvidia/Tesla) adskiller sig
-                        markant fra værdiaktier (Novo) og cykliske <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term" data-slug="aktier">aktier</span>
-                        (Mærsk) på deres værdiansættelse.</p>
+                        markant fra værdiaktier (Allianz/Novartis) og cykliske <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term" data-slug="aktier">aktier</span>
+                        (Mærsk/Shell) på deres værdiansættelse.</p>
 
-                    <div class="table-responsive mt-3 mb-4">
-                        <table class="table table-striped table-bordered table-hover"
+                    <div class="table-wrapper-56 mt-3 mb-4">
+                        <table class="table table-striped table-bordered table-hover table-56"
                             style="border-radius: 0 !important;">
+                            <colgroup>
+                                <col style="width: 11%">
+                                <col style="width: 10%">
+                                <col style="width: 10%">
+                                <col style="width: 8%">
+                                <col style="width: 8%">
+                                <col style="width: 8%">
+                                <col style="width: 45%">
+                            </colgroup>
                             <thead class="table-dark">
                                 <tr>
                                     <th>Selskab & Ticker</th>
-                                    <th>Markedsværdi (Market Cap)</th>
-                                    <th>Omsætning (Revenue) 2026e</th>
-                                    <th>Overskud (EPS) 2026e</th>
-                                    <th>P/E (TTM)</th>
-                                    <th>Forward P/E</th>
-                                    <th>Rådgiverens Vurdering</th>
+                                    <th>Markedsværdi</th>
+                                    <th>Omsætning 2026 (estimat)</th>
+                                    <th><span class="legal-term" data-definition="Indtjening pr. aktie. Beregnes som selskabets resultat efter skat divideret med antal udestående aktier." data-example="Et selskab med overskud på 1 mia. kr. og 10 mio. aktier har EPS = 100 kr. pr. aktie." data-slug="eps">EPS</span> 2026 (estimat)</th>
+                                    <th><span class="legal-term" data-definition="P/E beregnet ud fra den faktiske indtjening de seneste 12 måneder (TTM = Trailing Twelve Months)." data-example="Ved aktiekurs 750 kr. og EPS 25 kr. de sidste 12 måneder: P/E (TTM) = 750 ÷ 25 = 30." data-slug="pe-ttm">P/E (TTM)</span></th>
+                                    <th><span class="legal-term" data-definition="Forventet P/E baseret på analytikernes estimerede EPS for næste regnskabsår." data-example="Ved aktiekurs 850 kr. og forventet EPS næste år 50 kr. er Forward P/E = 17. Bruges til vækstaktier." data-slug="forward-pe">Forward P/E</span></th>
+                                    <th>Vurdering</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td><b>Allianz (ALV)</b></td>
+                                    <td>ca. 110 mia. EUR</td>
+                                    <td>165 mia. EUR</td>
+                                    <td>26,50 EUR</td>
+                                    <td>10,5</td>
+                                    <td>9,8</td>
+                                    <td>
+                                        <p><b>Forsikring:</b> Stabil indtjening trods stigende naturskader.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Prissætningskraft:</b> Har succesfuldt hævet præmierne for at dække inflationen.</li>
+                                            <li><b>Asset Management:</b> PIMCO leverer solide resultater i et højrentemiljø.</li>
+                                            <li><b>Kursudvikling:</b> Steget 10% i 2025. Klassisk defensiv aktie med høj udbyttesikkerhed.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Alphabet (GOOGL)</b></td>
+                                    <td>ca. 2.150 mia. USD</td>
+                                    <td>345 mia. USD</td>
+                                    <td>7,80 USD</td>
+                                    <td>24,2</td>
+                                    <td>20,5</td>
+                                    <td>
+                                        <p><b>Søgning:</b> Forsvarer markedsandele mod AI-konkurrenter.</p>
+                                        <p><i>Analytiker-konsensus (02.03.2026):</i> <b class="legal-term" data-definition="En anbefaling om hverken at købe eller sælge. Analytikeren forventer, at aktien vil udvikle sig på linje med markedet, eller at der er for stor usikkerhed til en klar købs/salgs-beslutning." data-example="En aktie er steget meget og ramt sit kursmål. Analytikeren ændrer fra &quot;Buy&quot; til &quot;Hold&quot;, da det største potentiale nu er indregnet i kursen." data-slug="hold">"Hold"</b></p>
+                                        <ul>
+                                            <li><b>Gemini-integration:</b> AI i søgning har stabiliseret brugertallet, men øget omkostningerne pr. søgning.</li>
+                                            <li><b>YouTube-vækst:</b> Stærk performance i streaming-annoncer.</li>
+                                            <li><b>Kursudvikling:</b> Har haltet efter markedet med kun 10% vækst pga. regulatorisk pres og frygt for disruptering af søgemodellen.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Amazon (AMZN)</b></td>
+                                    <td>ca. 2.200 mia. USD</td>
+                                    <td>680 mia. USD</td>
+                                    <td>6,10 USD</td>
+                                    <td>45,0</td>
+                                    <td>35,2</td>
+                                    <td>
+                                        <p><b>Logistik/AWS:</b> Marginforbedring i retail og stærk cloud-vækst.</p>
+                                        <p><i>Analytiker-konsensus (04.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>AWS-acceleration:</b> Cloud-divisionen nyder godt af AI-træningsbehov.</li>
+                                            <li><b>Annonce-vækst:</b> Reklameindtægter på platformen vokser hurtigere end e-handel.</li>
+                                            <li><b>Kursudvikling:</b> Steget 30% i 2025. Oplevede et fald på 8% i Q3 2025 pga. bekymring om forbrugernes købekraft.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Apple (AAPL)</b></td>
+                                    <td>ca. 3.910 mia. USD</td>
+                                    <td>410 mia. USD</td>
+                                    <td>7,15 USD</td>
+                                    <td>32,4</td>
+                                    <td>28,2</td>
+                                    <td>
+                                        <p><b>Cash Cow:</b> Stabil vækst i services og økosystem.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>AI-cyklus:</b> iPhone 17 (2025) med fuld AI-integration har drevet en stor udskiftningsbølge.</li>
+                                            <li><b>Kina-risiko:</b> Fortsat pres fra lokale konkurrenter som Huawei.</li>
+                                            <li><b>Kursudvikling:</b> Steget 18% i 2025. Stabil performance med lav volatilitet ift. øvrige tech-aktier.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>ASML (ASML)</b></td>
+                                    <td>ca. 380 mia. EUR</td>
+                                    <td>32 mia. EUR</td>
+                                    <td>24,50 EUR</td>
+                                    <td>42,1</td>
+                                    <td>30,4</td>
+                                    <td>
+                                        <p><b>Monopol:</b> EUV-maskiner er uundværlige for næste generation af chips.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En kraftig købsanbefaling fra analytikere, der indikerer en forventning om, at aktien vil klare sig betydeligt bedre end det generelle marked eller dens sektor over de næste 6-12 måneder." data-example="Hvis en aktie handles til kurs 100, men analytikere vurderer den retfærdige værdi til 150 pga. stærk vækst, kan de give en &quot;Strong Buy&quot; anbefaling." data-slug="strong-buy">"Strong Buy"</b></p>
+                                        <ul>
+                                            <li><b>High-NA EUV:</b> Levering af de nyeste maskiner til Intel og TSMC sikrer vækst in 2026/2027.</li>
+                                            <li><b>Geopolitik:</b> Eksportrestriktioner til Kina are indregnet i kursen.</li>
+                                            <li><b>Kursudvikling:</b> Faldt 15% i starten af 2025, men er siden steget 40% på AI-hardware boomet.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>BP (BP)</b></td>
+                                    <td>ca. 95 mia. GBP</td>
+                                    <td>215 mia. USD</td>
+                                    <td>0,95 USD</td>
+                                    <td>7,2</td>
+                                    <td>8,1</td>
+                                    <td>
+                                        <p><b>Energi:</b> Højere risiko pga. hurtigere grøn omstilling.</p>
+                                        <p><i>Analytiker-konsensus (03.03.2026):</i> <b class="legal-term" data-definition="En anbefaling om hverken at købe eller sælge. Analytikeren forventer, at aktien vil udvikle sig på linje med markedet, eller at der er for stor usikkerhed til en klar købs/salgs-beslutning." data-example="En aktie er steget meget og ramt sit kursmål. Analytikeren ændrer fra &quot;Buy&quot; til &quot;Hold&quot;, da det største potentiale nu er indregnet i kursen." data-slug="hold">"Hold"</b></p>
+                                        <ul>
+                                            <li><b>Raffinaderi-marginer:</b> Svagere efterspørgsel i Europa har ramt indtjeningen i Q4 2025.</li>
+                                            <li><b>Strategisk usikkerhed:</b> Markedet tvivler på lønsomheden i de grønne investeringer.</li>
+                                            <li><b>Kursudvikling:</b> Faldt 8% i slutningen af 2025. Halter efter Shell og TotalEnergies.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>HSBC (HSBA)</b></td>
+                                    <td>ca. 155 mia. GBP</td>
+                                    <td>68 mia. USD</td>
+                                    <td>1,45 USD</td>
+                                    <td>6,8</td>
+                                    <td>7,5</td>
+                                    <td>
+                                        <p><b>Bank:</b> Stor eksponering mod vækstmarkeder i Asien.</p>
+                                        <p><i>Analytiker-konsensus (04.03.2026):</i> <b class="legal-term" data-definition="En anbefaling om hverken at købe eller sælge. Analytikeren forventer, at aktien vil udvikle sig på linje med markedet, eller at der er for stor usikkerhed til en klar købs/salgs-beslutning." data-example="En aktie er steget meget og ramt sit kursmål. Analytikeren ændrer fra &quot;Buy&quot; til &quot;Hold&quot;, da det største potentiale nu er indregnet i kursen." data-slug="hold">"Hold"</b></p>
+                                        <ul>
+                                            <li><b>Kinesisk ejendomskrise:</b> Fortsatte nedskrivninger på lån i Kina har tynget resultatet.</li>
+                                            <li><b>Renteniveau:</b> Nyder godt af de højere renter i Europa og USA.</li>
+                                            <li><b>Kursudvikling:</b> Faldt 12% i midten af 2025, men er stabiliseret i starten af 2026 på bedre asiatiske nøgletal.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>IBM (IBM)</b></td>
+                                    <td>ca. 225 mia. USD</td>
+                                    <td>62 mia. USD</td>
+                                    <td>9,85 USD</td>
+                                    <td>22,8</td>
+                                    <td>25,4</td>
+                                    <td>
+                                        <p><b>Legacy/AI:</b> Forsøger at transformere fra konsulent til AI-platform.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-slug="sell" data-definition="En direkte salgsanbefaling. Analytikeren forventer et kursfald eller mener, at aktien er betydeligt overvurderet i forhold til virksomhedens reelle værdi og fremtidsudsigter." data-example="Ved tegn på fundamentale problemer i forretningsmodellen eller en ekstremt høj værdiansættelse kan analytikere give en &quot;Sell&quot; anbefaling.">"Sell"</b></p>
+                                        <ul>
+                                            <li><b>Disruption:</b> AI-automatisering truer IBM's kerneforretning inden for vedligeholdelse af legacy-systemer (COBOL).</li>
+                                            <li><b>Vækst-udfordringer:</b> Watsonx vinder ikke markedsandele hurtigt nok ift. Azure og AWS.</li>
+                                            <li><b>Kursudvikling:</b> Faldt 18% i 2025 efter Morgan Stanley nedjustering. Investorer flygter mod renere AI-spillere.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Intel (INTC)</b></td>
+                                    <td>ca. 145 mia. USD</td>
+                                    <td>58 mia. USD</td>
+                                    <td>0,45 USD</td>
+                                    <td>95,2</td>
+                                    <td>112,5</td>
+                                    <td>
+                                        <p><b>Turnaround:</b> Kæmper for at genvinde teknologisk førerskab.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-slug="sell" data-definition="En direkte salgsanbefaling. Analytikeren forventer et kursfald eller mener, at aktien er betydeligt overvurderet i forhold til virksomhedens reelle værdi og fremtidsudsigter." data-example="Ved tegn på fundamentale problemer i forretningsmodellen eller en ekstremt høj værdiansættelse kan analytikere give en &quot;Sell&quot; anbefaling.">"Sell"</b></p>
+                                        <ul>
+                                            <li><b>Foundry-tab:</b> Massive investeringer i nye fabrikker tynger cash flowet markant.</li>
+                                            <li><b>Markedsandele:</b> Fortsat tab til AMD i datacentre og Nvidia i AI-chips.</li>
+                                            <li><b>Kursudvikling:</b> Faldet 35% over det seneste år. Betragtes som en højrisiko-aktie med usikker fremtid.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>LVMH (MC.PA)</b></td>
+                                    <td>ca. 420 mia. EUR</td>
+                                    <td>92 mia. EUR</td>
+                                    <td>34,20 EUR</td>
+                                    <td>24,5</td>
+                                    <td>22,8</td>
+                                    <td>
+                                        <p><b>Luksus:</b> Enestående prissætningskraft og brand-portefølje.</p>
+                                        <p><i>Analytiker-konsensus (03.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Kina-recovery:</b> Forbrugertilliden i Kina er begyndt at vende i 2026, hvilket løfter salget.</li>
+                                            <li><b>Diversificering:</b> Stærk vækst i "Fashion & Leather Goods" kompenserer for svagere ure/smykker.</li>
+                                            <li><b>Kursudvikling:</b> Faldt 10% i 2025 pga. global økonomisk usikkerhed, men har genvundet det tabte i Q1 2026.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Meta (META)</b></td>
+                                    <td>ca. 1.390 mia. USD</td>
+                                    <td>175 mia. USD</td>
+                                    <td>22,40 USD</td>
+                                    <td>28,5</td>
+                                    <td>22,1</td>
+                                    <td>
+                                        <p><b>Ad-Tech:</b> AI-optimerede annoncer giver rekordoverskud.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Llama-succes:</b> Open-source AI-strategien har styrket Metas position i tech-miljøet.</li>
+                                            <li><b>Reels-monetisering:</b> Video-indhold giver nu højere annonce-afkast end traditionelle opslag.</li>
+                                            <li><b>Kursudvikling:</b> Steget 45% i 2025. Kursen er tæt på all-time high trods fortsatte investeringer i Reality Labs.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Microsoft (MSFT)</b></td>
+                                    <td>ca. 3.450 mia. USD</td>
+                                    <td>285 mia. USD</td>
+                                    <td>12,80 USD</td>
+                                    <td>38,2</td>
+                                    <td>31,5</td>
+                                    <td>
+                                        <p><b>Cloud/AI:</b> Azure dominerer enterprise AI-markedet.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En kraftig købsanbefaling fra analytikere, der indikerer en forventning om, at aktien vil klare sig betydeligt bedre end det generelle marked eller dens sektor over de næste 6-12 måneder." data-example="Hvis en aktie handles til kurs 100, men analytikere vurderer den retfærdige værdi til 150 pga. stærk vækst, kan de give en &quot;Strong Buy&quot; anbefaling." data-slug="strong-buy">"Strong Buy"</b></p>
+                                        <ul>
+                                            <li><b>Copilot-monetisering:</b> Software-indtjeningen fra AI-assistenter er nu en væsentlig vækstdriver.</li>
+                                            <li><b>Cloud-vækst:</b> Azure vokser fortsat med +25% årligt.</li>
+                                            <li><b>Kursudvikling:</b> Jævn stigning på 25% over det seneste år uden markante dyk.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Novartis (NOVN.SW)</b></td>
+                                    <td>ca. 210 mia. CHF</td>
+                                    <td>52 mia. CHF</td>
+                                    <td>7,10 CHF</td>
+                                    <td>16,2</td>
+                                    <td>14,5</td>
+                                    <td>
+                                        <p><b>Pharma:</b> Strømlinet forretning efter spin-off af Sandoz.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Fokus-områder:</b> Stærk position inden for hjerte-kar og immunologi.</li>
+                                            <li><b>Kapitalallokering:</b> Store aktietilbagekøbsprogrammer understøtter kursen.</li>
+                                            <li><b>Kursudvikling:</b> Steget 12% i 2025. Stabil udbytteaktie med lav risiko.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td><b>Nvidia (NVDA)</b></td>
                                     <td>ca. 5.100 mia. USD</td>
@@ -458,8 +752,83 @@
                                     <td>8,30 USD</td>
                                     <td>36,5</td>
                                     <td>22,4</td>
-                                    <td><b>Dominans:</b> Markant vækst pga. AI-infrastruktur. Forward P/E er
-                                        moderat ift. væksten.</td>
+                                    <td>
+                                        <p><b>Dominans:</b> Markant vækst pga. AI-infrastruktur. <span class="legal-term" data-definition="Forventet P/E baseret på analytikernes estimerede EPS for næste regnskabsår. Bruges til at vurdere, om en aktie er billig eller dyr i forhold til dens fremtidige indtjeningsevne." data-example="Ved aktiekurs 850 kr. og forventet EPS næste år 50 kr.: Forward P/E = 850 ÷ 50 = 17." data-slug="forward-pe">Forward P/E</span> er moderat ift. væksten.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b class="legal-term" data-definition="En kraftig købsanbefaling fra analytikere, der indikerer en forventning om, at aktien vil klare sig betydeligt bedre end det generelle marked eller dens sektor over de næste 6-12 måneder." data-example="Hvis en aktie handles til kurs 100, men analytikere vurderer den retfærdige værdi til 150 pga. stærk vækst, kan de give en &quot;Strong Buy&quot; anbefaling." data-slug="strong-buy">"Strong Buy"</b></p>
+                                        <ul>
+                                            <li><b>Blackwell-efterspørgsel:</b> Ordrebogen er fyldt frem til 2027.</li>
+                                            <li><b>Softwarefordel:</b> CUDA-platformen gør det svært for konkurrenter at vinde indpas.</li>
+                                            <li><b>Kursudvikling:</b> Steget 140% over det seneste år. Oplevede et kortvarigt "flash crash" på 10% i august 2025 pga. frygt for overinvestering i datacentre, men genvandt alt på to uger.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Roche (ROG.SW)</b></td>
+                                    <td>ca. 215 mia. CHF</td>
+                                    <td>62 mia. CHF</td>
+                                    <td>18,40 CHF</td>
+                                    <td>14,5</td>
+                                    <td>13,8</td>
+                                    <td>
+                                        <p><b>Pharma:</b> Fokus på onkologi og diagnostik.</p>
+                                        <p><i>Analytiker-konsensus (04.03.2026):</i> <b class="legal-term" data-definition="En anbefaling om hverken at købe eller sælge. Analytikeren forventer, at aktien vil udvikle sig på linje med markedet, eller at der er for stor usikkerhed til en klar købs/salgs-beslutning." data-example="En aktie er steget meget og ramt sit kursmål. Analytikeren ændrer fra &quot;Buy&quot; til &quot;Hold&quot;, da det største potentiale nu er indregnet i kursen." data-slug="hold">"Hold"</b></p>
+                                        <ul>
+                                            <li><b>Pipeline-huller:</b> Flere vigtige lægemidler har mistet patentbeskyttelse.</li>
+                                            <li><b>Diagnostik-vækst:</b> God performance i laboratorie-udstyr, men ikke nok til at drive kursen markant op.</li>
+                                            <li><b>Kursudvikling:</b> Flad udvikling over de seneste 2 år. Betragtes som en sikker havn med lav vækst.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>SAP (SAP)</b></td>
+                                    <td>ca. 230 mia. EUR</td>
+                                    <td>35 mia. EUR</td>
+                                    <td>6,20 EUR</td>
+                                    <td>35,8</td>
+                                    <td>28,4</td>
+                                    <td>
+                                        <p><b>Enterprise:</b> Cloud-transformationen er fuldført med succes.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Business AI:</b> Integration af AI i ERP-systemer øger kundeloyaliteten og priserne.</li>
+                                            <li><b>Cloud-backlog:</b> Rekordhøj ordrebeholdning sikrer indtjeningen de kommende år.</li>
+                                            <li><b>Kursudvikling:</b> Steget 35% i 2025. En af de bedst præsterende europæiske tech-aktier.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Shell (SHEL)</b></td>
+                                    <td>ca. 210 mia. GBP</td>
+                                    <td>320 mia. USD</td>
+                                    <td>4,80 USD</td>
+                                    <td>8,5</td>
+                                    <td>9,2</td>
+                                    <td>
+                                        <p><b>Energi:</b> Fokus på naturgas og aktionærafkast.</p>
+                                        <p><i>Analytiker-konsensus (02.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>LNG-dominans:</b> Shell drager fordel af Europas skift væk fra russisk gas.</li>
+                                            <li><b>Udbytte:</b> Høj direkte afkast og aggressive tilbagekøb.</li>
+                                            <li><b>Kursudvikling:</b> Steget 15% i 2025. Følger olieprisen tæt, men har outperformeret sektoren pga. gas-eksponering.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Siemens (SIE)</b></td>
+                                    <td>ca. 150 mia. EUR</td>
+                                    <td>82 mia. EUR</td>
+                                    <td>11,20 EUR</td>
+                                    <td>16,5</td>
+                                    <td>14,2</td>
+                                    <td>
+                                        <p><b>Industri 4.0:</b> Førende inden for digitalisering af produktion.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Digital Industries:</b> Høj efterspørgsel på software til fabriksautomatisering.</li>
+                                            <li><b>Smart Infrastructure:</b> Grøn omstilling af bygninger og elnet driver væksten.</li>
+                                            <li><b>Kursudvikling:</b> Steget 22% i 2025. Outperformer det generelle industrimarked.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><b>Tesla (TSLA)</b></td>
@@ -468,9 +837,65 @@
                                     <td>2,69 USD</td>
                                     <td>332,5</td>
                                     <td>172,4</td>
-                                    <td><b>Vækst/AI:</b> Prissat som teknologiselskab (FSD/Robotter), ikke blot
-                                        bilproducent. Ekstrem risiko.</td>
+                                    <td>
+                                        <p><b>Vækst/AI:</b> Prissat som teknologiselskab (FSD/Robotter), ikke blot bilproducent. Ekstrem risiko.</p>
+                                        <p><i>Analytiker-konsensus (04.03.2026):</i> <b class="legal-term" data-definition="En anbefaling om hverken at købe eller sælge. Analytikeren forventer, at aktien vil udvikle sig på linje med markedet, eller at der er for stor usikkerhed til en klar købs/salgs-beslutning." data-example="En aktie er steget meget og ramt sit kursmål. Analytikeren ændrer fra &quot;Buy&quot; til &quot;Hold&quot;, da det største potentiale nu er indregnet i kursen." data-slug="hold">"Hold"</b></p>
+                                        <ul>
+                                            <li><b>Robotaxi:</b> Lanceringen i starten af 2026 har stabiliseret kursen efter et svært 2025.</li>
+                                            <li><b>Marginpres:</b> Priskrige i Kina har barberet 5% af bruttomarginen.</li>
+                                            <li><b>Kursudvikling:</b> Meget volatil. Faldt 25% i første halvår af 2025 pga. vigende efterspørgsel på Model 3/Y, men steg 40% i Q1 2026 på AI-optimisme.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
+                                <tr>
+                                    <td><b>TotalEnergies (TTE)</b></td>
+                                    <td>ca. 165 mia. EUR</td>
+                                    <td>235 mia. USD</td>
+                                    <td>9,20 EUR</td>
+                                    <td>7,8</td>
+                                    <td>8,4</td>
+                                    <td>
+                                        <p><b>Energi:</b> Bedst i klassen til at balancere olie/gas og vedvarende energi.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Multi-energi:</b> Store investeringer i sol og vind begynder at give stabile cash flows.</li>
+                                            <li><b>Lav break-even:</b> Olieproduktionen er profitabel selv ved priser under $50.</li>
+                                            <li><b>Kursudvikling:</b> Stabil med 8% vækst in 2025 plus et attraktivt udbytte.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-2 text-muted">Tabel 5.6 — Selskabsanalyse og Aktievurdering. Kilde: Analyst Consensus Forecasts / Bloomberg (Mar 2026).</small>
+
+                    <h4 class="mt-5">Tabel 5.7 — Danske C25-cases (Status 2026)</h4>
+                    <p>For at give et mere lokalt perspektiv, ser vi her på de mest toneangivende selskaber i det danske C25-indeks. Bemærk forskellene i værdiansættelse (<span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Viser hvor mange kroner investoren betaler for hver krone opgjort indtjening og bruges til at vurdere, om en aktie er dyr eller billig i forhold til sin nuværende indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E</span>) mellem en vækstgigant som Novo Nordisk og en klassisk bank som Danske Bank.</p>
+
+                    <div class="table-wrapper-56 mt-3 mb-4">
+                        <table class="table table-striped table-bordered table-hover table-56"
+                            style="border-radius: 0 !important;">
+                            <colgroup>
+                                <col style="width: 11%">
+                                <col style="width: 10%">
+                                <col style="width: 10%">
+                                <col style="width: 8%">
+                                <col style="width: 8%">
+                                <col style="width: 8%">
+                                <col style="width: 45%">
+                            </colgroup>
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Selskab & Ticker</th>
+                                    <th>Markedsværdi</th>
+                                    <th>Omsætning 2026 (estimat)</th>
+                                    <th><span class="legal-term" data-definition="Indtjening pr. aktie. Beregnes som selskabets resultat efter skat divideret med antal udestående aktier." data-example="Et selskab med overskud på 1 mia. kr. og 10 mio. aktier har EPS = 100 kr. pr. aktie." data-slug="eps">EPS</span> 2026 (estimat)</th>
+                                    <th><span class="legal-term" data-definition="P/E beregnet ud fra den faktiske indtjening de seneste 12 måneder (TTM = Trailing Twelve Months)." data-example="Ved aktiekurs 750 kr. og EPS 25 kr. de sidste 12 måneder: P/E (TTM) = 750 ÷ 25 = 30." data-slug="pe-ttm">P/E (TTM)</span></th>
+                                    <th><span class="legal-term" data-definition="Forventet P/E baseret på analytikernes estimerede EPS for næste regnskabsår." data-example="Ved aktiekurs 850 kr. og forventet EPS næste år 50 kr. er Forward P/E = 17. Bruges til vækstaktier." data-slug="forward-pe">Forward P/E</span></th>
+                                    <th>Vurdering</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 <tr>
                                     <td><b>Novo Nordisk (NOVO B)</b></td>
                                     <td>ca. 4.800 mia. DKK</td>
@@ -478,44 +903,217 @@
                                     <td>24,20 DKK</td>
                                     <td>31,2</td>
                                     <td>28,8</td>
-                                    <td><b>Kvalitet/Vækst:</b> Stærk EPS-vækst drevet af GLP-1. Meget stabil
-                                        defensiv profil i 2026.</td>
+                                    <td>
+                                        <p><b>Kvalitet/Vækst:</b> Stærk <span class="legal-term" data-definition="Indtjening pr. aktie. Beregnes som selskabets resultat efter skat divideret med antal udestående aktier og er et centralt nøgletal i aktieanalyse." data-example="Et selskab med overskud på 1 mia. kr. og 10 mio. aktier: EPS = 1.000.000.000 kr. ÷ 10.000.000 = 100 kr. pr. aktie." data-slug="eps">EPS</span>-vækst drevet af GLP-1 (Ozempic/Wegovy).</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy" (moderat)</b></p>
+                                        <ul>
+                                            <li><b>Kursfald:</b> Aktien er faldet ca. 38% fra toppen i 2024 frem til primo 2026.</li>
+                                            <li><b>2026-Guidance:</b> Selskabet har skuffet markedet med forventning om et fald i salg og driftsindtjening på 5-13% i 2026.</li>
+                                            <li><b>Konkurrence & Politik:</b> Eli Lilly (Zepbound) vinder markedsandele, og Medicare-prisforhandlinger i USA presser avancerne markant.</li>
+                                            <li><b>Værdiansættelse:</b> Handles nu til <span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Viser hvor mange kroner investoren betaler for hver krone opgjort indtjening og bruges til at vurdere, om en aktie er dyr eller billig i forhold til sin nuværende indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E</span> 19 (estimat for 2026), hvilket er historisk billigt ift. Eli Lilly (<span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Viser hvor mange kroner investoren betaler for hver krone opgjort indtjening og bruges til at vurdere, om en aktie er dyr eller billig i forhold til sin nuværende indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E</span> 30).</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td><b>A.P. Møller - Mærsk</b></td>
+                                    <td><b>A.P. Møller - Mærsk (MAERSK B)</b></td>
                                     <td>ca. 255 mia. DKK</td>
                                     <td>54 mia. USD</td>
                                     <td>326,26 DKK (TTM)</td>
                                     <td>6,9</td>
                                     <td>395,8*</td>
-                                    <td><b>Cyklisk:</b> Lav aktuel P/E pga. historisk indtjening, men Forward
-                                        P/E signalerer normalisering.</td>
+                                    <td>
+                                        <p><b>Cyklisk:</b> Lav aktuel <span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Viser hvor mange kroner investoren betaler for hver krone opgjort indtjening og bruges til at vurdere, om en aktie er dyr eller billig i forhold til sin nuværende indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E</span> pga. historisk indtjening.</p>
+                                        <p><i>Analytiker-konsensus (03.03.2026):</i> <b class="legal-term" data-definition="En anbefaling der indikerer, at aktien forventes at klare sig dårligere end markedsgennemsnittet. Det er ofte et mildt salgssignal eller en advarsel om svagere vækst." data-example="En virksomhed mister gradvist markedsandele til konkurrenter, og analytikere vurderer, at aktien vil stige mindre – eller falde mere – end resten af sektoren." data-slug="underperform">"Underperform"</b></p>
+                                        <ul>
+                                            <li><b>Forward P/E Anomali:</b> Den ekstremt høje <span class="legal-term" data-definition="Forventet P/E baseret på analytikernes estimerede EPS for næste regnskabsår. Bruges til at vurdere, om en aktie er billig eller dyr i forhold til dens fremtidige indtjeningsevne." data-example="Ved aktiekurs 850 kr. og forventet EPS næste år 50 kr.: Forward P/E = 850 ÷ 50 = 17." data-slug="forward-pe">Forward P/E</span> på 395,8 skyldes et forventet markant dyk i indtjeningen (EPS) i 2026. Det signalerer ikke nødvendigvis en overvurdering, men snarere en normalisering efter ekstraordinære fragtrater.</li>
+                                            <li><b>Overkapacitet:</b> Mange nye skibe leveres i 2025/2026, hvilket presser raterne globalt.</li>
+                                            <li><b>Logistik-strategi:</b> Transformationen mod landbaseret logistik tager længere tid og kræver flere investeringer end oprindeligt estimeret.</li>
+                                            <li><b>Kursudvikling:</b> Faldet 22% over det seneste år. Ramt af global afmatning i varehandel og normalisering efter fragt-boomet i 2024.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>DSV (DSV)</b></td>
+                                    <td>ca. 390 mia. DKK</td>
+                                    <td>251 mia. DKK</td>
+                                    <td>82,50 DKK</td>
+                                    <td>47,9</td>
+                                    <td>21,5</td>
+                                    <td>
+                                        <p><b>Transport/Logistik:</b> Konsolideringsekspert med fokus på kapitaldisciplin.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En kraftig købsanbefaling fra analytikere, der indikerer en forventning om, at aktien vil klare sig betydeligt bedre end det generelle marked eller dens sektor over de næste 6-12 måneder." data-example="Hvis en aktie handles til kurs 100, men analytikere vurderer den retfærdige værdi til 150 pga. stærk vækst, kan de give en &quot;Strong Buy&quot; anbefaling." data-slug="strong-buy">"Strong Buy"</b></p>
+                                        <ul>
+                                            <li><b>Schenker-synergier:</b> Integrationen af DB Schenker forventes at drive markante omkostningsbesparelser i 2026/27.</li>
+                                            <li><b>Forward P/E:</b> Det store fald fra TTM til Forward afspejler analytikernes forventning om kraftig indtjeningsvækst.</li>
+                                            <li><b>Strategi:</b> Asset-light model gør selskabet ekstremt fleksibelt under skiftende globale handelsmønstre.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Vestas (VWS)</b></td>
+                                    <td>ca. 157 mia. DKK</td>
+                                    <td>157 mia. DKK (21 mia. EUR)</td>
+                                    <td>8,20 DKK (1,1 EUR)</td>
+                                    <td>27,5</td>
+                                    <td>19,8</td>
+                                    <td>
+                                        <p><b>Grøn Energi:</b> Førende inden for vindmøller med en rekordhøj ordrebeholdning.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Turnaround:</b> Efter svære år med forsyningskædeproblemer, er marginerne i 2026 igen på vej mod de historiske mål.</li>
+                                            <li><b>Service-forretning:</b> Den voksende service-division giver stabile, højmarginale indtægter, der balancerer det cykliske salg.</li>
+                                            <li><b>Udfordring:</b> Høje renter og langsomme godkendelsesprocesser for nye projekter bremser stadig væksten.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Danske Bank (DANSKE)</b></td>
+                                    <td>ca. 290 mia. DKK</td>
+                                    <td>57,5 mia. DKK</td>
+                                    <td>28,30 DKK</td>
+                                    <td>12,4</td>
+                                    <td>12,0</td>
+                                    <td>
+                                        <p><b>Finans:</b> Danmarks største bank nyder godt af et normaliseret renteniveau.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Kapitalafkast:</b> Stærke udbytter og aktietilbagekøbsprogrammer er i fokus efter afslutningen på Estland-sagen.</li>
+                                            <li><b>Effektivitet:</b> Fortsatte investeringer i digitalisering har sænket omkostningsprocenten markant.</li>
+                                            <li><b>Værdiansættelse:</b> Handles til en lav <span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Viser hvor mange kroner investoren betaler for hver krone opgjort indtjening og bruges til at vurdere, om en aktie er dyr eller billig i forhold til sin nuværende indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E</span> sammenlignet med vækstsektorer, hvilket er typisk for banksektoren.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Coloplast (COLO B)</b></td>
+                                    <td>ca. 185 mia. DKK</td>
+                                    <td>28 mia. DKK</td>
+                                    <td>22,40 DKK</td>
+                                    <td>35,2</td>
+                                    <td>32,5</td>
+                                    <td>
+                                        <p><b>Medtech:</b> Stabil vækst inden for stomi og kontinens.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b class="legal-term" data-definition="En anbefaling om hverken at købe eller sælge. Analytikeren forventer, at aktien vil udvikle sig på linje med markedet, eller at der er for stor usikkerhed til en klar købs/salgs-beslutning." data-example="En aktie er steget meget og ramt sit kursmål. Analytikeren ændrer fra &quot;Buy&quot; til &quot;Hold&quot;, da det største potentiale nu er indregnet i kursen." data-slug="hold">"Hold"</b></p>
+                                        <ul>
+                                            <li><b>Kerasoft-integration:</b> Opkøbet styrker positionen inden for avanceret sårpleje.</li>
+                                            <li><b>Defensiv kvalitet:</b> Høj kundeloyalitet og stabile marginer gør aktien til en sikker havn i urolige tider.</li>
+                                            <li><b>Værdiansættelse:</b> Handles altid til en høj <span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Viser hvor mange kroner investoren betaler for hver krone opgjort indtjening og bruges til at vurdere, om en aktie er dyr eller billig i forhold til sin nuværende indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E</span> pga. den lave risikoprofil.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Carlsberg (CARL B)</b></td>
+                                    <td>ca. 135 mia. DKK</td>
+                                    <td>78 mia. DKK</td>
+                                    <td>52,10 DKK</td>
+                                    <td>18,5</td>
+                                    <td>16,2</td>
+                                    <td>
+                                        <p><b>Forbrug:</b> Fokus på premium-mærker og vækst i Asien.</p>
+                                        <p><i>Analytiker-konsensus (04.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Beyond Beer:</b> Satsning på alkoholfrie øl og cider driver væksten i Europa.</li>
+                                            <li><b>Omkostningsfokus:</b> "Sail'27" strategien leverer fortsat effektivitetsforbedringer.</li>
+                                            <li><b>Risiko:</b> Råvarepriser og valutamodvind i vækstmarkeder er de primære usikkerhedsfaktorer.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Genmab (GMAB)</b></td>
+                                    <td>ca. 125 mia. DKK</td>
+                                    <td>19 mia. DKK</td>
+                                    <td>115,00 DKK</td>
+                                    <td>18,2</td>
+                                    <td>15,8</td>
+                                    <td>
+                                        <p><b>Biotech:</b> Verdensførende inden for antistof-teknologi.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Darzalex-royalties:</b> Fortsat stærk pengestrøm fra eksisterende partnerskaber.</li>
+                                            <li><b>Pipeline:</b> Flere lovende kandidater i fase 3 mindsker afhængigheden af enkelte produkter.</li>
+                                            <li><b>Værdiansættelse:</b> <span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Viser hvor mange kroner investoren betaler for hver krone opgjort indtjening og bruges til at vurdere, om en aktie er dyr eller billig i forhold til sin nuværende indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E</span> er faldet markant i takt med at selskabet er modnet og genererer store overskud.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Pandora (PNDORA)</b></td>
+                                    <td>ca. 95 mia. DKK</td>
+                                    <td>31 mia. DKK</td>
+                                    <td>82,40 DKK</td>
+                                    <td>14,5</td>
+                                    <td>12,8</td>
+                                    <td>
+                                        <p><b>Luksus:</b> Succesfuld transformation til et globalt smykkebrand.</p>
+                                        <p><i>Analytiker-konsensus (05.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Lab-grown diamonds:</b> Stor succes med bæredygtige diamanter åbner nye kundesegmenter.</li>
+                                            <li><b>Direkte salg:</b> Øget fokus på egne butikker og online salg løfter marginerne.</li>
+                                            <li><b>Udbytte:</b> Meget stærk cash flow generering muliggør store aktietilbagekøb.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Novonesis (NSIS B)</b></td>
+                                    <td>ca. 110 mia. DKK</td>
+                                    <td>29 mia. DKK</td>
+                                    <td>12,50 DKK</td>
+                                    <td>32,4</td>
+                                    <td>28,5</td>
+                                    <td>
+                                        <p><b>Biosolutions:</b> Giganten skabt ved fusionen af Novozymes og Chr. Hansen.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>Synergieffekter:</b> Integrationen forløber hurtigere end planlagt med markante besparelser.</li>
+                                            <li><b>Bæredygtighed:</b> Produkterne er centrale for den grønne omstilling i fødevare- og vaskeindustrien.</li>
+                                            <li><b>Markedsposition:</b> Unik portefølje af enzymer og mikroorganismer giver en stærk og varig konkurrencefordel.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Ørsted (ORSTED)</b></td>
+                                    <td>ca. 185 mia. DKK</td>
+                                    <td>82 mia. DKK</td>
+                                    <td>15,20 DKK</td>
+                                    <td>28,4</td>
+                                    <td>18,5</td>
+                                    <td>
+                                        <p><b>Energi:</b> Verdensleder i havvind i en svær turnaround-fase.</p>
+                                        <p><i>Analytiker-konsensus (03.03.2026):</i> <b class="legal-term" data-definition="En anbefaling om hverken at købe eller sælge. Analytikeren forventer, at aktien vil udvikle sig på linje med markedet, eller at der er for stor usikkerhed til en klar købs/salgs-beslutning." data-example="En aktie er steget meget og ramt sit kursmål. Analytikeren ændrer fra &quot;Buy&quot; til &quot;Hold&quot;, da det største potentiale nu er indregnet i kursen." data-slug="hold">"Hold"</b></p>
+                                        <ul>
+                                            <li><b>Porteføljerensning:</b> Exit fra visse amerikanske projekter har stabiliseret balancen.</li>
+                                            <li><b>Rente-sensitivitet:</b> Faldende renter i 2026 er en stor fordel for kapitaltunge projekter.</li>
+                                            <li><b>Tillid:</b> Markedet afventer beviser på, at de nye projekter kan levere de lovede afkast.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Jyske Bank (JYSK)</b></td>
+                                    <td>ca. 42 mia. DKK</td>
+                                    <td>12 mia. DKK</td>
+                                    <td>85,40 DKK</td>
+                                    <td>7,2</td>
+                                    <td>6,8</td>
+                                    <td>
+                                        <p><b>Finans:</b> Fokus på det danske privat- og erhvervsmarked.</p>
+                                        <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
+                                        <ul>
+                                            <li><b>PFA Bank integration:</b> Opkøbet har styrket positionen inden for formuepleje markant.</li>
+                                            <li><b>Effektivitet:</b> En af de mest veldrevne banker i Norden med lave omkostninger.</li>
+                                            <li><b>Værdiansættelse:</b> Handles til en attraktiv rabat ift. de nordiske storbanker.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <small class="d-block text-left mt-2 text-muted">Tabel 5.6 — Selskabsanalyse og Aktievurdering.
-                        *Forward P/E for Mærsk er volatil pga.
-                        fragtraternes konjunkturfølsomhed. Kilde: Analyst Consensus Forecasts / Bloomberg (Mar
-                        2026).</small>
+                    <small class="d-block text-left mt-2 text-muted">Tabel 5.7 — Danske C25-cases (Status 2026). *Forward P/E for Mærsk er volatil pga. fragtraternes konjunkturfølsomhed. Kilde: Analyst Consensus / Selskabsmeddelelser (Mar 2026).</small>
 
-                    <div class="mt-4 p-4 bg-light border-left border-dark" style="border-radius: 0 !important;">
-                        <h5>Rådgiverens Analyseværktøjer</h5>
-                        <p>For at forstå tallene herover, skal vi bruge to perspektiver:</p>
-                        <p><b>1. Forward P/E vs. Historisk P/E:</b> Hvis Forward P/E er lavere end Historisk P/E
-                            (som hos Nvidia), betyder det, at markedet forventer, at selskabet "vokser ind i"
-                            sin høje pris gennem øget indtjening. Hvis selskabet skuffer på EPS (indtjening pr.
-                            <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term" data-slug="aktier">aktie</span>), vil <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat."
-                                class="legal-term" data-slug="aktier">aktien</span>
-                            falde markant for at genfinde balancen.
-                        </p>
-                        <p><b>2. Market Cap Betydning:</b> Markedsværdien fortæller os om selskabets samlede
-                            størrelse. Novo Nordisk er nu det største selskab i Europa målt på Market Cap,
-                            hvilket indebærer, at store institutionelle investorer (pensionskasser) er forpligtede til at eje
-                            <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term" data-slug="aktier">aktien</span>,
-                            hvilket skaber en underliggende købsstøtte.
-                        </p>
-                    </div>
+                    <small class="d-block text-left mt-3 text-muted">
+                        <b>Rådgiverens Analyseværktøjer & Markedsdynamik</b><br>
+                        For at forstå tallene i Tabel 5.6 og 5.7, skal vi bruge tre centrale perspektiver:<br><br>
+                        <b>1. <span class="legal-term" data-definition="Forventet P/E baseret på analytikernes estimerede EPS for næste regnskabsår. Bruges til at vurdere, om en aktie er billig eller dyr i forhold til dens fremtidige indtjeningsevne." data-example="Ved aktiekurs 850 kr. og forventet EPS næste år 50 kr.: Forward P/E = 850 ÷ 50 = 17." data-slug="forward-pe">Forward P/E</span> vs. <span class="legal-term" data-definition="P/E beregnet ud fra den faktiske indtjening de seneste 12 måneder (TTM = Trailing Twelve Months). Bruges til at få et bagudskuende, realiseret billede af værdiansættelsen." data-example="Ved aktiekurs 750 kr. og EPS 25 kr. de sidste 12 måneder: P/E (TTM) = 750 ÷ 25 = 30." data-slug="pe-ttm">Historisk P/E</span>:</b> Hvis <span class="legal-term" data-definition="Forventet P/E baseret på analytikernes estimerede EPS for næste regnskabsår. Bruges til at vurdere, om en aktie er billig eller dyr i forhold til dens fremtidige indtjeningsevne." data-example="Ved aktiekurs 850 kr. og forventet EPS næste år 50 kr.: Forward P/E = 850 ÷ 50 = 17." data-slug="forward-pe">Forward P/E</span> er lavere end <span class="legal-term" data-definition="P/E beregnet ud fra den faktiske indtjening de seneste 12 måneder (TTM = Trailing Twelve Months). Bruges til at få et bagudskuende, realiseret billede af værdiansættelsen." data-example="Ved aktiekurs 750 kr. og EPS 25 kr. de sidste 12 måneder: P/E (TTM) = 750 ÷ 25 = 30." data-slug="pe-ttm">Historisk P/E</span> (som hos DSV), betyder det, at markedet forventer, at selskabet "vokser ind i" sin pris gennem øget indtjening. Hvis selskabet skuffer på <span class="legal-term" data-definition="Indtjening pr. aktie. Beregnes som selskabets resultat efter skat divideret med antal udestående aktier og er et centralt nøgletal i aktieanalyse." data-example="Et selskab med overskud på 1 mia. kr. og 10 mio. aktier: EPS = 1.000.000.000 kr. ÷ 10.000.000 = 100 kr. pr. aktie." data-slug="eps">EPS</span> (indtjening pr. <span class="legal-term" data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." data-slug="aktier">aktie</span>), vil <span class="legal-term" data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." data-slug="aktier">aktien</span> falde markant for at genfinde balancen.<br><br>
+                        <b>2. Market Cap Betydning:</b> Markedsværdien fortæller os om selskabets samlede størrelse. Novo Nordisk er nu det største selskab i Europa målt på Market Cap, hvilket indebærer, at store institutionelle investorer (pensionskasser) er forpligtede til at eje <span class="legal-term" data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." data-slug="aktier">aktien</span>, hvilket skaber en underliggende købsstøtte.<br><br>
+                        <b>3. Sektor-benchmarking:</b> En <span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Viser hvor mange kroner investoren betaler for hver krone opgjort indtjening og bruges til at vurdere, om en aktie er dyr eller billig i forhold til sin nuværende indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E</span> på 12 kan virke "billig", men for en bank som Danske Bank er det normalt, da banksektoren ofte handles til lavere multipler pga. regulatoriske krav og kapitalbinding. Omvendt kan en <span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Viser hvor mange kroner investoren betaler for hver krone opgjort indtjening og bruges til at vurdere, om en aktie er dyr eller billig i forhold til sin nuværende indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E</span> på 30 for Novo Nordisk være "rimelig" for en vækstaktie med høj indtjeningsvækst og stærk patentbeskyttelse.
+                    </small>
                 </div>
 
                 <h2>5.7 Obligationer: Typer, SDRO og Rentedannelse</h2>
@@ -567,16 +1165,14 @@
                     <div class="mt-4">
                         <h4>Centrale Begreber for Rådgiveren</h4>
 
-                        <div class="info-box reveal-on-scroll borderless p-3 mb-3 bg-light"
-                            style="border-radius: 0 !important;">
+                        <div class="tip-box mb-3">
                             <h5><i class="bi bi-clock-history mr-2"></i>Varighed (Duration)</h5>
                             <p>Mål for rentefølsomhed. Hvis varigheden er 5, og renten stiger 1%, falder kursen
                                 med ca. 5%. <i>Kort varighed = lav risiko.</i> For en rådgiver er varigheden
                                 nøglen til at matche kundens tidshorisont med aktivet.</p>
                         </div>
 
-                        <div class="info-box reveal-on-scroll borderless p-3 mb-3 bg-light"
-                            style="border-radius: 0 !important;">
+                        <div class="tip-box mb-3">
                             <h5><i class="bi bi-arrow-repeat mr-2"></i>Konvertible (Callable)</h5>
                             <p><span data-definition="Standardiserede gældsbreve udstedt af stater, realkreditinstitutter eller virksomheder; investoren udlåner kapital mod en fastsat rente (kupon)." data-example="Ved køb af en statsobligation låner du penge til den danske stat mod at modtage en fast årlig rentebetaling." class="legal-term" data-slug="obligationer">Obligationer</span>
                                 hvor låntager kan indfri til kurs 100. Giver investor en
@@ -585,8 +1181,7 @@
                                 afkast.</p>
                         </div>
 
-                        <div class="info-box reveal-on-scroll borderless p-3 mb-3 bg-light"
-                            style="border-radius: 0 !important;">
+                        <div class="tip-box mb-3">
                             <h5><i class="bi bi-calculator mr-2"></i>Vedhængende Rente</h5>
                             <p>Den rente køber betaler til sælger for perioden fra sidste termin til
                                 handelsdagen. Dette sikrer en retfærdig fordeling af renteafkastet mellem
@@ -594,8 +1189,7 @@
                                 realkreditobligationer.</p>
                         </div>
 
-                        <div class="info-box reveal-on-scroll borderless p-3 mb-3 bg-light"
-                            style="border-radius: 0 !important;">
+                        <div class="tip-box mb-3">
                             <h5><i class="bi bi-shield-lock mr-2"></i>SDRO Status</h5>
                             <p>Særligt Dækkede Realkreditobligationer. Investorer har en priviligeret
                                 retsstilling og fortrinsret i tilfælde af instituttets konkurs. Lovgivningen
@@ -627,35 +1221,210 @@
                             <tbody>
                                 <tr>
                                     <td><b>Forvaltningsstil</b></td>
-                                    <td>Typisk passiv (indeks)</td>
-                                    <td>Aktiv eller passiv</td>
-                                    <td>Meget aktiv / Absolut afkast</td>
+                                    <td>
+                                        <p><b>Typisk passiv (indeks):</b></p>
+                                        <ul>
+                                            <li>Følger et fastlagt markedsindeks (fx S&P 500).</li>
+                                            <li>Ingen aktiv udvælgelse af enkeltaktier.</li>
+                                            <li>Målet er markedsafkastet (Beta).</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <p><b>Aktiv eller passiv:</b></p>
+                                        <ul>
+                                            <li><b>Aktiv:</b> Porteføljeforvaltere forsøger at slå markedet (Alpha).</li>
+                                            <li><b>Passiv:</b> Ligesom ETF'er følger de et indeks, men ofte med højere omkostninger.</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <p><b>Meget aktiv / Absolut afkast:</b></p>
+                                        <ul>
+                                            <li>Målet er positivt afkast uanset markedsretning.</li>
+                                            <li>Bruger avancerede værktøjer som shorting og gearing.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><b>Omkostninger (<span data-definition="Årlige Omkostninger i Procent; et standardiseret mål for de samlede omkostninger ved et lån (renter, gebyrer, forsikring) udtrykt som en årlig procentsats." data-example="Ved sammenligning af to boliglån er ÅOP det bedste mål, da det medregner alle gebyrer og ikke kun renten." class="legal-term" data-slug="aop">ÅOP</span>)</b>
                                     </td>
-                                    <td>Meget lave (0,05 - 0,30 %)</td>
-                                    <td>Middel (0,50 - 1,80 %)</td>
-                                    <td>Meget høje (2 % + 20 % successfee)</td>
+                                    <td>
+                                        <p><b>Meget lave (0,05 - 0,30 %):</b></p>
+                                        <ul>
+                                            <li>Ingen dyre forvalterlønninger.</li>
+                                            <li>Stordriftsfordele hos globale udbydere (BlackRock, Vanguard).</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <p><b>Middel (0,40 - 1,80 %):</b></p>
+                                        <ul>
+                                            <li>Dækker administration, rådgivning og aktiv forvaltning.</li>
+                                            <li>Passive danske fonde ligger typisk i den lave ende (0,40-0,60 %).</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <p><b>Meget høje (2 % + 20 % successfee):</b></p>
+                                        <ul>
+                                            <li>Fast forvaltningshonorar (2 %).</li>
+                                            <li>Performance-gebyr (typisk 20 % af afkast over en "high water mark").</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><b>Beskatning (Frie midler)</b></td>
-                                    <td>Lagerbeskatning (<span data-definition="Skattepligtig indkomst hidrørende fra aktieudbytter og realiserede kursgevinster på aktier. Beskattes efter et progressivt to-leddet system (27 % / 42 % i 2026). Beskatningen sker efter realisationsprincippet for de fleste aktier i frie midler." data-example="Realiserer du en gevinst på 100.000 kr. ved salg af aktier, betaler du 27 % af de første 61.000 kr. (2026-sats) og 42 % af de resterende 39.000 kr." class="legal-term" data-slug="aktieindkomst">Aktieindkomst</span>
-                                        hvis på positivliste)</td>
-                                    <td>Realisationsbeskatning (hvis udbyttebetalende)</td>
-                                    <td><span data-definition="Indkomst fra renteindtægter, kursgevinster på obligationer og afkast fra visse investeringsformer (fx akkumulerende fonde), der beskattes særskilt fra personlig indkomst. Skatten ligger typisk mellem 37 % og 42 % afhængig af dine øvrige forhold." data-example="Modtager du 10.000 kr. i rente fra en bankbog, beskattes beløbet som kapitalindkomst. Har du negativ kapitalindkomst (fx pga. renter på lån), giver det et skattefradrag." class="legal-term" data-slug="kapitalindkomst">Kapitalindkomst</span>
-                                        / Lager</td>
+                                    <td>
+                                        <p><b><span class="legal-term" data-slug="lagerbeskatning" data-definition="Beskatning efter lagerprincippet betyder, at du beskattes af årets værdistigning på dine investeringer uanset om du sælger eller ej. Gevinster og tab afregnes årligt til markedsværdi. For ETF'er og visse fonde på Skats positivliste gælder lagerbeskatning som aktieindkomst (27 % / 42 %). ASK og pensionsmidler bruger også lagerprincippet, men med lavere satser." data-example="Du har en ETF til 100.000 kr., som stiger til 110.000 kr. i løbet af året. Selv om du ikke sælger, skal du betale skat af de 10.000 kr. i urealiserede gevinster det år.">Lagerbeskatning</span>:</b></p>
+                                        <ul>
+                                            <li>Beskattes som <span class="legal-term" data-slug="aktieindkomst" data-definition="Skattepligtig indkomst hidrørende fra aktieudbytter og realiserede kursgevinster på aktier. Beskattes efter et progressivt to-leddet system (27 % / 42 % i 2026). Beskatningen sker efter realisationsprincippet for de fleste aktier i frie midler." data-example="Realiserer du en gevinst på 100.000 kr. ved salg af aktier, betaler du 27 % af de første 61.000 kr. (2026-sats) og 42 % af de resterende 39.000 kr.">Aktieindkomst</span>, hvis fonden er på Skats positivliste.</li>
+                                            <li>Årlig afregning af urealiserede gevinster.</li>
+                                            <li>Særligt velegnet til <span class="legal-term" data-definition="En dedikeret investeringskonto med lav beskatning på 17 %, målrettet private investorer. Gevinster beskattes efter lagerprincippet, hvilket betyder årlig afregning af urealiserede gevinster. Fordelen er, at afkastet ikke modregnes i folkepensionens tillæg." data-example="Et afkast på 10.000 kr. på din aktiesparekonto fører ikke til modregning i folkepensionens tillæg, mens 10.000 kr. i renteindtagter fra frie midler ville kunne gøre det." data-slug="aktiesparekonto">Aktiesparekonto</span> (ASK).</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <p><b><span class="legal-term" data-slug="realisationsbeskatning" data-definition="Beskatning først når du realiserer gevinsten – dvs. sælger investeringen eller modtager udbytte. Du betaler altså ikke skat af urealiserede kursstigninger år for år. Udbyttebetalende danske investeringsforeninger beskattes typisk efter realisationsprincippet som aktieindkomst (27 % / 42 %). Fordelen er skatteudskydelse: du kan lade gevinster vokse uden at betale skat, før du sælger." data-example="Du køber en dansk investeringsforening for 100.000 kr. Efter 5 år er den 150.000 kr. værd. Du betaler først skat af de 50.000 kr., når du sælger – ikke løbende hvert år.">Realisationsbeskatning</span>:</b></p>
+                                        <ul>
+                                            <li>Gælder for udbyttebetalende fonde.</li>
+                                            <li>Skat betales kun ved salg eller modtagelse af udbytte.</li>
+                                            <li>Mulighed for betydelig skatteudskydelse over mange år.</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <p><b><span data-definition="Indkomst fra renteindtægter, kursgevinster på obligationer og afkast fra visse investeringsformer (fx akkumulerende fonde), der beskattes særskilt fra personlig indkomst. Skatten ligger typisk mellem 37 % og 42 % afhængig af dine øvrige forhold." data-example="Modtager du 10.000 kr. i rente fra en bankbog, beskattes beløbet som kapitalindkomst. Har du negativ kapitalindkomst (fx pga. renter på lån), giver det et skattefradrag." class="legal-term" data-slug="kapitalindkomst">Kapitalindkomst</span> / <span class="legal-term" data-slug="lagerbeskatning" data-definition="Beskatning efter lagerprincippet betyder, at du beskattes af årets værdistigning på dine investeringer uanset om du sælger eller ej. Gevinster og tab afregnes årligt til markedsværdi. For ETF'er og visse fonde på Skats positivliste gælder lagerbeskatning som aktieindkomst (27 % / 42 %). ASK og pensionsmidler bruger også lagerprincippet, men med lavere satser." data-example="Du har en ETF til 100.000 kr., som stiger til 110.000 kr. i løbet af året. Selv om du ikke sælger, skal du betale skat af de 10.000 kr. i urealiserede gevinster det år.">Lager</span>:</b></p>
+                                        <ul>
+                                            <li>Ofte beskattet som kapitalindkomst (højere sats).</li>
+                                            <li>Lagerbeskatning er standard.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><b>Likviditet</b></td>
-                                    <td>Høj (handles som <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term" data-slug="aktier">aktier</span>)
+                                    <td>
+                                        <p><b>Høj (handles som <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term" data-slug="aktier">aktier</span>):</b></p>
+                                        <ul>
+                                            <li>Kan købes og sælges i realtid på børsen.</li>
+                                            <li>Smalle spreads (forskel på købs- og salgspris) på store ETF'er.</li>
+                                        </ul>
                                     </td>
-                                    <td>Høj (emission/indløsning)</td>
-                                    <td>Lav (ofte lock-up perioder)</td>
+                                    <td>
+                                        <p><b>Høj (emission/indløsning):</b></p>
+                                        <ul>
+                                            <li>Handel sker typisk én gang dagligt til en beregnet indre værdi.</li>
+                                            <li>Garanteret indløsning af foreningen.</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <p><b>Lav (ofte lock-up perioder):</b></p>
+                                        <ul>
+                                            <li>Investorer kan ofte kun trække penge ud kvartalsvis eller årligt.</li>
+                                            <li>Kræver ofte 1-3 års binding ("lock-up").</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Udbredelse & Tilgængelighed</b></td>
+                                    <td>
+                                        <p><b>Eksplosiv vækst:</b></p>
+                                        <ul>
+                                            <li>Standardvalg for moderne private investorer.</li>
+                                            <li>Over 10 billioner USD forvaltet globalt.</li>
+                                            <li>Tilgængelig for alle via handelsplatforme.</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <p><b>Dominerende i Danmark:</b></p>
+                                        <ul>
+                                            <li>Mest udbredt til frie midler pga. skatteregler.</li>
+                                            <li>Findes i næsten alle danske bankdepoter.</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <p><b>Eksklusivt:</b></p>
+                                        <ul>
+                                            <li>Primært for professionelle og formuende (HNWI).</li>
+                                            <li>Minimumsinvestering ofte 1-5 mio. kr.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+
+                    <h4 class="mt-5">Tabel 5.8 — Eksempler på populære fonde (2026 Status)</h4>
+                    <p>Herunder ses konkrete eksempler på fonde, der ofte anvendes af danske investorer til at opbygge en balanceret portefølje. Bemærk forskellen i ÅOP og beskatningstype.</p>
+
+                    <div class="table-wrapper-56 mt-3 mb-4">
+                        <table class="table table-striped table-bordered table-hover table-56"
+                            style="border-radius: 0 !important;">
+                            <colgroup>
+                                <col style="width: 20%">
+                                <col style="width: 15%">
+                                <col style="width: 10%">
+                                <col style="width: 15%">
+                                <col style="width: 40%">
+                            </colgroup>
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Fond & Ticker</th>
+                                    <th>Type</th>
+                                    <th>ÅOP</th>
+                                    <th>Skat (Frie midler)</th>
+                                    <th>Egenskaber & Anvendelse</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>iShares Core MSCI World (EUNL)</b></td>
+                                    <td>ETF (Passiv)</td>
+                                    <td>0,20 %</td>
+                                    <td><span class="legal-term" data-slug="lagerbeskatning" data-definition="Beskatning efter lagerprincippet betyder, at du beskattes af årets værdistigning på dine investeringer uanset om du sælger eller ej. Gevinster og tab afregnes årligt til markedsværdi. For ETF'er og visse fonde på Skats positivliste gælder lagerbeskatning som aktieindkomst (27 % / 42 %). ASK og pensionsmidler bruger også lagerprincippet, men med lavere satser." data-example="Du har en ETF til 100.000 kr., som stiger til 110.000 kr. i løbet af året. Selv om du ikke sælger, skal du betale skat af de 10.000 kr. i urealiserede gevinster det år.">Lager</span> (Aktieindkomst*)</td>
+                                    <td>
+                                        <p><b>Global eksponering:</b> Følger over 1.500 selskaber i udviklede lande.</p>
+                                        <p><i>Status 2026:</i> Standardvalg til <span class="legal-term" data-definition="En dedikeret investeringskonto med lav beskatning på 17 %, målrettet private investorer. Gevinster beskattes efter lagerprincippet, hvilket betyder årlig afregning af urealiserede gevinster. Fordelen er, at afkastet ikke modregnes i folkepensionens tillæg." data-example="Et afkast på 10.000 kr. på din aktiesparekonto fører ikke til modregning i folkepensionens tillæg, mens 10.000 kr. i renteindtagter fra frie midler ville kunne gøre det." data-slug="aktiesparekonto">Aktiesparekonto</span> pga. lav ÅOP og bred spredning.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Danske Inv Global Indeks (DKIGI)</b></td>
+                                    <td>Inv.forening (Passiv)</td>
+                                    <td>0,40 %</td>
+                                    <td><span class="legal-term" data-slug="realisationsbeskatning" data-definition="Beskatning først når du realiserer gevinsten – dvs. sælger investeringen eller modtager udbytte. Du betaler altså ikke skat af urealiserede kursstigninger år for år. Udbyttebetalende danske investeringsforeninger beskattes typisk efter realisationsprincippet som aktieindkomst (27 % / 42 %). Fordelen er skatteudskydelse: du kan lade gevinster vokse uden at betale skat, før du sælger." data-example="Du køber en dansk investeringsforening for 100.000 kr. Efter 5 år er den 150.000 kr. værd. Du betaler først skat af de 50.000 kr., når du sælger – ikke løbende hvert år.">Realisation</span> (Aktieindkomst)</td>
+                                    <td>
+                                        <p><b>Skatteoptimering:</b> Udbyttebetalende dansk fond, der muliggør udskydelse af skat på kursgevinster.</p>
+                                        <p><i>Anvendelse:</i> Ideel til store depoter i frie midler, hvor man ønsker <span class="legal-term" data-slug="realisationsbeskatning" data-definition="Beskatning først når du realiserer gevinsten – dvs. sælger investeringen eller modtager udbytte. Du betaler altså ikke skat af urealiserede kursstigninger år for år. Udbyttebetalende danske investeringsforeninger beskattes typisk efter realisationsprincippet som aktieindkomst (27 % / 42 %). Fordelen er skatteudskydelse: du kan lade gevinster vokse uden at betale skat, før du sælger." data-example="Du køber en dansk investeringsforening for 100.000 kr. Efter 5 år er den 150.000 kr. værd. Du betaler først skat af de 50.000 kr., når du sælger – ikke løbende hvert år.">realisationsbeskatning</span>.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>iShares S&P 500 (SXR8)</b></td>
+                                    <td>ETF (Passiv)</td>
+                                    <td>0,07 %</td>
+                                    <td><span class="legal-term" data-slug="lagerbeskatning" data-definition="Beskatning efter lagerprincippet betyder, at du beskattes af årets værdistigning på dine investeringer uanset om du sælger eller ej. Gevinster og tab afregnes årligt til markedsværdi. For ETF'er og visse fonde på Skats positivliste gælder lagerbeskatning som aktieindkomst (27 % / 42 %). ASK og pensionsmidler bruger også lagerprincippet, men med lavere satser." data-example="Du har en ETF til 100.000 kr., som stiger til 110.000 kr. i løbet af året. Selv om du ikke sælger, skal du betale skat af de 10.000 kr. i urealiserede gevinster det år.">Lager</span> (Aktieindkomst*)</td>
+                                    <td>
+                                        <p><b>USA-fokus:</b> Eksponering mod de 500 største amerikanske selskaber (inkl. Big Tech).</p>
+                                        <p><i>Bemærk:</i> Ekstremt billig adgang til det amerikanske marked. Findes på Skats positivliste.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Sparinvest Index Alle Aktier (SPVIGAKL)</b></td>
+                                    <td>Inv.forening (Passiv)</td>
+                                    <td>0,50 %</td>
+                                    <td><span class="legal-term" data-slug="realisationsbeskatning" data-definition="Beskatning først når du realiserer gevinsten – dvs. sælger investeringen eller modtager udbytte. Du betaler altså ikke skat af urealiserede kursstigninger år for år. Udbyttebetalende danske investeringsforeninger beskattes typisk efter realisationsprincippet som aktieindkomst (27 % / 42 %). Fordelen er skatteudskydelse: du kan lade gevinster vokse uden at betale skat, før du sælger." data-example="Du køber en dansk investeringsforening for 100.000 kr. Efter 5 år er den 150.000 kr. værd. Du betaler først skat af de 50.000 kr., når du sælger – ikke løbende hvert år.">Realisation</span> (Aktieindkomst)</td>
+                                    <td>
+                                        <p><b>Alt-i-én:</b> Dækker både udviklede markeder og emerging markets i én fond.</p>
+                                        <p><i>Fordel:</i> Simpel løsning for investorer, der kun ønsker én fond med dansk <span class="legal-term" data-slug="realisationsbeskatning" data-definition="Beskatning først når du realiserer gevinsten – dvs. sælger investeringen eller modtager udbytte. Du betaler altså ikke skat af urealiserede kursstigninger år for år. Udbyttebetalende danske investeringsforeninger beskattes typisk efter realisationsprincippet som aktieindkomst (27 % / 42 %). Fordelen er skatteudskydelse: du kan lade gevinster vokse uden at betale skat, før du sælger." data-example="Du køber en dansk investeringsforening for 100.000 kr. Efter 5 år er den 150.000 kr. værd. Du betaler først skat af de 50.000 kr., når du sælger – ikke løbende hvert år.">realisationsbeskatning</span>.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>iShares Core MSCI EM IMI (IS3N)</b></td>
+                                    <td>ETF (Passiv)</td>
+                                    <td>0,18 %</td>
+                                    <td><span class="legal-term" data-slug="lagerbeskatning" data-definition="Beskatning efter lagerprincippet betyder, at du beskattes af årets værdistigning på dine investeringer uanset om du sælger eller ej. Gevinster og tab afregnes årligt til markedsværdi. For ETF'er og visse fonde på Skats positivliste gælder lagerbeskatning som aktieindkomst (27 % / 42 %). ASK og pensionsmidler bruger også lagerprincippet, men med lavere satser." data-example="Du har en ETF til 100.000 kr., som stiger til 110.000 kr. i løbet af året. Selv om du ikke sælger, skal du betale skat af de 10.000 kr. i urealiserede gevinster det år.">Lager</span> (Aktieindkomst*)</td>
+                                    <td>
+                                        <p><b>Vækstmarkeder:</b> Eksponering mod Kina, Indien, Taiwan og Brasilien.</p>
+                                        <p><i>Risiko:</i> Højere volatilitet end globale indeks, men nødvendig for fuld geografisk spredning.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="d-block text-left mt-2 text-muted">Tabel 5.8 — Eksempler på populære fonde. *Forudsætter at ETF'en er optaget på Skats positivliste. Kilde: Morningstar / Udbyderdata (Mar 2026).</small>
                 </div>
 
                 <h2>5.9 Alternative Investeringer: Hedgefonde</h2>
@@ -709,11 +1478,10 @@
                         gennem præcis brug af nøgletal.
                     </p>
 
-                    <div class="info-box reveal-on-scroll borderless p-3 mb-3 bg-light"
-                        style="border-radius: 0 !important;">
-                        <h6><b>Sharpe Ratio</b> — <span class="legal-term"
+                    <div class="tip-box mb-3">
+                        <h6><b>Sharpe Ratio</b> <span class="legal-term"
                                 data-definition="Mål for risikojusteret afkast. Jo højere, jo bedre."
-                                data-slug="sharpe-ratio">Token</span></h6>
+                                data-slug="sharpe-ratio"></span></h6>
                         <p><small>Formel: (Afkast - Risikofri rente) / Standardafvigelse</small></p>
                         <p>Viser hvor meget afkast man får pr. risikoenhed. Hvis <b>Sharpe Ratio er negativ</b>,
                             betyder det, at kunden har påtaget sig risiko for at få et afkast, der er
@@ -722,21 +1490,17 @@
                         </p>
                     </div>
 
-                    <div class="info-box reveal-on-scroll borderless p-3 mb-3 bg-light"
-                        style="border-radius: 0 !important;">
-                        <h6><b>Alpha (α)</b> — <span class="legal-term"
+                    <div class="tip-box mb-3">
+                        <h6><b>Alpha (α)</b> <span class="legal-term"
                                 data-definition="Merafkastet i forhold til et benchmark efter risikojustering."
-                                data-slug="alpha">Token</span></h6>
+                                data-slug="alpha"></span></h6>
                         <p>Udtryk for merværdi skabt af forvalteren. Hvis Alpha er 2%, har investeringen klaret
                             sig 2% bedre end sit benchmark efter risikojustering. Dette er det ultimative mål
                             for aktiv forvaltning.</p>
                     </div>
 
-                    <div class="info-box reveal-on-scroll borderless p-3 mb-3 bg-light"
-                        style="border-radius: 0 !important;">
-                        <h6><b>Beta (β)</b> — <span class="legal-term"
-                                data-definition="Mål for en akties følsomhed over for markedsbevægelser."
-                                data-slug="beta">Token</span></h6>
+                    <div class="tip-box mb-3">
+                        <h6><b>Beta (β)</b> <span class="legal-term" data-definition="Mål for en akties følsomhed over for markedsbevægelser. Beta = 1 følger markedet; beta 1,5 svinger 50 % mere." data-example="Aktie med beta 1,5: Ved markedsfald 10 % falder aktien ca. 1,5 × 10 % = 15 %." data-slug="beta"></span></h6>
                         <p>Følsomhed over for markedet. Beta = 1,0 følger markedet præcis. Beta 1,5 svinger 50%
                             mere end markedet (f.eks. Mærsk i visse perioder). Defensive <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term"
                                 data-slug="aktier">aktier</span>
@@ -745,22 +1509,31 @@
                     </div>
 
                     <div class="mt-4 p-4 border shadow-sm"
-                        style="border-radius: 0 !important; background-color: #ffffff;">
-                        <h4>Markowitz' Porteføljeteori (MPT)</h4>
-                        <p>Harry Markowitz beviste matematisk, at man kan nedsætte risikoen uden at nedsætte det
-                            forventede afkast gennem <b>diversificering</b>. Nøglen er at kombinere aktiver med
-                            <i>lav korrelation</i>.
-                        </p>
-                        <ul>
-                            <li><b>Efficient Frontier:</b> Kurven der viser de porteføljer, som giver det
-                                højeste afkast for et givet risikoniveau. En optimal portefølje ligger altid på
-                                denne linje.</li>
-                            <li><b>Korrelation:</b> Et mål mellem -1 og +1. Hvis to aktiver har en korrelation
-                                på -1, bevæger de sig modsat hinanden. Ved at blande <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term"
-                                    data-slug="aktier">aktier</span>
-                                med <span data-definition="Standardiserede gældsbreve udstedt af stater, realkreditinstitutter eller virksomheder; investoren udlåner kapital mod en fastsat rente (kupon)." data-example="Ved køb af en statsobligation låner du penge til den danske stat mod at modtage en fast årlig rentebetaling." class="legal-term" data-slug="obligationer">obligationer</span>
-                                eller guld, udjævnes de store udsving i porteføljen.</li>
-                        </ul>
+                        style="border-radius: 0 !important; background-color: #f8f9fa; border-left: 5px solid #004a99 !important;">
+                        <h4 style="color: var(--theme-primary);"><i class="fas fa-chart-line mr-2"></i>Markowitz' Porteføljeteori (MPT)</h4>
+                        <p class="lead">Harry Markowitz revolutionerede finansverdenen ved at bevise, at <b>risiko ikke skal ses for hver enkelt aktie, men for porteføljen som helhed.</b></p>
+
+                        <p>Kernen i teorien er, at man kan nedsætte den samlede risiko uden at give afkald på afkast. Det sker gennem <b>intelligent diversificering</b>, hvor man kombinerer aktiver, der ikke følges ad (lav korrelation).</p>
+
+                        <h6 class="mt-3"><b>1. Efficient Frontier (Den effektive rand)</b></h6>
+                        <p>Tænk på dette som "den optimale grænse". Kurven i Figur 5.1 viser de porteføljer, der giver det højeste forventede afkast for et bestemt risikoniveau. Alt <i>under</i> kurven er ineffektivt – her tager man for høj risiko for det afkast, man får.</p>
+
+                        <h6 class="mt-3"><b>2. Korrelation: Mekanismen bag risikospredning</b></h6>
+                        <p>Hvis du kun ejer teknologiaktier, falder de alle, når tech-sektoren har det svært. Ved at blande aktiver med <i>lav korrelation</i> (f.eks. aktier og obligationer), vil ét aktiv ofte stige, når et andet falder. Det udjævner udsvingene i porteføljens samlede afkast.</p>
+
+                        <div class="chart-container wide reveal-on-scroll borderless mt-4" style="height: 450px;">
+                            <canvas id="riskReturnChart"></canvas>
+                        </div>
+                        <small class="d-block text-left mt-2 text-muted">
+                            <b>Figur 5.1 — Markowitz' Porteføljeteori: Den Effektive Rand (Efficient Frontier).</b><br>
+                            Kurven illustrerer de optimale porteføljer, der giver det maksimale forventede afkast for et givet risikoniveau. 
+                            <i>Eksempel:</i> En portefølje med 100% obligationer ligger nederst til venstre (lav risiko/afkast), mens en 100% aktieportefølje ligger øverst til højre. Ved at blande dem, bevæger man sig op mod kurven. 
+                            Kilde: Harry Markowitz / Nobelprize.org.
+                        </small>
+
+                        <div class="alert alert-info mt-3 mb-0">
+                            <b>Rådgiverens vinkel:</b> Markowitz lærer os, at vi ikke skal lede efter "den bedste aktie", men bygge "den bedste kombination". En kunde med lav risikovillighed skal ligge længere til venstre på kurven, mens en vækstorienteret kunde skal ligge længere til højre – men begge bør ligge <i>på</i> linjen.
+                        </div>
                     </div>
                 </div>
 
@@ -856,7 +1629,7 @@
                     <p><span data-definition="Indkomst fra renteindtægter, kursgevinster på obligationer og afkast fra visse investeringsformer (fx akkumulerende fonde), der beskattes særskilt fra personlig indkomst. Skatten ligger typisk mellem 37 % og 42 % afhængig af dine øvrige forhold." data-example="Modtager du 10.000 kr. i rente fra en bankbog, beskattes beløbet som kapitalindkomst. Har du negativ kapitalindkomst (fx pga. renter på lån), giver det et skattefradrag." class="legal-term" data-slug="kapitalindkomst">Kapitalindkomst</span>
                         dækker over renteindtægter og kursgevinster på <span data-definition="Standardiserede gældsbreve udstedt af stater, realkreditinstitutter eller virksomheder; investoren udlåner kapital mod en fastsat rente (kupon)." data-example="Ved køb af en statsobligation låner du penge til den danske stat mod at modtage en fast årlig rentebetaling." class="legal-term" data-slug="obligationer">obligationer</span>.
                         Som rådgiver
-                        skal du vide, at positiv nettokapitalindkomst indgår i grundlaget for <span data-definition="Et progressivt skattetrin genindført med 2026-reformen på 7,5 %, som betales af den personlige indkomst, der overstiger ca. 640.000 kr. (efter AM-bidrag). Den skal lukke &quot;hullet&quot; mellem bund- og topskat." data-example="En lønmodtager med en indkomst på 680.000 kr. betaler 7,5 % i mellemskat af de sidste 40.000 kr." class="legal-term"
+                        skal du vide, at positiv nettokapitalindkomst indgår i grundlaget for <span data-definition="Et progressivt skattetrin genindført med 2026-reformen på 7,5 %, som betales af den personlige indkomst, der overstiger ca. 640.000 kr. (efter AM-bidrag). Den skal lukke &quot;hullet&quot; mellem bund- og topskat." data-example="Indkomst 680.000 kr. over grænsen 640.000 kr.: Mellemskat = (680.000 − 640.000) × 7,5 % = 3.000 kr." class="legal-term"
                             data-slug="mellemskat">mellemskatten</span> og
                         <span data-definition="En statslig tillægsskat på yderligere 7,5 % (oven i mellemskatten, i alt 15 %), som betales af den personlige indkomst over topskattegrænsen (ca. 780.000 kr. efter AM-bidrag i 2026)." data-example="Ved en indkomst på 850.000 kr. betaler kunden 15 % i samlet tillægsskat (mellem- og topskat) af det beløb, der ligger over topskattegrænsen." class="legal-term" data-slug="topskat">topskatten</span>,
                         men er beskyttet af <span class="legal-term"
@@ -884,7 +1657,7 @@
                                     <td>Beskyttet af det skrå skatteloft.</td>
                                 </tr>
                                 <tr>
-                                    <td><b><span data-definition="Et skattemæssigt fradrag (ligningsmæssigt fradrag) for dine renteudgifter på lån. Fradraget betyder, at en del af din renteudgift dækkes af staten i form af lavere skat. Skatteværdien af rentefradrag er p.t. ca. 25-33 %." data-example="Betaler du 50.000 kr. i renter om året, vil dit rentefradrag betyde, at du reelt betaler ca. 12.500-16.500 kr. mindre i skat over hele året." class="legal-term" data-slug="rentefradrag"
+                                    <td><b><span data-definition="Et skattemæssigt fradrag (ligningsmæssigt fradrag) for dine renteudgifter på lån. Fradraget betyder, at en del af din renteudgift dækkes af staten i form af lavere skat. Skatteværdien af rentefradrag er p.t. ca. 25-33 %." data-example="Renteudgift 50.000 kr.: Skatteværdi ca. 25-33 % = 12.500-16.500 kr. mindre i skat." class="legal-term" data-slug="rentefradrag"
                                                 legal-term" data-slug="boliglaan">boliglån</span>.">Rentefradrag</span>
                                             (Høj værdi)</b></td>
                                     <td>Ca. 33,6 %</td>
@@ -892,7 +1665,7 @@
                                     <td>100.000 kr. for ægtepar.</td>
                                 </tr>
                                 <tr>
-                                    <td><b><span data-definition="Et skattemæssigt fradrag (ligningsmæssigt fradrag) for dine renteudgifter på lån. Fradraget betyder, at en del af din renteudgift dækkes af staten i form af lavere skat. Skatteværdien af rentefradrag er p.t. ca. 25-33 %." data-example="Betaler du 50.000 kr. i renter om året, vil dit rentefradrag betyde, at du reelt betaler ca. 12.500-16.500 kr. mindre i skat over hele året." class="legal-term" data-slug="rentefradrag"
+                                    <td><b><span data-definition="Et skattemæssigt fradrag (ligningsmæssigt fradrag) for dine renteudgifter på lån. Fradraget betyder, at en del af din renteudgift dækkes af staten i form af lavere skat. Skatteværdien af rentefradrag er p.t. ca. 25-33 %." data-example="Renteudgift 50.000 kr.: Skatteværdi ca. 25-33 % = 12.500-16.500 kr. mindre i skat." class="legal-term" data-slug="rentefradrag"
                                                 legal-term" data-slug="boliglaan">boliglån</span>.">Rentefradrag</span>
                                             (Lav værdi)</b></td>
                                     <td>Ca. 25,0 %</td>
@@ -908,9 +1681,7 @@
                 <h2>5.14 Aktiesparekontoen (ASK) – Rådgiverens Førstevalg</h2>
                 <div class="info-box reveal-on-scroll">
                     <p><span data-definition="En dedikeret investeringskonto med lav beskatning på 17 %, målrettet private investorer. Gevinster beskattes efter lagerprincippet, hvilket betyder årlig afregning af urealiserede gevinster. Fordelen er, at afkastet ikke modregnes i folkepensionens tillæg." data-example="Et afkast på 10.000 kr. på din aktiesparekonto fører ikke til modregning i folkepensionens tillæg, mens 10.000 kr. i renteindtagter fra frie midler ville kunne gøre det." class="legal-term" data-slug="aktiesparekonto">Aktiesparekontoen</span>
-                        beskattes med 17 % efter <span class="legal-term"
-                            data-definition="Beskatning af årets værdistigning uanset om man sælger eller ej."
-                            data-slug="lagerbeskatning">lagerprincippet</span>. Dette er markant lavere end de
+                        beskattes med 17 % efter <span class="legal-term" data-slug="lagerbeskatning" data-definition="Beskatning efter lagerprincippet betyder, at du beskattes af årets værdistigning på dine investeringer uanset om du sælger eller ej. Gevinster og tab afregnes årligt til markedsværdi. For ETF'er og visse fonde på Skats positivliste gælder lagerbeskatning som aktieindkomst (27 % / 42 %). ASK og pensionsmidler bruger også lagerprincippet, men med lavere satser." data-example="Du har en ETF til 100.000 kr., som stiger til 110.000 kr. i løbet af året. Selv om du ikke sælger, skal du betale skat af de 10.000 kr. i urealiserede gevinster det år.">lagerprincippet</span>. Dette er markant lavere end de
                         27 / 42 % for <span data-definition="Skattepligtig indkomst hidrørende fra aktieudbytter og realiserede kursgevinster på aktier. Beskattes efter et progressivt to-leddet system (27 % / 42 % i 2026). Beskatningen sker efter realisationsprincippet for de fleste aktier i frie midler." data-example="Realiserer du en gevinst på 100.000 kr. ved salg af aktier, betaler du 27 % af de første 61.000 kr. (2026-sats) og 42 % af de resterende 39.000 kr." class="legal-term" data-slug="aktieindkomst">aktieindkomst</span>,
                         hvilket gør den til det mest attraktive produkt for private
                         investorer i 2026.</p>
@@ -954,8 +1725,7 @@
                             data-slug="gaveafgift">gaveafgiften</span> for erhvervsvirksomheder markant.
                     </p>
 
-                    <div class="p-4 border shadow-sm mb-4"
-                        style="border-radius: 0 !important; background-color: #ffffff;">
+                    <div class="tip-box mb-4">
                         <h5>Successions-modellen 2026</h5>
                         <p>Ved generationsskifte til børn kan man nu anvende en sats på <b>10 %</b> (tidligere
                             15 %). Det kræver dog, at virksomheden har reel erhvervsdrift. Som rådgiver skal du
@@ -1016,8 +1786,7 @@
                     <div class="mb-4 mt-4">
                         <h5>Trin 1: Beregning af Vedhængende Rente</h5>
                         <p>Køber betaler James for de 145 dage, han har ejet obligationen siden sidste termin.</p>
-                        <div class="p-3 bg-light border"
-                            style="border-radius: 0 !important; font-family: Consolas, monospace; color: inherit;">
+                        <div class="calc-block">
                             (Nominel værdi × Rentesats) × (Dage / 360)<br>
                             (500.000 kr. × 0,05) × (145 / 360) = 10.069,44 kr.
                         </div>
@@ -1026,8 +1795,7 @@
                     <div class="mb-4">
                         <h5>Trin 2: Beregning af Kursværdi</h5>
                         <p>Prisen for selve obligationen ekskl. rente.</p>
-                        <div class="p-3 bg-light border"
-                            style="border-radius: 0 !important; font-family: Consolas, monospace; color: inherit;">
+                        <div class="calc-block">
                             Nominel værdi × (Kurs / 100)<br>
                             500.000 kr. × 0,9850 = 492.500,00 kr.
                         </div>
@@ -1036,8 +1804,7 @@
                     <div class="mb-4">
                         <h5>Trin 3: Samlet Provenu (Før skat)</h5>
                         <p>Det beløb James modtager på sin konto før Skattestyrelsen tager deres del.</p>
-                        <div class="p-3 bg-light border"
-                            style="border-radius: 0 !important; border-left: 5px solid var(--accent-marine) !important; font-family: Consolas, monospace; color: inherit;">
+                        <div class="calc-block calc-emphasis">
                             Kursværdi + Vedhængende rente - Kurtage (f.eks. 0,10 %)<br>
                             492.500 + 10.069,44 - 500 = 502.069,44 kr.
                         </div>
@@ -1049,8 +1816,8 @@
                             beskattes renter og kursgevinster som <span data-definition="Indkomst fra renteindtægter, kursgevinster på obligationer og afkast fra visse investeringsformer (fx akkumulerende fonde), der beskattes særskilt fra personlig indkomst. Skatten ligger typisk mellem 37 % og 42 % afhængig af dine øvrige forhold." data-example="Modtager du 10.000 kr. i rente fra en bankbog, beskattes beløbet som kapitalindkomst. Har du negativ kapitalindkomst (fx pga. renter på lån), giver det et skattefradrag." class="legal-term" data-slug="kapitalindkomst">kapitalindkomst</span>
                             (positiv).
                         </p>
-                        <div class="p-3 bg-white border" style="border-radius: 0 !important;">
-                            <ul>
+                        <div class="calc-block">
+                            <ul class="mb-0 pl-3">
                                 <li><b>Skat af renter:</b> 10.069,44 kr. × ca. 37 % (afhængig af øvrig
                                     indkomst) = 3.725 kr.</li>
                                 <li><b>Skat af kursgevinst:</b> Hvis James købte til kurs 95, er der en
@@ -1074,63 +1841,166 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th>Råvare</th>
-                                    <th>Rolle i Porteføljen</th>
-                                    <th>Trends i 2026</th>
+                                    <th>Markedsstørrelse (2025/26)</th>
+                                    <th>Dybdegående Analyse & Trends</th>
                                     <th>Risikoprofil & Ulemper</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td><b>Guld (Gold)</b></td>
-                                    <td>Sikker havn ("Safe Haven") og beskyttelse mod inflation. Næsten nulkontrol med
-                                        aktiemarkedet.</td>
-                                    <td>Priserne er historisk høje (over 2.500 USD/oz) trukket af lavere
-                                        centralbanksrenter og geopolitisk usikkerhed. Kursstigninger på over 60 % frem mod 2026.
+                                    <td><b>$264 mia.</b> (Årligt marked)<br><small>Samlet værdi over $15 billioner</small></td>
+                                    <td>
+                                        <p><b>Sikker havn ("Safe Haven"):</b> Prisen satte 53 nye rekorder i 2025.</p>
+                                        <p><i>Status (Mar 2026):</i> <b>"Strong Bullish"</b></p>
+                                        <ul>
+                                            <li><b>Centralbanker:</b> Massiv opbygning af reserver (over 860 tons årligt) driver fundamentet.</li>
+                                            <li><b>ETF-vækst:</b> Global interesse fra investorer via fonde er på sit højeste i 12 år.</li>
+                                            <li><b>Geopolitik:</b> Uro i Mellemøsten og Taiwan-strædet holder prisen oppe.</li>
+                                        </ul>
                                     </td>
-                                    <td>Giver ikke løbende afkast (intet udbytte). Høj alternativomkostning i
-                                        højrentemiljøer.</td>
+                                    <td>Giver ikke løbende afkast. Høj alternativomkostning hvis renten stiger markant.</td>
                                 </tr>
                                 <tr>
                                     <td><b>Sølv (Silver)</b></td>
-                                    <td>Hybridmetal: Sikker havn kombineret med betydelig industriel efterspørgsel
-                                        (solceller, elektronik).</td>
-                                    <td>Betydeligt industrielt behov til den grønne omstilling driver prisen op.
-                                        Kursstigninger på ca. 150 % fra tidligere år.</td>
-                                    <td>Meget mere volatilt end guld. Prisen falder markant, hvis den globale industri
-                                        møder modvind.</td>
+                                    <td><b>$100-120 mia.</b><br><small>Hybrid industri/ædelmetal</small></td>
+                                    <td>
+                                        <p><b>Den grønne omstilling:</b> Uundværlig i solceller og elbiler.</p>
+                                        <p><i>Status (Mar 2026):</i> <b>"Bullish"</b></p>
+                                        <ul>
+                                            <li><b>Forsyningsunderskud:</b> Efterspørgslen overstiger minedriften for 5. år i træk i 2026.</li>
+                                            <li><b>Guld/Sølv ratio:</b> Historisk set undervurderet ift. guld.</li>
+                                            <li><b>Industriel brug:</b> 50% af efterspørgslen kommer fra industrien (elektronik).</li>
+                                        </ul>
+                                    </td>
+                                    <td>Meget højere volatilitet end guld. Prisen falder hurtigt ved industriel afmatning.</td>
                                 </tr>
                                 <tr>
                                     <td><b>Kobber (Copper)</b></td>
-                                    <td>"Dr. Copper": Indikator for global økonomisk vækst. Krumtappen i elektrificering
-                                        og elbiler.</td>
-                                    <td>Strukturelt "Bullmarked". Udbuddet kan ikke følge med den betydelige efterspørgsel fra
-                                        grøn energi og datacenterudbygninger.</td>
-                                    <td>Udtalt cyklisk karakter. Stærkt afhængig af byggeri og vækst i især Asien. Hvis
-                                        væksten stopper, falder kobberprisen markant.</td>
+                                    <td><b>$300+ mia.</b><br><small>"Dr. Copper"</small></td>
+                                    <td>
+                                        <p><b>Elektrificering:</b> Rygraden i alt fra AI-datacentre til elnet.</p>
+                                        <p><i>Status (Mar 2026):</i> <b>"Strong Buy"</b></p>
+                                        <ul>
+                                            <li><b>Strukturelt underskud:</b> Nye miner tager 10-15 år at åbne, mens behovet eksploderer.</li>
+                                            <li><b>Vækstindikator:</b> Prisen afspejler direkte global BNP-vækst.</li>
+                                            <li><b>AI-Boom:</b> Datacentre kræver meget store mængder kobber til køling og strøm.</li>
+                                        </ul>
+                                    </td>
+                                    <td>Udtalt cyklisk. Stærkt afhængig af byggeri i Kina/Asien.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Lithium</b></td>
+                                    <td><b>$50-70 mia.</b><br><small>"Det hvide guld"</small></td>
+                                    <td>
+                                        <p><b>Batteriteknologi:</b> Kritisk for elbil-revolutionen og energilagring.</p>
+                                        <p><i>Status (Mar 2026):</i> <b class="legal-term" data-slug="accumulate">"Accumulate"</b></p>
+                                        <ul>
+                                            <li><b>Pris-stabilisering:</b> Efter et voldsomt fald i 2024/25 er prisen nu fundet et stabilt leje.</li>
+                                            <li><b>Solid-state:</b> Nye batterityper kræver stadig lithium, hvilket sikrer langsigtet relevans.</li>
+                                            <li><b>Udbudskontrol:</b> Store producenter i Australien og Chile har skåret i produktionen.</li>
+                                        </ul>
+                                    </td>
+                                    <td>Høj teknologisk risiko (nye batterityper). Politisk risiko i Sydamerika.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Olie (Brent)</b></td>
+                                    <td><b>$2.500+ mia.</b><br><small>Verdens vigtigste energikilde</small></td>
+                                    <td>
+                                        <p><b>Energi-sikkerhed:</b> Stadig dominerende trods grøn omstilling.</p>
+                                        <p><i>Status (Mar 2026):</i> <b>"Neutral"</b></p>
+                                        <ul>
+                                            <li><b>OPEC+ kontrol:</b> Kartellet holder prisen kunstigt oppe via produktionssnit.</li>
+                                            <li><b>Peak Oil:</b> Frygten for faldende efterspørgsel er udskudt pga. langsommere EV-adoption.</li>
+                                            <li><b>Skiferolie:</b> USA's produktion er nået et plateau.</li>
+                                        </ul>
+                                    </td>
+                                    <td>Ekstremt følsom over for recession og geopolitiske aftaler.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Naturgas (TTF)</b></td>
+                                    <td><b>$600+ mia.</b><br><small>Broen til vedvarende energi</small></td>
+                                    <td>
+                                        <p><b>Europæisk krisehåndtering:</b> Skiftet fra russisk gas til LNG.</p>
+                                        <p><i>Status (Mar 2026):</i> <b>"Volatile"</b></p>
+                                        <ul>
+                                            <li><b>LNG-infrastruktur:</b> Nye terminaler i Tyskland og Holland har dæmpet prischok.</li>
+                                            <li><b>Vejrafhængighed:</b> Prisen styres af vintertemperaturer i Europa.</li>
+                                            <li><b>Industrielt forbrug:</b> Europæisk industri kæmper med høje gaspriser.</li>
+                                        </ul>
+                                    </td>
+                                    <td>Meget høj volatilitet. Lagerniveauer er den vigtigste indikator.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Hvede (Wheat)</b></td>
+                                    <td><b>$200 mia.</b><br><small>Global fødevaresikkerhed</small></td>
+                                    <td>
+                                        <p><b>Landbrugs-cyklus:</b> Påvirket af både klima og krig.</p>
+                                        <p><i>Status (Mar 2026):</i> <b>"Speculative Buy"</b></p>
+                                        <ul>
+                                            <li><b>Sortehavs-korridor:</b> Fortsat usikkerhed om eksport fra Ukraine/Rusland.</li>
+                                            <li><b>Klimaforandringer:</b> Ekstrem tørke i USA og Australien reducerer høsten.</li>
+                                            <li><b>Befolkningsvækst:</b> Konstant stigende efterspørgsel fra emerging markets.</li>
+                                        </ul>
+                                    </td>
+                                    <td>Høj politisk risiko (eksportforbud). Prisen kan falde ved gode høst-estimater.</td>
                                 </tr>
                                 <tr>
                                     <td><b>Kaffe (Coffee)</b></td>
-                                    <td>Spekulativ "Soft Commodity". Brugt for kortsigtede gevinster uafhængigt af
-                                        finansmarkederne.</td>
-                                    <td>Priserne svinger grundet klimaforandringer (frost, tørke) i store
-                                        produktionslande som Brasilien, og i høstresultater.</td>
-                                    <td>Ekstrem risiko. Kræver specialistviden om vejrtrusler. Ikke egnet for den
-                                        gennemsnitlige langsigtede pensionsopsparer.</td>
+                                    <td><b>$270 mia.</b><br><small>Verdens mest handlede "soft"</small></td>
+                                    <td>
+                                        <p><b>Prischok:</b> Arabica-priserne er fordoblet på 12 måneder frem mod 2026.</p>
+                                        <p><i>Status (Mar 2026):</i> <b>"High Risk"</b></p>
+                                        <ul>
+                                            <li><b>Klimapres:</b> Tørke i Brasilien og frost truer udbuddet permanent.</li>
+                                            <li><b>Premium-trend:</b> Massiv vækst i "Specialty Coffee" i Asien øger den globale efterspørgsel.</li>
+                                            <li><b>Logistik:</b> Fragtrater og forstyrrelser i forsyningskæden rammer prisen.</li>
+                                        </ul>
+                                    </td>
+                                    <td>Ekstrem risiko. Kræver specialistviden om vejr og logistik (f.eks. fragt gennem Suez).</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Aluminium</b></td>
+                                    <td><b>$180 mia.</b><br><small>"Det lette metal"</small></td>
+                                    <td>
+                                        <p><b>Transport & Emballage:</b> Essentielt for vægtreduktion i køretøjer.</p>
+                                        <p><i>Status (Mar 2026):</i> <b>"Bullish"</b></p>
+                                        <ul>
+                                            <li><b>Grøn produktion:</b> Efterspørgsel på "low-carbon" aluminium stiger eksplosivt.</li>
+                                            <li><b>Energipriser:</b> Da produktion kræver meget strøm, følger prisen energimarkedet.</li>
+                                            <li><b>Genanvendelse:</b> Cirkulær økonomi øger værdien af aluminium-skrot.</li>
+                                        </ul>
+                                    </td>
+                                    <td>Sårbar over for høje elpriser (smelteværker lukker ved høje priser).</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Uran (Uranium)</b></td>
+                                    <td><b>$10-15 mia.</b><br><small>Kernen i CO2-neutral energi</small></td>
+                                    <td>
+                                        <p><b>Renæssance for atomkraft:</b> Global genopdagelse af kernekraft.</p>
+                                        <p><i>Status (Mar 2026):</i> <b>"Strong Bullish"</b></p>
+                                        <ul>
+                                            <li><b>SMR-teknologi:</b> Små modulære reaktorer skaber ny efterspørgsel.</li>
+                                            <li><b>Udbudsmangel:</b> Minedrift har været underinvesteret i et årti.</li>
+                                            <li><b>Strategiske lagre:</b> Lande opbygger lagre for at sikre energitilgængelighed.</li>
+                                        </ul>
+                                    </td>
+                                    <td>Høj reguleringsrisiko. Langsomme beslutningsprocesser i regeringer.</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                    <small class="d-block text-left mt-2 text-muted">Tabel 5.18 — Analyse af Råvaremarkedet (Commodities).
+                        *Status afspejler markedsstemningen og analytiker-konsensus pr. marts 2026. Kilde: Bloomberg Commodities Index / Goldman Sachs Research.</small>
 
-                    <div class="p-4 bg-light shadow-sm border mb-3"
-                        style="border-radius: 0 !important; border-left: 5px solid var(--accent-marine) !important;">
+                    <div class="tip-box mb-3">
                         <h5>Vigtigt at vide om ETC'er og Beskatning i Danmark</h5>
                         <p>Når danske investorer køber en <b>ETC (Exchange Traded Commodity)</b> for at følge f.eks.
                             guldprisen, investerer de oftest via frie midler eller pensioner.</p>
                         <ul>
                             <li><b>For Frie Midler:</b> ETC'er beskattes som <b><span data-definition="Indkomst fra renteindtægter, kursgevinster på obligationer og afkast fra visse investeringsformer (fx akkumulerende fonde), der beskattes særskilt fra personlig indkomst. Skatten ligger typisk mellem 37 % og 42 % afhængig af dine øvrige forhold." data-example="Modtager du 10.000 kr. i rente fra en bankbog, beskattes beløbet som kapitalindkomst. Har du negativ kapitalindkomst (fx pga. renter på lån), giver det et skattefradrag." class="legal-term"
                                         data-slug="kapitalindkomst">Kapitalindkomst</span></b>
-                                efter <span class="legal-term" data-slug="lagerbeskatning"
-                                    data-definition="Beskatning af årets værdistigning uanset om man sælger eller ej.">Lagerprincippet</span>.
+                                efter <span class="legal-term" data-slug="lagerbeskatning" data-definition="Beskatning efter lagerprincippet betyder, at du beskattes af årets værdistigning på dine investeringer uanset om du sælger eller ej. Gevinster og tab afregnes årligt til markedsværdi. For ETF'er og visse fonde på Skats positivliste gælder lagerbeskatning som aktieindkomst (27 % / 42 %). ASK og pensionsmidler bruger også lagerprincippet, men med lavere satser." data-example="Du har en ETF til 100.000 kr., som stiger til 110.000 kr. i løbet af året. Selv om du ikke sælger, skal du betale skat af de 10.000 kr. i urealiserede gevinster det år.">Lagerprincippet</span>.
                                 Dette betyder en årlig reel skat, uanset om positionen sælges, hvilket rådgiveren skal
                                 planlægge kundens likviditet ud fra.</li>
                             <li><b>For Pensionsmidler:</b> Investeringer i råvare-ETC'er beskattes fordelagtigt med kun
@@ -1160,8 +2030,8 @@
                                 <tr>
                                     <th>Selskab</th>
                                     <th>Sektor</th>
-                                    <th>P/E (TTM)</th>
-                                    <th>EPS</th>
+                                    <th><span class="legal-term" data-definition="P/E beregnet ud fra den faktiske indtjening de seneste 12 måneder (TTM = Trailing Twelve Months)." data-example="Ved aktiekurs 750 kr. og EPS 25 kr. de sidste 12 måneder: P/E (TTM) = 750 ÷ 25 = 30." data-slug="pe-ttm">P/E (TTM)</span></th>
+                                    <th><span class="legal-term" data-definition="Indtjening pr. aktie. Beregnes som selskabets resultat efter skat divideret med antal udestående aktier." data-example="Et selskab med overskud på 1 mia. kr. og 10 mio. aktier har EPS = 100 kr. pr. aktie." data-slug="eps">EPS</span></th>
                                     <th>Market Cap (Billion USD)</th>
                                 </tr>
                             </thead>
@@ -1259,7 +2129,7 @@
                                     <th>Ticker</th>
                                     <th>Selskab</th>
                                     <th>Kurs (DKK)</th>
-                                    <th>P/E</th>
+                                    <th><span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Angiver hvor mange kroner investoren betaler for hver krone opgjort indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E</span></th>
                                     <th>Status 2026</th>
                                 </tr>
                             </thead>
@@ -1268,7 +2138,7 @@
                                     <td><b>NOVO B</b></td>
                                     <td>Novo Nordisk</td>
                                     <td>245.45</td>
-                                    <td>10.67*</td>
+                                    <td><span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Angiver hvor mange kroner investoren betaler for hver krone opgjort indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">10.67*</span></td>
                                     <td>Stærkt køb drevet af GLP-1 indtjening.</td>
                                 </tr>
                                 <tr>
@@ -1317,8 +2187,18 @@
                         </table>
                     </div>
                     <small class="text-muted text-left d-block mt-1">Tabel 5.16 — Det Danske Eliteindeks. Status: Marts
-                        2026. *P/E for Novo er
+                        2026. *<span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Angiver hvor mange kroner investoren betaler for hver krone opgjort indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E</span> for Novo er
                         historisk lav pga. et fald i aktiekursen.</small>
+
+                    <div class="warning-box mt-4">
+                        <h5>Fælden: Home Bias og Overeksponering</h5>
+                        <p>Mange danske investorer lider af <b>Home Bias</b> – en tendens til at overvægte hjemmemarkedet i porteføljen. Selvom C25 har leveret stærke afkast historisk, medfører det en betydelig risiko:</p>
+                        <ul>
+                            <li><strong>Koncentrationsrisiko:</strong> Det danske marked er ekstremt top-tungt. Novo Nordisk udgør ofte over 15-20 % af det samlede indeks. Hvis Novo oplever modvind (som set i 2025/2026), trækker det hele den danske portefølje ned, uanset hvor godt resten af markedet klarer sig.</li>
+                            <li><strong>Sektor-ubalance:</strong> C25 er tungt på medicinal (Novo, Genmab) og industri/logistik (DSV, Mærsk, Vestas), men mangler næsten helt eksponering mod f.eks. teknologi (AI/Software) og råvarer.</li>
+                        </ul>
+                        <p><strong>Markedsstørrelse:</strong> Det danske aktiemarked udgør under <b>0,5 %</b> af det globale aktiemarked (målt på MSCI World). Ved at have 50-80 % af sin formue i danske aktier, satser man ekstremt hårdt på en mikroskopisk del af verdensøkonomien.</p>
+                    </div>
                 </div>
 
                 <h2>5.21 Udbydere af ETF’er og Investeringsforeninger</h2>
@@ -1326,8 +2206,7 @@
                     <p>Som rådgiver skal du vide, hvem der "står bag" produkterne. Man investerer sjældent
                         direkte i et indeks, men i et produkt fra en <b>Asset Manager</b>.</p>
 
-                    <div class="p-4 border shadow-sm mb-4"
-                        style="border-radius: 0 !important; background-color: #ffffff;">
+                    <div class="tip-box mb-4">
                         <h5>Globale Giganter (ETF-udbydere)</h5>
                         <p>Disse selskaber dominerer det globale marked med ekstremt lave omkostninger (<span data-definition="Årlige Omkostninger i Procent; et standardiseret mål for de samlede omkostninger ved et lån (renter, gebyrer, forsikring) udtrykt som en årlig procentsats." data-example="Ved sammenligning af to boliglån er ÅOP det bedste mål, da det medregner alle gebyrer og ikke kun renten."
                                 class="legal-term" data-slug="aop">ÅOP</span>):
@@ -1342,8 +2221,7 @@
                         </ul>
                     </div>
 
-                    <div class="p-4 border shadow-sm mb-4"
-                        style="border-radius: 0 !important; background-color: #f8f9fa;">
+                    <div class="tip-box mb-4">
                         <h5>Danske Foreninger</h5>
                         <p>Ofte foretrukket for frie midler pga. realisationsbeskatning:</p>
                         <ul>
@@ -1414,9 +2292,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/script.js"></script>
     <script src="js/theme-toggle.js"></script>
+    <script src="js/search.js"></script>
     <script src="js/glossary.js"></script>
 
     <script>
@@ -1462,7 +2342,7 @@
                 data: {
                     datasets: [
                         {
-                            label: 'Efficient Frontier',
+                            label: 'Efficient Frontier (Den optimale grænse)',
                             data: [
                                 { x: 3.5, y: 3.5 },
                                 { x: 4.5, y: 5.5 },
@@ -1485,7 +2365,7 @@
                             }
                         },
                         {
-                            label: 'Aktivklasser 2026',
+                            label: 'Enkeltaktiver (Under kurven = Ineffektivt)',
                             data: [
                                 { x: 1.5, y: 2.8, label: 'Kontanter' },
                                 { x: 6.0, y: 4.5, label: 'Statsobligationer' },
@@ -1493,7 +2373,7 @@
                                 { x: 19.0, y: 8.5, label: 'Globale Aktier' },
                                 { x: 26.0, y: 10.2, label: 'Emerging Markets' }
                             ],
-                            backgroundColor: '#2c3e50',
+                            backgroundColor: '#e74c3c',
                             borderColor: '#ffffff',
                             borderWidth: 2,
                             pointRadius: 10,
@@ -1510,20 +2390,26 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    layout: { padding: { top: 20 } },
+                    layout: { padding: { top: 20, right: 30 } },
                     scales: {
                         x: {
                             type: 'linear',
-                            title: { display: true, text: 'Risiko (Standardafvigelse %)', color: c.text, font: { weight: 'bold' } },
+                            title: { display: true, text: 'Risiko (Svingninger i %)', color: c.text, font: { weight: 'bold', size: 14 } },
                             grid: { color: c.grid },
-                            ticks: { color: c.text },
+                            ticks: { 
+                                color: c.text,
+                                callback: function(value) { return value + '%'; }
+                            },
                             min: 0,
                             max: 30
                         },
                         y: {
-                            title: { display: true, text: 'Forventet Afkast (%)', color: c.text, font: { weight: 'bold' } },
+                            title: { display: true, text: 'Forventet Afkast (%)', color: c.text, font: { weight: 'bold', size: 14 } },
                             grid: { color: c.grid },
-                            ticks: { color: c.text },
+                            ticks: { 
+                                color: c.text,
+                                callback: function(value) { return value + '%'; }
+                            },
                             min: 0,
                             max: 12
                         }
@@ -1538,24 +2424,54 @@
                             borderWidth: 1,
                             cornerRadius: 0,
                             callbacks: {
+                                title: function(context) {
+                                    return context[0].raw.label || 'Efficient Frontier';
+                                },
                                 label: function (context) {
-                                    if (context.datasetIndex === 1) {
-                                        return context.raw.label + ': ' + context.raw.y + '% afkast (' + context.raw.x + '% risiko)';
-                                    }
-                                    return 'Efficient Frontier: ' + context.raw.y + '% afkast';
+                                    return [
+                                        'Afkast: ' + context.raw.y + '%',
+                                        'Risiko: ' + context.raw.x + '%'
+                                    ];
                                 }
                             }
                         },
                         legend: {
                             display: true,
                             position: 'top',
-                            align: 'end',
+                            align: 'center',
                             labels: {
                                 color: c.text,
                                 usePointStyle: true,
                                 pointStyle: 'circle',
-                                padding: 20,
-                                font: { size: 12 }
+                                padding: 25,
+                                font: { size: 13, weight: '500' }
+                            }
+                        },
+                        annotation: {
+                            annotations: {
+                                label1: {
+                                    type: 'label',
+                                    xValue: 20,
+                                    yValue: 4,
+                                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                                    content: ['INEFFEKTIVT OMRÅDE', '(For høj risiko / for lavt afkast)'],
+                                    font: {
+                                        size: 11,
+                                        style: 'italic'
+                                    },
+                                    color: '#e74c3c'
+                                },
+                                label2: {
+                                    type: 'label',
+                                    xValue: 10,
+                                    yValue: 10,
+                                    content: ['OPTIMALT OMRÅDE', '(Efficient Frontier)'],
+                                    font: {
+                                        size: 11,
+                                        weight: 'bold'
+                                    },
+                                    color: c.primary
+                                }
                             }
                         }
                     }
@@ -1683,6 +2599,24 @@
             document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
         });
     </script>
+
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 id="quiz">5.6 Quiz</h2>
+                <br>
+                <a href="https://quiz.tepedu.dk/pr5.1" class="effectLinks" data-replace="Åben quiz: Investeringens grundprincipper" target="_blank"></a>
+                <br>
+                <a href="https://quiz.tepedu.dk/pr5.2" class="effectLinks" data-replace="Åben quiz: Aktier og personskattesystem" target="_blank"></a>
+                <br>
+                <a href="https://quiz.tepedu.dk/pr5.3" class="effectLinks" data-replace="Åben quiz: Obligationer, ETF'er og alternative investeringer" target="_blank"></a>
+                <br>
+                <a href="https://quiz.tepedu.dk/pr5.4" class="effectLinks" data-replace="Åben quiz: Risikostyring og ASK" target="_blank"></a>
+                <br>
+                <a href="https://quiz.tepedu.dk/pr5.5" class="effectLinks" data-replace="Åben quiz: Kapitalindkomst, bolig og formueoptimering" target="_blank"></a>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

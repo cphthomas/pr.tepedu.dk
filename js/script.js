@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const headings = article.querySelectorAll('h1, h2, h3, h4');
     if (!headings.length) return;
 
-    // Get current page filename and chapter number
+    // Get current page filename
     let currentUrl = window.location.href;
     currentUrl = currentUrl.split('?')[0].split('#')[0];
     let currentPage = currentUrl.substring(currentUrl.lastIndexOf('/') + 1).toLowerCase();
@@ -15,38 +15,49 @@ document.addEventListener("DOMContentLoaded", function () {
         currentPage += '.html';
     }
 
-    // Find chapter number from menuItems array if it exists
-    // index.html is 0, kapitel1.html is 1, etc.
-    const chapterNumber = typeof menuItems !== 'undefined'
-        ? menuItems.findIndex(item => item.href.toLowerCase() === currentPage) // index.html = 0, kapitel1.html = 1
-        : 0; // For index.html or other non-chapter pages
+    const isGlossaryPage = currentPage === 'kapitel6.html';
 
-    let h2Counter = 0, h3Counter = 0, h4Counter = 0;
+    // For ordlisten: behold rene bogstaver uden kapitelnummer
+    if (isGlossaryPage) {
+        headings.forEach(heading => {
+            let headingText = heading.innerText.replace(/^[\d.]+\s+/, '').trim();
+            const id = heading.id || headingText.replace(/\s+/g, '-').toLowerCase();
+            heading.id = id;
+            heading.innerHTML = headingText;
+        });
+    } else {
+        // Find chapter number from menuItems array if it exists
+        // index.html is 0, kapitel1.html is 1, etc.
+        const chapterNumber = typeof menuItems !== 'undefined'
+            ? menuItems.findIndex(item => item.href.toLowerCase() === currentPage)
+            : 0;
 
-    headings.forEach(heading => {
-        const tagName = heading.tagName.toLowerCase();
-        let numberPrefix = '';
+        let h2Counter = 0, h3Counter = 0, h4Counter = 0;
 
-        if (tagName === 'h1') {
-            h2Counter = 0; h3Counter = 0; h4Counter = 0;
-            numberPrefix = chapterNumber + ' ';
-        } else if (tagName === 'h2') {
-            h2Counter++; h3Counter = 0; h4Counter = 0;
-            numberPrefix = chapterNumber + '.' + h2Counter + ' ';
-        } else if (tagName === 'h3') {
-            h3Counter++; h4Counter = 0;
-            numberPrefix = chapterNumber + '.' + h2Counter + '.' + h3Counter + ' ';
-        } else if (tagName === 'h4') {
-            h4Counter++;
-            numberPrefix = chapterNumber + '.' + h2Counter + '.' + h3Counter + '.' + h4Counter + ' ';
-        }
+        headings.forEach(heading => {
+            const tagName = heading.tagName.toLowerCase();
+            let numberPrefix = '';
 
-        // Improved regex to remove existing numbering like "1. ", "1.1 ", "1.1.1 ", "1. Vækst"
-        let headingText = heading.innerText.replace(/^[\d.]+\s+/, '').trim();
-        const id = heading.id || headingText.replace(/\s+/g, '-').toLowerCase();
-        heading.id = id;
-        heading.innerHTML = numberPrefix + headingText;
-    });
+            if (tagName === 'h1') {
+                h2Counter = 0; h3Counter = 0; h4Counter = 0;
+                numberPrefix = chapterNumber + ' ';
+            } else if (tagName === 'h2') {
+                h2Counter++; h3Counter = 0; h4Counter = 0;
+                numberPrefix = chapterNumber + '.' + h2Counter + ' ';
+            } else if (tagName === 'h3') {
+                h3Counter++; h4Counter = 0;
+                numberPrefix = chapterNumber + '.' + h2Counter + '.' + h3Counter + ' ';
+            } else if (tagName === 'h4') {
+                h4Counter++;
+                numberPrefix = chapterNumber + '.' + h2Counter + '.' + h3Counter + '.' + h4Counter + ' ';
+            }
+
+            let headingText = heading.innerText.replace(/^[\d.]+\s+/, '').trim();
+            const id = heading.id || headingText.replace(/\s+/g, '-').toLowerCase();
+            heading.id = id;
+            heading.innerHTML = numberPrefix + headingText;
+        });
+    }
 
     // Left-aligned TOC Sidebar
     const sidebar = document.getElementById('left-aligned-sidebar');
