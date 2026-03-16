@@ -11,25 +11,35 @@ const menuItems = [
 
 // Initialize menu when DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
-    const menuContainer = document.querySelector('.dropdown-menu');
+    const menuContainer = document.querySelector('.navbar .dropdown-menu');
     if (menuContainer) {
         menuContainer.innerHTML = menuItems.map(item =>
             `<a class="dropdown-item" href="${item.href}">${item.text}</a>`
         ).join('');
+        menuContainer.querySelectorAll('.dropdown-item').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href && !href.startsWith('#') && href !== '#') {
+                    e.preventDefault();
+                    window.location.href = href;
+                }
+            });
+        });
     }
 
     // Dynamic Navigation Arrows
     const pages = menuItems.map(item => item.href);
 
-    // Get current filename more reliably
-    let path = window.location.pathname.toLowerCase();
+    // Get current filename (virker med file://, localhost og produktion)
+    const pathname = (window.location.pathname || '/').toLowerCase();
+    const filename = pathname.split('/').filter(Boolean).pop() || '';
     let currentPage = 'index.html';
-
-    if (path.includes('kapitel6.html')) {
+    if (!filename || filename === 'index.html' || pathname.endsWith('/')) {
+        currentPage = 'index.html';
+    } else if (filename === 'kapitel6.html') {
         currentPage = 'kapitel6.html';
-    } else {
-        let match = path.match(/kapitel\d+\.html/);
-        if (match) currentPage = match[0];
+    } else if (/kapitel\d+\.html/.test(filename)) {
+        currentPage = filename;
     }
 
     const currentIndex = pages.findIndex(page => page.toLowerCase() === currentPage);
@@ -46,20 +56,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (prevLink) {
             prevLink.href = prevHref;
-            // Force navigation on click to bypass any interference
-            prevLink.addEventListener('click', (e) => {
-                if (e.button === 0) { // Left click only
-                    window.location.href = prevHref;
-                }
-            });
+            prevLink.classList.remove('disabled');
         }
         if (nextLink) {
             nextLink.href = nextHref;
-            nextLink.addEventListener('click', (e) => {
-                if (e.button === 0) {
-                    window.location.href = nextHref;
-                }
-            });
+            if (currentPage === 'kapitel6.html') {
+                nextLink.classList.add('disabled');
+                nextLink.removeAttribute('href');
+            } else {
+                nextLink.classList.remove('disabled');
+            }
         }
     } else {
         // Fallback for untracked pages

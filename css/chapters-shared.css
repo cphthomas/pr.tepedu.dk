@@ -80,6 +80,7 @@
     background: #1a3a5c !important;
     color: #ffffff !important;
     padding: 24px 22px !important;
+    pointer-events: none !important;
 }
 
 .quiz-links-section .effectLinks:hover,
@@ -87,6 +88,11 @@
 .chapter-links-inline .effectLinks:hover {
     background: #1a3a5c !important;
     color: #ffffff !important;
+}
+
+/* Download links: samme look, ingen ::after overlay (så klik virker) */
+.effectLinks-download::after {
+    display: none !important;
 }
 
 /* Inline chapter links near introductions and reusable chapter link blocks */
