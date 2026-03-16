@@ -110,15 +110,15 @@ article table a[href^="https://"]:not(.effectLinksTable):hover {
     box-shadow: 0 4px 12px rgba(211, 211, 211, 0.35);
 }
 
-/* Links in info boxes - external links */
-.content .info-box a[href^="http://"],
-.content .info-box a[href^="https://"],
-.content .example-box a[href^="http://"],
-.content .example-box a[href^="https://"],
-article .info-box a[href^="http://"],
-article .info-box a[href^="https://"],
-article .example-box a[href^="http://"],
-article .example-box a[href^="https://"] {
+/* Links in info boxes - external links (exclude effectLinks - they have their own styling) */
+.content .info-box a[href^="http://"]:not(.effectLinks),
+.content .info-box a[href^="https://"]:not(.effectLinks),
+.content .example-box a[href^="http://"]:not(.effectLinks),
+.content .example-box a[href^="https://"]:not(.effectLinks),
+article .info-box a[href^="http://"]:not(.effectLinks),
+article .info-box a[href^="https://"]:not(.effectLinks),
+article .example-box a[href^="http://"]:not(.effectLinks),
+article .example-box a[href^="https://"]:not(.effectLinks) {
     color: #ffffff !important;
     background-color: #d3d3d3;
     font-weight: 500;
@@ -128,14 +128,14 @@ article .example-box a[href^="https://"] {
     box-shadow: 0 1px 2px rgba(211, 211, 211, 0.15);
 }
 
-.content .info-box a[href^="http://"]:hover,
-.content .info-box a[href^="https://"]:hover,
-.content .example-box a[href^="http://"]:hover,
-.content .example-box a[href^="https://"]:hover,
-article .info-box a[href^="http://"]:hover,
-article .info-box a[href^="https://"]:hover,
-article .example-box a[href^="http://"]:hover,
-article .example-box a[href^="https://"]:hover {
+.content .info-box a[href^="http://"]:not(.effectLinks):hover,
+.content .info-box a[href^="https://"]:not(.effectLinks):hover,
+.content .example-box a[href^="http://"]:not(.effectLinks):hover,
+.content .example-box a[href^="https://"]:not(.effectLinks):hover,
+article .info-box a[href^="http://"]:not(.effectLinks):hover,
+article .info-box a[href^="https://"]:not(.effectLinks):hover,
+article .example-box a[href^="http://"]:not(.effectLinks):hover,
+article .example-box a[href^="https://"]:not(.effectLinks):hover {
     color: #ffffff;
     background-color: #b0b0b0;
     transform: translateY(-2px) scale(1.02);

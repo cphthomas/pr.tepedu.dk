@@ -59,33 +59,45 @@
     margin-bottom: 1.5rem;
 }
 
-.quiz-links-section .effectLinks {
+/* EffectLinks in chapter link blocks - same look everywhere (quiz, intro, after figures) */
+.quiz-links-section .effectLinks,
+.chapter-links-block .effectLinks,
+.chapter-links-inline .effectLinks {
+    display: block !important;
+    width: 100% !important;
     background: #d5dde6 !important;
     color: #1a3a5c !important;
     margin-bottom: 14px !important;
-    padding: 18px 22px !important;
+    padding: 24px 22px !important;
+    min-height: 56px !important;
     line-height: 1.35;
     font-style: normal;
 }
 
-.quiz-links-section .effectLinks::after {
+.quiz-links-section .effectLinks::after,
+.chapter-links-block .effectLinks::after,
+.chapter-links-inline .effectLinks::after {
     background: #1a3a5c !important;
     color: #ffffff !important;
-    padding: 18px 22px !important;
+    padding: 24px 22px !important;
 }
 
-.quiz-links-section .effectLinks:hover {
+.quiz-links-section .effectLinks:hover,
+.chapter-links-block .effectLinks:hover,
+.chapter-links-inline .effectLinks:hover {
     background: #1a3a5c !important;
     color: #ffffff !important;
 }
 
-/* Inline chapter links near introductions */
-.chapter-links-inline {
+/* Inline chapter links near introductions and reusable chapter link blocks */
+.chapter-links-inline,
+.chapter-links-block {
     margin-top: 3rem;
     margin-bottom: 3rem;
 }
 
-.chapter-links-inline .chapter-links-title {
+.chapter-links-inline .chapter-links-title,
+.chapter-links-block .chapter-links-title {
     margin-bottom: 1rem;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 2rem;
@@ -255,13 +267,19 @@
     background: #ffffff;
 }
 
-[data-theme="dark"] .quiz-links-section .effectLinks {
+[data-theme="dark"] .quiz-links-section .effectLinks,
+[data-theme="dark"] .chapter-links-block .effectLinks,
+[data-theme="dark"] .chapter-links-inline .effectLinks {
     background: rgba(74, 127, 168, 0.2) !important;
     color: #dbeafe !important;
 }
 
 [data-theme="dark"] .quiz-links-section .effectLinks::after,
-[data-theme="dark"] .quiz-links-section .effectLinks:hover {
+[data-theme="dark"] .quiz-links-section .effectLinks:hover,
+[data-theme="dark"] .chapter-links-block .effectLinks::after,
+[data-theme="dark"] .chapter-links-block .effectLinks:hover,
+[data-theme="dark"] .chapter-links-inline .effectLinks::after,
+[data-theme="dark"] .chapter-links-inline .effectLinks:hover {
     background: #4a7fa8 !important;
     color: #ffffff !important;
 }
