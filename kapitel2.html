@@ -1329,7 +1329,7 @@
                 <!-- ============================================================ -->
                 <!-- CASE 4: JONAS OG SARA (PAR) -->
                 <!-- ============================================================ -->
-                
+
 
                 <!-- ============================================================ -->
                 <!-- 2.3 GÆLDSFAKTOR -->
@@ -1680,8 +1680,8 @@
                     </div>
 
                     <h3 class="mt-4">Hvor meget betyder ægteskab?</h3>
-                    
-                  
+
+
 
                     <div class="table-responsive mt-3">
                         <table class="table comparison-table table-bordered">
@@ -1791,7 +1791,7 @@
                             class="legal-term" data-slug="kommuneskat">kommuneskat</span>.
                     </p>
 
-                    <div class="chart-container sankey-chart mb-2 wide">
+                    <div class="chart-container sankey-chart mb-2 wide" style="height: 600px;">
                         <canvas id="ugiftSankey"></canvas>
                     </div>
                     <small class="d-block text-left mt-2">Figur 2.8 — Sankey-diagram: Skattestrøm for Jonas (400.000
@@ -1900,7 +1900,7 @@
                     <p>Sankey-diagrammet herunder viser den samlede skattestrøm for Jonas og Sara som ægtefæller.
                         Sammenlign med det forrige diagram (ugift) og bemærk den højere disponible indkomst.</p>
 
-                    <div class="chart-container sankey-chart mb-2 wide">
+                    <div class="chart-container sankey-chart mb-2 wide" style="height: 600px;">
                         <canvas id="giftSankey"></canvas>
                     </div>
                     <small class="d-block text-left mt-2">Figur 2.9 — Sankey-diagram: Skattestrøm for Jonas og Sara som
@@ -1912,130 +1912,27 @@
                 </div>
 
 
-                <h4 class="mt-4">Case: Jonas og Sara – Samlevende par i Aarhus (850.000 kr. brutto samlet)</h4>
+                <h4 class="mt-4">Case: Jonas og Sara – Samlevende par i Aarhus</h4>
                 <div class="info-box borderless reveal-on-scroll">
-                    <p>Jonas (sygeplejerske, 400.000 kr. brutto) og Sara (junioringeniør, 450.000 kr. brutto) er
-                        samlevende og har tilsammen en årsindkomst på <b>850.000 kr. brutto</b>, svarende til ca.
-                        <b>45.497 kr. pr. måned netto</b> (Jonas: ca. 21.507 kr., Sara: ca. 23.990 kr.). De har netop
-                        købt andelsbolig i Aarhus med et realkreditlån og et banklån. Rådighedsbeløbet beregnes for
-                        husstanden samlet — se også skattestrømmen i Figur 2.8 og 2.9 samt budget-Sankey i afsnit 2.5 (Figur 2.10).
+                    <p>Jonas (28 år, sygeplejerske, 400.000 kr. brutto) og Sara (27 år, ingeniør, 450.000 kr. brutto) er
+                        samlevende og har tilsammen en årsindkomst på <b>850.000 kr. brutto</b>.
+                        Deres samlede månedlige udbetaling er <b>44.754 kr. netto som ugift</b> (Sara: 22.421 kr.,
+                        Jonas: 22.333 kr.) og <b>44.788 kr. som gift</b>.
+                        Forskellen i skat mellem at være gift og ugift er altså p.t. meget lille for parret (ca. 34
+                        kr./md.),
+                        fordi begge arbejder fuldtid fuldt ud. Men hvis Jonas f.eks. vælger at læse videre og får en
+                        lavere indkomst på SU, vil parret kunne opnå en stor skattebesparelse ved at blive gift.
+                        Ægtefæller kan nemlig overføre uudnyttet personfradrag til hinanden, hvilket vil mindske Saras
+                        skat betydeligt.
+                        <br><br>Bemærk også, at Sara har en positiv kapitalindkomst på 80.000 kr. årligt fra
+                        renteindtægter (ca. 6.667 kr./md.).
+                        Skatten heraf er indregnet i hendes løn, så hun får mindre løndel udbetalt. Men udbyttet på
+                        6.667 kr. pr. md. optræder separat, som medregnes her i budgettet som nettoindtægt.
+                        De betaler kirkeskat, har kørselsfradrag (Sara: 14 km, Jonas: 7 km), og har fravalgt a-kasse og
+                        fagforening efter personlig overbevisning. Rådighedsbeløbet beregnes for husstanden samlet.
                     </p>
 
-                    <div class="table-responsive mb-4">
-                        <table class="table table-bordered table-hover">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Post</th>
-                                    <th class="text-right">Beløb</th>
-                                    <th class="text-right">Periode</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Jonas — løn, efter skat</td>
-                                    <td class="text-right"><b>21.507 kr.</b></td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Sara — løn, efter skat</td>
-                                    <td class="text-right"><b>23.990 kr.</b></td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Realkreditlån, ydelse (rente + afdrag)</td>
-                                    <td class="text-right">13.400 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Banklån (boliglån 15 %), ydelse</td>
-                                    <td class="text-right">4.500 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Fællesudgifter (andelsforening)</td>
-                                    <td class="text-right">4.500 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Varme</td>
-                                    <td class="text-right">1.200 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>El</td>
-                                    <td class="text-right">800 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Jonas — mobiltelefon</td>
-                                    <td class="text-right">199 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Sara — mobiltelefon</td>
-                                    <td class="text-right">199 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Internet (fiber)</td>
-                                    <td class="text-right">249 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Disney+ (familieabonnement)</td>
-                                    <td class="text-right">119 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Spotify Family (musikabonnement)</td>
-                                    <td class="text-right">99 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Jonas — transport (bil + offentlig trafik)</td>
-                                    <td class="text-right">1.800 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Sara — transport (cykel + rejsekort)</td>
-                                    <td class="text-right">1.200 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Jonas — A-kasse (FOA a-kasse)</td>
-                                    <td class="text-right">2.748 kr.</td>
-                                    <td class="text-right">halvårligt</td>
-                                </tr>
-                                <tr>
-                                    <td>Sara — A-kasse (IDA a-kasse)</td>
-                                    <td class="text-right">500 kr.</td>
-                                    <td class="text-right">pr. md.</td>
-                                </tr>
-                                <tr>
-                                    <td>Jonas — fagforening (DSR)</td>
-                                    <td class="text-right">3.480 kr.</td>
-                                    <td class="text-right">halvårligt</td>
-                                </tr>
-                                <tr>
-                                    <td>Sara — fagforening (IDA-kontingent)</td>
-                                    <td class="text-right">3.240 kr.</td>
-                                    <td class="text-right">halvårligt</td>
-                                </tr>
-                                <tr>
-                                    <td>Indboforsikring</td>
-                                    <td class="text-right">5.400 kr.</td>
-                                    <td class="text-right">pr. år</td>
-                                </tr>
-                                <tr>
-                                    <td>Sygeforsikring Danmark (2 pers.)</td>
-                                    <td class="text-right">4.776 kr.</td>
-                                    <td class="text-right">pr. år</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <small class="d-block text-left mb-4 text-muted">Tabel 2.7a — Uordnet udgiftsliste for Jonas og Sara
-                        (850.000 kr. brutto samlet / 45.497 kr./md. netto). Kilde: Egne beregninger.</small>
+
 
                     <div class="table-responsive mb-4">
                         <table class="table table-bordered table-hover">
@@ -2050,27 +1947,31 @@
                                     <td colspan="2"><b>INDTÆGTER</b></td>
                                 </tr>
                                 <tr>
-                                    <td>Jonas — løn, efter skat</td>
-                                    <td class="text-right">21.507 kr.</td>
-                                </tr>
-                                <tr>
                                     <td>Sara — løn, efter skat</td>
-                                    <td class="text-right">23.990 kr.</td>
+                                    <td class="text-right">22.732 kr.</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Samlet nettoindkomst</b></td>
-                                    <td class="text-right"><b>45.497 kr.</b></td>
+                                    <td>Jonas — løn, efter skat</td>
+                                    <td class="text-right">22.056 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sara — renter og udbytte</td>
+                                    <td class="text-right">6.667 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Samlet indkomst</b></td>
+                                    <td class="text-right"><b>51.455 kr.</b></td>
                                 </tr>
                                 <tr class="table-light">
                                     <td colspan="2"><b>UDGIFTER — Bolig</b></td>
                                 </tr>
                                 <tr>
-                                    <td>Boligafgift/fællesudgifter (andelsforening)</td>
+                                    <td>Husleje (andelsbolig)</td>
                                     <td class="text-right">4.500 kr.</td>
                                 </tr>
                                 <tr>
-                                    <td>Låneydelse, samlet (13.400 kr. realkreditlån + 4.500 kr. banklån)</td>
-                                    <td class="text-right">17.900 kr.</td>
+                                    <td>Låneydelse, samlet banklån</td>
+                                    <td class="text-right">4.500 kr.</td>
                                 </tr>
                                 <tr>
                                     <td>Varme</td>
@@ -2084,96 +1985,75 @@
                                     <td colspan="2"><b>UDGIFTER — Transport</b></td>
                                 </tr>
                                 <tr>
-                                    <td>Jonas — transport (bil + offentlig trafik)</td>
+                                    <td>Transport Jonas</td>
                                     <td class="text-right">1.800 kr.</td>
                                 </tr>
                                 <tr>
-                                    <td>Sara — transport (cykel + rejsekort)</td>
+                                    <td>Transport Sara</td>
                                     <td class="text-right">1.200 kr.</td>
                                 </tr>
                                 <tr class="table-light">
                                     <td colspan="2"><b>UDGIFTER — Kommunikation / TV</b></td>
                                 </tr>
                                 <tr>
-                                    <td>Jonas — mobiltelefon</td>
-                                    <td class="text-right">199 kr.</td>
+                                    <td>Mobiltelefon (samlet)</td>
+                                    <td class="text-right">398 kr.</td>
                                 </tr>
                                 <tr>
-                                    <td>Sara — mobiltelefon</td>
-                                    <td class="text-right">199 kr.</td>
-                                </tr>
-                                <tr>
-                                    <td>Internet (fiber)</td>
+                                    <td>Internet</td>
                                     <td class="text-right">249 kr.</td>
                                 </tr>
                                 <tr>
-                                    <td>Hybridnet/kabel-TV (Disney+)</td>
-                                    <td class="text-right">119 kr.</td>
-                                </tr>
-                                <tr>
-                                    <td>Hybridnet/kabel-TV (Spotify Family)</td>
-                                    <td class="text-right">99 kr.</td>
+                                    <td>Hybridnet/kabel-TV (streaming)</td>
+                                    <td class="text-right">218 kr.</td>
                                 </tr>
                                 <tr class="table-light">
-                                    <td colspan="2"><b>UDGIFTER — Forsikring og faglig organisering</b></td>
+                                    <td colspan="2"><b>UDGIFTER — Forsikring</b></td>
                                 </tr>
                                 <tr>
-                                    <td>Jonas — A-kasse (FOA, 2.748 kr./halvår ÷ 6)</td>
-                                    <td class="text-right">458 kr.</td>
-                                </tr>
-                                <tr>
-                                    <td>Jonas — fagforening (DSR, 3.480 kr./halvår ÷ 6)</td>
-                                    <td class="text-right">580 kr.</td>
-                                </tr>
-                                <tr>
-                                    <td>Sara — A-kasse (IDA)</td>
-                                    <td class="text-right">500 kr.</td>
-                                </tr>
-                                <tr>
-                                    <td>Sara — fagforening (IDA, 3.240 kr./halvår ÷ 6)</td>
-                                    <td class="text-right">540 kr.</td>
-                                </tr>
-                                <tr>
-                                    <td>Indboforsikring (5.400 kr./år ÷ 12)</td>
+                                    <td>Indboforsikring</td>
                                     <td class="text-right">450 kr.</td>
                                 </tr>
                                 <tr>
-                                    <td>Sygeforsikring Danmark (4.776 kr./år ÷ 12)</td>
+                                    <td>Sygeforsikring Danmark (2 pers.)</td>
                                     <td class="text-right">398 kr.</td>
                                 </tr>
                                 <tr>
                                     <td><b>Udgifter i alt</b></td>
-                                    <td class="text-right"><b>29.491 kr.</b></td>
+                                    <td class="text-right"><b>15.713 kr.</b></td>
                                 </tr>
                                 <tr class="table-warning">
                                     <td><b><span data-definition="Det beløb en husstand har tilbage til privatforbrug og opsparing efter at alle faste udgifter, inklusive skat og boligydelse, er afholdt."
                                                 data-example="Når husleje, el, varme, forsikring og lån er betalt, har familien 10.000 kr. tilbage til mad og tøj; dette er deres rådighedsbeløb."
                                                 class="legal-term" data-slug="radighedsbelob">Rådighedsbeløb (husstand
                                                 samlet)</span></b></td>
-                                    <td class="text-right"><b>16.006 kr./md.</b></td>
+                                    <td class="text-right"><b>35.742 kr./md.</b></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <small class="d-block text-left mb-3 text-muted">Tabel 2.7b — Ordnet månedbudget for Jonas og Sara
-                        (850.000 kr. brutto samlet / 45.497 kr./md. netto). Halvårlige og årlige udgifter er omregnet
-                        til månedlige beløb. Jf. Figur 2.10 (budget-Sankey i afsnit 2.5). Kilde: Egne beregninger, <a
+                    <small class="d-block text-left mb-3 text-muted">Tabel 2.7 — Månedbudget for Jonas og Sara.
+                        A-kasse og fagforening er fravalgt. Kilde: Egne beregninger baseret på Skattestyrelsen, <a
                             href="https://skat.tepedu.dk/budget.html"
                             target="_blank">skat.tepedu.dk/budget.html</a>.</small>
 
                     <div class="figure-container wide mb-2">
-                        <img src="images/budget_case4_jonas_sara.png"
-                            alt="Budget for Jonas og Sara i privatbudgetberegneren" class="img-fluid wide"
-                            style="width:100%; object-fit:contain;">
+                        <img src="images/budget_case4_jonas_sara.png" alt="Budget for Jonas og Sara"
+                            class="img-fluid wide" style="width:100%; object-fit:contain;">
                     </div>
-                    <small class="d-block text-left mt-2 mb-4">Figur 2.11 — Privatbudget for Jonas og Sara (850.000 kr.
-                        brutto samlet / 45.497 kr./md. netto) i <a href="https://skat.tepedu.dk/budget.html"
-                            target="_blank">skat.tepedu.dk/budget.html</a>. Rådighedsbeløb: <b>16.006
-                            kr./md.</b></small>
+                    <small class="d-block text-left mt-2 mb-4">Figur 2.11 — Privatbudget for Jonas og Sara i <a
+                            href="https://skat.tepedu.dk/budget.html" target="_blank">skat.tepedu.dk/budget.html</a>.
+                        Rådighedsbeløb: <b>35.742 kr./md.</b></small>
 
                     <div class="chapter-links-block">
-                        <a href="files/jonas_sara.xlsx" class="effectLinks effectLinks-download"
-                            data-replace="Hent Excel budget fra beregneren" download="jonas_sara.xlsx"
+                        <a href="files/unmarried.xlsx" class="effectLinks effectLinks-download"
+                            data-replace="Hent skatteberegning (Ugift) i Excel" download="unmarried.xlsx"
+                            rel="noopener noreferrer">Skatteberegning (Ugift)</a>
+                        <a href="files/married.xlsx" class="effectLinks effectLinks-download"
+                            data-replace="Hent skatteberegning (Gift) i Excel" download="married.xlsx"
+                            rel="noopener noreferrer">Skatteberegning (Gift)</a>
+                        <a href="files/budget_unmarried.xlsx" class="effectLinks effectLinks-download"
+                            data-replace="Hent Excel budget fra beregneren" download="budget_unmarried.xlsx"
                             rel="noopener noreferrer">Excel budget fra beregneren</a>
                         <a href="https://skat.tepedu.dk/budget.html" class="effectLinks"
                             data-replace="Åben budgetberegner" target="_blank" rel="noopener noreferrer">Åben
@@ -2181,160 +2061,30 @@
                     </div>
 
                     <div class="tip-box">
-                        <p><b>Rådgiver-analyse:</b> Jonas og Saras samlede rådighedsbeløb på ca. 16.006 kr. pr. måned er
-                            marginalt over Finanstilsynets vejledende minimum for et samlevende par (11.500–14.500
-                            kr./md.), men giver begrænset buffer. Låneydelserne alene udgør 17.900 kr. — svarende til
-                            <b>39,3 % af nettoindkomsten</b>. Banken vil typisk stress-teste budgettet med en rente 2–3
-                            procentpoint over den aktuelle, hvilket vil reducere rådighedsbeløbet yderligere. Parret
-                            anbefales at vælge lån med afdrag (jf. afsnittet om gældsfaktor). IDA-kontingentet og
-                            FOA/DSR a-kasse faktureres halvårligt; i budgettet omregnes disse til månedlige beløb.
+                        <p><b>Rådgiver-analyse:</b> Jonas og Saras samlede rådighedsbeløb på hele 35.742 kr. pr. måned
+                            er
+                            væsentligt over Finanstilsynets vejledende minimum for et samlevende par (ca. 11.500–14.500
+                            kr./md.).
+                            Låneydelserne på banklånet udgør beskedne 4.500 kr., hvilket i kombination med deres fravalg
+                            af a-kasse
+                            og fagforeningsudgifter efterlader et enormt råderum. Selvom banken vil stressteste
+                            budgettet med over normal rente,
+                            vil de have overflod af likviditet. Som rådgiver bør man dog gøre opmærksom på den store
+                            risiko de løber
+                            ved ikke at have sikret deres indtægt via a-kasse. Rådgiveren vil endvidere rådgive dem til
+                            at lægge
+                            en fast plan for afdrag og investering af de mellemværende likvider.
                         </p>
                     </div>
-                </div>
-                <!-- ============================================================ -->
-                <!-- 2.5 CASE: JONAS & SARA -->
-                <!-- ============================================================ -->
-                <h2>2.5 Case: Jonas & Sara (Par uden bolig)</h2>
-                <div class="info-box highlight-box reveal-on-scroll">
-                    <h3>Profil: Det unge par på boligjagt</h3>
-                    <p>Jonas (28 år, sygeplejerske) og Sara (27 år, junioringeniør) bor til leje i København NV og ønsker at
-                        erhverve en andelslejlighed på Østerbro. De har henvendt sig i banken med henblik på at få
-                        udstedt et lånebevis.</p>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul class="list-group list-group-flush mb-3">
-                                <li class="list-group-item"><b>Jonas Indkomst:</b> 400.000 kr./år (ca. 33.300/md)</li>
-                                <li class="list-group-item"><b>Sara Indkomst:</b> 450.000 kr./år (ca. 37.500/md)</li>
-                                <li class="list-group-item"><b>Samlet Indkomst:</b> 850.000 kr./år</li>
-                                <li class="list-group-item"><b>Opsparing:</b> 200.000 kr. (Stående på højrentekonto)
-                                </li>
-                                <li class="list-group-item"><b>Studiegæld (Jonas):</b> -300.000 kr.</li>
-                                <li class="list-group-item"><b>Ønsket bolig:</b> Andelslejlighed til 3,2 mio. kr.</li>
-                                <li class="list-group-item"><b>Boligafgift:</b> 4.500 kr./md.</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card bg-light">
-                                <div class="card-body">
-                                    <h5 class="card-title">Bankmødet</h5>
-                                    <p class="card-text">Rådgiveren skal nu vurdere, om økonomien kan bære købet.
-                                        Vurderingen tager afsæt i:</p>
-                                    <ol>
-                                        <li>Kan <span class="legal-term" data-slug="gaeldsfaktor"
-                                                data-definition="Forholdet mellem husstandens samlede gæld og dens samlede bruttoindkomst før skat."
-                                                data-example="En gæld på 4 mio. kr. divideret med en indkomst på 1 mio. kr. giver en gældsfaktor på 4,0.">gældsfaktoren</span>
-                                            godkendes?</li>
-                                        <li>Er <span
-                                                data-definition="Det beløb en husstand har tilbage til privatforbrug og opsparing efter at alle faste udgifter, inklusive skat og boligydelse, er afholdt."
-                                                data-example="Når husleje, el, varme, forsikring og lån er betalt, har familien 10.000 kr. tilbage til mad og tøj; dette er deres rådighedsbeløb."
-                                                class="legal-term" data-slug="radighedsbelob">rådighedsbeløbet</span>
-                                            tilstrækkeligt?</li>
-                                        <li>Hvad betyder deres civilstand (ugifte)?</li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <p>Sankey-diagrammet herunder opsummerer den månedlige pengestrøm fra parrets samlede indtægter til
+                        de respektive faste udgifter, som munder ud i deres enorme rådighedsbeløb på 35.742 kr.</p>
 
-                    <h4 class="mt-4">Trin 1: Gældsfaktor Beregning</h4>
-                    <p>Først beregner vi det samlede finansieringsbehov.</p>
-                    <p>Pris på bolig: 3.200.000 kr.<br>
-                        Udbetaling (Opsparing): -200.000 kr.<br>
-                        <b>Nyt <span
-                                data-definition="Et lån optaget i banken, som typisk bruges til at finansiere de resterende 15 % af en ejerboligs købspris udover realkreditlånet (80 %) og udbetalingen (5 %). Bankboliglån har normalt en variabel rente, der er væsentligt højere end renten på realkreditlån."
-                                data-example="Ved køb af et hus til 4 mio. kr. optager du et realkreditlån på 3,2 mio. kr. og et boliglån i banken på 600.000 kr. til at dække resten af finansieringen."
-                                class="legal-term" data-slug="boliglaan">banklån</span>:
-                            3.000.000 kr.</b>
-                    </p>
-
-                    <p>Samlet gæld = Nyt <span
-                            data-definition="Et lån optaget i banken, som typisk bruges til at finansiere de resterende 15 % af en ejerboligs købspris udover realkreditlånet (80 %) og udbetalingen (5 %). Bankboliglån har normalt en variabel rente, der er væsentligt højere end renten på realkreditlån."
-                            data-example="Ved køb af et hus til 4 mio. kr. optager du et realkreditlån på 3,2 mio. kr. og et boliglån i banken på 600.000 kr. til at dække resten af finansieringen."
-                            class="legal-term" data-slug="boliglaan">banklån</span>
-                        + Eksisterende studiegæld<br>
-                        <b>Samlet gæld = 3.000.000 + 300.000 = 3.300.000 kr.</b>
-                    </p>
-
-                    <div class="card bg-light mb-3 border-0 shadow-sm"
-                        style="border-radius:0 !important; background:var(--card-bg, #f8f9fa);">
-                        <div class="card-body py-4">
-                            <div class="text-center"
-                                style="font-size: 1rem; display:flex; align-items:center; justify-content:center; font-style: italic;">
-                                <span class="mr-3" style="color:var(--text-color);"><span class="legal-term"
-                                        data-slug="gaeldsfaktor"
-                                        data-definition="Forholdet mellem husstandens samlede gæld og dens samlede bruttoindkomst før skat."
-                                        data-example="En gæld på 4 mio. kr. divideret med en indkomst på 1 mio. kr. giver en gældsfaktor på 4,0.">Gældsfaktor</span>
-                                    = </span>
-                                <div
-                                    style="display:inline-flex; flex-direction:column; align-items:center; font-weight:bold; color:var(--text-color);">
-                                    <span
-                                        style="border-bottom: 2px solid; padding-bottom: 5px; margin-bottom: 5px; width: 100%; text-align: center;">3.300.000</span>
-                                    <span>850.000</span>
-                                </div>
-                                <span class="ml-3 font-weight-bold" style="color:var(--text-color);">=
-                                    3,88</span>
-                            </div>
-                        </div>
-                    </div>
-                    <small class="d-block text-left mb-4 text-muted" style="font-style: italic;">
-                        <b>Ligning 2.2: Beregning af <span class="legal-term" data-slug="gaeldsfaktor"
-                                data-definition="Forholdet mellem husstandens samlede gæld og dens samlede bruttoindkomst før skat."
-                                data-example="En gæld på 4 mio. kr. divideret med en indkomst på 1 mio. kr. giver en gældsfaktor på 4,0.">Gældsfaktor</span>
-                            for Jonas og Sara.</b> Note: Bruttolønnen for parret
-                        udgør
-                        850.000 kr.
-                    </small>
-                    <p><b>Konklusion:</b> <span class="legal-term" data-slug="gaeldsfaktor"
-                            data-definition="Forholdet mellem husstandens samlede gæld og dens samlede bruttoindkomst før skat."
-                            data-example="En gæld på 4 mio. kr. divideret med en indkomst på 1 mio. kr. giver en gældsfaktor på 4,0.">Gældsfaktoren</span>
-                        er under 4,0, men i den høje ende ("Gul" zone). Da boligen
-                        ligger i København (Vækstområde), vil banken sandsynligvis kræve, at de vælger et lån med
-                        afvikling. De kan ikke få <span
-                            data-definition="En aftalt periode i et låneforløb, hvor du udelukkende betaler renter og bidragssatser til realkreditinstituttet eller banken, mens selve afviklingen af gælden (afdraget) sættes i bero. Formålet er at frigøre likviditet her-og-nu, men prisen er en højere samlet renteudgift over lånets løbetid."
-                            data-example="Ved et realkreditlån på 3 mio. kr. kan 10 års afdragsfrihed reducere din månedlige ydelse væsentligt, hvilket giver luft i budgettet til f.eks. at afdrage på et dyrere banklån eller finansiere daglige udgifter."
-                            class="legal-term" data-slug="afdragsfrihed">afdragsfrihed</span>.
-                    </p>
-
-                    <!-- SANKEY: Jonas & Sara Budget -->
-                    <h4 class="mt-4">Trin 2: Budget og Rådighedsbeløb</h4>
-                    <p>Nu hvor vi har beregnet <span class="legal-term" data-slug="gaeldsfaktor"
-                            data-definition="Forholdet mellem husstandens samlede gæld og dens samlede bruttoindkomst før skat."
-                            data-example="En gæld på 4 mio. kr. divideret med en indkomst på 1 mio. kr. giver en gældsfaktor på 4,0.">gældsfaktoren</span>
-                        og forstået skatteforholdene, kan vi opstille det fulde
-                        månedlige budget for Jonas og Sara efter et boligkøb. Budgettet er rådgiverens ultimative
-                        værktøj til at afgøre, om parret reelt kan bære de samlede boligomkostninger.</p>
-                    <p>Med en samlet nettoindkomst på ca. 45.500 kr./md. (efter skat) og faste udgifter på ca. 29.500
-                        kr./md. har parret et <span
-                            data-definition="Det beløb en husstand har tilbage til privatforbrug og opsparing efter at alle faste udgifter, inklusive skat og boligydelse, er afholdt."
-                            data-example="Når husleje, el, varme, forsikring og lån er betalt, har familien 10.000 kr. tilbage til mad og tøj; dette er deres rådighedsbeløb."
-                            class="legal-term" data-slug="radighedsbelob">rådighedsbeløbet</span>
-                        på ca. <b>15.997 kr./md.</b> til mad, tøj, fornøjelser,
-                        opsparing og uforudsete udgifter. Ifølge Finanstilsynets vejledning er minimumet for et
-                        samlevende par ca. 11.500-14.500 kr./md., så parret ligger marginalt over minimumsgrænsen.
-                        Rådighedsbeløbet er dermed begrænset.</p>
-                    <p>Hertil kommer et vigtigt forbehold: Bankerne stress-tester typisk budgettet med en rente, der er
-                        1-3 procentpoint højere end den aktuelle. Hvis renten stiger fra 5,5 % til 8 %, vil låneydelsen
-                        stige med ca. 4.500 kr./md. — og <span
-                            data-definition="Det beløb en husstand har tilbage til privatforbrug og opsparing efter at alle faste udgifter, inklusive skat og boligydelse, er afholdt."
-                            data-example="Når husleje, el, varme, forsikring og lån er betalt, har familien 10.000 kr. tilbage til mad og tøj; dette er deres rådighedsbeløb."
-                            class="legal-term" data-slug="radighedsbelob">rådighedsbeløbet</span>
-                        falder til ca. 11.500 kr., som er i den
-                        absolut nedre ende. Det er denne analyse, rådgiveren præsenterer i bankmødet.</p>
-                    <p>Sankey-diagrammet herunder viser den månedlige pengestrøm fra parrets nettoløn til de enkelte
-                        udgiftsposter og det endelige <span
-                            data-definition="Det beløb en husstand har tilbage til privatforbrug og opsparing efter at alle faste udgifter, inklusive skat og boligydelse, er afholdt."
-                            data-example="Når husleje, el, varme, forsikring og lån er betalt, har familien 10.000 kr. tilbage til mad og tøj; dette er deres rådighedsbeløb."
-                            class="legal-term" data-slug="radighedsbelob">rådighedsbeløb</span>.
-                    </p>
-
-                    <div class="chart-container sankey-chart mb-2 wide">
+                    <div class="chart-container sankey-chart mb-2 wide" style="height: 600px;">
                         <canvas id="caseBudgetSankey"></canvas>
                     </div>
                     <small class="d-block text-left mt-2">Figur 2.10 — Sankey-diagram: Jonas & Saras samlede
-                        månedlige budget efter boligkøb. Kilde: Egne beregninger baseret på Skattestyrelsen
-                        (2026).</small>
-
+                        månedlige budget. Rådighedsbeløb = 35.742 kr.</small>
 
                 </div>
 
@@ -2342,7 +2092,7 @@
                 <!-- ============================================================ -->
                 <!-- 2.7 RENTEUDGIFTER BAR CHART -->
                 <!-- ============================================================ -->
-                <h2>2.7 Rentefradragets værdi i 2026</h2>
+                <h2>2.5 Rentefradragets værdi i 2026</h2>
                 <div class="info-box reveal-on-scroll">
                     <p><span data-definition="Et skattemæssigt fradrag (ligningsmæssigt fradrag) for dine renteudgifter på lån. Fradraget betyder, at en del af din renteudgift dækkes af staten i form af lavere skat. Skatteværdien af rentefradrag er p.t. ca. 25-33 %."
                             data-example="Betaler du 50.000 kr. i renter om året, vil dit rentefradrag betyde, at du reelt betaler ca. 12.500-16.500 kr. mindre i skat over hele året."
@@ -2436,7 +2186,7 @@
                 <!-- ============================================================ -->
                 <!-- 2.8 ÆGTEFÆLLES PERSONFRADRAG -->
                 <!-- ============================================================ -->
-                <h2>2.8 Ægtefælles personfradrag — en overset fordel</h2>
+                <h2>2.6 Ægtefælles personfradrag — en overset fordel</h2>
                 <div class="info-box reveal-on-scroll">
                     <p>I Danmark er skat personlig — men for ægtepar gælder en vigtig undtagelse: <b>uudnyttet
                             <span
@@ -2500,7 +2250,7 @@
                 <!-- ============================================================ -->
                 <!-- 2.9 ADFÆRDSØKONOMI -->
                 <!-- ============================================================ -->
-                <h2>2.9 Adfærdsøkonomi: Hvorfor fejler vi?</h2>
+                <h2>2.7 Adfærdsøkonomi: Hvorfor fejler vi?</h2>
                 <div class="info-box reveal-on-scroll">
                     <p>Selv når de regningsmæssige fakta er entydige, træffer kunder ofte irrationelle beslutninger. Som
                         rådgiver er det
@@ -2990,14 +2740,19 @@
         initChartWhenVisible('ugiftSankey', function () {
             const c = themeColors();
             // Jonas: 400.000
-            const jBrutto = 400000, jAm = 32000, jBund = 37235, jKommune = 72688;
-            const jSkat = jAm + jBund + jKommune; // 141.923
-            const jNetto = jBrutto - jSkat;        // 258.077
-            // Sara: 450.000
-            const sBrutto = 450000, sAm = 36000, sBund = 42726, sKommune = 83394;
-            const sSkat = sAm + sBund + sKommune;  // 162.120
-            const sNetto = sBrutto - sSkat;         // 287.880
-            const samletNetto = jNetto + sNetto;    // 545.957
+            const jBrutto = 400000, jAm = 32000, jBund = 37699, jKommune = 61251;
+            const jSkat = 131999;
+            const jNetto = 268001;
+            // Sara: 450.000 (inklusiv kapitalindkomst skat etc. via Skat i alt)
+            const sBrutto = 450000, sAm = 36000, sBund = 51631, sKommune = 90583;
+            // Rettelse for andre småskatter/fradrag i samlet skat beregning tages fra arket:
+            const sSkat = 180948;
+            const sNetto = 269052;
+            const samletNetto = jNetto + sNetto;    // 537.053
+
+            // Forskellen mellem am+bund+kommune og skat i alt (pga. f.eks. kirkeskat) 
+            const jAndreSkatter = jSkat - (jAm + jBund + jKommune);
+            const sAndreSkatter = sSkat - (sAm + sBund + sKommune);
 
             new Chart(document.getElementById('ugiftSankey').getContext('2d'), {
                 type: 'sankey',
@@ -3009,11 +2764,13 @@
                             { from: 'Jonas skat', to: 'AM-bidrag (J)', flow: jAm },
                             { from: 'Jonas skat', to: 'Bundskat (J)', flow: jBund },
                             { from: 'Jonas skat', to: 'Kommuneskat (J)', flow: jKommune },
+                            { from: 'Jonas skat', to: 'Anden skat (J)', flow: jAndreSkatter },
                             { from: 'Sara løn', to: 'Sara skat', flow: sSkat },
                             { from: 'Sara løn', to: 'Sara netto', flow: sNetto },
                             { from: 'Sara skat', to: 'AM-bidrag (S)', flow: sAm },
                             { from: 'Sara skat', to: 'Bundskat (S)', flow: sBund },
                             { from: 'Sara skat', to: 'Kommuneskat (S)', flow: sKommune },
+                            { from: 'Sara skat', to: 'Anden skat (S)', flow: sAndreSkatter },
                             { from: 'Jonas netto', to: 'Samlet disponibel', flow: jNetto },
                             { from: 'Sara netto', to: 'Samlet disponibel', flow: sNetto }
                         ],
@@ -3031,6 +2788,7 @@
                             if (to.includes('AM')) return COLORS.am;
                             if (to.includes('Bund')) return COLORS.bund;
                             if (to.includes('Kommune')) return COLORS.kommune;
+                            if (to.includes('Anden')) return '#95a5a6';
                             return '#8fa9be';
                         },
                         colorMode: 'gradient',
@@ -3044,12 +2802,14 @@
                             'AM-bidrag (J)': 'AM-bidrag\n' + fmt(jAm) + ' kr.',
                             'Bundskat (J)': 'Bundskat\n' + fmt(jBund) + ' kr.',
                             'Kommuneskat (J)': 'Kommuneskat\n' + fmt(jKommune) + ' kr.',
+                            'Anden skat (J)': 'Øvrig skat\n' + fmt(jAndreSkatter) + ' kr.',
                             'AM-bidrag (S)': 'AM-bidrag\n' + fmt(sAm) + ' kr.',
                             'Bundskat (S)': 'Bundskat\n' + fmt(sBund) + ' kr.',
                             'Kommuneskat (S)': 'Kommuneskat\n' + fmt(sKommune) + ' kr.',
+                            'Anden skat (S)': 'Øvrig skat\n' + fmt(sAndreSkatter) + ' kr.',
                             'Samlet disponibel': 'Samlet disponibel\n' + fmt(samletNetto) + ' kr.'
                         },
-                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text }
+                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text, size: 9 }
                     }]
                 },
                 options: {
@@ -3069,15 +2829,14 @@
         // ============================================================
         initChartWhenVisible('giftSankey', function () {
             const c = themeColors();
-            // Gift: Personfradrag overføres (begge udnytter), renteudgifter deles optimalt
-            // Samlet indkomst: 850.000, samlet AM: 68.000
+            // Gift
             const samletBrutto = 850000;
-            const samletAm = 68000;
-            const samletBund = 78260;    // optimeret pga. fuld fradragsudnyttelse
-            const samletKommune = 152082;
-            const samletSkat = samletAm + samletBund + samletKommune; // 298.342
-            const samletNetto = samletBrutto - samletSkat;            // 551.658
-            // Forskel vs ugift: 551.658 - 545.957 = 5.701 kr. mere som gift
+            const samletAm = 68000; // 36000 + 32000
+            const samletBund = 88129; // 50.430 + 37.699
+            const samletKommune = 151834; // 88.131 + 63.703
+            const samletSkat = 312546;
+            const samletNetto = 537454;
+            const samletAnden = samletSkat - (samletAm + samletBund + samletKommune);
 
             new Chart(document.getElementById('giftSankey').getContext('2d'), {
                 type: 'sankey',
@@ -3088,7 +2847,8 @@
                             { from: 'Samlet bruttoløn', to: 'Disponibel indkomst', flow: samletNetto },
                             { from: 'Samlet skat', to: 'AM-bidrag', flow: samletAm },
                             { from: 'Samlet skat', to: 'Bundskat', flow: samletBund },
-                            { from: 'Samlet skat', to: 'Kommuneskat', flow: samletKommune }
+                            { from: 'Samlet skat', to: 'Kommuneskat', flow: samletKommune },
+                            { from: 'Samlet skat', to: 'Anden skat', flow: samletAnden }
                         ],
                         colorFrom: ctx => {
                             const from = ctx.dataset.data[ctx.dataIndex].from;
@@ -3098,7 +2858,7 @@
                             const to = ctx.dataset.data[ctx.dataIndex].to;
                             return {
                                 'Disponibel indkomst': '#5b7fa0', 'Samlet skat': '#4d6d86',
-                                'AM-bidrag': COLORS.am, 'Bundskat': COLORS.bund, 'Kommuneskat': COLORS.kommune
+                                'AM-bidrag': COLORS.am, 'Bundskat': COLORS.bund, 'Kommuneskat': COLORS.kommune, 'Anden skat': '#95a5a6'
                             }[to] || '#8fa9be';
                         },
                         colorMode: 'gradient',
@@ -3108,9 +2868,10 @@
                             'Disponibel indkomst': 'Disponibel indkomst\n' + fmt(samletNetto) + ' kr.',
                             'AM-bidrag': 'AM-bidrag\n' + fmt(samletAm) + ' kr.',
                             'Bundskat': 'Bundskat\n' + fmt(samletBund) + ' kr.',
-                            'Kommuneskat': 'Kommuneskat\n' + fmt(samletKommune) + ' kr.'
+                            'Kommuneskat': 'Kommuneskat\n' + fmt(samletKommune) + ' kr.',
+                            'Anden skat': 'Øvrig skat\n' + fmt(samletAnden) + ' kr.'
                         },
-                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text }
+                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text, size: 9 }
                     }]
                 },
                 options: {
@@ -3131,13 +2892,13 @@
         initChartWhenVisible('caseBudgetSankey', function () {
             const c = themeColors();
             // Månedlige tal (ca.)
-            const samletNettoMd = 45497; // ~545.957 / 12
+            const samletNettoMd = 51455;
             const boligafgift = 4500;
-            const laanYdelse = 17900; // rente + afdrag pr. md (3 mio. lån ~5.5% + afdrag)
+            const laanYdelse = 4500; // banklån
             const elVandVarme = 2000;
-            const forsikring = 1500;
+            const forsikring = 848;
             const transport = 3000;
-            const streaming = 600;
+            const streaming = 865;
             const fasteTotal = boligafgift + laanYdelse + elVandVarme + forsikring + transport + streaming;
             const raadighed = samletNettoMd - fasteTotal;
 
@@ -3146,49 +2907,50 @@
                 data: {
                     datasets: [{
                         data: [
-                            { from: 'Nettoløn (md.)', to: 'Boligafgift', flow: boligafgift },
-                            { from: 'Nettoløn (md.)', to: 'Låneydelse', flow: laanYdelse },
-                            { from: 'Nettoløn (md.)', to: 'El/Vand/Varme', flow: elVandVarme },
-                            { from: 'Nettoløn (md.)', to: 'Forsikringer', flow: forsikring },
-                            { from: 'Nettoløn (md.)', to: 'Transport', flow: transport },
-                            { from: 'Nettoløn (md.)', to: 'Streaming/Abb.', flow: streaming },
-                            { from: 'Nettoløn (md.)', to: 'Rådighedsbeløb', flow: raadighed }
+                            { from: 'Samlet Indkomst (md.)', to: 'Husleje (Andel)', flow: boligafgift },
+                            { from: 'Samlet Indkomst (md.)', to: 'Låneydelse', flow: laanYdelse },
+                            { from: 'Samlet Indkomst (md.)', to: 'El/Vand/Varme', flow: elVandVarme },
+                            { from: 'Samlet Indkomst (md.)', to: 'Forsikringer', flow: forsikring },
+                            { from: 'Samlet Indkomst (md.)', to: 'Transport', flow: transport },
+                            { from: 'Samlet Indkomst (md.)', to: 'Streaming/Internet', flow: streaming },
+                            { from: 'Samlet Indkomst (md.)', to: 'Rådighedsbeløb', flow: raadighed }
                         ],
                         colorFrom: () => '#2d4a6a',
                         colorTo: ctx => {
                             const to = ctx.dataset.data[ctx.dataIndex].to;
                             return {
-                                'Boligafgift': '#3d6b8e', 'Låneydelse': '#2d4a6a',
+                                'Husleje (Andel)': '#3d6b8e', 'Låneydelse': '#2d4a6a',
                                 'El/Vand/Varme': '#6a9ab5', 'Forsikringer': '#5b7fa0',
-                                'Transport': '#4d8aae', 'Streaming/Abb.': '#7a9db8',
-                                'Rådighedsbeløb': '#8fb5cc'
-                            }[to] || '#b0c4d8';
+                                'Transport': '#8fa9be', 'Streaming/Internet': '#7c98ad',
+                                'Rådighedsbeløb': '#11998e'
+                            }[to] || '#8fa9be';
                         },
                         colorMode: 'gradient',
                         labels: {
-                            'Nettoløn (md.)': 'Nettoløn (md.)\n' + fmt(samletNettoMd) + ' kr.',
-                            'Boligafgift': 'Boligafgift\n' + fmt(boligafgift) + ' kr.',
+                            'Samlet Indkomst (md.)': 'Samlet Indkomst\n' + fmt(samletNettoMd) + ' kr.',
+                            'Husleje (Andel)': 'Husleje\n' + fmt(boligafgift) + ' kr.',
                             'Låneydelse': 'Låneydelse\n' + fmt(laanYdelse) + ' kr.',
-                            'El/Vand/Varme': 'El/Vand/Varme\n' + fmt(elVandVarme) + ' kr.',
+                            'El/Vand/Varme': 'El/Varme\n' + fmt(elVandVarme) + ' kr.',
                             'Forsikringer': 'Forsikringer\n' + fmt(forsikring) + ' kr.',
                             'Transport': 'Transport\n' + fmt(transport) + ' kr.',
-                            'Streaming/Abb.': 'Streaming/Abb.\n' + fmt(streaming) + ' kr.',
+                            'Streaming/Internet': 'Medier\n' + fmt(streaming) + ' kr.',
                             'Rådighedsbeløb': 'Rådighedsbeløb\n' + fmt(raadighed) + ' kr.'
                         },
-                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text }
+                        size: 'max', nodeWidth: 20, color: c.text, font: { color: c.text, size: 9 }
                     }]
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false, layout: { padding: { right: 70 } }, animation: { duration: 2000 },
                     plugins: {
                         legend: { display: false },
-                        title: { display: true, text: 'Jonas & Sara: Månedligt budget efter boligkøb', color: c.text, font: { size: 14, weight: 'bold' } },
+                        title: { display: true, text: 'Jonas & Sara Samlet Månedsbudget', color: c.text, font: { size: 14, weight: 'bold' } },
                         tooltip: { callbacks: { label: function (ctx) { const d = ctx.dataset.data[ctx.dataIndex]; return d.from + ' → ' + d.to + ': ' + fmt(d.flow) + ' kr.'; } } }
                     },
                     color: c.text
                 }
             });
         });
+
 
         // ============================================================
         // CHART 2.9: Rentefradrag (Bar)
@@ -3238,7 +3000,7 @@
         <div class="container mt-5 mb-5 quiz-links-section">
             <div class="row">
                 <div class="col-12">
-                    <h2 id="quiz">2.6 Quiz</h2>
+                    <h2 id="quiz">2.8 Quiz</h2>
                     <a href="https://quiz.tepedu.dk/pr2.1" class="effectLinks" data-replace="Åben quiz: Kreditvurdering"
                         target="_blank">Quiz: Kreditvurdering</a>
                     <a href="https://quiz.tepedu.dk/pr2.2" class="effectLinks" data-replace="Åben quiz: Budgetlægning"
