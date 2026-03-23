@@ -56,7 +56,15 @@
 }
 
 .quiz-links-section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700 !important;
+    font-style: normal;
+    text-align: left;
+    letter-spacing: -0.02em;
+    font-size: 2.5rem;
+    margin-top: 2em;
     margin-bottom: 1.5rem;
+    line-height: 1.2;
 }
 
 /* EffectLinks in chapter link blocks - same look everywhere (quiz, intro, after figures) */
