@@ -715,7 +715,7 @@
                 </div>
 
                 <h3 class="mt-5">3.4.3 Samlet Case: Villa til Salg i Dragør</h3>
-                <div class="info-box reveal-on-scroll">
+                <div class="info-box reveal-on-scroll revealed">
                     
 
                     <h4 class="mt-4"
@@ -726,7 +726,10 @@
 
                     <p>Her analyserer vi de konkrete og faktiske tal fra dokumenterne til ejendommen <strong>D. B.
                             Dirchsens Alle 95, Dragør</strong>. Det første og absolut vigtigste dokument du som
-                        rådgiver, køber eller mægler får i hånden, er salgsopstillingen. </p>
+                        rådgiver, køber eller mægler får i hånden, er salgsopstillingen. Når dokumenterne og
+                        kapitalflowet (Figur 3.3A) er gennemgået, følger et gennemregnet par-eksempel med <strong>Anna
+                            og Anders</strong> (begge 49 år), som har solgt en tidligere ejerbolig og disponerer
+                        <strong>1.000.000 kr.</strong> til egen udbetaling.</p>
 
                     <div class="mb-5 borderless">
                         <img src="images/salgsopstilling_case.png" class="img-fluid w-100"
@@ -746,7 +749,7 @@
                                 næsten 5.000 kr. til det månedlige budget opkrævet via skat og faste overførsler.</small>
                             <small class="text-muted d-block mb-3" style="font-size: 0.85em;"><strong>2. Venstre spalte
                                     (Ejerudgift 1. år
-                                    specificeret):</b> Her tvinges mægler til at specificere ejerudgiften på
+                                    specificeret):</strong> Her tvinges mægler til at specificere ejerudgiften på
                                     årsbasis (58.486,26 kr.). Det fremgår tydeligt her, at '<span class="legal-term"
                                         data-slug="ejendomsværdiskat"
                                         data-definition="En statslig skat, der beregnes som en procentsats af boligens ejendomsværdi (typisk 0,51 % op til en vis grænse i 2026)."
@@ -1112,9 +1115,463 @@
                     <div class="chart-container borderless sankey-chart wide" style="height: 800px; min-height: 800px;">
                         <canvas id="husSankey"></canvas>
                     </div>
-                    <small class="d-block text-left mt-2 mb-4">Figur 3.3A — Kapitalflow fra købers finansieringskilder
-                        til handlens involverede parter ved overtagelse af huset. Kontantbehov iht. dokumentation
-                        fra salgsopstilling.</small>
+                    <div class="mt-2 mb-4 px-1">
+                        <small class="d-block text-left text-muted mb-2" style="font-size: 0.9em;"><strong>Figur 3.3A —
+                                Kapitalflow fra købers finansieringskilder til handlens involverede parter ved
+                                overtagelse af huset.</strong> Kontantbehov iht. dokumentation fra salgsopstilling.</small>
+                        <small class="d-block text-left text-muted mb-2" style="font-size: 0.85em;"><strong>Finansieringsforudsætning:</strong>
+                            Diagrammet bygger på en illustrativ standardfinansiering <strong>5 / 15 / 80</strong> — dvs.
+                            5&nbsp;% udbetaling, 15&nbsp;% banklån og 80&nbsp;% realkredit — som et typisk udgangspunkt,
+                            ikke en bindende tilbudsgaranti.</small>
+                        <small class="d-block text-left text-muted mb-2" style="font-size: 0.85em;"><strong>Tinglysning
+                                (realkredit):</strong> Der er ikke taget højde for tinglysningsafgift på nyt
+                            realkreditpant. Ved <em>overtagelse af eksisterende finansiering</em> kan man ofte spare væsentligt
+                            på tinglysning sammenlignet med nye lån; besparelsen afhænger af pantstørrelse, institut og konkrete vilkår.</small>
+                        <small class="d-block text-left text-muted" style="font-size: 0.85em;"><strong>Estimater:</strong>
+                            Præcise bidrag, kurser, renter, gebyrer og skatter er ikke kendt på forhånd; alle beløb i
+                            figuren og tilhørende tekst er <strong>estimater</strong> til orientering og kan afvige fra
+                            endelige bank- og realkreditvilkår.</small>
+                    </div>
+                    <h4 class="mt-4"
+                        style="color: var(--theme-primary, #1a3a5c); font-family: 'Source Sans Pro', sans-serif;">
+                        <i class="bi bi-calculator modern-icon"></i> Økonomisk profil: skat, budget og finansiering
+                    </h4>
+                    <p>Nedenfor vises skatteopgørelsen for Anna og Anders (kommune Dragør), privatbudgettet før boligkøb,
+                        finansieringen af ejendommen og budgettet efter overtagelse. Tabellerne opsummerer
+                        Excel-grundlagene; skærmbillederne viser tilsvarende udtræk fra Tepedu-beregnerne.</p>
+
+                    <div class="table-responsive mb-3">
+                        <table class="table table-striped table-bordered table-hover">
+                            <caption class="text-start"><small>Tabel 3.2 — Skatteberegning for Anna og Anders før
+                                    boligkøb (årstal som i parberegningen). Kilde: Parberegning_2026-03-23.xlsx.</small>
+                            </caption>
+                            <thead style="background-color: var(--theme-primary, #1a3a5c); color: white;">
+                                <tr>
+                                    <th>Post</th>
+                                    <th class="text-end">Anna</th>
+                                    <th class="text-end">Anders</th>
+                                    <th class="text-end">I alt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4"><em>Ligningsmæssige fradrag</em></td>
+                                </tr>
+                                <tr>
+                                    <td>Befordringsfradrag</td>
+                                    <td class="text-end">3.010</td>
+                                    <td class="text-end">0</td>
+                                    <td class="text-end">3.010</td>
+                                </tr>
+                                <tr>
+                                    <td>Beskæftigelsesfradrag</td>
+                                    <td class="text-end">63.300</td>
+                                    <td class="text-end">63.300</td>
+                                    <td class="text-end">126.600</td>
+                                </tr>
+                                <tr>
+                                    <td>Jobfradrag</td>
+                                    <td class="text-end">3.100</td>
+                                    <td class="text-end">3.100</td>
+                                    <td class="text-end">6.200</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ligningsmæssige fradrag i alt</strong></td>
+                                    <td class="text-end"><strong>79.946</strong></td>
+                                    <td class="text-end"><strong>76.936</strong></td>
+                                    <td class="text-end"><strong>156.882</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Skattepligtig indkomst (SI)</strong></td>
+                                    <td class="text-end"><strong>508.414</strong></td>
+                                    <td class="text-end"><strong>338.764</strong></td>
+                                    <td class="text-end"><strong>847.178</strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"><em>Skatteopgørelse</em></td>
+                                </tr>
+                                <tr>
+                                    <td>AM-bidrag</td>
+                                    <td class="text-end">52.640</td>
+                                    <td class="text-end">37.600</td>
+                                    <td class="text-end">90.240</td>
+                                </tr>
+                                <tr>
+                                    <td>Bundskat (12,01 %)</td>
+                                    <td class="text-end">64.165</td>
+                                    <td class="text-end">43.428</td>
+                                    <td class="text-end">107.593</td>
+                                </tr>
+                                <tr>
+                                    <td>Kommuneskat</td>
+                                    <td class="text-end">112.670</td>
+                                    <td class="text-end">70.597</td>
+                                    <td class="text-end">183.267</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Skat i alt</strong></td>
+                                    <td class="text-end"><strong>229.474</strong></td>
+                                    <td class="text-end"><strong>151.625</strong></td>
+                                    <td class="text-end"><strong>381.099</strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"><em>Netto udbetaling</em></td>
+                                </tr>
+                                <tr>
+                                    <td>Brutto indkomst</td>
+                                    <td class="text-end">700.000</td>
+                                    <td class="text-end">500.000</td>
+                                    <td class="text-end">1.200.000</td>
+                                </tr>
+                                <tr>
+                                    <td>− Skat i alt</td>
+                                    <td class="text-end">229.474</td>
+                                    <td class="text-end">151.625</td>
+                                    <td class="text-end">381.099</td>
+                                </tr>
+                                <tr>
+                                    <td>− Pension (eget bidrag)</td>
+                                    <td class="text-end">42.000</td>
+                                    <td class="text-end">30.000</td>
+                                    <td class="text-end">72.000</td>
+                                </tr>
+                                <tr>
+                                    <td>− Privat pension (livrente/ratepension)</td>
+                                    <td class="text-end">20.000</td>
+                                    <td class="text-end">20.000</td>
+                                    <td class="text-end">40.000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Netto udbetalt (år)</strong></td>
+                                    <td class="text-end"><strong>428.526</strong></td>
+                                    <td class="text-end"><strong>318.375</strong></td>
+                                    <td class="text-end"><strong>746.901</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Netto pr. måned</strong></td>
+                                    <td class="text-end"><strong>35.710</strong></td>
+                                    <td class="text-end"><strong>26.531</strong></td>
+                                    <td class="text-end"><strong>62.242</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="chapter-links-block mb-4">
+                        <div class="chapter-links-title">Excel-grundlag (skat)</div>
+                        <a href="files/dbdirk/Parberegning_2026-03-23.xlsx" class="effectLinks"
+                            data-replace="Download Parberegning Excel" target="_blank"
+                            rel="noopener noreferrer">Parberegning_2026-03-23.xlsx</a>
+                    </div>
+                    <div class="mb-4 borderless">
+                        <img src="files/dbdirk/skat_foer.png" class="img-fluid w-100"
+                            style="border: 1px solid #ddd; border-radius: 0;"
+                            alt="Skærmbillede af skatteberegning for Anna og Anders">
+                        <small class="text-muted d-block mt-2">Figur 3.3B — Uddrag af skatteberegning i Tepedu
+                            (privatbudget). Kilde: Parberegning som i Tabel 3.2.</small>
+                    </div>
+
+                    <div class="table-responsive mb-3">
+                        <table class="table table-striped table-bordered table-hover">
+                            <caption class="text-start"><small>Tabel 3.3 — Privatbudget før boligkøb (udvalgte poster,
+                                    kr. pr. måned). Kilde: budget_par.xlsx.</small></caption>
+                            <thead style="background-color: var(--theme-primary, #1a3a5c); color: white;">
+                                <tr>
+                                    <th>Post</th>
+                                    <th class="text-end">Kr. pr. måned</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2"><em>Indtægter</em></td>
+                                </tr>
+                                <tr>
+                                    <td>Løn, efter skat (Anna)</td>
+                                    <td class="text-end">35.710</td>
+                                </tr>
+                                <tr>
+                                    <td>Løn, efter skat (Anders)</td>
+                                    <td class="text-end">26.531</td>
+                                </tr>
+                                <tr>
+                                    <td>Renter/udbytte</td>
+                                    <td class="text-end">525</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Indtægter i alt</strong></td>
+                                    <td class="text-end"><strong>62.766</strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><em>Udvalgte udgifter</em></td>
+                                </tr>
+                                <tr>
+                                    <td>Husleje</td>
+                                    <td class="text-end">15.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Varme</td>
+                                    <td class="text-end">1.200</td>
+                                </tr>
+                                <tr>
+                                    <td>Elektricitet</td>
+                                    <td class="text-end">800</td>
+                                </tr>
+                                <tr>
+                                    <td>Vand</td>
+                                    <td class="text-end">100</td>
+                                </tr>
+                                <tr>
+                                    <td>Forsikring (bil)</td>
+                                    <td class="text-end">500</td>
+                                </tr>
+                                <tr>
+                                    <td>Øvrige bil- og transportudgifter</td>
+                                    <td class="text-end">1.570</td>
+                                </tr>
+                                <tr>
+                                    <td>Mobil, internet, streaming</td>
+                                    <td class="text-end">800</td>
+                                </tr>
+                                <tr>
+                                    <td>Familieforsikring</td>
+                                    <td class="text-end">600</td>
+                                </tr>
+                                <tr>
+                                    <td>Sygeforsikring Danmark</td>
+                                    <td class="text-end">400</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Udgifter i alt</strong></td>
+                                    <td class="text-end"><strong>20.770</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Rådighedsbeløb</strong></td>
+                                    <td class="text-end"><strong>41.996</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="chapter-links-block mb-3">
+                        <div class="chapter-links-title">Excel-grundlag (budget før)</div>
+                        <a href="files/dbdirk/budget_par.xlsx" class="effectLinks" data-replace="Download budget før"
+                            target="_blank" rel="noopener noreferrer">budget_par.xlsx</a>
+                    </div>
+                    <div class="mb-4 borderless">
+                        <img src="files/dbdirk/budget_foer_bolig.png" class="img-fluid w-100"
+                            style="border: 1px solid #ddd; border-radius: 0;"
+                            alt="Privatbudget par før boligkøb i Tepedu">
+                        <small class="text-muted d-block mt-2">Figur 3.3C — Privatbudget (par) før boligkøb. Gennemsnitligt
+                            rådighedsbeløb pr. måned: 41.996 kr. Kilde: budget_par.xlsx.</small>
+                    </div>
+
+                    <div class="table-responsive mb-3">
+                        <table class="table table-striped table-bordered table-hover">
+                            <caption class="text-start"><small>Tabel 3.4 — Finansiering af boligkøbet (D. B. Dirchsens
+                                    Alle 95). Kilde: Boligberegning_2025.xlsx; risikomål som i finansieringsmodulet.</small>
+                            </caption>
+                            <thead style="background-color: var(--theme-primary, #1a3a5c); color: white;">
+                                <tr>
+                                    <th>Post</th>
+                                    <th class="text-end">Beløb</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Boligens pris</td>
+                                    <td class="text-end">6.295.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Skøde og tinglysning (estimat)</td>
+                                    <td class="text-end">39.620 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Advokat</td>
+                                    <td class="text-end">5.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Ejerskifteforsikring</td>
+                                    <td class="text-end">9.583 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Flytteomkostninger</td>
+                                    <td class="text-end">20.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Egen udbetaling</strong></td>
+                                    <td class="text-end"><strong>1.000.000 kr.</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Realkredit (hovedstol)</strong></td>
+                                    <td class="text-end"><strong>5.036.000 kr.</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Banklån (hovedstol)</strong></td>
+                                    <td class="text-end"><strong>392.759 kr.</strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><em>Illustrative lånevilkår (boligbanklån)</em></td>
+                                </tr>
+                                <tr>
+                                    <td>Rente</td>
+                                    <td class="text-end">5,5 % p.a.</td>
+                                </tr>
+                                <tr>
+                                    <td>Løbetid</td>
+                                    <td class="text-end">30 år</td>
+                                </tr>
+                                <tr>
+                                    <td>Bank etablering</td>
+                                    <td class="text-end">7.515 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Tinglysning (bank)</td>
+                                    <td class="text-end">1.825 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td>Etablering (realkredit)</td>
+                                    <td class="text-end">20.000 kr.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Belåningsgrad</strong></td>
+                                    <td class="text-end"><strong>86,2 %</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gældsfaktor</strong></td>
+                                    <td class="text-end"><strong>452,4 %</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="chapter-links-block mb-3">
+                        <div class="chapter-links-title">Excel-grundlag (bolig)</div>
+                        <a href="files/dbdirk/Boligberegning_2025.xlsx" class="effectLinks"
+                            data-replace="Download boligberegning" target="_blank"
+                            rel="noopener noreferrer">Boligberegning_2025.xlsx</a>
+                    </div>
+                    <div class="mb-4 borderless">
+                        <img src="files/dbdirk/finansiering.png" class="img-fluid w-100"
+                            style="border: 1px solid #ddd; border-radius: 0;"
+                            alt="Finansieringsoversigt boligkøb Dragør">
+                        <small class="text-muted d-block mt-2">Figur 3.3D — Finansiering og risikomål (belåningsgrad og
+                            gældsfaktor). Kilde: Boligberegning som i Tabel 3.4.</small>
+                        <small class="text-muted d-block mt-2">Belåningsgrad omkring 86&nbsp;% og gældsfaktor omkring 4,5
+                            placerer lånet i den kombination, hvor retningslinjerne for boliglån (God skik) sætter skærpede
+                            krav: i denne zone kan afdragsfrihed som udgangspunkt kun tilbydes sammen med
+                            fastforrentet realkreditlån med fast rente, ikke med rentetilpasning eller variabel rente.</small>
+                    </div>
+
+                    <div class="table-responsive mb-3">
+                        <table class="table table-striped table-bordered table-hover">
+                            <caption class="text-start"><small>Tabel 3.5 — Privatbudget efter boligkøb (udvalgte poster,
+                                    kr. pr. måned). Kilde: budget_par_efter_bolig.xlsx.</small></caption>
+                            <thead style="background-color: var(--theme-primary, #1a3a5c); color: white;">
+                                <tr>
+                                    <th>Post</th>
+                                    <th class="text-end">Kr. pr. måned</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2"><em>Indtægter</em></td>
+                                </tr>
+                                <tr>
+                                    <td>Løn, efter skat (Anna)</td>
+                                    <td class="text-end">35.710</td>
+                                </tr>
+                                <tr>
+                                    <td>Løn, efter skat (Anders)</td>
+                                    <td class="text-end">26.531</td>
+                                </tr>
+                                <tr>
+                                    <td>Renter/udbytte</td>
+                                    <td class="text-end">525</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Indtægter i alt</strong></td>
+                                    <td class="text-end"><strong>62.766</strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><em>Udvalgte udgifter</em></td>
+                                </tr>
+                                <tr>
+                                    <td>Banklån, ydelse efter skat</td>
+                                    <td class="text-end">20.942</td>
+                                </tr>
+                                <tr>
+                                    <td>Renovation</td>
+                                    <td class="text-end">261</td>
+                                </tr>
+                                <tr>
+                                    <td>Varmepumpe</td>
+                                    <td class="text-end">625</td>
+                                </tr>
+                                <tr>
+                                    <td>Elektricitet</td>
+                                    <td class="text-end">500</td>
+                                </tr>
+                                <tr>
+                                    <td>Vand</td>
+                                    <td class="text-end">300</td>
+                                </tr>
+                                <tr>
+                                    <td>Ejendomsskatter (grundskyld m.v.)</td>
+                                    <td class="text-end">3.778</td>
+                                </tr>
+                                <tr>
+                                    <td>Grundejerforening</td>
+                                    <td class="text-end">25</td>
+                                </tr>
+                                <tr>
+                                    <td>Vedligeholdelse</td>
+                                    <td class="text-end">500</td>
+                                </tr>
+                                <tr>
+                                    <td>Øvrige bil- og transportudgifter</td>
+                                    <td class="text-end">1.570</td>
+                                </tr>
+                                <tr>
+                                    <td>Mobil, internet, streaming</td>
+                                    <td class="text-end">800</td>
+                                </tr>
+                                <tr>
+                                    <td>Forsikring (hus)</td>
+                                    <td class="text-end">1.600</td>
+                                </tr>
+                                <tr>
+                                    <td>Sygeforsikring Danmark</td>
+                                    <td class="text-end">400</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Udgifter i alt</strong></td>
+                                    <td class="text-end"><strong>31.601</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Rådighedsbeløb</strong></td>
+                                    <td class="text-end"><strong>31.165</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="chapter-links-block mb-4">
+                        <div class="chapter-links-title">Excel-grundlag (budget efter)</div>
+                        <a href="files/dbdirk/budget_par_efter_bolig.xlsx" class="effectLinks"
+                            data-replace="Download budget efter bolig" target="_blank"
+                            rel="noopener noreferrer">budget_par_efter_bolig.xlsx</a>
+                    </div>
+                    <div class="mb-5 borderless">
+                        <img src="files/dbdirk/budget_efter_bolig.png" class="img-fluid w-100"
+                            style="border: 1px solid #ddd; border-radius: 0;"
+                            alt="Privatbudget par efter boligkøb i Tepedu">
+                        <small class="text-muted d-block mt-2">Figur 3.3E — Privatbudget (par) efter boligkøb. Gennemsnitligt
+                            rådighedsbeløb pr. måned: 31.165 kr. Kilde: budget_par_efter_bolig.xlsx.</small>
+                        <small class="text-muted d-block mt-2">Rådighedsbeløb før boligkøb (41.996 kr./md.) og efter
+                            (31.165 kr./md.) skal i bankens kreditvurdering kunne dokumenteres som realistiske efter skat og
+                            faste boligudgifter. Efter Finanstilsynets retningslinjer og tilsynspraksis for boligudlån skal
+                            husstandens rådighed efter bolig og øvrige faste forpligtelser være forsvarlig; bankernes egne
+                            grænser og stresstest skal være opfyldt. Tallene illustrerer et budget, der typisk skal kunne
+                            bære gennem den dokumentation af rådighed, som tilsynet forventer.</small>
+                    </div>
+
+
                 </div>
 
                 <h3 class="mt-5">3.4.4 Samlet Case: Ejerlejlighed til Salg i Vanløse</h3>
@@ -1666,6 +2123,10 @@
                 const resultDiv = document.getElementById('kommune-result');
                 const pGrundskyld = document.getElementById('res-grundskyld');
                 const pKommuneskat = document.getElementById('res-komskat');
+
+                if (!selectElement || !resultDiv || !pGrundskyld || !pKommuneskat) {
+                    return;
+                }
 
                 // Sort municipalities A-Z
                 const sortedMunis = taxData.municipalities.sort((a, b) => a.name.localeCompare(b.name));
