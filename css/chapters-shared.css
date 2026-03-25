@@ -33,6 +33,42 @@
     color: #ffffff !important;
 }
 
+/* ------------------------------------------------------------
+   EffectLinks (global)
+   Ensure consistent marine palette across the whole book, even
+   when links are not wrapped in .chapter-links-inline/block or
+   .quiz-links-section.
+   ------------------------------------------------------------ */
+.effectLinks {
+    display: block !important;
+    width: 100% !important;
+    background: #d5dde6 !important;
+    color: #1a3a5c !important;
+    margin-bottom: 14px !important;
+    padding: 24px 22px !important;
+    min-height: 56px !important;
+    line-height: 1.35;
+    font-style: normal;
+}
+
+.effectLinks::after {
+    background: #1a3a5c !important;
+    color: #ffffff !important;
+    padding: 24px 22px !important;
+    pointer-events: none !important;
+}
+
+.effectLinks:hover {
+    background: #1a3a5c !important;
+    color: #ffffff !important;
+}
+
+/* Dark theme: keep hover accent a bit lighter */
+[data-theme="dark"] .effectLinks:hover {
+    background: #4a7fa8 !important;
+    color: #ffffff !important;
+}
+
 /* Quiz link section at chapter bottoms */
 .quiz-links-wrap {
     margin-left: 200px;
@@ -110,13 +146,21 @@
     margin-bottom: 3rem;
 }
 
-.chapter-links-inline .chapter-links-title,
-.chapter-links-block .chapter-links-title {
-    margin-bottom: 1rem;
+.chapter-links-title {
+    /* Make sure chapter link titles always use the intended display font,
+       regardless of whether they are inside .chapter-links-inline or
+       .chapter-links-block. */
     font-family: 'Space Grotesk', sans-serif;
     font-size: 2rem;
     font-weight: 700;
     line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.chapter-links-inline .chapter-links-title,
+.chapter-links-block .chapter-links-title {
+    /* Keep the selector for backwards compatibility; the base styling
+       lives on .chapter-links-title now. */
 }
 
 .podcast-inline-player {
