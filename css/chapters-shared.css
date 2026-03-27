@@ -462,6 +462,26 @@ thead.table-dark th .legal-term:hover,
     border-bottom-color: #ffffff !important;
 }
 
+/* Navy blue table headers — all chapters */
+table.table thead th,
+table.table thead tr th,
+.table thead th {
+    background-color: #1a3a5c !important;
+    color: #ffffff !important;
+}
+
+/* Ensure legal-term links in all navy headers are white */
+table.table thead th .legal-term,
+.table thead th .legal-term {
+    color: #ffffff !important;
+    border-bottom-color: rgba(255, 255, 255, 0.5) !important;
+}
+table.table thead th .legal-term:hover,
+.table thead th .legal-term:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-bottom-color: #ffffff !important;
+}
+
 table.table th,
 table.table td,
 table.table tr,
