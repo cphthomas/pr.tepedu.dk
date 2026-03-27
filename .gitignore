@@ -3,3 +3,21 @@ node_modules/
 .DS_Store
 .claude/
 .agent/
+
+# Build output
+dist/
+
+# Local dev tools
+server.py
+table_body.txt
+
+# Temp/scratch files
+*.tmp
+~$*
+*.swp
+
+# Large media files not served from repo
+*.mp4
+*.mov
+*.avi
+*.webm
