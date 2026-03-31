@@ -16,8 +16,7 @@ table_body.txt
 ~$*
 *.swp
 
-# Large media files not served from repo
-*.mp4
+# Large media files
 *.mov
 *.avi
 *.webm
