@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temaopgave – Parøkonomi og Ægteskababets Betydning – Løsningsforslag</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <style>
+        @keyframes subtlePulse {
+            0% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+        }
+
+        .hint-icon {
+            animation: subtlePulse 3s infinite ease-in-out;
+            color: #007bff;
+            margin-right: 5px;
+        }
+
+        .sol-question {
+            background: #f0f0f0;
+            border-left: 4px solid #6c757d;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+        }
+
+        .sol-answer {
+            margin-bottom: 40px;
+            padding-left: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .explanation-box {
+            background-color: rgba(223, 240, 216, 0.4);
+            border: 1px dashed #002147;
+            border-left: 5px solid #002147;
+            border-radius: 0;
+            padding: 20px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+
+        .step-title {
+            font-weight: 700;
+            color: #0056b3;
+            margin-top: 15px;
+            display: block;
+        }
+
+        .resource-links {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .resource-link {
+            display: block;
+            width: 100%;
+        }
+
+        .key-figure {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: #fff;
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-radius: 2px;
+        }
+
+        .calc-table {
+            font-size: 0.88rem;
+            margin: 10px 0;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .calc-table td {
+            padding: 3px 8px 3px 0;
+            vertical-align: top;
+        }
+
+        /* Label column */
+        .calc-table td:first-child {
+            font-style: italic;
+            width: 32%;
+            color: #2c3e50;
+        }
+
+        /* Number columns – monospace, right-aligned */
+        .calc-table td.num {
+            font-family: monospace;
+            text-align: right;
+            white-space: nowrap;
+            width: 22%;
+        }
+
+        /* Section header rows */
+        .calc-table tr.section-header td {
+            font-weight: 700;
+            font-style: normal;
+            color: #0056b3;
+            text-align: right;
+            padding-top: 10px;
+        }
+
+        /* Column header row */
+        .calc-table tr.col-header td {
+            font-weight: 700;
+            font-style: normal;
+            text-align: right;
+            border-bottom: 2px solid #ccc;
+            font-family: monospace;
+            font-size: 0.82rem;
+            color: #555;
+        }
+
+        .calc-table tr.col-header td:first-child {
+            text-align: left;
+        }
+
+        /* Subtotal rows */
+        .calc-table tr.subtotal td {
+            border-top: 1px solid #ccc;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body data-page-id="cbs2">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <ul class="timeline">
+                    <i>
+
+                        <!-- Intro -->
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+                            <div class="timeline-arrow"></div>
+                            <img src="../images/skat2026.png" class="img-fluid w-100 mb-2">
+
+
+                            <h2 class="mb-0">Temaopgave</h2>
+                            <p class="text-muted" style="text-transform: lowercase; font-size: 0.95rem;">løsningsforslag
+                                – Parøkonomi og Ægteskababets Betydning</p>
+
+                            <div class="mt-4">
+                                <hr>
+                            </div>
+                        </li>
+
+                        <!-- ======== CASE 1: EMILIE OG THOMAS ======== -->
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+                            <div class="timeline-arrow"></div>
+                            <h2 class="mb-3">Løsning – Case 1: Emilie og Thomas (Aarhus)</h2>
+                            <p>
+                                Emilie (35 år) og Thomas (38 år) bor sammen i en lejlighed i Aarhus C og overvejer at
+                                blive gift. De vil gerne undersøge den skattemæssige forskel samt lægge et realistisk
+                                budget. Emilie er Project Manager, mens Thomas er folkeskolelærer.
+                            </p>
+
+                            <table class="table table-sm table-bordered table-striped mt-3">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th colspan="2">Økonomi & Skat (2026)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Bruttoløn (Emilie)</strong></td>
+                                        <td>750.000 kr./år</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Bruttoløn (Thomas)</strong></td>
+                                        <td>450.000 kr./år</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Bopæl & Kirke</strong></td>
+                                        <td>Aarhus Kommune — Begge betaler kirkeskat (Ja)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Renteudgifter (angives hos Emilie)</strong></td>
+                                        <td>50.000 kr./år</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fagforening & A-kasse (Emilie)</strong></td>
+                                        <td>Fagf.: 7.000 kr./år. A-kasse: 6.000 kr./år</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fagforening & A-kasse (Thomas)</strong></td>
+                                        <td>Fagf.: 5.000 kr./år. A-kasse: 5.500 kr./år</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Transport (Emilie)</strong></td>
+                                        <td>10 km hver vej (20 km tur/retur), 220 dage/år</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Transport (Thomas)</strong></td>
+                                        <td>0 km (arbejder primært i nærområdet under 12 km væk)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <p><strong>Deres faste månedlige udgifter:</strong><br> Husleje: 12.500 kr., Varme: 1.800
+                                kr., El: 700 kr., Internet: 350 kr., Mobil (samlet): 350 kr., Streaming: 300 kr.,
+                                Indbo/Familieforsikring: 250 kr., Ulykkesforsikring: 300 kr., Rejseforsikring: 100 kr.,
+                                Offentlig transport: 1.000 kr., Diverse kontingenter: 400 kr., Fast opsparing: 2.000 kr.
+                            </p>
+
+                            <ul class="resource-links">
+                                <li><a href="../files/emilie_thomas_ugift.xlsx" class="effectLinks mb-2 resource-link"
+                                        data-replace="Skat: Ugift" target="_blank"><span>Skatteberegning –
+                                            Ugifte</span></a></li>
+                                <li><a href="../files/emilie_thomas_gift.xlsx" class="effectLinks mb-2 resource-link"
+                                        data-replace="Skat: Gift" target="_blank"><span>Skatteberegning –
+                                            Gifte</span></a></li>
+                                <li><a href="../files/emilie_thomas_budget.xlsx" class="effectLinks mb-2 resource-link"
+                                        data-replace="Budgetberegning" target="_blank"><span>Budgetberegning – Gifte
+                                            (Rådighedsbeløb)</span></a></li>
+                            </ul>
+                            <br>
+                            <hr>
+
+                            <h5 class="mt-4 mb-3">Spørgsmål og løsninger</h5>
+
+                            <div class="sol-question">Spørgsmål A: Tag udgangspunkt i, at Emilie og Thomas <strong>ikke
+                                    er gift</strong> i skatteberegneren. Hvad får de udbetalt (netto) om måneden
+                                tilsammen?</div>
+                            <div class="sol-answer">
+                                <span class="step-title">Svar:</span>
+                                <p>Ud fra skatteberegneren (se Excel-filerne) fremgår følgende netto udbetaling pr.
+                                    måned:</p>
+                                <ul>
+                                    <li><strong>Emilie:</strong> 40.502 kr./md.</li>
+                                    <li><strong>Thomas:</strong> 24.816 kr./md.</li>
+                                    <li><strong>Tilsammen:</strong> 65.318 kr./md.</li>
+                                </ul>
+                                <span class="step-title">Beregningsgang (linje for linje):</span>
+                                <p>Beregningen følger skatteberegnerens detaljerede struktur:</p>
+                                <table class="calc-table">
+                                    <tr class="col-header">
+                                        <td></td>
+                                        <td class="num">Emilie</td>
+                                        <td class="num">Thomas</td>
+                                        <td class="num">Samlet</td>
+                                    </tr>
+                                    <tr class="section-header">
+                                        <td colspan="4">1. Personlig indkomst (PI)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AM-pligtig indkomst</td>
+                                        <td class="num">750.000 kr.</td>
+                                        <td class="num">450.000 kr.</td>
+                                        <td class="num">1.200.000 kr.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>− AM-bidrag (8%)</td>
+                                        <td class="num">60.000 kr.</td>
+                                        <td class="num">36.000 kr.</td>
+                                        <td class="num">96.000 kr.</td>
+                                    </tr>
+                                    <tr class="subtotal">
+                                        <td>= Personlig indkomst (PI)</td>
+                                        <td class="num">690.000 kr.</td>
+                                        <td class="num">414.000 kr.</td>
+                                        <td class="num">1.104.000 kr.</td>
+                                    </tr>
+                                    <tr class="section-header">
+                                        <td colspan="4">2. Kapitalindkomst (KI)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>− Renteudgifter</td>
+                                        <td class="num">50.000 kr.</td>
+                                        <td class="num">0 kr.</td>
+                                        <td class="num">50.000 kr.</td>
+                                    </tr>
+                                    <tr class="subtotal">
+                                        <td>= Kapitalindkomst (KI)</td>
+                                        <td class="num">−50.000 kr.</td>
+                                        <td class="num">0 kr.</td>
+                                        <td class="num">−50.000 kr.</td>
+                                    </tr>
+                                    <tr class="section-header">
+                                        <td colspan="4">3. Ligningsmæssige fradrag</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fagforening + A-kasse</td>
+                                        <td class="num">13.000 kr.</td>
+                                        <td class="num">10.500 kr.</td>
+                                        <td class="num">23.500 kr.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Beskæftigelsesfradrag</td>
+                                        <td class="num">63.300 kr.</td>
+                                        <td class="num">57.375 kr.</td>
+                                        <td class="num">120.675 kr.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jobfradrag</td>
+                                        <td class="num">3.100 kr.</td>
+                                        <td class="num">3.100 kr.</td>
+                                        <td class="num">6.200 kr.</td>
+                                    </tr>
+                                    <tr class="subtotal">
+                                        <td>= Ligningsmæssige fradrag i alt</td>
+                                        <td class="num">79.400 kr.</td>
+                                        <td class="num">70.975 kr.</td>
+                                        <td class="num">150.375 kr.</td>
+                                    </tr>
+                                    <tr class="section-header">
+                                        <td colspan="4">4. Skattepligtig indkomst (SI)</td>
+                                    </tr>
+                                    <tr class="subtotal">
+                                        <td>= Skattepligtig indkomst</td>
+                                        <td class="num">560.600 kr.</td>
+                                        <td class="num">343.025 kr.</td>
+                                        <td class="num">903.625 kr.</td>
+                                    </tr>
+                                    <tr class="section-header">
+                                        <td colspan="4">5. Skatteopgørelse</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AM-bidrag</td>
+                                        <td class="num">60.000 kr.</td>
+                                        <td class="num">36.000 kr.</td>
+                                        <td class="num">96.000 kr.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bundskat (12,01%)</td>
+                                        <td class="num">76.372 kr.</td>
+                                        <td class="num">43.224 kr.</td>
+                                        <td class="num">119.596 kr.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kommuneskat</td>
+                                        <td class="num">124.194 kr.</td>
+                                        <td class="num">70.844 kr.</td>
+                                        <td class="num">195.038 kr.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kirkeskat</td>
+                                        <td class="num">3.748 kr.</td>
+                                        <td class="num">2.138 kr.</td>
+                                        <td class="num">5.886 kr.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mellemskat</td>
+                                        <td class="num">3.660 kr.</td>
+                                        <td class="num">0 kr.</td>
+                                        <td class="num">3.660 kr.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Skatterabat neg. KI (8%)</td>
+                                        <td class="num">−4.000 kr.</td>
+                                        <td class="num">0 kr.</td>
+                                        <td class="num">−4.000 kr.</td>
+                                    </tr>
+                                    <tr class="subtotal">
+                                        <td>Skat i alt</td>
+                                        <td class="num">263.973 kr.</td>
+                                        <td class="num">152.206 kr.</td>
+                                        <td class="num">416.180 kr.</td>
+                                    </tr>
+                                    <tr class="section-header">
+                                        <td colspan="4">6. Netto udbetaling</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brutto indkomst</td>
+                                        <td class="num">750.000 kr.</td>
+                                        <td class="num">450.000 kr.</td>
+                                        <td class="num">1.200.000 kr.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>− Skat i alt</td>
+                                        <td class="num">263.973 kr.</td>
+                                        <td class="num">152.206 kr.</td>
+                                        <td class="num">416.180 kr.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>= Netto udbetalt (år)</td>
+                                        <td class="num">486.027 kr.</td>
+                                        <td class="num">297.794 kr.</td>
+                                        <td class="num">783.820 kr.</td>
+                                    </tr>
+                                    <tr class="subtotal">
+                                        <td>= Netto pr. måned</td>
+                                        <td class="num">40.502 kr.</td>
+                                        <td class="num">24.816 kr.</td>
+                                        <td class="num">65.318 kr.</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="sol-question">Spørgsmål B: Skift til <strong>"gift"</strong> i beregneren. Åbner
+                                det for en skattefordel for dem her i 2026, og hvorfor/hvorfor ikke? (Tænk på om de
+                                begge udnytter personfradraget).</div>
+                            <div class="sol-answer">
+                                <span class="step-title">Svar: Nej, der opstår ingen skattefordel ved at blive
+                                    gift.</span>
+                                <p>Både som ugifte og som gifte opnår parret samme samlede netto udbetaling:
+                                    <strong>65.318 kr./md.</strong>
+                                </p>
+                                <div class="explanation-box">
+                                    <strong>Forklaring:</strong> Thomas har en bruttoløn på 450.000 kr./år, hvilket
+                                    langt overstiger personfradraget på 54.100 kr. Han udnytter dermed fuldt ud sit
+                                    personfradrag. Emilie gør tilsvarende. Der findes derfor intet uudnyttet
+                                    personfradrag, der kan overføres mellem ægtefællerne, og dermed ingen skattemæssig
+                                    gevinst ved ægteskabet.
+                                </div>
+                            </div>
+
+                            <div class="sol-question">Spørgsmål C: Indtast nu parrets samlede udgifter samt deres
+                                "gifte" udbetalte nettoindkomst i Par-budgetberegneren. Hvad ender deres
+                                <strong>rådighedsbeløb</strong> på pr. måned?
+                            </div>
+                            <div class="sol-answer">
+                                <span class="step-title">Svar: Rådighedsbeløbet udgør ca. 45.268 kr. pr. måned.</span>
+                                <p>Beregningen følger budgetberegnerens detaljerede struktur:</p>
+                                <table class="calc-table">
+                                    <tr class="section-header">
+                                        <td colspan="2">1. Indtægter</td>
+                                    </tr>
+                                    <tr class="subtotal">
+                                        <td>Nettoløn Emilie</td>
+                                        <td class="num">40.502 kr./md.</td>
+                                    </tr>
+                                    <tr class="subtotal">
+                                        <td>Nettoløn Thomas</td>
+                                        <td class="num">24.816 kr./md.</td>
+                                    </tr>
+                                    <tr class="subtotal">
+                                        <td>= Indtægter i alt</td>
+                                        <td class="num">65.318 kr./md.</td>
+                                    </tr>
+                                    <tr class="section-header">
+                                        <td colspan="2">2. Faste udgifter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Husleje</td>
+                                        <td class="num">12.500 kr./md.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Varme</td>
+                                        <td class="num">1.800 kr./md.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>El</td>
+                                        <td class="num">700 kr./md.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Internet</td>
+                                        <td class="num">350 kr./md.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mobil (samlet)</td>
+                                        <td class="num">350 kr./md.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Streaming</td>
+                                        <td class="num">300 kr./md.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Indbo/Familieforsikring</td>
+                                        <td class="num">250 kr./md.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ulykkesforsikring</td>
+                                        <td class="num">300 kr./md.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rejseforsikring</td>
+                                        <td class="num">100 kr./md.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Offentlig transport</td>
+                                        <td class="num">1.000 kr./md.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diverse kontingenter</td>
+                                        <td class="num">400 kr./md.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fast opsparing</td>
+                                        <td class="num">2.000 kr./md.</td>
+                                    </tr>
+                                    <tr class="subtotal">
+                                        <td>= Faste udgifter i alt</td>
+                                        <td class="num">20.050 kr./md.</td>
+                                    </tr>
+                                    <tr class="section-header">
+                                        <td colspan="2">3. Rådighedsbeløb</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Indtægter − Faste udgifter</td>
+                                        <td class="num">65.318 − 20.050 kr.</td>
+                                    </tr>
+                                    <tr class="subtotal">
+                                        <td>= Rådighedsbeløb pr. måned</td>
+                                        <td class="num">45.268 kr./md.</td>
+                                    </tr>
+                                </table>
+                                <div class="explanation-box">
+                                    <strong>Rådgivervurdering:</strong> Med 45.268 kr./md. i rådighedsbeløb er Emilie og Thomas i en stærk finansiel position — langt over Finanstilsynets vejledende minimum for par (ca. 11.500 kr./md.). En professionel rådgiver bør dog gå dybere og stille følgende spørgsmål:
+                                    <ul>
+                                        <li><strong>Bil og transport:</strong> Budgettet indeholder kun offentlig transport (1.000 kr./md.). Har parret bil eller planlægger de at anskaffe en? I så fald skal der budgetteres med billån/leasing, bilforsikring, vægtafgift, benzin og vedligehold — samlet typisk 4.000–7.000 kr./md. Det vil mærkbart reducere rådighedsbeløbet og bør kortlægges inden boligkøb.</li>
+                                        <li><strong>Boligkøb på sigt:</strong> Med en samlet bruttoindkomst på (500.000 + 450.000 =) 950.000 kr./år og en gældsfaktor-grænse på 4 kan parret optage realkreditlån op til ca. 3,8 mio. kr. Kombineret med et solidt rådighedsbeløb er de well-positioned til et boligkøb. Rådgiveren bør udregne konkret, hvad en boligydelse på fx 12.000–18.000 kr./md. vil betyde for rådighedsbeløbet.</li>
+                                        <li><strong>Fast opsparing:</strong> Budgettet indeholder allerede 2.000 kr./md. i fast opsparing — positivt. En rådgiver bør dog overveje, om dette er nok til en boligopsparing og en separat nødreserve (anbefalet: 3 mdr. faste udgifter ≈ 60.000 kr.).</li>
+                                        <li><strong>Forsikringsdækning:</strong> Parret har indbo-, ulykkes- og rejseforsikring. Men ved boligkøb vil husforsikring og eventuel bygningsforsikring komme til. Rådgiveren bør gennemgå, at forsikringsdækningen er komplet og ajour med parrets aktuelle livssituation.</li>
+                                        <li><strong>Pension:</strong> Med Emilies bruttoløn på 500.000 kr. bør rådgiveren undersøge, om arbejdsgiverens pensionsbidrag er tilstrækkeligt, og om yderligere indbetaling kan give en skattemæssig fordel. Thomas med 450.000 kr. er i samme situation. En tidlig pensionsplan øger langsigtet tryghed markant.</li>
+                                        <li><strong>Ægteskab og sambeskatning:</strong> Som det fremgår af Spm. B, giver ægteskabet ingen skattefordel i dette tilfælde. Men rådgiveren bør alligevel drøfte andre fordele ved ægteskabet: arv og pension ved dødsfald, fælles hæftelse ved boligkøb og eventuelle fordele ved separation (ægtefællebidrag).</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </li>
+
+
+
+                        <!-- ======== CASE 2: SOFIE OG MADS ======== -->
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+                            <div class="timeline-arrow"></div>
+                            <h2 class="mb-3">Løsning – Case 2: Sofie og Mads (Odense)</h2>
+                            <p>
+                                Sofie (26 år) og Mads (25 år) er et ungt par i Odense. Sofie er netop færdiguddannet
+                                pædagog, mens Mads stadig studerer og primært lever af SU. De bor sammen.
+                            </p>
+
+                            <table class="table table-sm table-bordered table-striped mt-3">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th colspan="2">Økonomi & Skat (2026)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Bruttoløn (Sofie)</strong></td>
+                                        <td>420.000 kr./år</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Bruttoindkomst (Mads, inkl. SU)</strong></td>
+                                        <td>82.000 kr./år</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Bopæl & Kirke</strong></td>
+                                        <td>Odense Kommune — Begge betaler kirkeskat (Ja)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fagforening & A-kasse (Sofie)</strong></td>
+                                        <td>Fagf.: 5.000 kr./år. A-kasse: 5.500 kr./år</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Transport (Sofie)</strong></td>
+                                        <td>5 km (cykler, ingen befordringsfradrag)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Gæld og renter</strong></td>
+                                        <td>De har ingen nævneværdig gæld. (0 kr. i renteudgift)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p><strong>Faste månedlige udgifter:</strong><br> Husleje: 8.500 kr., Varme: 1.000 kr., El:
+                                450 kr., Internet: 250 kr., Mobil: 300 kr., Familieforsikring: 200 kr., Ulykke: 250 kr.,
+                                Transport: 600 kr.</p>
+
+                            <ul class="resource-links">
+                                <li><a href="../files/sofie_mads_ugift.xlsx" class="effectLinks mb-2 resource-link"
+                                        data-replace="Skat: Ugift" target="_blank"><span>Skatteberegning –
+                                            Ugifte</span></a></li>
+                                <li><a href="../files/sofie_mads_gift.xlsx" class="effectLinks mb-2 resource-link"
+                                        data-replace="Skat: Gift" target="_blank"><span>Skatteberegning –
+                                            Gifte</span></a></li>
+                                <li><a href="../files/sofie_mads_budget.xlsx" class="effectLinks mb-2 resource-link"
+                                        data-replace="Budgetberegning" target="_blank"><span>Budgetberegning – Gifte
+                                            (Rådighedsbeløb)</span></a></li>
+                            </ul>
+                            <br>
+                            <hr>
+
+
+                            <div class="sol-question">Spørgsmål A: Hvad tjener Sofie og Mads tilsammen om måneden — ugift og gift?</div>
+                            <div class="sol-answer">
+                                <span class="step-title">Svar: 28.926 kr./md. — identisk ugift og gift, da Mads bruger sit eget personfradrag.</span>
+                                <table class="calc-table">
+                                    <tr class="col-header"><td></td><td class="num">Sofie</td><td class="num">Mads</td><td class="num">Samlet</td></tr>
+                                    <tr class="section-header"><td colspan="4">1. Personlig indkomst (PI)</td></tr>
+                                    <tr><td>AM-pligtig indkomst</td><td class="num">420.000 kr.</td><td class="num">82.000 kr.</td><td class="num">502.000 kr.</td></tr>
+                                    <tr><td>&minus; AM-bidrag (8%)</td><td class="num">33.600 kr.</td><td class="num">6.560 kr.</td><td class="num">40.160 kr.</td></tr>
+                                    <tr class="subtotal"><td>= Personlig indkomst (PI)</td><td class="num">386.400 kr.</td><td class="num">75.440 kr.</td><td class="num">461.840 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="4">2. Kapitalindkomst (KI)</td></tr>
+                                    <tr class="subtotal"><td>= Kapitalindkomst (ingen renter)</td><td class="num">0 kr.</td><td class="num">0 kr.</td><td class="num">0 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="4">3. Ligningsm&aelig;ssige fradrag</td></tr>
+                                    <tr><td>Fagforening + A-kasse</td><td class="num">10.500 kr.</td><td class="num">0 kr.</td><td class="num">10.500 kr.</td></tr>
+                                    <tr><td>Besk&aelig;ftigelsesfradrag</td><td class="num">53.550 kr.</td><td class="num">10.455 kr.</td><td class="num">64.005 kr.</td></tr>
+                                    <tr><td>Jobfradrag</td><td class="num">3.100 kr.</td><td class="num">0 kr.</td><td class="num">3.100 kr.</td></tr>
+                                    <tr class="subtotal"><td>= Ligningsm&aelig;ssige fradrag i alt</td><td class="num">67.150 kr.</td><td class="num">10.455 kr.</td><td class="num">77.605 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="4">4. Skattepligtig indkomst (SI)</td></tr>
+                                    <tr class="subtotal"><td>= Skattepligtig indkomst</td><td class="num">319.250 kr.</td><td class="num">64.985 kr.</td><td class="num">384.235 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="4">5. Skatteopg&oslash;relse</td></tr>
+                                    <tr><td>AM-bidrag</td><td class="num">33.600 kr.</td><td class="num">6.560 kr.</td><td class="num">40.160 kr.</td></tr>
+                                    <tr><td>Bundskat (12,01%)</td><td class="num">39.909 kr.</td><td class="num">2.563 kr.</td><td class="num">42.472 kr.</td></tr>
+                                    <tr><td>Kommuneskat</td><td class="num">67.613 kr.</td><td class="num">2.776 kr.</td><td class="num">70.389 kr.</td></tr>
+                                    <tr><td>Kirkeskat</td><td class="num">1.803 kr.</td><td class="num">74 kr.</td><td class="num">1.877 kr.</td></tr>
+                                    <tr class="subtotal"><td>Skat i alt</td><td class="num">142.926 kr.</td><td class="num">11.973 kr.</td><td class="num">154.898 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="4">6. Netto udbetaling</td></tr>
+                                    <tr><td>Brutto indkomst</td><td class="num">420.000 kr.</td><td class="num">82.000 kr.</td><td class="num">502.000 kr.</td></tr>
+                                    <tr><td>&minus; Skat i alt</td><td class="num">142.926 kr.</td><td class="num">11.973 kr.</td><td class="num">154.898 kr.</td></tr>
+                                    <tr><td>= Netto udbetalt (&aring;r)</td><td class="num">277.075 kr.</td><td class="num">70.027 kr.</td><td class="num">347.102 kr.</td></tr>
+                                    <tr class="subtotal"><td>= Netto pr. m&aring;ned</td><td class="num">23.090 kr.</td><td class="num">5.836 kr.</td><td class="num">28.926 kr.</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="sol-question">Sp&oslash;rgsm&aring;l B: Har Mads brugt sit personfradrag, og giver giftermål en skattefordel?</div>
+                            <div class="sol-answer">
+                                <span class="step-title">Svar: Ja &mdash; Mads bruger sit fulde personfradrag. Ingen skattefordel ved giftermål.</span>
+                                <div class="explanation-box">
+                                    Mads' personlige indkomst efter AM er 75.440 kr. &mdash; over personfradraget p&aring; 54.100 kr. Der er intet uudnyttet fradrag at overf&oslash;re til Sofie. Skatteberegningen er identisk ugift og gift (se begge Excel-filer).
+                                </div>
+                            </div>
+
+                            <div class="sol-question">Sp&oslash;rgsm&aring;l C: Beregn parrets budget som gifte &mdash; opfylder de Finanstilsynets krav?</div>
+                            <div class="sol-answer">
+                                <span class="step-title">Svar: R&aring;dighedsbel&oslash;bet udg&oslash;r 14.576 kr./md.</span>
+                                <table class="calc-table">
+                                    <tr class="section-header"><td colspan="2">1. Indt&aelig;gter</td></tr>
+                                    <tr><td>Nettoløn Sofie</td><td class="num">23.090 kr./md.</td></tr>
+                                    <tr><td>Nettoløn Mads</td><td class="num">5.836 kr./md.</td></tr>
+                                    <tr class="subtotal"><td>= Indt&aelig;gter i alt</td><td class="num">28.926 kr./md.</td></tr>
+                                    <tr class="section-header"><td colspan="2">2. Faste udgifter</td></tr>
+                                    <tr><td>Husleje</td><td class="num">8.500 kr./md.</td></tr>
+                                    <tr><td>Bankl&aring;n, ydelse</td><td class="num">2.000 kr./md.</td></tr>
+                                    <tr><td>Varme</td><td class="num">1.000 kr./md.</td></tr>
+                                    <tr><td>El</td><td class="num">450 kr./md.</td></tr>
+                                    <tr><td>Offentlig transport</td><td class="num">600 kr./md.</td></tr>
+                                    <tr><td>Mobiltelefon</td><td class="num">300 kr./md.</td></tr>
+                                    <tr><td>Internet</td><td class="num">250 kr./md.</td></tr>
+                                    <tr><td>Hybridnet/kabel-TV</td><td class="num">300 kr./md.</td></tr>
+                                    <tr><td>Diverse (medier)</td><td class="num">400 kr./md.</td></tr>
+                                    <tr><td>Familieforsikring</td><td class="num">200 kr./md.</td></tr>
+                                    <tr><td>Ulykkesforsikring</td><td class="num">250 kr./md.</td></tr>
+                                    <tr><td>Diverse</td><td class="num">100 kr./md.</td></tr>
+                                    <tr class="subtotal"><td>= Faste udgifter i alt</td><td class="num">14.350 kr./md.</td></tr>
+                                    <tr class="section-header"><td colspan="2">3. R&aring;dighedsbel&oslash;b</td></tr>
+                                    <tr><td>Indt&aelig;gter &minus; Faste udgifter</td><td class="num">28.926 &minus; 14.350 kr.</td></tr>
+                                    <tr class="subtotal"><td>= R&aring;dighedsbel&oslash;b pr. m&aring;ned</td><td class="num">14.576 kr./md.</td></tr>
+                                </table>
+                                <div class="explanation-box">
+                                    <strong>R&aring;dgivervurdering:</strong> Finanstilsynets min. for par er ca. 11.500 kr./md. Parret er over gr&aelig;nsen, men budgettet er stramt. En r&aring;dgiver b&oslash;r dr&oslash;fte:
+                                    <ul>
+                                        <li><strong>Indkomststabilitet:</strong> Mads er studerende. Hvad sker der, n&aring;r SU oph&oslash;rer? Kortl&aelig;g karriereplan og fremtidigt indkomstpotentiale.</li>
+                                        <li><strong>Dagligvareforbrug:</strong> 14.576 kr. til to personer d&aelig;kker mad, t&oslash;j og forn&oslash;jelser &mdash; meget lidt frihed. En realistisk budgetplan b&oslash;r vise, hvad der faktisk er tilbage.</li>
+                                        <li><strong>Opsparing og buffer:</strong> Kapitel 2 anbefaler en n&oslash;dopsparing svarende til 3 m&aring;neders faste udgifter (~43.000 kr.). En fast sparerate p&aring; blot 1.000 kr./md. b&oslash;r etableres nu.</li>
+                                        <li><strong>Fremtidsudsigter:</strong> N&aring;r Mads er f&aelig;rdiguddannet og f&aring;r fuld l&oslash;n, frigg&oslash;res der markant kapacitet til boligk&oslash;b og opsparing. Pl&aelignl&aelig;g dette scenarie allerede nu.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </li>
+
+
+
+                        <!-- ======== CASE 3: CAMILLA OG HENRIK ======== -->
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+                            <div class="timeline-arrow"></div>
+                            <h2 class="mb-3">L&oslash;sning &ndash; Case 3: Camilla og Henrik (Aalborg)</h2>
+                            <p>Camilla tjener rigtig godt i det private erhvervsliv og betaler topskat, mens Henrik er l&aelig;rer. De bor i hus i Aalborg med et stort realkreditl&aring;n, som Camilla har renteudgifterne for.</p>
+
+                            <table class="table table-sm table-bordered table-striped mt-3">
+                                <thead class="thead-dark"><tr><th colspan="2">&Oslash;konomi &amp; Skat (2026)</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>Bruttoløn (Camilla)</strong></td><td>950.000 kr./&aring;r</td></tr>
+                                    <tr><td><strong>Bruttoløn (Henrik)</strong></td><td>400.000 kr./&aring;r</td></tr>
+                                    <tr><td><strong>Bop&aelig;l &amp; Kirke</strong></td><td>Aalborg &mdash; Begge i folkekirken</td></tr>
+                                    <tr><td><strong>Renteudgifter (Camilla)</strong></td><td>80.000 kr./&aring;r</td></tr>
+                                    <tr><td><strong>Fagforening &amp; A-kasse</strong></td><td>Camilla: 8.000+6.000 kr. Henrik: 7.000+6.000 kr.</td></tr>
+                                    <tr><td><strong>Transport</strong></td><td>Camilla 40 km/vej, Henrik 15 km/vej &mdash; 220 dage</td></tr>
+                                </tbody>
+                            </table>
+
+                            <ul class="resource-links">
+                                <li><a href="../files/camilla_henrik_ugift.xlsx" class="effectLinks mb-2 resource-link" data-replace="Skat: Ugift" target="_blank"><span>Skatteberegning &ndash; Ugifte</span></a></li>
+                                <li><a href="../files/camilla_henrik_gift.xlsx" class="effectLinks mb-2 resource-link" data-replace="Skat: Gift" target="_blank"><span>Skatteberegning &ndash; Gifte</span></a></li>
+                                <li><a href="../files/camilla_henrik_budget.xlsx" class="effectLinks mb-2 resource-link" data-replace="Budgetberegning" target="_blank"><span>Budgetberegning &ndash; Gifte (R&aring;dighedsbel&oslash;b)</span></a></li>
+                            </ul>
+                            <br><hr>
+
+                            <div class="sol-question">Sp&oslash;rgsm&aring;l A: Nettoløn som <strong>ugifte</strong> kontra <strong>gifte</strong> &mdash; hvem f&aring;r skattebesp&aelig;relsen?</div>
+                            <div class="sol-answer">
+                                <span class="step-title">Svar: Gift giver 200 kr./md. mere &mdash; gevinsten tilfalder Henrik via overf&oslash;rt rentefradrag.</span>
+                                <table class="calc-table">
+                                    <tr class="col-header"><td></td><td class="num">Camilla</td><td class="num">Henrik</td><td class="num">Samlet</td></tr>
+                                    <tr class="section-header"><td colspan="4">1. Personlig indkomst (PI)</td></tr>
+                                    <tr><td>AM-pligtig indkomst</td><td class="num">950.000 kr.</td><td class="num">400.000 kr.</td><td class="num">1.350.000 kr.</td></tr>
+                                    <tr><td>&minus; AM-bidrag (8%)</td><td class="num">76.000 kr.</td><td class="num">32.000 kr.</td><td class="num">108.000 kr.</td></tr>
+                                    <tr class="subtotal"><td>= Personlig indkomst (PI)</td><td class="num">874.000 kr.</td><td class="num">368.000 kr.</td><td class="num">1.242.000 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="4">2. Kapitalindkomst (KI)</td></tr>
+                                    <tr><td>&minus; Renteudgifter</td><td class="num">80.000 kr.</td><td class="num">0 kr.</td><td class="num">80.000 kr.</td></tr>
+                                    <tr class="subtotal"><td>= Kapitalindkomst (KI)</td><td class="num">&minus;80.000 kr.</td><td class="num">0 kr.</td><td class="num">&minus;80.000 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="4">3. Ligningsm&aelig;ssige fradrag</td></tr>
+                                    <tr><td>Befordringsfradrag (Camilla)</td><td class="num">8.026 kr.</td><td class="num">0 kr.</td><td class="num">8.026 kr.</td></tr>
+                                    <tr><td>Fagforening + A-kasse</td><td class="num">14.000 kr.</td><td class="num">13.000 kr.</td><td class="num">27.000 kr.</td></tr>
+                                    <tr><td>Besk&aelig;ftigelsesfradrag</td><td class="num">63.300 kr.</td><td class="num">51.000 kr.</td><td class="num">114.300 kr.</td></tr>
+                                    <tr><td>Jobfradrag</td><td class="num">3.100 kr.</td><td class="num">3.100 kr.</td><td class="num">6.200 kr.</td></tr>
+                                    <tr class="subtotal"><td>= Ligningsm&aelig;ssige fradrag i alt</td><td class="num">88.426 kr.</td><td class="num">67.100 kr.</td><td class="num">155.526 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="4">4. Skattepligtig indkomst (SI)</td></tr>
+                                    <tr class="subtotal"><td>= Skattepligtig indkomst</td><td class="num">706.574 kr.</td><td class="num">300.900 kr.</td><td class="num">1.007.474 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="4">5. Skatteopg&oslash;relse</td></tr>
+                                    <tr><td>AM-bidrag</td><td class="num">76.000 kr.</td><td class="num">32.000 kr.</td><td class="num">108.000 kr.</td></tr>
+                                    <tr><td>Bundskat (12,01%)</td><td class="num">98.470 kr.</td><td class="num">37.699 kr.</td><td class="num">136.169 kr.</td></tr>
+                                    <tr><td>Kommuneskat</td><td class="num">167.033 kr.</td><td class="num">63.181 kr.</td><td class="num">230.214 kr.</td></tr>
+                                    <tr><td>Kirkeskat</td><td class="num">6.394 kr.</td><td class="num">2.419 kr.</td><td class="num">8.813 kr.</td></tr>
+                                    <tr><td>Mellemskat</td><td class="num">16.203 kr.</td><td class="num">0 kr.</td><td class="num">16.203 kr.</td></tr>
+                                    <tr><td>Topskat</td><td class="num">7.208 kr.</td><td class="num">0 kr.</td><td class="num">7.208 kr.</td></tr>
+                                    <tr><td>Skatterabat neg. KI &mdash; ugift (max 50.000 kr.)</td><td class="num">&minus;4.000 kr.</td><td class="num">0 kr.</td><td class="num">&minus;4.000 kr.</td></tr>
+                                    <tr class="subtotal"><td>Skat i alt (ugift)</td><td class="num">367.308 kr.</td><td class="num">135.299 kr.</td><td class="num">502.607 kr.</td></tr>
+                                    <tr><td>Skatterabat neg. KI &mdash; gift (max 100.000 kr.)</td><td class="num">&minus;6.400 kr.</td><td class="num">0 kr.</td><td class="num">&minus;6.400 kr.</td></tr>
+                                    <tr class="subtotal"><td>Skat i alt (gift)</td><td class="num">364.908 kr.</td><td class="num">135.299 kr.</td><td class="num">500.207 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="4">6. Netto udbetaling &mdash; ugift vs. gift</td></tr>
+                                    <tr><td>= Netto pr. m&aring;ned (ugift)</td><td class="num">48.558 kr.</td><td class="num">22.058 kr.</td><td class="num">70.616 kr.</td></tr>
+                                    <tr class="subtotal"><td>= Netto pr. m&aring;ned (gift)</td><td class="num">48.758 kr.</td><td class="num">22.058 kr.</td><td class="num">70.816 kr.</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="sol-question">Sp&oslash;rgsm&aring;l B: Hvorfor giver giftermålet en skattefordel? (Se &quot;Skatterabat neg. KI (8%)&quot;)</div>
+                            <div class="sol-answer">
+                                <span class="step-title">Svar: 200 kr./md. ekstra via overf&oslash;rt rentefradrag over 50.000 kr.-gr&aelig;nsen.</span>
+                                <div class="explanation-box">
+                                    <strong>Forklaring (jf. Kapitel 2 &mdash; Rentefradragets v&aelig;rdi i 2026):</strong><br>
+                                    Som <em>ugift</em> kan Camilla max opn&aring; 8%-rabat p&aring; negativ kapitalindkomst op til <strong>50.000 kr.</strong> = 4.000 kr. i rabat. De resterende 30.000 kr. (80.000 &minus; 50.000) "spilder" hun rabatten p&aring;.<br><br>
+                                    Som <strong>gift</strong> er gr&aelig;nsen <strong>100.000 kr. for parret</strong>. Systemet overf&oslash;rer automatisk Camillas overskydende 30.000 kr. til Henrik: 30.000 &times; 8% = <strong>2.400 kr./&aring;r = 200 kr./md.</strong><br><br>
+                                    Dette er et klassisk eksempel p&aring; sambeskatningens fordel ved negativ kapitalindkomst &mdash; altid tjek dette ved par med store renteudgifter.
+                                </div>
+                            </div>
+
+                            <div class="sol-question">Sp&oslash;rgsm&aring;l C: Beregn parrets budget som gifte og r&aring;dighedsbel&oslash;b.</div>
+                            <div class="sol-answer">
+                                <span class="step-title">Svar: R&aring;dighedsbel&oslash;bet udg&oslash;r 40.616 kr./md. som gifte.</span>
+                                <table class="calc-table">
+                                    <tr class="section-header"><td colspan="2">1. Indt&aelig;gter</td></tr>
+                                    <tr><td>Nettoløn Camilla</td><td class="num">48.758 kr./md.</td></tr>
+                                    <tr><td>Nettoløn Henrik</td><td class="num">22.058 kr./md.</td></tr>
+                                    <tr class="subtotal"><td>= Indt&aelig;gter i alt</td><td class="num">70.816 kr./md.</td></tr>
+                                    <tr class="section-header"><td colspan="2">2. Faste udgifter</td></tr>
+                                    <tr><td>Husleje/Boligydelse</td><td class="num">16.000 kr./md.</td></tr>
+                                    <tr><td>Bankl&aring;n, ydelse</td><td class="num">2.000 kr./md.</td></tr>
+                                    <tr><td>Varme</td><td class="num">2.200 kr./md.</td></tr>
+                                    <tr><td>El</td><td class="num">900 kr./md.</td></tr>
+                                    <tr><td>Bilforsikring</td><td class="num">600 kr./md.</td></tr>
+                                    <tr><td>V&aelig;gtafgift</td><td class="num">300 kr./md.</td></tr>
+                                    <tr><td>Benzin</td><td class="num">1.500 kr./md.</td></tr>
+                                    <tr><td>Bill&aring;n (afdrag)</td><td class="num">3.000 kr./md.</td></tr>
+                                    <tr><td>Offentlig transport</td><td class="num">600 kr./md.</td></tr>
+                                    <tr><td>Mobiltelefon</td><td class="num">400 kr./md.</td></tr>
+                                    <tr><td>Internet</td><td class="num">400 kr./md.</td></tr>
+                                    <tr><td>Streaming/TV</td><td class="num">500 kr./md.</td></tr>
+                                    <tr><td>Diverse kontingenter</td><td class="num">800 kr./md.</td></tr>
+                                    <tr><td>Familieforsikring</td><td class="num">400 kr./md.</td></tr>
+                                    <tr><td>Ulykkesforsikring</td><td class="num">500 kr./md.</td></tr>
+                                    <tr><td>Diverse</td><td class="num">100 kr./md.</td></tr>
+                                    <tr class="subtotal"><td>= Faste udgifter i alt</td><td class="num">30.200 kr./md.</td></tr>
+                                    <tr class="section-header"><td colspan="2">3. R&aring;dighedsbel&oslash;b</td></tr>
+                                    <tr><td>Indt&aelig;gter &minus; Faste udgifter</td><td class="num">70.816 &minus; 30.200 kr.</td></tr>
+                                    <tr class="subtotal"><td>= R&aring;dighedsbel&oslash;b pr. m&aring;ned</td><td class="num">40.616 kr./md.</td></tr>
+                                </table>
+                                <div class="explanation-box">
+                                    <strong>R&aring;dgivervurdering:</strong>
+                                    <ul>
+                                        <li><strong>Bil er stor post:</strong> Bill&aring;n + benzin + forsikring + v&aelig;gtafgift = 5.400 kr./md. Dertil vedligehold, d&aelig;k og reparationer &mdash; ofte 500&ndash;1.500 kr./md. ekstra. Hvorn&aring;r skal bilen skiftes? Er FDM-abonnement relevant?</li>
+                                        <li><strong>Topskat og pension:</strong> Camilla betaler topskat. En forh&oslash;jet pensionsindbetaling kan flytte indkomst under topskattegr&aelig;nsen og give dobbelt gevinst &mdash; direkte skattebesp&aelig;relse og bedre pensionsopsparing (jf. Kapitel 2).</li>
+                                        <li><strong>Realkreditl&aring;n:</strong> 80.000 kr./&aring;r i renteudgifter. R&aring;dgiveren b&oslash;r vurdere restg&aelig;ld, renteniveau og afdragsprofil &mdash; er fast eller variabel rente bedst?</li>
+                                        <li><strong>G&aelig;ldsfaktor:</strong> Samlet realkreditg&aelig;ld/bruttoløn b&oslash;r beregnes. Med 1.350.000 kr. i samlet bruttoindkomst er kapaciteten stor, men en konkret opg&oslash;relse giver transparens.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- ======== CASE 4: JONAS ======== -->
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+                            <div class="timeline-arrow"></div>
+                            <h2 class="mb-3">L&oslash;sning &ndash; Case 4: Jonas (Enlig i K&oslash;benhavn)</h2>
+                            <p>Jonas er 29 &aring;r, er single og bor alene i K&oslash;benhavn. Han vil gerne have et tjek af sin skat og sit budget.</p>
+
+                            <table class="table table-sm table-bordered table-striped mt-3">
+                                <thead class="thead-dark"><tr><th colspan="2">&Oslash;konomi &amp; Skat (2026)</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>Bruttoløn</strong></td><td>550.000 kr./&aring;r</td></tr>
+                                    <tr><td><strong>Bop&aelig;l &amp; Kirke</strong></td><td>K&oslash;benhavn Kommune &mdash; Ikke medlem</td></tr>
+                                    <tr><td><strong>Renteudgifter (forbrugsl&aring;n)</strong></td><td>20.000 kr./&aring;r</td></tr>
+                                    <tr><td><strong>Fagforening &amp; A-kasse</strong></td><td>Fagf.: 6.500 kr./&aring;r. A-kasse: 5.500 kr./&aring;r</td></tr>
+                                    <tr><td><strong>Transport</strong></td><td>15 km hver vej, 220 dage/&aring;r</td></tr>
+                                </tbody>
+                            </table>
+                            <p><strong>Faste m&aring;nedlige udgifter:</strong><br> Husleje: 10.000 kr., Varme: 900 kr., El: 400 kr., Transport: 500 kr., Mobiltelefon: 150 kr., Internet: 350 kr., Hybridnet/TV: 200 kr., Div. medier: 300 kr., Familieforsikring: 150 kr., Ulykkesforsikring: 150 kr.</p>
+
+                            <ul class="resource-links">
+                                <li><a href="../files/jonas_skat.xlsx" class="effectLinks mb-2 resource-link" data-replace="Skat (Single)" target="_blank"><span>Skatteberegning &ndash; Enlig</span></a></li>
+                                <li><a href="../files/jonas_budget.xlsx" class="effectLinks mb-2 resource-link" data-replace="Budgetberegning" target="_blank"><span>Budgetberegning &ndash; (R&aring;dighedsbel&oslash;b)</span></a></li>
+                            </ul>
+                            <br><hr>
+
+                            <div class="sol-question">Sp&oslash;rgsm&aring;l A: Find Jonas' skattepligtige indkomst og m&aring;nedlige nettoløn.</div>
+                            <div class="sol-answer">
+                                <span class="step-title">Svar: SI = 407.600 kr. &mdash; Nettoløn = 30.887 kr./md.</span>
+                                <table class="calc-table">
+                                    <tr class="section-header"><td colspan="2">1. Personlig indkomst (PI)</td></tr>
+                                    <tr><td>AM-pligtig indkomst</td><td class="num">550.000 kr.</td></tr>
+                                    <tr><td>&minus; AM-bidrag (8%)</td><td class="num">44.000 kr.</td></tr>
+                                    <tr class="subtotal"><td>= Personlig indkomst (PI)</td><td class="num">506.000 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="2">2. Kapitalindkomst (KI)</td></tr>
+                                    <tr><td>&minus; Renteudgifter (forbrugsl&aring;n)</td><td class="num">20.000 kr.</td></tr>
+                                    <tr class="subtotal"><td>= Kapitalindkomst (KI)</td><td class="num">&minus;20.000 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="2">3. Ligningsm&aelig;ssige fradrag</td></tr>
+                                    <tr><td>Fagforening + A-kasse</td><td class="num">12.000 kr.</td></tr>
+                                    <tr><td>Besk&aelig;ftigelsesfradrag (12,75%, max 63.300)</td><td class="num">63.300 kr.</td></tr>
+                                    <tr><td>Jobfradrag (4,5% over 235.200, max 3.100)</td><td class="num">3.100 kr.</td></tr>
+                                    <tr class="subtotal"><td>= Ligningsm&aelig;ssige fradrag i alt</td><td class="num">78.400 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="2">4. Skattepligtig indkomst (SI)</td></tr>
+                                    <tr class="subtotal"><td>= Skattepligtig indkomst</td><td class="num">407.600 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="2">5. Skatteopg&oslash;relse</td></tr>
+                                    <tr><td>AM-bidrag</td><td class="num">44.000 kr.</td></tr>
+                                    <tr><td>Bundskat (12,01%)</td><td class="num">54.273 kr.</td></tr>
+                                    <tr><td>Kommuneskat (23,39% &mdash; K&oslash;benhavn)</td><td class="num">82.684 kr.</td></tr>
+                                    <tr><td>Skatterabat neg. KI (8% af 20.000)</td><td class="num">&minus;1.600 kr.</td></tr>
+                                    <tr class="subtotal"><td>Skat i alt</td><td class="num">179.357 kr.</td></tr>
+                                    <tr class="section-header"><td colspan="2">6. Netto udbetaling</td></tr>
+                                    <tr><td>Brutto indkomst</td><td class="num">550.000 kr.</td></tr>
+                                    <tr><td>&minus; Skat i alt</td><td class="num">179.357 kr.</td></tr>
+                                    <tr><td>= Netto udbetalt (&aring;r)</td><td class="num">370.643 kr.</td></tr>
+                                    <tr class="subtotal"><td>= Netto pr. m&aring;ned</td><td class="num">30.887 kr.</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="sol-question">Sp&oslash;rgsm&aring;l B: Vurder Jonas' r&aring;dighedsbel&oslash;b. Er han d&aelig;kket forn uftigt ind til et single-liv i storbyen?</div>
+                            <div class="sol-answer">
+                                <span class="step-title">Svar: R&aring;dighedsbel&oslash;bet udg&oslash;r 17.787 kr./md. &mdash; over Finanstilsynets minimum.</span>
+                                <table class="calc-table">
+                                    <tr class="section-header"><td colspan="2">1. Indt&aelig;gter</td></tr>
+                                    <tr class="subtotal"><td>Nettoløn (udbetalt)</td><td class="num">30.887 kr./md.</td></tr>
+                                    <tr class="section-header"><td colspan="2">2. Faste udgifter</td></tr>
+                                    <tr><td>Husleje</td><td class="num">10.000 kr./md.</td></tr>
+                                    <tr><td>Varme</td><td class="num">900 kr./md.</td></tr>
+                                    <tr><td>El</td><td class="num">400 kr./md.</td></tr>
+                                    <tr><td>Offentlig transport</td><td class="num">500 kr./md.</td></tr>
+                                    <tr><td>Mobiltelefon</td><td class="num">150 kr./md.</td></tr>
+                                    <tr><td>Internet</td><td class="num">350 kr./md.</td></tr>
+                                    <tr><td>Hybridnet/kabel-TV</td><td class="num">200 kr./md.</td></tr>
+                                    <tr><td>Diverse (medier)</td><td class="num">300 kr./md.</td></tr>
+                                    <tr><td>Familieforsikring</td><td class="num">150 kr./md.</td></tr>
+                                    <tr><td>Ulykkesforsikring</td><td class="num">150 kr./md.</td></tr>
+                                    <tr class="subtotal"><td>= Faste udgifter i alt</td><td class="num">13.100 kr./md.</td></tr>
+                                    <tr class="section-header"><td colspan="2">3. R&aring;dighedsbel&oslash;b</td></tr>
+                                    <tr><td>Indt&aelig;gter &minus; Faste udgifter</td><td class="num">30.887 &minus; 13.100 kr.</td></tr>
+                                    <tr class="subtotal"><td>= R&aring;dighedsbel&oslash;b pr. m&aring;ned</td><td class="num">17.787 kr./md.</td></tr>
+                                </table>
+                                <div class="explanation-box">
+                                    <strong>R&aring;dgivervurdering:</strong> Finanstilsynets min. for enlige er ca. 7.500&ndash;8.500 kr./md. Jonas' 17.787 kr. er klart over gr&aelig;nsen &mdash; men en r&aring;dgiver b&oslash;r dr&oslash;fte:
+                                    <ul>
+                                        <li><strong>Huslejen:</strong> 10.000 kr./md. = 32% af bruttolønnen. Er boligk&oslash;b aktuelt? Max l&aring;n ved g&aelig;ldsfaktor 4 = ca. 2,2 mio. kr. En boligopsparing b&oslash;r igangs&aeligttes nu.</li>
+                                        <li><strong>Forbrugsl&aring;net:</strong> 20.000 kr./&aring;r i renter er dyrt. R&aring;dgiveren b&oslash;r oplyse om restg&aelig;ld og &Aring;OP og anbefale hurtig afvikling &mdash; forbrugsl&aring;n v&aelig;g ter tungt i kreditvurdering.</li>
+                                        <li><strong>Opsparing mangler:</strong> Ingen fast opsparing i budgettet. Med 17.787 kr. til r&aring;dighed er der kapacitet til 3.000&ndash;5.000 kr./md. &mdash; fx til n&oslash;dreserve (min. 3 mdr. faste udgifter &asymp; 39.300 kr.) og boligopsparing.</li>
+                                        <li><strong>Pension:</strong> Jonas er 29 &aring;r. Tjek arbejdsgiverens bidrag og vurder om en ratepension vil give yderligere skattefordel.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </li>
+
+
+
+        </i>
+        </ul>
+
+    </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    } else {
+                        entry.target.classList.remove('in-view');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.timeline-item').forEach(item => observer.observe(item));
+        });
+    </script>
+</body>
+
+</html>
