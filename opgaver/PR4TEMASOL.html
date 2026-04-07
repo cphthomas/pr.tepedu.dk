@@ -32,8 +32,7 @@
                                 pension og forsikring i praksis.
                                 <br><br>
                                 <u>Beskrivelse:</u><br>
-                                Løsningerne herunder er vejledende. Beregninger via skat.tepedu.dk kan variere
-                                en smule afhængigt af de præcise forudsætninger, der tastes ind.
+                                Løsningerne herunder er vejledende. Excel-beregningerne er baseret på 5% p.a. nettoafkast efter PAL-skat og kan variere en smule ved andre forudsætninger.
                             </p>
                         </li>
 
@@ -82,8 +81,6 @@
 
                             <b>Materialer til brug i opgaven:</b><br><br>
 
-                            
-
                             <h5>Dokumenter</h5>
                             <a href="../files/Pensionsinfo_tom.pdf"
                                 class="effectLinks" data-replace="Hent PensionsInfo Tom" target="_blank">
@@ -106,301 +103,1158 @@
                             <ol type="A">
 
                                 <li>
-                                    <b>Dødsfaldsdækning og begunstigelse</b><br>
-                                    <strong>Løsningsforslag:</strong><br>
-                                    Ifølge PensionsInfo vil der ved Toms dødsfald blive udbetalt
-                                    <b>3.513.000 kr.</b> som engangsbeløb (før eventuel afgift) til de begunstigede.<br><br>
-
-                                    <b>Begunstigelse (PBL § 5):</b><br>
-                                    Reglerne om begunstigelse bestemmer, hvem der modtager midlerne fra livsforsikring og
-                                    pension ved dødsfald. Pengene udbetales <i>uden om</i> det øvrige dødsbo, og Tom
-                                    bestemmer selv, hvem der skal begunstigelsessættes.<br><br>
-
-                                    <b>"Nærmeste pårørende"</b> (standardvalg) betyder i prioriteret rækkefølge:
-                                    <ol>
-                                        <li>Ægtefælle/registreret partner</li>
-                                        <li>Samlevende (hvis særskilt aftale foreligger)</li>
-                                        <li>Livsarvinger (børn, børnebørn)</li>
-                                        <li>Øvrige arvinger ifølge testamente</li>
-                                        <li>Legale arvinger</li>
-                                    </ol>
-
-                                    I Toms tilfælde vil Birgitte som ægtefælle modtage midlerne som udgangspunkt.
-                                    Tom bør overveje, om begunstigelsen er korrekt angivet, særligt hvis han ønsker
-                                    at sikre børnene direkte — dette kræver en eksplicit ændring.
-                                    <br>
-                                </li>
-                                <hr>
-
-                                <li>
-                                    <b>Tab af erhvervsevne (TAE)</b><br>
-                                    <strong>Løsningsforslag:</strong><br>
-                                    Ifølge PensionsInfo vil Tom ved tab af erhvervsevne modtage:<br>
-                                    <ul>
-                                        <li><b>398.000 kr./år</b> som løbende invaliderente (41,46% af hans løn i dag),
-                                            frem til han fylder 68 år. Bemærk: Offentlig førtidspension nedsættes,
-                                            da han har TAE-forsikring.</li>
-                                        <li><b>150.000 kr.</b> som engangsbeløb (invalidesum) ved varigt tab.</li>
-                                    </ul>
-                                    <br>
-
-                                    <b>Skattemæssig forskel (jf. kapitel 4, afsnit 4.7.1):</b>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Hvad vil Toms efterladte samlet modtage ved hans dødsfald, jf. PensionsInfo?<br>
+                                        Aflæs det samlede beløb og angiv hvilke ordninger og selskaber der bidrager til dækningen — herunder til hvem de enkelte beløb udbetales.
+                                    </div>
+                                    <b>A. Dødsfaldsdækning — overblik fra PensionsInfo</b><br>
+                                    <strong>Løsningsforslag:</strong><br><br>
+                                    Ifølge PensionsInfo udbetales i alt <b>3.513.000 kr.</b> ved Toms dødsfald. Alle beløb udbetales som <i>engangsudbetaling</i> (ikke løbende ydelse). Fordelingen fordelt på selskab, modtager og skattemæssig status er:
+                                    <br><br>
                                     <table class='table table-striped table-bordered table-hover w-100'>
                                         <thead>
                                             <tr>
-                                                <th>Type</th>
-                                                <th>Præmie</th>
-                                                <th>Udbetaling</th>
+                                                <th>Modtager</th>
+                                                <th>Selskab / ordning</th>
+                                                <th>Beløb</th>
+                                                <th>Skattemæssig status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><b>Invaliderente (løbende)</b></td>
-                                                <td>Fradragsberettiget i skattepligtig indkomst</td>
-                                                <td>Beskattes som <b>personlig indkomst</b></td>
+                                                <td>Nærmeste pårørende</td>
+                                                <td>Danica Pension</td>
+                                                <td>2.131.000 kr.</td>
+                                                <td>Afgiftspligtig (A)</td>
                                             </tr>
                                             <tr>
-                                                <td><b>Invalidesum (engangsbel.)</b></td>
-                                                <td>Betales af beskattede midler — ingen fradragsret (PBL § 53 A)</td>
-                                                <td><b>100% skattefri</b> udbetaling</td>
+                                                <td>Ægtefælle</td>
+                                                <td>ATP Livslang Pension</td>
+                                                <td>75.000 kr.</td>
+                                                <td>Afgiftspligtig (A)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nærmeste pårørende (inkl. samlever)</td>
+                                                <td>Danica — livsforsikring (dækker til 68 år)</td>
+                                                <td>546.000 kr.</td>
+                                                <td>Skatte- og afgiftsfri (F)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Modtager ikke oplyst</td>
+                                                <td>Danske Bank (dækker til 80 år)</td>
+                                                <td>175.000 kr.</td>
+                                                <td>Afgiftspligtig (A)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Modtager ikke oplyst</td>
+                                                <td>Danske Bank (dækker til 60 år)</td>
+                                                <td>408.000 kr.</td>
+                                                <td>Afgiftspligtig (A)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Modtager ikke oplyst</td>
+                                                <td>Danske Bank (dækker til 69 år)</td>
+                                                <td>178.000 kr.</td>
+                                                <td>Afgiftspligtig (A)</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><b>I alt</b></td>
+                                                <td><b>3.513.000 kr.</b></td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <small>Symmetriprincippet: Fradrag ved indbetaling → beskatning ved udbetaling.
-                                    Ingen fradrag → skattefri udbetaling.</small>
-                                    <br>
-                                </li>
-                                <hr>
 
-                                <li>
-                                    <b>Nettoudbetaling i dag</b><br>
-                                    <strong>Løsningsforslag:</strong><br>
-                                    Forudsætninger tastet ind i skat.tepedu.dk:<br>
+                                    <b>Hvad betyder "A" (afgiftspligtig) og "F" (skattefri)?</b><br>
                                     <ul>
-                                        <li>Bruttoløn: 80.000 kr./md. (960.000 kr./år)</li>
-                                        <li>Gift, folkekirkemedlem, ingen befordringsfradrag</li>
-                                        <li>Ratepension (maks. fradrag jf. kapitel 4, tabel 4.2)</li>
-                                        <li>Livrente (opfyldningsfradrag jf. kapitel 4, tabel 4.2)</li>
+                                        <li><b>Afgiftspligtig (A):</b> Beløbet stammer fra en ordning, hvor Tom har haft fradragsret for indbetalingerne (ratepension, livrente, ATP). Pensionsselskabet indeholder 40% pensionsafgift ved udbetaling til <i>andre end ægtefælle</i>. Birgitte som ægtefælle kan vælge i stedet at <i>overtage ordningen skattemæssigt</i> — dvs. lade beløbet stå og betale skat løbende ved udbetaling som om det var hendes egen pension. Det er typisk den mest fordelagtige løsning for ægtefæller, da 40% afgift straks er hård.</li>
+                                        <li><b>Skattefri (F):</b> Danicas livsforsikring på 546.000 kr. er tegnet under PBL § 53 A — Tom har <i>ingen</i> fradragsret for præmien, og til gengæld er udbetalingen 100% skatte- og afgiftsfri. Birgitte modtager alle 546.000 kr. uden modregning eller skat.</li>
                                     </ul>
-                                    <b>Tom får udbetalt ca. 50.595 kr. om måneden efter skat.</b><br>
-                                    <small>Bemærk: Det præcise beløb afhænger af de aktuelle skattegrænser.
-                                    Kontrollér altid i skat.tepedu.dk med årets grænsebeløb fra kapitel 4, tabel 4.2.</small>
+
+                                    <b>Kritisk observation — tre Danske Bank-ordninger mangler begunstiget:</b><br>
+                                    Tre af de seks ordninger har "modtager ikke oplyst". Det betyder, at der ikke er registreret en navngiven begunstiget. Resultatet er, at standardreglen "nærmeste pårørende" (jf. PBL § 5) træder i kraft — men da modtageren ikke er specificeret, kan der opstå tvivl om udbetalingen, og pengene kan risikere at gå via boet frem for direkte til Birgitte. Tom bør øjeblikkeligt kontakte Danske Bank og få registreret en begunstiget på alle tre ordninger.
                                     <br>
                                 </li>
                                 <hr>
 
                                 <li>
-                                    <b>Grænsebeløb og beskatning for pensionsordninger</b><br>
-                                    <strong>Løsningsforslag (jf. kapitel 4, tabel 4.2 og 4.3):</strong><br>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Redegør for reglerne om begunstigelse (PBL § 5) ud fra kapitel 4: hvem er "nærmeste pårørende" i prioriteret rækkefølge?<br>
+                                        Hvad bør Tom overveje ift. begunstigelse af Birgitte, Sara og David? Kan han sikre børnene direkte — og hvad kræver det i givet fald?
+                                    </div>
+                                    <b>B. Begunstigelse — regler og Toms overvejelser</b><br>
+                                    <strong>Løsningsforslag (jf. PBL § 5 og kapitel 4):</strong><br><br>
+
+                                    <b>Hvad er begunstigelse, og hvorfor er det vigtigt?</b><br>
+                                    Begunstigelse (PBL § 5) fastlægger, hvem der modtager pensionsordningens midler ved den forsikredes dødsfald. Den afgørende juridiske pointe er, at pensionsmidler <i>falder uden for dødsboet</i> — de er ikke en del af arven og kan ikke testamenteres bort. Det er kun begunstigelsesklausulen hos det enkelte pensionsselskab, der afgør, hvem der får pengene. Et testamente hjælper altså ikke her.<br><br>
+
+                                    <b>"Nærmeste pårørende"</b> (standardvalget, PBL § 5, stk. 2) er defineret i streng prioriteret rækkefølge:
+                                    <ol>
+                                        <li><b>Ægtefælle / registreret partner</b> — modtager alt, hvis Tom er gift</li>
+                                        <li><b>Samlever</b> — kun hvis det er <i>skriftligt aftalt</i> med pensionsselskabet i forvejen og samleverforhold er dokumenteret</li>
+                                        <li><b>Livsarvinger</b> — børn (herunder adoptivbørn), dernæst børnebørn</li>
+                                        <li><b>Arvinger ifølge testamente</b></li>
+                                        <li><b>Legale arvinger</b> — slægt ifølge arveloven</li>
+                                    </ol>
+
+                                    <b>Konsekvensen for Toms familie:</b><br>
+                                    Fordi Tom er gift med Birgitte, gælder punkt 1. Birgitte modtager <i>hele beløbet</i> fra alle ordninger med "nærmeste pårørende" som begunstiget — i alt 3.513.000 kr. Sara (14) og David (12) modtager <b>ingenting direkte</b>, så længe Birgitte er i live. Det er irrelevant, at de er børn af Tom — prioriteringsrækkefølgen er absolut.<br><br>
+
+                                    <b>Kan Tom sikre Sara og David direkte?</b><br>
+                                    Ja — men det kræver, at Tom <i>eksplicit navngiver</i> børnene som begunstigede på den enkelte ordning. Dette gøres ved en skriftlig ændring af begunstigelsesklausulen direkte hos pensionsselskabet (Danica og Danske Bank). Mulige løsninger:
+                                    <ul>
+                                        <li>Tom kan begunstige Birgitte + Sara + David med fx en procentfordeling, f.eks. 50% Birgitte, 25% Sara, 25% David.</li>
+                                        <li>Alternativt kan Tom begunstige Sara og David for en del af en specifik ordning og lade resten gå til Birgitte.</li>
+                                        <li>Mindreåriges midler (Sara er 14, David 12) placeres under Familieretshuset (værgemål) og forvaltes af Birgitte som forælder, til de fylder 18.</li>
+                                    </ul>
+
+                                    <b>Tom bør straks:</b>
+                                    <ol>
+                                        <li>Registrere begunstigede på de tre Danske Bank-ordninger, hvor "modtager ikke er oplyst".</li>
+                                        <li>Tage stilling til, om han ønsker at sikre Sara og David direkte, eller om han er tilfreds med, at Birgitte arver det hele og forvalter det for familien.</li>
+                                        <li>Gennemgå alle ordninger hvert 3-5 år, da livssituationer ændrer sig (separation, dødsfald, nye børn).</li>
+                                    </ol>
+                                    <br>
+                                </li>
+                                <hr>
+
+                                <li>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Hvad vil Tom modtage ved tab af erhvervsevne (TAE) jf. PensionsInfo?<br>
+                                        Forklar den skattemæssige forskel på <b>(1)</b> invaliderente (løbende ydelse) og <b>(2)</b> invalidesum (engangsudbetaling). Angiv hvilke beløb der er henholdsvis skattepligtige og skattefrie.
+                                    </div>
+                                    <b>C. Tab af erhvervsevne (TAE)</b><br>
+                                    <strong>Løsningsforslag (jf. kapitel 4 og PensionsInfo):</strong><br><br>
+
+                                    <b>Hvad er TAE — og hvornår udløses det?</b><br>
+                                    TAE (Tab Af Erhvervsevne) dækker, hvis Tom mister evnen til at arbejde varigt — typisk defineret som mindst <b>2/3 nedsat erhvervsevne</b> (permanent). Det er altså ikke nok at være sygemeldt kortvarigt; det kræver, at erhvervsevnen er varigt og væsentligt reduceret, og at pensionsselskabet godkender kravet på baggrund af lægefaglig dokumentation.<br><br>
+
+                                    <b>Toms dækning fra PensionsInfo (Danica):</b>
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Ydelsestype</th>
+                                                <th>Beløb</th>
+                                                <th>Udbetalingsperiode</th>
+                                                <th>Skattemæssig status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Invaliderente</b> (løbende månedlig ydelse)</td>
+                                                <td>398.000 kr./år<br><small>= ca. 33.167 kr./md. brutto</small></td>
+                                                <td>Frem til Tom fylder 68 år</td>
+                                                <td>Skattepligtig som personlig indkomst (S)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Invalidesum</b> (engangsudbetaling)</td>
+                                                <td>150.000 kr.</td>
+                                                <td>Udbetales ved TAE-godkendelse</td>
+                                                <td>100% skattefri (F)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Den skattemæssige forskel — symmetriprincippet:</b><br>
+                                    Grundreglen i pensionsbeskatningsloven er symmetri: hvis du har fået fradrag for indbetalingen, skal du betale skat af udbetalingen. Hvis du <i>ikke</i> har fået fradrag, er udbetalingen skattefri.
+
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Fradrag ved præmiebetaling?</th>
+                                                <th>Beskatning ved udbetaling</th>
+                                                <th>Begrundelse</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Invaliderente</b> (løbende, S)</td>
+                                                <td>Ja — fradrag i personlig indkomst</td>
+                                                <td>Beskattes fuldt ud som <b>personlig indkomst</b> (samme som løn)</td>
+                                                <td>Fradrag givet → skat ved udbetaling (PBL § 16)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Invalidesum</b> (engangs, F)</td>
+                                                <td>Nej — betalt af beskattede midler (PBL § 53 A)</td>
+                                                <td><b>100% skattefri</b> — ingen skat, ingen afgift</td>
+                                                <td>Ingen fradrag givet → skattefri udbetaling</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Praktisk konsekvens for Tom:</b><br>
+                                    Invaliderenten på 33.167 kr./md. brutto skal beskattes som personlig indkomst — ved en marginalskat på ca. 42% giver det ca. <b>19.237 kr./md. netto</b>. Det er en markant nedgang fra hans nuværende nettoløn på ca. 43.000 kr./md. Invalidesumsbeløbet på 150.000 kr. er derimod fuldstændig skattefrit og kan bruges frit fra dag ét. Tom bør overveje, om hans TAE-dækning er tilstrækkelig — han har ingen arbejdsmarkedspension, og Danica-dækningen er den eneste TAE-forsikring han har.
+                                    <br>
+                                </li>
+                                <hr>
+
+                                <li>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Tom har desuden en kritisk sygdomsforsikring og en ulykkesforsikring. Hvad dækker de to forsikringer jf. PensionsInfo?<br>
+                                        Hvad er den skattemæssige behandling af udbetalinger fra disse to forsikringstyper? (jf. kapitel 4 og PBL § 53 A)
+                                    </div>
+                                    <b>D. Kritisk sygdom og ulykkesforsikring</b><br>
+                                    <strong>Løsningsforslag (jf. PensionsInfo, kapitel 4 og PBL § 53 A):</strong><br><br>
+
+                                    <b>Dækning fra PensionsInfo (Danica):</b>
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Forsikringstype</th>
+                                                <th>Dækning</th>
+                                                <th>Udbetalingsbetingelse</th>
+                                                <th>Skattemæssig behandling</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Kritisk sygdom</b></td>
+                                                <td><b>150.000 kr.</b> engangsudbetaling</td>
+                                                <td>Diagnose stillet og anerkendt af Danica (typisk kræft, hjerteanfald, blodprop i hjernen, visse hjertesygdomme mv.)</td>
+                                                <td>Skatte- og afgiftsfri (F) — PBL § 53 A</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Ulykkesforsikring</b></td>
+                                                <td><b>Op til 850.000 kr.</b> ved varigt mén</td>
+                                                <td>Varig mén som følge af ulykkeshændelse. Udbetalingen afhænger af méngradsprocenten (0–100%)</td>
+                                                <td>Skattefri udbetaling (F) — PBL § 53 A</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Vigtige forskelle mellem de to forsikringstyper:</b>
+                                    <ul>
+                                        <li><b>Kritisk sygdom</b> udbetaler et fast beløb (her 150.000 kr.) ved <i>diagnosen alene</i> — uanset om Tom kommer sig bagefter. Forsikringen dækker ikke alle sygdomme, men en defineret liste i aftalevilkårene. Typisk: kræft, hjerteanfald, apoplexi (blodprop i hjernen), større hjerteoperation, nyresvigt, organsvigt mv. Tom bør gennemgå Danicas liste for at kende præcis dækning.</li>
+                                        <li><b>Ulykkesforsikring</b> dækker <i>varige følger</i> af en <i>ulykkeshændelse</i> (pludselig, utilsigtet ydre påvirkning). Beløbet beregnes som: forsikringssum × méngradsprocent. Mén på 50% giver 50% af 850.000 = 425.000 kr. Mén på 100% (f.eks. tab af begge ben) giver 850.000 kr. Sygdom er <i>ikke</i> dækket af ulykkesforsikringen — kun ulykkeshændelser.</li>
+                                    </ul>
+
+                                    <b>Skattemæssig behandling — PBL § 53 A:</b><br>
+                                    Begge forsikringer er tegnet uden fradragsret for præmien (PBL § 53 A-ordninger). Symmetriprincippet medfører, at når Tom ikke har fået fradrag for præmiebetalingen, er udbetalingen 100% skattefri. Der betales hverken indkomstskat eller afgift — beløbet er frit disponibelt fra dag ét. Udbetalingerne indgår heller <i>ikke</i> i beregningsgrundlaget for folkepensionens tillæg eller andre modregningsberegninger.
+                                    <br>
+                                </li>
+                                <hr>
+
+                                <li>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Hvad er grænsebeløbene for privat indbetaling til følgende pensionsordninger i 2026 (jf. kapitel 4, tabel 4.2 og 4.3)?<br>
+                                        <b>(1)</b> Ratepension &nbsp; <b>(2)</b> Livsvarig livrente (opfyldningsfradrag) &nbsp; <b>(3)</b> Aldersopsparing (lavt og højt loft)<br>
+                                        Forklar hvad beskatningen er ved <i>udbetaling</i> fra de tre ordninger, og hvad afgiften er ved <i>tidlig ophævelse</i>.
+                                    </div>
+                                    <b>E. Grænsebeløb og beskatning for pensionsordninger (2026)</b><br>
+                                    <strong>Løsningsforslag (jf. kapitel 4, tabel 4.2 og 4.3):</strong><br><br>
+
                                     <table class='table table-striped table-bordered table-hover w-100'>
                                         <thead>
                                             <tr>
                                                 <th>Ordning</th>
-                                                <th>Maks. privat indbetaling</th>
+                                                <th>Maks. privat indbetaling 2026</th>
+                                                <th>Fradragsret?</th>
                                                 <th>Beskatning v/udbetaling</th>
+                                                <th>Afgift v/tidlig ophævelse</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Ratepension</b> (PBL § 11 A)</td>
+                                                <td>68.700 kr./år</td>
+                                                <td>Ja — fradrag i personlig indkomst</td>
+                                                <td>Personlig indkomst (beskattes som løn)</td>
+                                                <td>60% afgift</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Livsvarig livrente</b> — opfyldningsfradrag (PBL § 18)</td>
+                                                <td>63.200 kr./år</td>
+                                                <td>Ja — fradrag i personlig indkomst</td>
+                                                <td>Personlig indkomst (beskattes som løn)</td>
+                                                <td>60% afgift</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Aldersopsparing — lavt loft</b> (PBL § 12 A)</td>
+                                                <td>9.900 kr./år (mere end 7 år til folkepensionsalder)</td>
+                                                <td>Nej — indbetales af beskattede midler</td>
+                                                <td><b>100% skattefri udbetaling</b></td>
+                                                <td>20% afgift</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Aldersopsparing — højt loft</b> (PBL § 12 A)</td>
+                                                <td>64.200 kr./år (7 år eller mindre til folkepensionsalder)</td>
+                                                <td>Nej — indbetales af beskattede midler</td>
+                                                <td><b>100% skattefri udbetaling</b></td>
+                                                <td>20% afgift</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Hvorfor er ratepension og livrente skattepligtige ved udbetaling?</b><br>
+                                    Fordi Tom har haft fradragsret for indbetalingerne — han har sparet topskat og bundskat undervejs. Symmetriprincippet medfører, at han betaler fuld indkomstskat ved udbetaling. Livrenten er desuden <i>livsvarig</i> (udbetales til Tom dør), mens ratepensionen løber over en aftalt periode (minimum 10 år).<br><br>
+
+                                    <b>Hvorfor er aldersopsparing skattefri ved udbetaling?</b><br>
+                                    Aldersopsparingen indbetales af midler, der allerede er beskattet (ingen fradragsret). Staten har allerede fået sin andel via indkomstskat ved lønnen. Til gengæld er udbetalingen fuldstændig skattefri — og vigtigst af alt: den tæller <i>ikke</i> med i beregning af folkepensionens tillæg (se spørgsmål K om modregningsfælden).<br><br>
+
+                                    <b>Afgiften ved tidlig ophævelse:</b><br>
+                                    Ratepension og livrente: <b>60% afgift</b> — dvs. af hvert 100 kr. du hæver for tidligt, beholder du kun 40 kr. Det er et ekstremt hårdt straf og gør tidlig ophævelse næsten altid urentabelt. Aldersopsparing: kun <b>20% afgift</b>, da der ikke har været fradragsret. <br><br>
+
+                                    <b>Toms situation:</b><br>
+                                    Tom indbetaler maksimalt til ratepension (68.700 kr./år) og op til opfyldningsfradraget til livrente (63.200 kr./år). Hans samlede fradragsberettigede pensionsindbetaling er altså <b>131.900 kr./år</b>. Tom indbetaler <i>ikke</i> til aldersopsparing — her er et åbenlyst råd: han bør starte på aldersopsparing (9.900 kr./år) for at opbygge en skattefri reserve, der ikke modregnes i folkepensionen.
+                                    <br>
+                                </li>
+                                <hr>
+
+                                <li>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Aflæs fra PensionsInfo-tabellen (siden "Hvis du går på pension som 68-årig") Toms forventede samlede pensionsindkomst i tre faser:<br>
+                                        <b>(1)</b> Som 68-årig &nbsp; <b>(2)</b> Som 69-77-årig &nbsp; <b>(3)</b> Fra 78 år og frem<br>
+                                        Forklar hvad der udgør det markante fald i indkomst over tid, og hvilke ordninger der "løber ud".
+                                    </div>
+                                    <b>F. Pensionsudbetalinger i tre faser (fra PensionsInfo)</b><br>
+                                    <strong>Løsningsforslag:</strong><br><br>
+                                    Fra tabellen "Hvis du går på pension som 68-årig" — alle beløb er <i>før skat</i> og baseret på PensionsInfos beregningsforudsætninger:
+                                    <br><br>
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Fase</th>
+                                                <th>Alder</th>
+                                                <th>Brutto pr. år</th>
+                                                <th>Brutto pr. md.</th>
+                                                <th>Primær årsag</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Første år</b></td>
+                                                <td>68 år</td>
+                                                <td>1.089.400 kr.</td>
+                                                <td>ca. 90.800 kr.</td>
+                                                <td>Inkl. 460.000 kr. kapitalpension som <i>engangsudbetaling</i></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Løbende</b></td>
+                                                <td>69–77 år</td>
+                                                <td>620.900 kr.</td>
+                                                <td>ca. 51.742 kr.</td>
+                                                <td>Ratepensioner fra Danica + Danske Bank udbetales over 10 år</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Livsvarig</b></td>
+                                                <td>Fra 78 år</td>
+                                                <td>183.800 kr.</td>
+                                                <td>ca. 15.317 kr.</td>
+                                                <td>Kun livsvarige ydelser tilbage (livrente + ATP + folkepension)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Detaljeret forklaring på de to store fald:</b><br>
+
+                                    <b>Fald 1: Fra 68 til 69 — kapitalpensionen forsvinder</b><br>
+                                    Den gamle kapitalpension i Danske Bank udbetales som <b>engangsudbetaling</b> på 460.000 kr. det første pensionsår (ved 68). Den kan ikke udbetales løbende. Herefter er den væk, og den samlede indkomst falder med ca. 468.500 kr./år (fra 1.089.400 til 620.900 kr.).<br><br>
+
+                                    <b>Fald 2: Fra 77 til 78 — ratepensionerne løber ud</b><br>
+                                    Toms tre ratepensioner (Danica + Danske Bank × 2) har en udbetalingsperiode på <b>10 år</b> (fra 68 til 77 år). De tre bidrag er:
+                                    <ul>
+                                        <li>Danica ratepension: <b>383.000 kr./år</b></li>
+                                        <li>Danske Bank ratepension 1: <b>26.500 kr./år</b></li>
+                                        <li>Danske Bank ratepension 2: <b>27.000 kr./år</b></li>
+                                        <li>I alt: <b>436.500 kr./år</b> — der bortfalder fra 78-årsalderen</li>
+                                    </ul>
+
+                                    <b>Hvad er der tilbage fra 78 år?</b><br>
+                                    Fra 78 år er der kun <i>livsvarige</i> ydelser:
+                                    <ul>
+                                        <li>Folkepension (grundbeløb): ca. 83.000 kr./år</li>
+                                        <li>Danica livsvarig livrente: ca. 92.000 kr./år</li>
+                                        <li>ATP Livslang Pension: ca. 17.900 kr./år (stigende med inflationsindeksering)</li>
+                                        <li>I alt: ca. 192.900 kr./år — svarer til ca. 15.317 kr./md.</li>
+                                    </ul>
+                                    Det er en brutto månedlig indkomst, som langt fra svarer til hans nuværende forbrugsevne. Fratrukket skat (ca. 37%) får Tom ca. <b>9.650 kr./md. netto</b> fra 78 år — en dramatisk nedgang. Dette er et centralt rådgivningspunkt: Tom bør overveje at omlægge noget ratepension til livsvarig livrente for at sikre en mere jævn indkomst livet ud.
+                                    <br>
+                                </li>
+                                <hr>
+
+                                <li>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Tom indbetaler det maksimale til ratepension de næste 15 år (til han er 68). Maksimum er 68.700 kr./år.<br>
+                                        Beregn hvad denne løbende opsparing vokser til ved pensionsstart, ved 5% p.a. nettoafkast efter PAL-skat.<br>
+                                        Hvad er det samlede renteafkast — dvs. opsparingens vækst ud over det indbetalte beløb?
+                                    </div>
+                                    <b>G. Excel =FV — Ratepension over 15 år</b><br>
+                                    <strong>Løsningsforslag (jf. kapitel 4, afsnit 4.18.4):</strong><br><br>
+
+                                    <b>Hvad gør =FV-formlen?</b><br>
+                                    =FV (Future Value) beregner den <i>fremtidige værdi</i> af en løbende opsparing. Formlen besvarer spørgsmålet: "Hvad vokser min opsparing til, hvis jeg indbetaler et fast beløb hver måned i en given periode til en given rente?"<br><br>
+
+                                    <b>Forklaring af formlens argumenter:</b>
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Argument</th>
+                                                <th>Værdi</th>
+                                                <th>Forklaring</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><code>rente</code></td>
+                                                <td>5%/12 = 0,4167%/md.</td>
+                                                <td>Nettoafkastet per <i>måned</i>. Da renten er 5% p.a., divideres med 12 for at omregne til månedlig rente. Nettoafkastet er estimeret efter 15,3% PAL-skat.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>nper</code></td>
+                                                <td>180</td>
+                                                <td>Antal betalingsperioder = 15 år × 12 måneder</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>pmt</code></td>
+                                                <td>−5.725</td>
+                                                <td>Månedlig indbetaling (68.700 ÷ 12 = 5.725 kr.). Negativt fordi det er en <i>udgift</i> — penge der forlader din konto.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Forudsætninger:</b>
+                                    <ul>
+                                        <li>Maksimal ratepensionsindbetaling 2026: 68.700 kr./år = <b>5.725 kr./md.</b></li>
+                                        <li>Periode: 15 år = <b>180 måneder</b></li>
+                                        <li>Nettoafkast efter PAL-skat: <b>5% p.a.</b></li>
+                                    </ul>
+
+                                    <div style="font-family: monospace; background: rgba(26,58,92,0.07); border-left: 5px solid #1a3a5c; padding: 12px 16px; margin-bottom: 12px;">
+                                        =FV(<b>5%/12</b> ; <b>180</b> ; <b>−5725</b>) = <b>ca. 1.530.000 kr.</b>
+                                    </div>
+
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Post</th>
+                                                <th>Beløb</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Samlet indbetalt (5.725 kr. × 180 måneder)</td>
+                                                <td>1.030.500 kr.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Opsparet ved pensionsstart (FV-resultat)</td>
+                                                <td><b>1.530.000 kr.</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Renteafkast alene (vækst = FV − indbetalt)</b></td>
+                                                <td><b>ca. 499.500 kr.</b></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Fortolkning:</b><br>
+                                    Renteafkastet udgør ca. <b>33% af slutformuen</b> — altså en tredjedel af den samlede opsparing er "gratis" vækst fra rentes rente. Bemærk at dette er renteafkastet på den <i>nye</i> opsparing i de kommende 15 år — Toms eksisterende depot i Danske Bank (675.000 kr.) tæller ikke med her.<br><br>
+
+                                    <b>Sammenligning: hvad nu, hvis Tom var startet for 30 år siden?</b><br>
+                                    Med 30 år og samme indbetaling ville =FV(5%/12; 360; -5725) give ca. <b>4.765.000 kr.</b>, hvoraf renteafkastet udgør ca. 57% af formuen. Renters rente-effekten er altså langt mere kraftfuld over 30 år end 15 år — det bedste råd til unge kunder er: <b>start tidligt</b>, også med små beløb.
+                                    <br>
+                                </li>
+                                <hr>
+
+                                <li>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Toms nuværende samlede pensionsformue er 675.000 kr. (Danske Bank) + 2.699.000 kr. (Danica) = 3.374.000 kr.<br>
+                                        Beregn hvad denne formue kan udbetale pr. måned, hvis den udbetales jævnt over 20 år ved 5% p.a. nettoafkast.<br>
+                                        Hvad er den samlede bruttoindkomst pr. måned inkl. folkepensionens grundbeløb (ca. 8.100 kr./md.)?
+                                    </div>
+                                    <b>H. Excel =YDELSE — Nuværende depot udbetalt over 20 år</b><br>
+                                    <strong>Løsningsforslag (jf. kapitel 4, afsnit 4.18.2):</strong><br><br>
+
+                                    <b>Hvad gør =YDELSE-formlen?</b><br>
+                                    =YDELSE (PMT på engelsk) beregner den <i>konstante periodiske ydelse</i>, som en given opsparing kan levere over et antal perioder ved en given rente — præcis som en annuitetslåns ydelse, bare i omvendt retning (du hæver i stedet for at afdrage). Formlen forudsætter, at formuen er nøjagtigt opbrugt ved periodens udgang.<br><br>
+
+                                    <b>Forklaring af formlens argumenter:</b>
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Argument</th>
+                                                <th>Værdi</th>
+                                                <th>Forklaring</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><code>rente</code></td>
+                                                <td>5%/12</td>
+                                                <td>Månedlig rente — depotet forrentes stadig under udbetalingsfasen</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>nper</code></td>
+                                                <td>240</td>
+                                                <td>Udbetalingsperiode: 20 år × 12 = 240 måneder</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>nv</code></td>
+                                                <td>−3.374.000</td>
+                                                <td>Nutidsværdi (det samlede depot). Negativt fordi det er en <i>investering</i> — beløbet er bundet i depotet og "koster" dig noget nu for at give afkast fremover. Excel kræver dette som negativt tal for at returnere et positivt udbetalingsbeløb.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Forudsætninger:</b>
+                                    <ul>
+                                        <li>Samlet depot i dag: 675.000 kr. (Danske Bank) + 2.699.000 kr. (Danica) = <b>3.374.000 kr.</b></li>
+                                        <li>Udbetalingsperiode: 20 år = <b>240 måneder</b></li>
+                                        <li>Afkast under udbetaling: <b>5% p.a.</b> (depotet forrentes stadig, mens der hæves)</li>
+                                        <li>Dette er et <i>forenklet</i> scenarie, der antager, at hele depotet er tilgængeligt fra pensionsdag 1</li>
+                                    </ul>
+
+                                    <div style="font-family: monospace; background: rgba(26,58,92,0.07); border-left: 5px solid #1a3a5c; padding: 12px 16px; margin-bottom: 12px;">
+                                        =YDELSE(<b>5%/12</b> ; <b>240</b> ; <b>−3.374.000</b>) = <b>ca. 22.264 kr./md.</b>
+                                    </div>
+
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Post</th>
+                                                <th>Beløb pr. md. (brutto)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>=YDELSE fra nuværende depot (3.374.000 kr.)</td>
+                                                <td>22.264 kr.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>+ Folkepensionens grundbeløb (ca.)</td>
+                                                <td>8.100 kr.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Samlet bruttoindkomst pr. md.</b></td>
+                                                <td><b>30.364 kr.</b></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Fortolkning og begrænsning:</b><br>
+                                    30.364 kr./md. brutto svarer til ca. <b>19.000–20.000 kr./md. netto</b> efter skat (estimeret ved ca. 37% marginalskat som pensionist). Det er en markant nedgang fra Toms nuværende nettoløn. Beregningen er dog <i>forsimplet</i> — den antager, at hele 3.374.000 kr. er til rådighed straks ved pensionering. I virkeligheden vil Danica-depotet (2.699.000 kr.) have forrenter sig yderligere i 15 år — det realistiske scenarie beregnes i spørgsmål I.
+                                    <br>
+                                </li>
+                                <hr>
+
+                                <li>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Toms Danica-depot udgør i dag 2.699.000 kr. og forrenter sig de næste 15 år, inden han går på pension — uden yderligere indbetalinger.<br>
+                                        <b>Trin 1:</b> Beregn hvad depotet vokser til ved pensionsstart ved 5% p.a. nettoafkast.<br>
+                                        <b>Trin 2:</b> Beregn den månedlige bruttoudbetaling, hvis den fremtidige formue fra trin 1 udbetales jævnt over 20 år ved 5% p.a.<br>
+                                        Hvad er den samlede månedlige bruttoindkomst inkl. folkepensionens grundbeløb?
+                                    </div>
+                                    <b>I. Excel =FV + =YDELSE — Danica-depot om 15 år (det realistiske scenarie)</b><br>
+                                    <strong>Løsningsforslag (jf. kapitel 4, afsnit 4.18.3):</strong><br><br>
+
+                                    Dette scenarie er mere realistisk end spørgsmål H, fordi det tager højde for, at Danica-depotet på 2.699.000 kr. fortsætter med at forrente sig i de 15 år, Tom stadig er erhvervsaktiv — ingen nye indbetalinger, men rentes rente arbejder uafbrudt.<br><br>
+
+                                    <b>Trin 1 — Fremtidig værdi af Danica-depotet om 15 år:</b><br>
+                                    Her bruges =FV med <i>årsrente</i> (ikke månedlig), da der ikke indbetales løbende — kun det eksisterende beløb forrentes.
+
+                                    <div style="font-family: monospace; background: rgba(26,58,92,0.07); border-left: 5px solid #1a3a5c; padding: 12px 16px; margin-bottom: 12px;">
+                                        =FV(<b>5%</b> ; <b>15</b> ; <b>0</b> ; <b>−2.699.000</b>)<br>
+                                        = 2.699.000 × (1,05)<sup>15</sup><br>
+                                        = 2.699.000 × 2,07893<br>
+                                        ≈ <b>5.611.000 kr.</b>
+                                    </div>
+
+                                    Danica-depotet mere end fordobles — fra 2.699.000 kr. i dag til 5.611.000 kr. om 15 år — <i>udelukkende</i> ved rentes rente, uden en eneste krone i ny indbetaling. Det er et visuelt stærkt argument for at starte opsparing tidligt.<br><br>
+
+                                    <b>Trin 2 — Hvad giver 5.611.000 kr. som månedlig ydelse over 20 år?</b>
+
+                                    <div style="font-family: monospace; background: rgba(26,58,92,0.07); border-left: 5px solid #1a3a5c; padding: 12px 16px; margin-bottom: 12px;">
+                                        =YDELSE(<b>5%/12</b> ; <b>240</b> ; <b>−5.611.000</b>) ≈ <b>ca. 37.025 kr./md.</b>
+                                    </div>
+
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Post</th>
+                                                <th>Beløb pr. md. (brutto)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>=YDELSE fra Danica-depot i 2041 (5.611.000 kr.)</td>
+                                                <td>37.025 kr.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>+ Folkepensionens grundbeløb (ca.)</td>
+                                                <td>8.100 kr.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Samlet bruttoindkomst pr. md.</b></td>
+                                                <td><b>45.125 kr.</b></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Forskel i forhold til spørgsmål H:</b><br>
+                                    I spørgsmål H brugte vi nutidsværdien (3.374.000 kr.) og fik ca. 22.264 kr./md. Her bruger vi kun Danica-depotet, men vi lader det vokse i 15 år til 5.611.000 kr. — og det alene giver 37.025 kr./md. Sammenligningen illustrerer, at <b>tid i markedet</b> er mindst lige så vigtigt som det beløb, der indbetales. Dertil kommer naturligvis, at Toms yderligere opsparing fra ratepension m.v. vil lægge sig oven på dette tal ved pensionsstart.
+                                    <br>
+                                </li>
+                                <hr>
+
+                                <li>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Er det helt korrekt at sige, at Tom <i>sparer</i> skat ved at øge sine pensionsindbetalinger?<br>
+                                        Forklar begrebet skatteudskydelse, og diskutér hvornår det er en reel fordel at indbetale til pension frem for at spare frit.<br>
+                                        <small>Vink: Tænk på marginalskattearbitrage, PAL-skat undervejs og den forventede skat ved udbetaling. Se kapitel 4, afsnit 4.5 og 4.8.</small>
+                                    </div>
+                                    <b>J. Skatteudskydelse — sparer Tom rent faktisk skat?</b><br>
+                                    <strong>Løsningsforslag (jf. kapitel 4, afsnit 4.5 og 4.8):</strong><br><br>
+
+                                    <b>Svaret er: nej — ikke præcist. Skatten <i>udskydes</i>, den elimineres ikke.</b><br><br>
+
+                                    Det er en meget udbredt misforståelse, at pensionsindbetalinger "sparer skat". Det er mere korrekt at sige, at de <i>udskyder</i> beskatningen til et (forhåbentlig) gunstigere tidspunkt. Forklaringen hviler på tre niveauer:<br><br>
+
+                                    <b>1. Skatteudskydelsens mekanik:</b><br>
+                                    Når Tom indbetaler 68.700 kr./år til ratepension, får han fradrag i personlig indkomst — det reducerer hans skattebetaling i år. Men ved udbetaling fra ratepensionen (om 15+ år) beskattes de 68.700 kr. fuldt ud som personlig indkomst — præcis som løn. Staten har blot udsat kravet.<br><br>
+
+                                    <b>2. Den reelle fordel — marginalskattearbitrage:</b><br>
+                                    Fordelen opstår, hvis marginalskatten <i>nu</i> er højere end marginalskatten <i>ved udbetaling</i>:
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Tidspunkt</th>
+                                                <th>Marginalskat (estimat)</th>
+                                                <th>Forklaring</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Nu (erhvervsaktiv)</b></td>
+                                                <td>ca. 56,5%</td>
+                                                <td>Tom tjener 80.000 kr./md. — betaler topskat. Indkomstskat inkl. bundskat, topskat og kommuneskat overstiger 50% på marginalen.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Som pensionist</b></td>
+                                                <td>ca. 37–42%</td>
+                                                <td>Toms pensionsindkomst vil typisk ligge under topskattegrænsen. Marginalskatten falder markant.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Skattearbitrage</b></td>
+                                                <td>ca. 14–20%</td>
+                                                <td>Forskellen i marginalskattesats = den reelle skattefordel pr. krone i pensionen</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <b>Konkret for Tom:</b> Han indbetaler 68.700 kr./år til ratepension og sparer umiddelbart ca. 56,5% × 68.700 = ca. 38.800 kr. i skat i dag. Hvis han ved udbetaling betaler 40% skat på de 68.700 kr. = 27.500 kr., er den reelle nettobesparelse ca. <b>11.300 kr./år</b> — altså ca. 16% på det indbetalte beløb. Det er ikke nul, men langt fra den fulde marginalskatsbesparelse.<br><br>
+
+                                    <b>3. PAL-skattefordelen — vækstfordelen undervejs:</b><br>
+                                    Mens pensionsdepotet vokser, beskattes afkastet med kun <b>15,3% PAL-skat</b> (pensionsafkastbeskatningsloven). Til sammenligning beskattes afkast på frie midler med:
+                                    <ul>
+                                        <li>Aktieindkomst: 27% op til 67.500 kr., 42% derudover</li>
+                                        <li>Kapitalindkomst (obligationer, renter): 37–42%</li>
+                                    </ul>
+                                    Denne forskel på 12–27 procentpoint i løbende afkastbeskatning akkumulerer sig enormt over 15 år — selv hvis marginalskattearbitragen er beskeden, er PAL-fordelen en selvstændig og betydelig gevinst ved pensionsopsparing.<br><br>
+
+                                    <b>Konklusion — hvornår er pensionsopsparing bedst?</b><br>
+                                    Pensionsopsparing er mest fordelagtig når:
+                                    <ol>
+                                        <li>Marginalskatten nu er høj (topskat) — og man forventer lavere skat som pensionist</li>
+                                        <li>Opsparingsperioden er lang — PAL-fordelen akkumulerer sig over mange år</li>
+                                        <li>Formuen er stor nok til at afkastet ville blive beskattet højt på frie midler</li>
+                                    </ol>
+                                    Tom opfylder alle tre kriterier. Det er korrekt at anbefale pensionsopsparing — men man skal forklare det præcist som <i>skatteudskydelse med arbitragegevinst</i>, ikke som "skattebesparelse".
+                                    <br>
+                                </li>
+                                <hr>
+
+                                <li>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Forklar begrebet <b>"modregningsfælden"</b> ud fra kapitel 4, afsnit 4.9.<br>
+                                        Er Tom i risiko for denne fælde som folkepensionist? Hvilken pensionstype kan han bruge for at undgå modregning i folkepensionens tillæg, og hvad er loftet for denne ordning i 2026?
+                                    </div>
+                                    <b>K. Modregningsfælden</b><br>
+                                    <strong>Løsningsforslag (jf. kapitel 4, afsnit 4.9):</strong><br><br>
+
+                                    <b>Folkepensionens to dele — grundbeløb og pensionstillæg:</b><br>
+                                    Folkepensionen består af to separate dele med vidt forskellig modregningslogik:
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Del</th>
+                                                <th>Beløb (gift, 2026)</th>
+                                                <th>Modregnes i?</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Grundbeløb</b></td>
+                                                <td>ca. 83.000 kr./år</td>
+                                                <td><b>Nej</b> — grundbeløbet er urørligt og modregnes aldrig i egne pensionsindtægter</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Pensionstillæg</b></td>
+                                                <td>op til ca. 48.000 kr./år (gift)</td>
+                                                <td><b>Ja</b> — reduceres med 30,9% af pensionsindkomst over bundfradrag (ca. 99.200 kr./år)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Modregningsfælden forklaret — det skjulte skattetillæg:</b><br>
+                                    Modregningssatsen på 30,9% oven i den normale indkomstskat skaber en "effektiv marginalskat" på pensionsindkomst, der <i>overstiger</i> hvad Tom betalte som erhvervsaktiv. Konkret:
+                                    <ul>
+                                        <li>Normal marginalskat som pensionist: ca. 40%</li>
+                                        <li>+ Modregning i pensionstillæg: 30,9%</li>
+                                        <li>= Effektiv marginalskat: ca. <b>70,9%</b> på den marginale pensionskrone</li>
+                                    </ul>
+                                    Tom betalte ca. 56,5% i marginalskat som erhvervsaktiv og fik skattefradrag for pensionsindbetalingen. Som pensionist betaler han potentielt op til 70,9% på marginalen. Det er det, der gør "fælden" særlig problematisk: man sparer skat ved indbetaling, men betaler mere ved udbetaling.<br><br>
+
+                                    <b>Er Tom i risiko? Konkret beregning:</b>
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Post</th>
+                                                <th>Beløb/år</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Toms pensionsindkomst, fase 69–77 år</td>
+                                                <td>620.900 kr./år</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bundfradrag for modregning (2026)</td>
+                                                <td>− 99.200 kr./år</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Grundlag for modregning</td>
+                                                <td>521.700 kr./år</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Modregning (521.700 × 30,9%)</td>
+                                                <td>≈ 161.205 kr./år</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Max pensionstillæg for gift (2026)</td>
+                                                <td>ca. 48.000 kr./år</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Pensionstillæg Tom modtager</b></td>
+                                                <td><b>0 kr.</b> (modregningen overstiger det max mulige tillæg)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Ja — Tom mister hele pensionstillægget.</b> De 161.205 kr. i beregnet modregning overstiger med bred margin det maksimale pensionstillæg på 48.000 kr. Tom mister altså 48.000 kr./år i folkepension, som han ellers ville have haft ret til.<br><br>
+
+                                    <b>Løsningen: Aldersopsparing (PBL § 12 A)</b><br>
+                                    Udbetalinger fra aldersopsparing er <i>undtaget</i> fra beregningsgrundlaget for pensionstillægget — de tæller simpelthen ikke med. Logikken er, at der ikke har været fradragsret ved indbetaling, så staten "straffer" ikke udbetalingen. Desuden er udbetalingen 100% skattefri.<br><br>
+
+                                    <b>Aldersopsparing i Toms situation:</b>
+                                    <ul>
+                                        <li>Tom er 53 år og har <b>15 år</b> til folkepensionsalderen (68) — han er i "lavt loft"-kategorien</li>
+                                        <li>Maks. indbetaling: <b>9.900 kr./år</b> (lavt loft — mere end 7 år til FP)</li>
+                                        <li>Fra 61 år (7 år til FP) skifter han til <b>højt loft: 64.200 kr./år</b></li>
+                                        <li>Udbetalinger fra aldersopsparingen indgår hverken i indkomstbeskatning eller modregning i tillægget</li>
+                                    </ul>
+
+                                    <b>Rådgivningsanbefaling til Tom:</b><br>
+                                    Tom bør straks starte på aldersopsparing (9.900 kr./år nu, og øge markant de sidste 7 år). Derudover bør han overveje aktiesparekontoen (se spørgsmål P), da afkast herfra beskattes med 17% og heller ikke indgår i modregningsberegningen. Kombineret kan disse to produkter mindske "fælden" mærkbart.
+                                    <br>
+                                </li>
+                                <hr>
+
+                                <li>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Hvad er PAL-skat, hvem opkræver den, og med hvilken sats?<br>
+                                        Beregn Toms estimerede nettoafkast på Danica-depotet, hvis bruttoafkastet er 7% p.a. — og sammenlign PAL-satsen med den skat, Tom ville betale på det samme afkast i frie midler (aktier og obligationer).
+                                    </div>
+                                    <b>L. PAL-skat — pensionsafkastbeskatning</b><br>
+                                    <strong>Løsningsforslag (jf. kapitel 4 og pensionsafkastbeskatningsloven):</strong><br><br>
+
+                                    <b>Hvad er PAL-skat?</b><br>
+                                    PAL står for <i>Pensionsafkastbeskatningsloven</i>. Det er en særlig skat på det afkast, der optjenes inde i pensionsdepotet — dvs. på renter, udbytter og kursgevinster på de aktiver, pensionsselskabet investerer Toms opsparing i.<br><br>
+
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Forhold</th>
+                                                <th>Detaljer</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Sats</b></td>
+                                                <td>15,3% af årets samlede pensionsafkast</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Hvem opkræver?</b></td>
+                                                <td>Pensionsselskabet (Danica, Danske Bank) beregner og indberetter PAL-skatten direkte til SKAT på vegne af Tom. Tom mærker det ikke som en separat regning — afkastet krediteres ham allerede netto.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Hvornår betales?</b></td>
+                                                <td>Løbende hvert år (primo det efterfølgende år). Beskatningsgrundlaget opgøres efter <i>lagerprincippet</i> — dvs. urealiserede gevinster beskattes også hvert år, uanset om Tom har solgt noget.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Gælder for</b></td>
+                                                <td>Alle PAL-skattepligtige ordninger: ratepension, livsvarig livrente, ATP, kapitalpension. Aldersopsparing beskattes også med PAL.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Beregning: nettoafkast ved 7% bruttoafkast:</b>
+                                    <div style="font-family: monospace; background: rgba(26,58,92,0.07); border-left: 5px solid #1a3a5c; padding: 12px 16px; margin-bottom: 12px;">
+                                        PAL-skat = 15,3% × 7% = <b>1,071%</b><br>
+                                        Nettoafkast = 7% − 1,071% = <b>ca. 5,93% p.a.</b>
+                                    </div>
+
+                                    Det er dette nettoafkast på ca. 5–6%, der anvendes som forudsætning i opgavernes Excel-beregninger.<br><br>
+
+                                    <b>Sammenligning med beskatning af frie midler:</b>
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Opsparingsform</th>
+                                                <th>Skat på afkast</th>
+                                                <th>Nettoafkast ved 7% brutto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Pensionsdepot (PAL)</b></td>
+                                                <td>15,3%</td>
+                                                <td><b>5,93%</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Frie aktier (under 67.500 kr. gevinst)</td>
+                                                <td>27% aktieskat</td>
+                                                <td>5,11%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Frie aktier (over 67.500 kr. gevinst)</td>
+                                                <td>42% aktieskat</td>
+                                                <td>4,06%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Obligationer / renter (kapitalindkomst)</td>
+                                                <td>37–42%</td>
+                                                <td>4,06–4,41%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    PAL-skatten er markant lavere end enhver alternativ afkastbeskatning. For Tom — med et depot på 2.699.000 kr. hos Danica — akkumulerer denne forskel sig til hundredetusinder af kroner over 15 år. Det er en af de vigtigste strukturelle fordele ved pensionsopsparing frem for fri opsparing.
+                                    <br>
+                                </li>
+                                <hr>
+
+                                <li>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Hvornår er Toms <b>tidligste mulige pensionsudbetaling</b> fra ratepension og livsvarig livrente — og hvad er konsekvensen, hvis han hæver sin ratepension i dag, 15 år før planlagt pension?<br>
+                                        Hvad er Toms folkepensionsalder, og hvad betyder det for, hvornår han tidligst kan starte udbetaling?
+                                    </div>
+                                    <b>M. Folkepensionsalder og tidlig udbetaling</b><br>
+                                    <strong>Løsningsforslag (jf. kapitel 4 og pensionsbeskatningsloven):</strong><br><br>
+
+                                    <b>Toms folkepensionsalder:</b><br>
+                                    Tom er 53 år og går på pension som 68-årig. Folkepensionsalderen for hans generation (født ca. 1973) er <b>68 år</b> — dette er den alder, han kan modtage folkepension fra staten. Fremtidige generationer forventes at få hævet folkepensionsalderen i takt med stigende middellevetid.<br><br>
+
+                                    <b>Tidligste udbetaling fra private pensionsordninger:</b><br>
+                                    Reglerne fastlægger en <i>pensionsudbetalingsalder</i> (tidligere kaldet VETO-alderen), som er koblet til folkepensionsalderen:
+
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Ordning</th>
+                                                <th>Tidligste udbetaling</th>
+                                                <th>Formel</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td><b>Ratepension</b></td>
-                                                <td>68.700 kr./år (2026)</td>
-                                                <td>Personlig indkomst (beskattes fuldt ud)</td>
+                                                <td>63 år</td>
+                                                <td>Folkepensionsalder (68) − 5 år</td>
                                             </tr>
                                             <tr>
-                                                <td><b>Livsvarig livrente (opfyldning)</b></td>
-                                                <td>63.200 kr./år (2026)</td>
-                                                <td>Personlig indkomst (beskattes fuldt ud)</td>
+                                                <td><b>Livsvarig livrente</b></td>
+                                                <td>63 år</td>
+                                                <td>Folkepensionsalder (68) − 5 år</td>
                                             </tr>
                                             <tr>
-                                                <td><b>Aldersopsparing (lavt loft)</b></td>
-                                                <td>9.900 kr./år (mere end 7 år til folke­pension)</td>
-                                                <td><b>Skattefri</b> udbetaling</td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Aldersopsparing (højt loft)</b></td>
-                                                <td>64.200 kr./år (maks. 7 år til folke­pension)</td>
-                                                <td><b>Skattefri</b> udbetaling</td>
+                                                <td><b>Aldersopsparing</b></td>
+                                                <td>63 år</td>
+                                                <td>Folkepensionsalder (68) − 5 år</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <small>Grænsebeløbene reguleres hvert år. Se altid kapitel 4, tabel 4.2 for
-                                    de aktuelle satser.</small>
-                                    <br>
-                                </li>
-                                <hr>
 
-                                <li>
-                                    <b>Forventet pensionsindkomst fra PensionsInfo</b><br>
-                                    <strong>Løsningsforslag:</strong><br>
-                                    Fra PensionsInfo (øverste tabel med forventede udbetalinger) aflæses:<br>
-                                    <ul>
-                                        <li>Ratepension 1: 26.500 kr./år (løber over 10 år)</li>
-                                        <li>Ratepension 2: 27.000 kr./år (løber over 10 år)</li>
-                                        <li>Livrente (Danica): 383.000 kr./år (livsvarig)</li>
-                                        <li>Livrente 2: 92.000 kr./år (livsvarig)</li>
-                                    </ul>
+                                    Tom er 53 år i dag — han er altså <b>10 år fra</b> sin tidligste mulige pensionsudbetaling.<br><br>
 
-                                    For at estimere en <b>20-årig udbetalingsperiode</b> halveres ratepensionerne:<br>
-                                    <code>26.500/2 + 27.000/2 + 383.000/2 + 92.000 = <b>310.250 kr./år</b></code>
-                                    <br>
-                                    (Hertil kommer folkepensionens grundbeløb på ca. 97.200 kr./år)
-                                    <br>
-                                </li>
-                                <hr>
+                                    <b>Hvad sker der ved udbetaling FØR pensionsalderen — tidlig ophævelse:</b><br>
+                                    Ophæver Tom sin ratepension i dag (som 53-årig), betragtes det som en <i>urettidig udbetaling</i>. Konsekvensen er:
 
-                                <li>
-                                    <b>Pensionsgab — 80%-mål (boende i huset)</b><br>
-                                    <strong>Løsningsforslag:</strong><br>
-                                    80% af Toms nuværende nettoudbetaling:<br>
-                                    <code>50.595 kr./md. × 0,80 = <b>40.476 kr./md.</b></code><br><br>
-
-                                    Beregn i skat.tepedu.dk Toms forventede nettoudbetaling som pensionist
-                                    med en pensionsindkomst på 310.250 kr./år + folkepension
-                                    (grundbeløb ca. 8.100 kr./md.) samt friværdi/formue som ekstra indkomst
-                                    (forudsat 60% af Toms halvdel af huset: 6.000.000 × 0,5 × 0,6 = 1.800.000 kr.,
-                                    samt 60% af kapitalpension ca. 460.000 kr.: 276.000 kr.
-                                    — i alt ca. 2.076.000 kr. nedspares over 20 år = 103.800 kr./år).<br><br>
-
-                                    <b>Tom mangler ca. 188.712 kr./år</b> (ca. 15.726 kr./md.) —
-                                    han er på ca. 60% af sin nuværende løn.
-                                    <br>
-                                </li>
-                                <hr>
-
-                                <li>
-                                    <b>Ekstra indbetaling for 80%-mål (bor i huset)</b><br>
-                                    <strong>Løsningsforslag:</strong><br>
-                                    Juster indbetalingen i skat.tepedu.dk manuelt (øg livrente-indbetalingen
-                                    ud over opfyldningsfradraget), indtil nettoudbetalingen som pensionist
-                                    rammer 40.476 kr./md.<br><br>
-
-                                    <b>Tom skal yderligere indbetale ca. 19.292 kr./md.</b>
-                                    til sin pensionsordning.<br>
-                                    <small>Bemærk: Livrenten via arbejdsgiver eller privat tegnet livsvarig livrente
-                                    (PBL § 2) har ingen øvre grænse — det er her, den ekstra indbetaling placeres.</small>
-                                    <br>
-                                </li>
-                                <hr>
-
-                                <li>
-                                    <b>Skattebesparelse ved øget pensionsindbetaling</b><br>
-                                    <strong>Løsningsforslag:</strong><br>
-                                    Sammenlign den samlede skat i skat.tepedu.dk før og efter den øgede indbetaling:<br>
                                     <table class='table table-striped table-bordered table-hover w-100'>
                                         <thead>
                                             <tr>
-                                                <th>Situation</th>
-                                                <th>Samlet skat pr. år</th>
+                                                <th>Ordning</th>
+                                                <th>Strafbeskatning</th>
+                                                <th>Konkret for Tom (675.000 kr. i Danske Bank)</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Skat i dag (maks. rate + livrente opfyldning)</td>
-                                                <td>ca. 352.855 kr.</td>
+                                                <td><b>Ratepension</b></td>
+                                                <td>60% afgift af hele beløbet</td>
+                                                <td>675.000 × 60% = <b>405.000 kr. i afgift</b> — Tom beholder kun 270.000 kr.</td>
                                             </tr>
                                             <tr>
-                                                <td>Skat efter øget indbetaling (19.292 kr./md. ekstra)</td>
-                                                <td>ca. 231.744 kr.</td>
+                                                <td><b>Livsvarig livrente</b></td>
+                                                <td>60% afgift</td>
+                                                <td>Samme strafbeskatning</td>
                                             </tr>
                                             <tr>
-                                                <td><b>Sparet skat pr. år</b></td>
-                                                <td><b>ca. 121.111 kr.</b></td>
+                                                <td><b>Aldersopsparing</b></td>
+                                                <td>20% afgift</td>
+                                                <td>Langt mildere — men stadig en omkostning</td>
                                             </tr>
                                         </tbody>
                                     </table>
+
+                                    60%-afgiften er designet til at være prohibitiv — det er aldrig rationelt at hæve ratepension eller livrente tidligt, medmindre man er i en desperat likviditetssituation. Den eneste undtagelse er, at man i visse situationer kan flytte pensionsmidler fra ét selskab til et andet (overflytning) uden strafbeskatning.
                                     <br>
                                 </li>
                                 <hr>
 
                                 <li>
-                                    <b>Er skattebesparelsen "rigtig"?</b><br>
-                                    <strong>Løsningsforslag:</strong><br>
-                                    <b>Nej, det er ikke en endelig skattebesparelse</b> — skatten <i>udskydes</i>.<br><br>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Birgitte er sygeplejerske med sin egen arbejdsmarkedspension. Beskriv den samlede <b>økonomiske situation for Birgitte</b> umiddelbart efter Toms dødsfald:<br>
+                                        Hvad modtager hun konkret fra Toms ordninger, og hvad er konsekvensen af, at tre Danske Bank-ordninger ikke har registreret en begunstiget?<br>
+                                        Hvad er den skattemæssige fordel ved, at Birgitte som ægtefælle <i>overtager</i> Toms afgiftspligtige pensionsordninger frem for at modtage dem kontant?
+                                    </div>
+                                    <b>N. Birgittes situation ved Toms dødsfald</b><br>
+                                    <strong>Løsningsforslag (jf. kapitel 4, PBL § 5 og dødsboskatteloven):</strong><br><br>
 
-                                    Tre centrale pointer (jf. kapitel 4, afsnit 4.5 og 4.8):<br>
-                                    <ol>
-                                        <li><b>Skatteudskydelse:</b> Pensionsindbetalingerne giver fradrag i dag,
-                                        men der skal betales fuld indkomstskat ved udbetalingen. Skatten er altså ikke
-                                        væk — den er udskudt til pensionsalderen.</li>
-                                        <li><b>Lavere marginalskat som pensionist:</b> Den udskudte skat vil alt andet
-                                        lige blive lavere end den nuværende skat, da Tom som pensionist typisk har
-                                        en lavere samlet indkomst. Dette er den reelle fordel ved
-                                        pensionsindbetalinger.</li>
-                                        <li><b>PAL-skat undervejs:</b> Afkastet på pensionsopsparingen beskattes
-                                        løbende med 15,3% PAL-skat (lagerbeskatning) — men denne sats er markant
-                                        lavere end beskatningen af frie midler (27/42% aktiebeskatning eller
-                                        37-42% kapitalindkomst).</li>
-                                    </ol>
+                                    <b>Hvad modtager Birgitte direkte (med begunstiget):</b>
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Ordning</th>
+                                                <th>Beløb</th>
+                                                <th>Begunstiget</th>
+                                                <th>Skattemæssig status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Danica — pensionsdepot</td>
+                                                <td>2.131.000 kr.</td>
+                                                <td>Nærmeste pårørende = Birgitte</td>
+                                                <td>Afgiftspligtig (A)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ATP Livslang Pension</td>
+                                                <td>75.000 kr.</td>
+                                                <td>Ægtefælle = Birgitte</td>
+                                                <td>Afgiftspligtig (A)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Danica — livsforsikring (§ 53 A)</td>
+                                                <td>546.000 kr.</td>
+                                                <td>Nærmeste pårørende = Birgitte</td>
+                                                <td>100% skattefri (F)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Subtotal — direkte udbetaling</b></td>
+                                                <td><b>2.752.000 kr.</b></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>De tre Danske Bank-ordninger uden begunstiget (761.000 kr.):</b><br>
+                                    Disse tre ordninger (175.000 + 408.000 + 178.000 = 761.000 kr.) har ingen registreret begunstiget. Konsekvensen er, at midlerne <i>falder i boet</i> og behandles som en del af arven. For Birgitte betyder det:
+                                    <ul>
+                                        <li>Hun arver beløbene som Toms ægtefælle (legale arving), men processen kræver bobehandling og er langsommere</li>
+                                        <li>Som ægtefælle kan hun vælge <i>uskiftet bo</i> — hun arver alt og behøver ikke skifte med Sara og David, men børnene skal give samtykke</li>
+                                        <li>Der er ingen pensionsafgift, da beløbene går via boet — men processen er tungere administrativt</li>
+                                    </ul>
+
+                                    <b>Valget: kontant udbetaling (40% afgift) vs. skattemæssig overtagelse:</b><br>
+                                    For de to afgiftspligtige ordninger (Danica 2.131.000 kr. + ATP 75.000 kr. = 2.206.000 kr.) har Birgitte som ægtefælle to muligheder:
+
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Valg</th>
+                                                <th>Konsekvens</th>
+                                                <th>Beløb til Birgitte</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Kontant udbetaling</b></td>
+                                                <td>40% pensionsafgift trækkes straks fra beløbet</td>
+                                                <td>2.206.000 × (1 − 40%) = <b>1.323.600 kr.</b> netto</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Skattemæssig overtagelse</b></td>
+                                                <td>Birgitte overtager ordningerne som var de hendes egne — ingen afgift nu, beskatning sker løbende ved hendes udbetaling</td>
+                                                <td><b>2.206.000 kr.</b> beholder sin fulde værdi og fortsætter med at forrente sig</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <b>Den skattemæssige fordel ved overtagelse:</b><br>
+                                    Ved overtagelse sparer Birgitte 40% × 2.206.000 = <b>882.400 kr.</b> i umiddelbar afgift. Pengene fortsætter med at vokse i pensionsdepotet og beskattes kun med PAL (15,3%) på afkastet, indtil hun trækker dem ud som pensionist — typisk til en lavere marginalskat. Skattemæssig overtagelse er næsten altid klart fordelagtig for ægtefæller ved store beløb.
                                     <br>
                                 </li>
                                 <hr>
 
                                 <li>
-                                    <b>Scenarie: Tom og Birgitte sælger huset</b><br>
-                                    <strong>Løsningsforslag:</strong><br>
-                                    Hvis huset sælges, frigøres Toms andel af boligværdien som ekstra formue.<br><br>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Fra spørgsmål F ses det, at Toms indkomst falder dramatisk fra 78 år, fordi ratepensionerne løber ud.<br>
+                                        Diskutér om Tom bør <b>omlægge fremtidige pensionsindbetalinger</b> fra ratepension til livsvarig livrente for at sikre en mere jævn indkomst livet ud.<br>
+                                        Hvad er de skattemæssige konsekvenser? Hvad er fordele og ulemper — herunder hvad der sker, hvis Tom dør tidligt?
+                                    </div>
+                                    <b>O. Omlægning fra ratepension til livsvarig livrente</b><br>
+                                    <strong>Løsningsforslag (jf. kapitel 4):</strong><br><br>
 
-                                    Opdateret formue ved hussalg (Toms andel):<br>
-                                    <code>6.000.000 × 0,5 × 0,6 = 1.800.000 kr. (friværdi, 60% nedspares)</code><br>
-                                    + kapitalpension: <code>460.000 × 0,6 = 276.000 kr.</code><br>
-                                    I alt: ca. <b>2.076.000 kr.</b> (samme som ved at blive boende, men nu uden
-                                    boligudgifter — til gengæld vil der være lejeudgifter til ny bolig).<br><br>
+                                    <b>Problemet — Toms indkomstkurve:</b><br>
+                                    Fra spørgsmål F ved vi, at Toms bruttoindkomst falder fra <b>51.742 kr./md.</b> (alder 69–77) til <b>15.317 kr./md.</b> (fra 78 år). Faldet skyldes primært, at ratepensionerne (436.500 kr./år) løber ud efter 10 år. Det er et designproblem i Toms pensionssammensætning.<br><br>
 
-                                    Hvis vi forudsætter, at formuen helt frigøres til pension
-                                    (Tom nedsætter sig i billigere bolig):<br>
-                                    Nedsparet over 20 år: ca. 103.800 kr./år ekstra<br><br>
+                                    <b>Ratepension vs. livsvarig livrente — grundlæggende forskel:</b>
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Egenskab</th>
+                                                <th>Ratepension</th>
+                                                <th>Livsvarig livrente</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Udbetalingsperiode</td>
+                                                <td>Fast periode — min. 10, maks. 30 år</td>
+                                                <td>Hele livet — uanset hvor gammel Tom bliver</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Risiko for at løbe tør</td>
+                                                <td>Ja — pengene er væk når perioden udløber</td>
+                                                <td>Nej — udbetaling garanteret hele livet</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nedarvning</td>
+                                                <td>Restsaldo nedarves til begunstigede</td>
+                                                <td>Typisk ingen nedarvning (evt. garantiperiode)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Månedlig ydelse</td>
+                                                <td>Højere (kortere periode)</td>
+                                                <td>Lavere (skal dække hele livet)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Beskatning ved udbetaling</td>
+                                                <td>Personlig indkomst</td>
+                                                <td>Personlig indkomst (identisk)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fradrag ved indbetaling</td>
+                                                <td>Ja (maks. 68.700 kr./år)</td>
+                                                <td>Ja (opfyldningsfradrag 63.200 kr./år)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
-                                    Med de opdaterede forudsætninger i skat.tepedu.dk:
-                                    <b>Tom mangler kun ca. 93.474 kr./år</b> — altså markant mindre end ved
-                                    at blive boende.<br>
-                                    <small>Bemærk: Der vil være udgifter til alternativ bolig (leje, andel m.v.),
-                                    som skal trækkes fra fordelen ved salget.</small>
+                                    <b>Fordele ved at omlægge til livrente:</b>
+                                    <ul>
+                                        <li><b>Langt-livs-risikoen elimineres</b> — Tom kan leve til 95 år og vil stadig modtage sin livrente. Ratepensionen er tom ved 77.</li>
+                                        <li>Jævnere indkomst livet ud — modvirker det dramatiske fald i spørgsmål F</li>
+                                        <li>Modregningsfælden reduceres — lavere løbende indkomst fra 78 år betyder, at pensionstillægget delvist bevares</li>
+                                    </ul>
+
+                                    <b>Ulemper ved at omlægge til livrente:</b>
+                                    <ul>
+                                        <li><b>Dør Tom tidligt</b> (f.eks. som 70-årig), "mister" han det meste af livrenten — pengene går tilbage til forsikringsselskabet (forsikringsdelen). Ratepensionens restsaldo ville derimod gå til Birgitte og børnene.</li>
+                                        <li>Lavere fleksibilitet — livrenten kan ikke hæves eller arves (medmindre der er aftalt en særlig garantiperiode)</li>
+                                        <li>Livrenteydelsen er lavere pr. måned end en ratepension med samme opsparing, fordi den skal strækkes over et ukendt tidsrum</li>
+                                    </ul>
+
+                                    <b>Anbefaling til Tom:</b><br>
+                                    Tom bør <i>ikke</i> omlægge alt til livrente, men en <i>kombination</i> er optimal: ratepension for de første år (høj ydelse, fleksibel, kan nedarves) + livsvarig livrente som "bundgaranti" for hele livet. Det er præcis den struktur han allerede har — men livrenteandelen er for lille relativt set. Tom bør øge fremtidige indbetalinger til livrente frem for ratepension for at udjævne indkomstfaldet fra 78 år.
                                     <br>
                                 </li>
                                 <hr>
 
                                 <li>
-                                    <b>Ekstra indbetaling ved hussalg</b><br>
-                                    <strong>Løsningsforslag:</strong><br>
-                                    Med den reducerede formuefordel (ny boligudgift medregnet) justeres
-                                    indbetalingen i skat.tepedu.dk manuelt som i spørgsmål G.<br><br>
+                                    <div style="background:rgba(26,58,92,0.05);border-left:3px solid #1a3a5c;padding:8px 12px;margin-bottom:10px;">
+                                        Tom overvejer at åbne en <b>aktiesparekonto (ASK)</b> som supplement til sin eksisterende pensionsopsparing.<br>
+                                        Hvad er loftet for ASK i 2026, hvordan beskattes afkastet, og indgår udbetalinger fra ASK i beregningen af folkepensionens tillæg?<br>
+                                        Sammenlign ASK med aldersopsparing på de tre punkter og vurder, om Tom bør prioritere det ene frem for det andet.
+                                    </div>
+                                    <b>P. Aktiesparekonto vs. aldersopsparing</b><br>
+                                    <strong>Løsningsforslag (jf. kapitel 4 og aktiesparekontolovens regler):</strong><br><br>
 
-                                    <b>Tom skal yderligere indbetale ca. 9.556 kr./md.</b> —
-                                    altså væsentligt mindre end ved at blive boende i huset
-                                    (19.292 kr./md.), fordi den frigjorte boligformue bidrager til
-                                    hans pension.<br>
-                                    <br>
-                                </li>
-                                <hr>
+                                    <b>Sammenligning af de to produkter:</b>
+                                    <table class='table table-striped table-bordered table-hover w-100'>
+                                        <thead>
+                                            <tr>
+                                                <th>Egenskab</th>
+                                                <th>Aktiesparekonto (ASK)</th>
+                                                <th>Aldersopsparing</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Loft / maks. indskud 2026</b></td>
+                                                <td>135.900 kr. <i>samlet indestående</i> (ikke pr. år — det er et akkumuleret loft)</td>
+                                                <td>9.900 kr./år (lavt loft, &gt;7 år til FP)<br>64.200 kr./år (højt loft, ≤7 år til FP)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Beskatning af afkast undervejs</b></td>
+                                                <td>17% lagerbeskatning hvert år (realiseret og urealiseret gevinst)</td>
+                                                <td>15,3% PAL-skat hvert år (lagerbeskatning)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Beskatning ved udbetaling</b></td>
+                                                <td>Ingen særskilt skat — afkastet er allerede beskattet løbende. Hævning er skattefri.</td>
+                                                <td>100% skattefri udbetaling</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Fradragsret for indskud</b></td>
+                                                <td>Nej</td>
+                                                <td>Nej</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Indgår i folkepensionens tillæg?</b></td>
+                                                <td><b>Nej</b> — afkast fra ASK tæller ikke med i beregningsgrundlaget</td>
+                                                <td><b>Nej</b> — udbetalinger tæller ikke med</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Fleksibilitet</b></td>
+                                                <td>Høj — kan hæves frit til enhver tid, ingen strafbeskatning</td>
+                                                <td>Lav — bundet til pensionsalder; 20% afgift ved tidlig ophævelse</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Tidlig ophævelse</b></td>
+                                                <td>Ingen afgift — frit disponibelt</td>
+                                                <td>20% afgift</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Investeringsmuligheder</b></td>
+                                                <td>Aktier og aktiebaserede investeringsforeninger</td>
+                                                <td>Brede investeringsunivers hos pensionsselskabet</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
-                                <li>
-                                    <b>Modregningsfælden</b><br>
-                                    <strong>Løsningsforslag (jf. kapitel 4, afsnit 4.9):</strong><br>
+                                    <b>Afkastbeskatning sammenlignet:</b><br>
+                                    ASK beskattes med 17% — aldersopsparing med 15,3% PAL. Forskellen er lille (1,7 procentpoint), men over mange år og ved store beløb akkumulerer det sig. PAL-skatten er altså marginalt lavere, men ASK kompenserer med langt større fleksibilitet.<br><br>
 
-                                    <b>Hvad er modregningsfælden?</b><br>
-                                    Udbetalinger fra ratepension og livrente modregnes i folkepensionens
-                                    <i>tillæg</i>. For en enlig pensionist fradrages 30,9% af den indkomst,
-                                    der overstiger bundfradraget (ca. 99.200 kr./år i 2026), direkte i tillægget.<br><br>
+                                    <b>Hvornår er ASK bedst — og hvornår er aldersopsparing bedst?</b>
+                                    <ul>
+                                        <li><b>ASK er bedst</b> når man ønsker fleksibilitet — f.eks. hvis Tom vil have adgang til midlerne inden pension, eller hvis han forventer at bruge pengene til andet end pensionsindkomst (renovering, billeje osv.)</li>
+                                        <li><b>Aldersopsparing er bedst</b> som decideret pensionsopsparing — lavere afkastbeskatning, og det er en tvungen opsparing der sikrer, at pengene er der ved pension</li>
+                                        <li><b>Begge bør bruges af Tom</b> — de er komplementære, ikke konkurrerende. ASK for den fleksible del af formuen, aldersopsparing for den bundne pensionsdel der ikke modregnes i folkepensionens tillæg</li>
+                                    </ul>
 
-                                    Oven i den normale indkomstskat (ca. 37%) giver dette en samlet effektiv
-                                    marginalskat på op til ca. 68% af den marginale pensionskrone — langt over,
-                                    hvad man sparede i fradrag som erhvervsaktiv.<br><br>
-
-                                    <b>Er Tom i risiko?</b><br>
-                                    Toms ratepensioner og livrente er høje, og han vil med stor sandsynlighed
-                                    overskride bundfradraget som pensionist. Han er dermed potentielt i
-                                    modregningsfælden, hvis han ikke planlægger sin opsparing korrekt.<br><br>
-
-                                    <b>Løsningen: Aldersopsparing (PBL § 11 A)</b><br>
-                                    Udbetalinger fra aldersopsparing indgår <i>ikke</i> i beregningsgrundlaget
-                                    for folkepensionens tillæg. Selvom der ikke er fradragsret for indbetalingerne,
-                                    er udbetalingen 100% skattefri og modregningsfri. Dette gør aldersopsparing
-                                    til et centralt redskab i rådgivningen af kunder som Tom, der risikerer
-                                    modregning.<br>
-                                    <small>I 2026 er loftet for aldersopsparing 9.900 kr./år (lavt loft) og
-                                    64.200 kr./år (højt loft, for dem med maks. 7 år til folkepension).
-                                    Tom bør også overveje aktiesparekontoen, da afkastet herfra heller ikke
-                                    modregnes.</small>
+                                    <b>Konkret anbefaling til Tom:</b><br>
+                                    Tom bør åbne <i>begge</i>. Prioritér aldersopsparing (9.900 kr./år nu) som den vigtigste nye tilgang, da den sikrer skattefri pensionsindkomst og skåner folkepensionens tillæg. Brug ASK (op til 135.900 kr. samlet) til den del af formuen, som Tom ønsker at have fleksibel adgang til. Hverken ASK-afkast eller aldersopsparingsudbetalinger tæller med i modregningsberegningen — begge reducerer dermed "modregningsfælden" fra spørgsmål K.
                                     <br>
                                 </li>
 
