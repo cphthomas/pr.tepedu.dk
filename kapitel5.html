@@ -307,6 +307,12 @@
                                     <td>Hvor mange kroner betaler investor for 1 kr. opgjort indtjening? Udtryk for høj hhv. lav relativ prissætning.</td>
                                 </tr>
                                 <tr>
+                                    <td><b><span class="legal-term" data-definition="P/E beregnet ud fra den faktiske indtjening de seneste 12 måneder (rullende fire kvartaler). Bruges til at få et bagudskuende, realiseret billede af værdiansættelsen." data-example="Ved aktiekurs 750 kr. og EPS 25 kr. de seneste 12 mdr.: P/E (TTM) = 750 ÷ 25 = 30." data-slug="pe-ttm">P/E (TTM)</span></b></td>
+                                    <td><span class="legal-term" data-definition="Trailing Twelve Months — nøgletals-begreb der angiver at tallet er beregnet ud fra de seneste 12 afsluttede måneder (rullende fire kvartaler), ikke et kalender- eller regnskabsår." data-example="P/E (TTM) bruger selskabets samlede EPS de seneste 4 kvartaler, så nøgletallet afspejler den nyeste udvikling." data-slug="ttm">TTM</span></td>
+                                    <td>Aktiekurs / <span class="legal-term" data-definition="Indtjening pr. aktie. Beregnes som selskabets resultat efter skat divideret med antal udestående aktier." data-example="Et selskab med overskud på 1 mia. kr. og 10 mio. aktier har EPS = 100 kr. pr. aktie." data-slug="eps">EPS</span> (seneste 12 mdr.)</td>
+                                    <td>Bagudskuende P/E baseret på faktisk realiseret indtjening. Sammenlign altid med Forward P/E for at afsløre vækst- eller nedgangsforventninger.</td>
+                                </tr>
+                                <tr>
                                     <td><b><span class="legal-term" data-definition="Forventet P/E baseret på analytikernes estimerede EPS for næste regnskabsår." data-example="Ved aktiekurs 850 kr. og forventet EPS næste år 50 kr. er Forward P/E = 17. Bruges til vækstaktier." data-slug="forward-pe">Forward P/E</span></b></td>
                                     <td>Fwd P/E</td>
                                     <td>Aktiekurs / Forventet <span class="legal-term" data-definition="Indtjening pr. aktie. Beregnes som selskabets resultat efter skat divideret med antal udestående aktier." data-example="Et selskab med overskud på 1 mia. kr. og 10 mio. aktier har EPS = 100 kr. pr. aktie." data-slug="eps">EPS</span> næste år</td>
@@ -358,16 +364,16 @@
                         <p><b>Regneksempel — A.P. Møller - Mærsk B (MAERSK B), april 2026 — cyklisk aktie:</b><br>
                         For at illustrere forskellen på en defensiv og en cyklisk aktie bruger vi Mærsk.</p>
                         <div class="calc-block calc-emphasis">
-                            Aktiekurs (april 2026): <b>15.825 DKK</b><br>
-                            EPS (TTM 2025 — normaliseret efter fragtratetoppen): <b>1.132 DKK pr. aktie</b><br>
+                            Aktiekurs (april 2026): <b>15.860 DKK</b><br>
+                            EPS (TTM 2025): <b>1.989 DKK pr. aktie</b><br>
                             <br>
-                            <b>P/E (TTM):</b> 15.825 ÷ 1.132 = <b>14,0</b><br>
-                            — højere P/E end Novo Nordisk (10,5), da markedet forventer dramatisk indtjeningsfald<br>
+                            <b>P/E (TTM):</b> 15.860 ÷ 1.989 = <b>8,0</b><br>
+                            — lavere P/E end Novo Nordisk (10,5), men markedet forventer et markant EPS-fald i 2026<br>
                             <br>
-                            <b>Forward P/E (2026 estimat — forventet kraftigt EPS-fald, EPS ca. 100 DKK):</b> 15.825 ÷ 100 = <b>158</b><br>
-                            — den extreme Forward P/E afspejler, at fragtraterne er faldet fra ekstraordinære niveauer tilbage til normalen
+                            <b>Forward P/E (2026 estimat — forventet kraftigt EPS-fald, EPS ca. 100 DKK):</b> 15.860 ÷ 100 = <b>159</b><br>
+                            — den extreme Forward P/E afspejler, at fragtraterne er normaliseret markant fra pandemiperioden
                         </div>
-                        <p class="mt-2"><b>Rådgiver-pointe:</b> Mærsk er det klassiske eksempel på P/E-fælden for en cyklisk aktie. TTM P/E på 14 ser "billigt" ud — men Forward P/E på 158 afslører, at analytikerne forventer en kollaps i indtjeningen. Fragtraterne er normaliseret markant fra pandemiperioden 2021–2023, og ny skibskapacitet presser raterne yderligere. En "billig" cyklisk aktie kan hurtigt vise sig at være dyr, når næste regnskabsår skuffer.</p>
+                        <p class="mt-2"><b>Rådgiver-pointe:</b> Mærsk er det klassiske eksempel på P/E-fælden for en cyklisk aktie. TTM P/E på 8,0 ser "billigt" ud — men Forward P/E på 159 afslører, at analytikerne forventer en kollaps i fremtidig indtjening. Fragtraterne er normaliseret markant fra pandemiperioden 2021–2023, og ny skibskapacitet presser raterne yderligere. En "billig" cyklisk aktie kan hurtigt vise sig at være dyr, når næste regnskabsår skuffer.</p>
                     </div>
                 </div>
 
@@ -375,40 +381,40 @@
                 <div class="info-box reveal-on-scroll">
                     <h4>Case: Køb og Salg af 100 NVDA-aktier</h4>
                     <p class="font-italic">Som rådgiver skal du kunne guide kunden gennem de reelle omkostninger og skatteeffekter ved
-                        en transaktion.</p>
+                        en transaktion. Bemærk: dollarkursen faldt fra 6,90 til 6,40 DKK/USD over perioden, hvilket dæmper det samlede DKK-afkast.</p>
 
                     <div class="mb-4">
-                        <b>1. Køb (Januar 2026):</b> James køber 100 <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term" data-slug="aktier">aktier</span>
-                        til kurs 150 USD.
+                        <b>1. Køb (April 2025):</b> James køber 100 <span data-definition="Omsættelige værdipapirer, der repræsenterer en proportional ejerandel i et aktie- eller anpartsselskab, givende ret til andel i overskud (udbytte) og stemmeret." data-example="Ved køb af 100 aktier i Novo Nordisk opnår du medejerskab af virksomheden og ret til en del af selskabets fremtidige årsresultat." class="legal-term" data-slug="aktier">aktier</span>
+                        til kurs 96 USD (52-ugers bund under tarif-uroen).
                         <div class="calc-block calc-emphasis">
-                            Kursværdi: 100 × 150 × 7,00 (<span class="legal-term" data-definition="Prisen på én valuta udtrykt i en anden valuta. Ved handel med udenlandske aktier skal beløbet omregnes til DKK." data-example="Køber du en aktie til 100 USD ved en dollarkurs på 7,00, koster aktien 700 DKK." data-slug="valutakurs">Valutakurs</span>) = 105.000 DKK<br>
+                            Kursværdi: 100 × 96 × 6,90 (<span class="legal-term" data-definition="Prisen på én valuta udtrykt i en anden valuta. Ved handel med udenlandske aktier skal beløbet omregnes til DKK." data-example="Køber du en aktie til 100 USD ved en dollarkurs på 6,90, koster aktien 690 DKK." data-slug="valutakurs">Valutakurs</span>) = 66.240 DKK<br>
                             + <span class="legal-term" data-definition="Handelsomkostninger (gebyr) til banken eller børsmægleren for at gennemføre en handel med værdipapirer."
-                                data-example="Ved et køb til 100.000 kr. og en kurtage på 0,15 %, betaler du 150 kr. i gebyr." data-slug="kurtage">Kurtage</span> (0,15 %): 157,50 DKK<br>
+                                data-example="Ved et køb til 100.000 kr. og en kurtage på 0,15 %, betaler du 150 kr. i gebyr." data-slug="kurtage">Kurtage</span> (0,15 %): 99,36 DKK<br>
                             = <span class="legal-term"
                                 data-definition="Gennemsnitlig Anskaffelsesværdi. Den samlede pris for værdipapirerne inklusiv handelsomkostninger (kurtage), divideret med antallet af enheder. Bruges til at beregne gevinst eller tab ved salg."
-                                data-example="100 aktier til kurs 100 + 29 kr. kurtage: Samlet pris = 10.029 kr. GAV = 10.029 ÷ 100 = 100,29 kr. pr. aktie." data-slug="gav">GAV</span>: 105.157,50 DKK
+                                data-example="100 aktier til kurs 100 + 29 kr. kurtage: Samlet pris = 10.029 kr. GAV = 10.029 ÷ 100 = 100,29 kr. pr. aktie." data-slug="gav">GAV</span>: 66.339,36 DKK
                         </div>
                     </div>
 
                     <div class="mb-4">
-                        <b>2. Salg (Juni 2026):</b> James sælger til kurs 180 USD.
+                        <b>2. Salg (April 2026):</b> James sælger til kurs 188 USD (kurs steg 96% på ét år).
                         <div class="calc-block calc-emphasis">
-                            Salgspris: 100 × 180 × 7,00 (<span class="legal-term" data-definition="Prisen på én valuta udtrykt i en anden valuta. Ved handel med udenlandske aktier skal beløbet omregnes til DKK." data-example="Køber du en aktie til 100 USD ved en dollarkurs på 7,00, koster aktien 700 DKK." data-slug="valutakurs">Valutakurs</span>) = 126.000 DKK<br>
+                            Salgspris: 100 × 188 × 6,40 (<span class="legal-term" data-definition="Prisen på én valuta udtrykt i en anden valuta. Ved handel med udenlandske aktier skal beløbet omregnes til DKK." data-example="Køber du en aktie til 100 USD ved en dollarkurs på 6,40, koster aktien 640 DKK." data-slug="valutakurs">Valutakurs</span>) = 120.320 DKK<br>
                             - <span class="legal-term" data-definition="Handelsomkostninger (gebyr) til banken eller børsmægleren for at gennemføre en handel med værdipapirer."
-                                data-example="Ved et salg til 120.000 kr. og en kurtage på 0,15 %, betaler du 180 kr. i gebyr." data-slug="kurtage">Kurtage</span> (0,15 %): 189 DKK<br>
-                            = <span class="legal-term" data-definition="Det beløb, der er tilbage efter salg af et aktiv, når alle direkte salgsomkostninger (fx kurtage) er fratrukket." data-example="Salgspris 10.000 kr. minus 29 kr. kurtage: Netto provenu = 10.000 − 29 = 9.971 kr." data-slug="netto-provenu">Netto Provenu</span>: 125.811 DKK
+                                data-example="Ved et salg til 120.000 kr. og en kurtage på 0,15 %, betaler du 180 kr. i gebyr." data-slug="kurtage">Kurtage</span> (0,15 %): 180,48 DKK<br>
+                            = <span class="legal-term" data-definition="Det beløb, der er tilbage efter salg af et aktiv, når alle direkte salgsomkostninger (fx kurtage) er fratrukket." data-example="Salgspris 10.000 kr. minus 29 kr. kurtage: Netto provenu = 10.000 − 29 = 9.971 kr." data-slug="netto-provenu">Netto Provenu</span>: 120.139,52 DKK
                         </div>
                     </div>
 
                     <div class="mb-4">
                         <b>3. Skatteberegning (2026 satser):</b>
                         <div class="calc-block calc-emphasis">
-                            <span class="legal-term" data-definition="Forskellen mellem salgsprisen (netto provenu) og købsprisen (GAV). Hvis provenuet er højere end GAV, er der en gevinst; ellers er der et tab." data-example="Netto provenu 12.000 kr. og GAV 10.000 kr.: Skattepligtig gevinst = 12.000 − 10.000 = 2.000 kr." data-slug="skattepligtig-gevinst">Skattepligtig gevinst</span>: 125.811 - 105.157,50 = 20.653,50 DKK<br>
+                            <span class="legal-term" data-definition="Forskellen mellem salgsprisen (netto provenu) og købsprisen (GAV). Hvis provenuet er højere end GAV, er der en gevinst; ellers er der et tab." data-example="Netto provenu 12.000 kr. og GAV 10.000 kr.: Skattepligtig gevinst = 12.000 − 10.000 = 2.000 kr." data-slug="skattepligtig-gevinst">Skattepligtig gevinst</span>: 120.139,52 - 66.339,36 = 53.800,16 DKK<br>
                             Da beløbet er under <span class="legal-term"
                                 data-definition="En beløbsgrænse for beskatning af aktieindkomst. Gevinster op til denne grænse beskattes med 27 %, mens gevinster derover beskattes med 42 % (2026 satser)."
                                 data-example="Har du en gevinst på 100.000 kr., betaler du 27 % af de første 67.100 kr. (2026-sats) og 42 % af de resterende 32.900 kr."
                                 data-slug="progressionsgraense">progressionsgrænsen</span> (67.100 kr.):<br>
-                            Skat (27 %): 5.576,45 DKK
+                            Skat (27 %): 14.526,04 DKK
                         </div>
                     </div>
 
@@ -482,7 +488,7 @@
                             <tbody>
                                 <tr>
                                     <td><b>Allianz (ALV)</b></td>
-                                    <td>ca. 110 mia. EUR</td>
+                                    <td>ca. 137 mia. EUR</td>
                                     <td>165 mia. EUR</td>
                                     <td>26,50 EUR</td>
                                     <td>10,5</td>
@@ -499,7 +505,7 @@
                                 </tr>
                                 <tr>
                                     <td><b>Alphabet (GOOGL)</b></td>
-                                    <td>ca. 3.840 mia. USD</td>
+                                    <td>ca. 3.650 mia. USD</td>
                                     <td>403 mia. USD</td>
                                     <td>10,80 USD</td>
                                     <td>29,4</td>
@@ -516,7 +522,7 @@
                                 </tr>
                                 <tr>
                                     <td><b>Amazon (AMZN)</b></td>
-                                    <td>ca. 2.560 mia. USD</td>
+                                    <td>ca. 2.400 mia. USD</td>
                                     <td>717 mia. USD</td>
                                     <td>7,17 USD</td>
                                     <td>33,3</td>
@@ -550,10 +556,10 @@
                                 </tr>
                                 <tr>
                                     <td><b>ASML (ASML)</b></td>
-                                    <td>ca. 380 mia. EUR</td>
+                                    <td>ca. 462 mia. EUR</td>
                                     <td>32 mia. EUR</td>
-                                    <td>24,50 EUR</td>
-                                    <td>42,1</td>
+                                    <td>24,75 EUR</td>
+                                    <td>50,8</td>
                                     <td>30,4</td>
                                     <td>
                                         <p><b>Monopol:</b> EUV-maskiner er uundværlige for næste generation af chips.</p>
@@ -601,10 +607,10 @@
                                 </tr>
                                 <tr>
                                     <td><b>IBM (IBM)</b></td>
-                                    <td>ca. 225 mia. USD</td>
+                                    <td>ca. 233 mia. USD</td>
                                     <td>62 mia. USD</td>
-                                    <td>9,85 USD</td>
-                                    <td>22,8</td>
+                                    <td>11,16 USD</td>
+                                    <td>22,7</td>
                                     <td>25,4</td>
                                     <td>
                                         <p><b>Legacy/AI:</b> Forsøger at transformere fra konsulent til AI-platform.</p>
@@ -618,11 +624,11 @@
                                 </tr>
                                 <tr>
                                     <td><b>Intel (INTC)</b></td>
-                                    <td>ca. 145 mia. USD</td>
+                                    <td>ca. 233 mia. USD</td>
                                     <td>58 mia. USD</td>
-                                    <td>0,45 USD</td>
-                                    <td>95,2</td>
-                                    <td>112,5</td>
+                                    <td>-0,06 USD</td>
+                                    <td>N/A*</td>
+                                    <td>122</td>
                                     <td>
                                         <p><b>Turnaround:</b> Kæmper for at genvinde teknologisk førerskab.</p>
                                         <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-slug="sell" data-definition="En direkte salgsanbefaling. Analytikeren forventer et kursfald eller mener, at aktien er betydeligt overvurderet i forhold til virksomhedens reelle værdi og fremtidsudsigter." data-example="Ved tegn på fundamentale problemer i forretningsmodellen eller en ekstremt høj værdiansættelse kan analytikere give en &quot;Sell&quot; anbefaling.">"Sell"</b></p>
@@ -635,11 +641,11 @@
                                 </tr>
                                 <tr>
                                     <td><b>LVMH (MC.PA)</b></td>
-                                    <td>ca. 420 mia. EUR</td>
+                                    <td>ca. 250 mia. EUR</td>
                                     <td>92 mia. EUR</td>
-                                    <td>34,20 EUR</td>
-                                    <td>24,5</td>
+                                    <td>21,20 EUR</td>
                                     <td>22,8</td>
+                                    <td>20,5</td>
                                     <td>
                                         <p><b>Luksus:</b> Enestående prissætningskraft og brand-portefølje.</p>
                                         <p><i>Analytiker-konsensus (03.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
@@ -652,11 +658,11 @@
                                 </tr>
                                 <tr>
                                     <td><b>Meta (META)</b></td>
-                                    <td>ca. 1.590 mia. USD</td>
+                                    <td>ca. 1.450 mia. USD</td>
                                     <td>201 mia. USD</td>
-                                    <td>23,49 USD</td>
+                                    <td>23,50 USD</td>
                                     <td>26,8</td>
-                                    <td>20,9</td>
+                                    <td>19,3</td>
                                     <td>
                                         <p><b>Ad-Tech:</b> AI-optimerede annoncer giver rekordoverskud.</p>
                                         <p><i>Analytiker-konsensus (05.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
@@ -669,7 +675,7 @@
                                 </tr>
                                 <tr>
                                     <td><b>Microsoft (MSFT)</b></td>
-                                    <td>ca. 2.750 mia. USD</td>
+                                    <td>ca. 3.010 mia. USD</td>
                                     <td>305 mia. USD</td>
                                     <td>15,98 USD</td>
                                     <td>23,2</td>
@@ -686,11 +692,11 @@
                                 </tr>
                                 <tr>
                                     <td><b>Novartis (NOVN.SW)</b></td>
-                                    <td>ca. 210 mia. CHF</td>
+                                    <td>ca. 261 mia. CHF</td>
                                     <td>52 mia. CHF</td>
-                                    <td>7,10 CHF</td>
-                                    <td>16,2</td>
-                                    <td>14,5</td>
+                                    <td>7,21 USD</td>
+                                    <td>19,5</td>
+                                    <td>16,5</td>
                                     <td>
                                         <p><b>Pharma:</b> Strømlinet forretning efter spin-off af Sandoz.</p>
                                         <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
@@ -720,7 +726,7 @@
                                 </tr>
                                 <tr>
                                     <td><b>Roche (ROG.SW)</b></td>
-                                    <td>ca. 215 mia. CHF</td>
+                                    <td>ca. 293 mia. CHF</td>
                                     <td>62 mia. CHF</td>
                                     <td>18,40 CHF</td>
                                     <td>14,5</td>
@@ -737,11 +743,11 @@
                                 </tr>
                                 <tr>
                                     <td><b>SAP (SAP)</b></td>
-                                    <td>ca. 230 mia. EUR</td>
+                                    <td>ca. 163 mia. EUR</td>
                                     <td>35 mia. EUR</td>
-                                    <td>6,20 EUR</td>
-                                    <td>35,8</td>
-                                    <td>28,4</td>
+                                    <td>6,10 EUR</td>
+                                    <td>19,8</td>
+                                    <td>24,0</td>
                                     <td>
                                         <p><b>Enterprise:</b> Cloud-transformationen er fuldført med succes.</p>
                                         <p><i>Analytiker-konsensus (05.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
@@ -771,11 +777,11 @@
                                 </tr>
                                 <tr>
                                     <td><b>Siemens (SIE)</b></td>
-                                    <td>ca. 150 mia. EUR</td>
+                                    <td>ca. 175 mia. EUR</td>
                                     <td>82 mia. EUR</td>
                                     <td>11,20 EUR</td>
-                                    <td>16,5</td>
-                                    <td>14,2</td>
+                                    <td>22,8</td>
+                                    <td>18,5</td>
                                     <td>
                                         <p><b>Industri 4.0:</b> Førende inden for digitalisering af produktion.</p>
                                         <p><i>Analytiker-konsensus (05.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
@@ -872,16 +878,16 @@
                                 </tr>
                                 <tr>
                                     <td><b>A.P. Møller - Mærsk (MAERSK B)</b></td>
-                                    <td>ca. 227 mia. DKK</td>
+                                    <td>ca. 225 mia. DKK</td>
                                     <td>~49 mia. USD</td>
-                                    <td>1.132 DKK (TTM)</td>
-                                    <td>14,0</td>
-                                    <td>158*</td>
+                                    <td>1.989 DKK (TTM)</td>
+                                    <td>8,0</td>
+                                    <td>159*</td>
                                     <td>
                                         <p><b>Cyklisk:</b> Lav aktuel <span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Viser hvor mange kroner investoren betaler for hver krone opgjort indtjening og bruges til at vurdere, om en aktie er dyr eller billig i forhold til sin nuværende indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">P/E</span> pga. historisk indtjening.</p>
                                         <p><i>Analytiker-konsensus (03.03.2026):</i> <b class="legal-term" data-definition="En anbefaling der indikerer, at aktien forventes at klare sig dårligere end markedsgennemsnittet. Det er ofte et mildt salgssignal eller en advarsel om svagere vækst." data-example="En virksomhed mister gradvist markedsandele til konkurrenter, og analytikere vurderer, at aktien vil stige mindre – eller falde mere – end resten af sektoren." data-slug="underperform">"Underperform"</b></p>
                                         <ul>
-                                            <li><b>Forward P/E Anomali:</b> Den ekstremt høje <span class="legal-term" data-definition="Forventet P/E baseret på analytikernes estimerede EPS for næste regnskabsår. Bruges til at vurdere, om en aktie er billig eller dyr i forhold til dens fremtidige indtjeningsevne." data-example="Ved aktiekurs 850 kr. og forventet EPS næste år 50 kr.: Forward P/E = 850 ÷ 50 = 17." data-slug="forward-pe">Forward P/E</span> på 395,8 skyldes et forventet markant dyk i indtjeningen (EPS) i 2026. Det signalerer ikke nødvendigvis en overvurdering, men snarere en normalisering efter ekstraordinære fragtrater.</li>
+                                            <li><b>Forward P/E Anomali:</b> Den ekstremt høje <span class="legal-term" data-definition="Forventet P/E baseret på analytikernes estimerede EPS for næste regnskabsår. Bruges til at vurdere, om en aktie er billig eller dyr i forhold til dens fremtidige indtjeningsevne." data-example="Ved aktiekurs 850 kr. og forventet EPS næste år 50 kr.: Forward P/E = 850 ÷ 50 = 17." data-slug="forward-pe">Forward P/E</span> på 159 skyldes et forventet markant dyk i indtjeningen (EPS) i 2026. Det signalerer ikke nødvendigvis en overvurdering, men snarere en normalisering efter ekstraordinære fragtrater.</li>
                                             <li><b>Overkapacitet:</b> Mange nye skibe leveres i 2025/2026, hvilket presser raterne globalt.</li>
                                             <li><b>Logistik-strategi:</b> Transformationen mod landbaseret logistik tager længere tid og kræver flere investeringer end oprindeligt estimeret.</li>
                                             <li><b>Kursudvikling:</b> Faldet 22% over det seneste år. Ramt af global afmatning i varehandel og normalisering efter fragt-boomet i 2024.</li>
@@ -890,7 +896,7 @@
                                 </tr>
                                 <tr>
                                     <td><b>DSV (DSV)</b></td>
-                                    <td>ca. 396 mia. DKK</td>
+                                    <td>ca. 361 mia. DKK</td>
                                     <td>176 mia. DKK</td>
                                     <td>50,9 DKK</td>
                                     <td>44,4</td>
@@ -907,7 +913,7 @@
                                 </tr>
                                 <tr>
                                     <td><b>Vestas (VWS)</b></td>
-                                    <td>ca. 185 mia. DKK</td>
+                                    <td>ca. 195 mia. DKK</td>
                                     <td>140 mia. DKK (18,8 mia. EUR)</td>
                                     <td>6,94 DKK</td>
                                     <td>26,5</td>
@@ -958,7 +964,7 @@
                                 </tr>
                                 <tr>
                                     <td><b>Carlsberg (CARL B)</b></td>
-                                    <td>ca. 106 mia. DKK</td>
+                                    <td>ca. 113 mia. DKK</td>
                                     <td>89 mia. DKK</td>
                                     <td>44,9 DKK</td>
                                     <td>12,2</td>
@@ -975,11 +981,11 @@
                                 </tr>
                                 <tr>
                                     <td><b>Genmab (GMAB)</b></td>
-                                    <td>ca. 125 mia. DKK</td>
+                                    <td>ca. 104 mia. DKK</td>
                                     <td>19 mia. DKK</td>
-                                    <td>115,00 DKK</td>
-                                    <td>18,2</td>
-                                    <td>15,8</td>
+                                    <td>145 DKK</td>
+                                    <td>17,4</td>
+                                    <td>22,0</td>
                                     <td>
                                         <p><b>Biotech:</b> Verdensførende inden for antistof-teknologi.</p>
                                         <p><i>Analytiker-konsensus (06.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
@@ -992,11 +998,11 @@
                                 </tr>
                                 <tr>
                                     <td><b>Pandora (PNDORA)</b></td>
-                                    <td>ca. 95 mia. DKK</td>
+                                    <td>ca. 36 mia. DKK</td>
                                     <td>31 mia. DKK</td>
-                                    <td>82,40 DKK</td>
-                                    <td>14,5</td>
-                                    <td>12,8</td>
+                                    <td>67,89 DKK</td>
+                                    <td>7,2</td>
+                                    <td>7,5</td>
                                     <td>
                                         <p><b>Luksus:</b> Succesfuld transformation til et globalt smykkebrand.</p>
                                         <p><i>Analytiker-konsensus (05.03.2026):</i> <b class="legal-term" data-definition="En købsanbefaling, der signalerer, at analytikeren forventer en positiv kursudvikling. Aktien anses for at være attraktivt prissat i forhold til dens fundamentale potentiale." data-example="En analytiker ser et solidt opsidepotentiale på 10-15 % i en stabil virksomhed og anbefaler investorer at købe aktien." data-slug="buy">"Buy"</b></p>
@@ -1043,7 +1049,7 @@
                                 </tr>
                                 <tr>
                                     <td><b>Jyske Bank (JYSK)</b></td>
-                                    <td>ca. 42 mia. DKK</td>
+                                    <td>ca. 47 mia. DKK</td>
                                     <td>12 mia. DKK</td>
                                     <td>85,40 DKK</td>
                                     <td>7,2</td>
@@ -2208,8 +2214,8 @@
                                     <td>Designer grafikkort (GPU'er) og AI-chips til datacentre, spil og selvkørende biler. Sælger ikke chips direkte — licenserer design til producenter som TSMC.</td>
                                     <td>1993</td>
                                     <td>Information Technology</td>
-                                    <td>36.5</td>
-                                    <td>4,800</td>
+                                    <td>38.5</td>
+                                    <td>4,580</td>
                                     <td>Fra gaming-niche til AI-infrastruktur: NVIDIAs H100-chip er i dag den mest eftertragtede komponent i verden. En enkelt H100-server koster over 3 mio. DKK.</td>
                                 </tr>
                                 <tr>
@@ -2218,7 +2224,7 @@
                                     <td>1976</td>
                                     <td>Technology</td>
                                     <td>33.3</td>
-                                    <td>4,030</td>
+                                    <td>3,828</td>
                                     <td>Services tegner sig for over 25 % af omsætningen med bruttomargin på ~74 % mod ~37 % for hardware. Apple har købt tilbage for over 600 mia. USD i egne aktier de seneste 10 år.</td>
                                 </tr>
                                 <tr>
@@ -2227,7 +2233,7 @@
                                     <td>1998</td>
                                     <td>Communication Services</td>
                                     <td>27.8</td>
-                                    <td>3,920</td>
+                                    <td>3,650</td>
                                     <td>YouTube alene estimeres til en markedsværdi på over 300 mia. USD. Waymo (selvkørende biler) er et af verdens mest avancerede autonome kørselsselskaber og en skjult perle i Alphabet.</td>
                                 </tr>
                                 <tr>
@@ -2236,7 +2242,7 @@
                                     <td>1975</td>
                                     <td>Information Technology</td>
                                     <td>25.2</td>
-                                    <td>3,070</td>
+                                    <td>3,010</td>
                                     <td>Partnerskabet med OpenAI i 2019 (10 mia. USD investeret) transformerede Microsoft fra et stabilt men kedeligt softwareselskab til AI-gigant. Copilot er nu integreret i hele Office-suiten.</td>
                                 </tr>
                                 <tr>
@@ -2245,7 +2251,7 @@
                                     <td>1994</td>
                                     <td>Consumer Discretionary / Cloud</td>
                                     <td>42.1</td>
-                                    <td>2,590</td>
+                                    <td>2,400</td>
                                     <td>AWS tegner sig for ~17 % af omsætningen men over 60 % af driftsoverskuddet. E-handel er i praksis en lavmargin-motor, der finansierer den højmargined cloud-forretning.</td>
                                 </tr>
                                 <tr>
@@ -2271,8 +2277,8 @@
                                     <td>Ejer Facebook, Instagram, WhatsApp og Messenger. Tjener næsten alle penge på annoncering. Investerer massivt i AI og VR/AR via Metaverse-divisionen (Reality Labs).</td>
                                     <td>2004</td>
                                     <td>Communication Services</td>
-                                    <td>27.3</td>
-                                    <td>1,710</td>
+                                    <td>26.8</td>
+                                    <td>1,450</td>
                                     <td>WhatsApp blev købt for 19 mia. USD i 2014 — dengang kritiseret som vanvittigt. I dag har appen 2+ mia. daglige brugere. Reality Labs har tabt over 50 mia. USD siden 2021 på Metaverse-satsningen.</td>
                                 </tr>
                                 <tr>
@@ -2280,8 +2286,8 @@
                                     <td>Producerer elektriske biler (Model 3, Y, S, X, Cybertruck) og energilagring (Powerwall, Megapack). Udvikler FSD (Full Self-Driving) software og planlagt Robotaxi-service.</td>
                                     <td>2003</td>
                                     <td>Consumer / AI</td>
-                                    <td>332.5</td>
-                                    <td>1,570</td>
+                                    <td>345</td>
+                                    <td>1,310</td>
                                     <td>Teslas ekstreme P/E afspejler investor-satsen på autonomt kørsels-software, ikke bilsalg. FSD og Robotaxi-platformen prissættes som fremtidig software-abonnementsindtjening — ikke nuværende bilproduktion.</td>
                                 </tr>
                                 <tr>
@@ -2323,7 +2329,7 @@
                                 <tr>
                                     <td><b>NOVO B</b></td>
                                     <td>Novo Nordisk</td>
-                                    <td>Verdens største medicinalvirksomhed målt på markedsværdi i Europa. Producerer insulin (Levemir, Tresiba) og GLP-1-præparater til diabetes og fedme (Ozempic, Wegovy). Grundlagt i 1923 ved fusion af to insulinproducenter.</td>
+                                    <td>Global medicinalvirksomhed med hovedsæde i Danmark. Producerer insulin (Levemir, Tresiba) og GLP-1-præparater til diabetes og fedme (Ozempic, Wegovy). Toneangivende i diabetes og fedme; målt på samlet omsætning er Novo ikke verdens største medicinalvirksomhed (typisk overgået af bl.a. amerikanske og schweiziske konkurrenter). Grundlagt i 1923 ved fusion af to insulinproducenter.</td>
                                     <td>Medicinal</td>
                                     <td><span class="legal-term" data-definition="Pris-til-indtjening-forholdet. Angiver hvor mange kroner investoren betaler for hver krone opgjort indtjening." data-example="Ved aktiekurs 750 kr. og EPS 50 kr. er P/E = 750 ÷ 50 = 15. Man betaler altså 15 kr. for hver krone indtjening." data-slug="pe">10.67*</span></td>
                                     <td>Aktiekurs faldet markant fra top — GLP-1-pipeline afgørende for genrejsning.</td>
@@ -3086,7 +3092,7 @@
                     labels: ['NVIDIA', 'Apple', 'Alphabet', 'Microsoft', 'Amazon', 'TSMC', 'Saudi Aramco', 'Meta', 'Tesla', 'Broadcom'],
                     datasets: [{
                         label: 'Markedsværdi (mia. USD)',
-                        data: [4800, 4030, 3920, 3070, 2590, 2010, 1660, 1710, 1570, 1680],
+                        data: [4580, 3828, 3650, 3010, 2400, 2010, 1660, 1450, 1310, 1680],
                         backgroundColor: c.primary,
                         borderColor: '#0056b3',
                         borderWidth: 0
