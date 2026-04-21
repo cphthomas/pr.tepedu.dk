@@ -38,21 +38,13 @@
                             <div class="timeline-arrow"></div>
 
 
-                            <!-- <div class="display-4">Lær om Excel Pivottabeller</div> -->
 
+                            <img src="../images/pr10.jpg" class="img-fluid w-100 mb-2">
 
+                            <h2 class="mb-0">Aktivitet – Løsningsforslag</h2>
+                            <p class="text-muted" style="text-transform: lowercase; font-size: 0.95rem;">finansiel rådgivning – privat · forsikring</p>
 
-
-                            <p>
-                                    <div style="display: flex; align-items: flex-start; gap: 20px;">
-
-                                        <img src="../images/pr10.jpg" width="100%">
-                                        <br><br>
-                                        <h2>Temaprojekt - Løsningsforslag</h2>
-                                        <br>
-                                        <h2>Finansiel rådgivning - Privat</h2>
-                                        <h2>Løsningsforslag</h2>
-                                        <h2>Forsikring</h2>
+                            <div class="mt-4">
 
 
 
@@ -132,9 +124,7 @@
                                             Sørg for tydeligt at nummerere dine svar, så dine medstuderende nemt kan
                                             navigere i din besvarelse. <br> -->
 
-                            </p>
-
-                            </p>
+                            </div>
                         </li>
 
 
@@ -591,6 +581,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="global.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    } else {
+                        entry.target.classList.remove('in-view');
+                    }
+                });
+            }, {
+                threshold: 0.05,
+                rootMargin: "600px 0px"
+            });
+
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
 
 </body>
 

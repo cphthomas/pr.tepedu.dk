@@ -38,25 +38,13 @@
                             <div class="timeline-arrow"></div>
 
 
-                            <!-- <div class="display-4">Lær om Excel Pivottabeller</div> -->
 
+                            <img src="../images/pr10.jpg" class="img-fluid w-100 mb-2">
 
+                            <h2 class="mb-0">Aktivitet</h2>
+                            <p class="text-muted" style="text-transform: lowercase; font-size: 0.95rem;">finansiel rådgivning – privat · forsikring</p>
 
-
-                            <p>
-                                    <div style="display: flex; align-items: flex-start; gap: 20px;">
-
-                                        <img src="../images/pr10.jpg" width="100%">
-                                        <br><br>
-                                        <h2>Aktivitet Temaprojekt</h2>
-                                        <br>
-                                        <h2>Finansiel rådgivning - Privat</h2>
-
-                                        <h2>Forsikring</h2>
-
-
-
-
+                            <div class="mt-4">
 
                                         <p>
                                             <u>Formål:</u> <br>
@@ -133,9 +121,7 @@
                                             Sørg for tydeligt at nummerere dine svar, så dine medstuderende nemt kan
                                             navigere i din besvarelse. <br> -->
 
-                            </p>
-
-                            </p>
+                            </div>
                         </li>
 
 
@@ -364,7 +350,8 @@
                     }
                 });
             }, {
-                threshold: 0.1 // Adjust if necessary to control when the animation starts
+                threshold: 0.05,
+                rootMargin: "600px 0px"
             });
 
             document.querySelectorAll('.timeline-item').forEach(item => {
