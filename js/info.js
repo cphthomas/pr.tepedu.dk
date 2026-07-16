@@ -1,12 +1,20 @@
 // Info popup functionality
 document.addEventListener('DOMContentLoaded', function () {
+    // Resolve image paths relative to project root (works from any page depth)
+    const infoScript = document.querySelector('script[src*="info.js"]');
+    const imagesBase = infoScript
+        ? new URL('../images/', infoScript.src).href
+        : 'images/';
+
     // Tilføj styling til head
     const style = document.createElement('style');
     style.textContent = `
         .info-icon-container {
             position: relative;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             margin-left: 10px;
+            z-index: 1030;
         }
         
         .info-popup {
@@ -116,9 +124,9 @@ document.addEventListener('DOMContentLoaded', function () {
         infoPopup.innerHTML = `
             <h6>Om onlinebogen</h6>
             <small>Denne onlinebog er udviklet af:
-            <img src="images/tb.jpeg" alt="Theis Bjerken">
+            <img src="${imagesBase}tb.jpeg" alt="Theis Bjerken">
             Lektor Theis Bjerken <br>Redaktør<br>&<br>
-            <img src="images/mig.jpg" alt="Thomas Petersen">Lektor Thomas Petersen
+            <img src="${imagesBase}mig.jpg" alt="Thomas Petersen">Lektor Thomas Petersen
               <br><br>
             <p>Onlinebogen er udviklet med anvendelse af kunstig intelligens til udformning af teknisk struktur (navigation, HTML, CSS, JavaScript) samt fagligt indhold og eksempelmateriale.</p>
             </small>
